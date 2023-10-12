@@ -1,0 +1,15 @@
+{
+    "suggest.noselect": true,
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "filetypes": ["go"]
+        }
+    },
+    "go.goplsOptions": {
+        "staticcheck": true
+    },
+    "eslint.autoFixOnSave": true,
+    "eslint.alwaysShowStatus": true,
+}
