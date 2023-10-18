@@ -170,9 +170,9 @@ nnoremap <Leader>ga :!git add<Space>
 nnoremap <Leader>gc :!git commit -m ''<LEFT>
 nnoremap <Leader><C-P> :!git push<CR>
 nnoremap <Leader>gp :!git push -u origin<Space>
-nnoremap <Leader><C-D> :Gdiff<CR>
-nnoremap <Leader><C-B> :Git blame<CR>
-nnoremap <Leader><C-S> :Git status<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>gs :Git status<CR>
 nnoremap <Leader>g[ :GitGutterPrevHunk<CR>
 nnoremap <Leader>g] :GitGutterNextHunk<CR>
 nnoremap <Leader>gh :GitGutterLineHighlightsToggle<CR>
