@@ -113,6 +113,11 @@ inoremap ` ``<LEFT>
 inoremap <C-CR> <CR><TAB><CR><Backspace><UP><C-c>$a
 " terminal mode setting
 tnoremap <Esc> <C-\><C-n>
+nnoremap <silent> tt <cmd>terminal<CR>
+nnoremap <silent> tx <cmd>belowright new<CR><cmd>terminal<CR>
+autocmd TermOpen * :startinsert
+autocmd TermOpen * setlocal norelativenumber
+autocmd TermOpen * setlocal nonumber
 " assign ecs to Ctrl-C
 inoremap <C-c> <Esc>
 " Find files using Telescope command-line sugar.
@@ -266,7 +271,7 @@ let g:coc_global_extensions = [
     \ 'coc-vetur',
     \ ]
 " markdown
-nnoremap <Leader>pre <Plug>MarkdownPreviewToggle
+autocmd FileType markdown nnoremap <Leader>pre <Plug>MarkdownPreviewToggle
 " Go settings
 let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
