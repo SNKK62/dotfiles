@@ -230,7 +230,7 @@ nmap <silent> <Leader>rnm <Plug>(coc-rename)
 nmap <silent> <Leader>fmt <Plug>(coc-format)
 nmap <silent> <Leader>di :CocDiagnostics<CR>
 nmap <silent> <Leader>li :CocList<CR>
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> <Leader>k :call <SID>show_documentation()<CR>
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
