@@ -110,7 +110,6 @@ inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 inoremap ` ``<LEFT>
 
-inoremap <C-CR> <CR><TAB><CR><Backspace><UP><C-c>$a
 " terminal mode setting
 tnoremap <Esc> <C-\><C-n>
 nnoremap <silent> tt <cmd>terminal<CR>
@@ -195,6 +194,11 @@ autocmd FileType typescriptreact setlocal sw=2 sts=2 ts=2 et
 autocmd FileType typescript setlocal sw=2 sts=2 ts=2 et
 autocmd FileType javascriptreact setlocal sw=2 sts=2 ts=2 et
 autocmd FileType javascript setlocal sw=2 sts=2 ts=2 et
+" js/ts enter in bracket
+autocmd FileType typescriptreact inoremap <C-CR> <CR><TAB><CR><Backspace><UP><C-c>$a
+autocmd FileType typescript inoremap <C-CR> <CR><TAB><CR><Backspace><UP><C-c>$a
+autocmd FileType javascriptreact inoremap <C-CR> <CR><TAB><CR><Backspace><UP><C-c>$a
+autocmd FileType javascript inoremap <C-CR> <CR><TAB><CR><Backspace><UP><C-c>$a
 " mark setting
 nmap <Leader>m <Plug>(quickhl-manual-this)
 xmap <Leader>m <Plug>(quickhl-manual-this)
