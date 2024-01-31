@@ -157,14 +157,18 @@ require('lualine').setup {
 EOF
 " Move to previous/next
 nnoremap <silent> <C-B>h <Cmd>BufferPrevious<CR>
-nnoremap <silent> <A-h> <Cmd>BufferPrevious<CR>
+" <A-h>
+nnoremap <silent> ˙ <Cmd>BufferPrevious<CR>
 nnoremap <silent> <C-B>l <Cmd>BufferNext<CR>
-nnoremap <silent> <A-l> <Cmd>BufferNext<CR>
+" <A-l>
+nnoremap <silent> ¬ <Cmd>BufferNext<CR>
 " Re-order to previous/next
 nnoremap <silent> <C-B>j <Cmd>BufferMovePrevious<CR>
-nnoremap <silent> <A-j> <Cmd>BufferMovePrevious<CR>
+" <A-j>
+nnoremap <silent> ∆ <Cmd>BufferMovePrevious<CR>
 nnoremap <silent> <C-B>k <Cmd>BufferMoveNext<CR>
-nnoremap <silent> <A-k> <Cmd>BufferMoveNext<CR>
+" <A-k>
+nnoremap <silent> ˚ <Cmd>BufferMoveNext<CR>
 " Goto buffer in position...
 nnoremap <silent> <C-B>1 <Cmd>BufferGoto 1<CR>
 nnoremap <silent> <C-B>2 <Cmd>BufferGoto 2<CR>
