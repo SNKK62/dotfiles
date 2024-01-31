@@ -93,6 +93,21 @@ set noswapfile
 set clipboard&
 set clipboard^=unnamedplus
 hi clear CursorLine
+nnoremap <Leader>rep :%s/
+" arrow settings
+nnoremap <S-j> 15j
+vnoremap <S-j> 15j
+nnoremap <buffer> <S-K> 15k
+vnoremap <buffer> <S-K> 15k
+nnoremap <S-l> 10l
+vnoremap <S-l> 10l
+nnoremap <S-h> 10h
+vnoremap <S-h> 10h
+" swap paste keybinds
+nnoremap p P
+vnoremap p P
+nnoremap P p
+vnoremap P p
 " fill columns after 80 with red
 set colorcolumn=81
 highlight ColorColumn ctermbg=52 guibg=#42032c
