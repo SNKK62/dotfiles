@@ -93,16 +93,18 @@ set noswapfile
 set clipboard&
 set clipboard^=unnamedplus
 hi clear CursorLine
-nnoremap <Leader>rep :%s/
+" replace keybinds
+nnoremap <Leader>repg :%s//g<LEFT><LEFT>
+nnoremap <Leader>repc :%s//gc<LEFT><LEFT><LEFT>
 " arrow settings
-nnoremap <S-j> 15j
-vnoremap <S-j> 15j
-nnoremap <buffer> <S-K> 15k
-vnoremap <buffer> <S-K> 15k
-nnoremap <S-l> 10l
-vnoremap <S-l> 10l
-nnoremap <S-h> 10h
-vnoremap <S-h> 10h
+nnoremap <C-j> 15j
+vnoremap <C-j> 15j
+nnoremap <C-k> 15k
+vnoremap <C-k> 15k
+nnoremap <C-l> 10l
+vnoremap <C-l> 10l
+nnoremap <C-h> 10h
+vnoremap <C-h> 10h
 " swap paste keybinds
 nnoremap p P
 vnoremap p P
@@ -155,14 +157,14 @@ require('lualine').setup {
 EOF
 " Move to previous/next
 nnoremap <silent> <C-B>h <Cmd>BufferPrevious<CR>
-nnoremap <silent> <C-h> <Cmd>BufferPrevious<CR>
+nnoremap <silent> <A-h> <Cmd>BufferPrevious<CR>
 nnoremap <silent> <C-B>l <Cmd>BufferNext<CR>
-nnoremap <silent> <C-l> <Cmd>BufferNext<CR>
+nnoremap <silent> <A-l> <Cmd>BufferNext<CR>
 " Re-order to previous/next
 nnoremap <silent> <C-B>j <Cmd>BufferMovePrevious<CR>
-nnoremap <silent> <C-j> <Cmd>BufferMovePrevious<CR>
+nnoremap <silent> <A-j> <Cmd>BufferMovePrevious<CR>
 nnoremap <silent> <C-B>k <Cmd>BufferMoveNext<CR>
-nnoremap <silent> <C-k> <Cmd>BufferMoveNext<CR>
+nnoremap <silent> <A-k> <Cmd>BufferMoveNext<CR>
 " Goto buffer in position...
 nnoremap <silent> <C-B>1 <Cmd>BufferGoto 1<CR>
 nnoremap <silent> <C-B>2 <Cmd>BufferGoto 2<CR>
@@ -230,7 +232,7 @@ nmap <silent> <Leader>rnm <Plug>(coc-rename)
 nmap <silent> <Leader>fmt <Plug>(coc-format)
 nmap <silent> <Leader>di :CocDiagnostics<CR>
 nmap <silent> <Leader>li :CocList<CR>
-nnoremap <silent> <Leader>k :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
