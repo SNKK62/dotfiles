@@ -48,6 +48,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('neoclide/coc.nvim', {'rev': 'release'})
     call dein#add('nvim-treesitter/nvim-treesitter', { 'merged': 0 })
     call dein#add('tomtom/tcomment_vim')
+    call dein#add('github/copilot.vim')
     call dein#end()
     call dein#save_state()
 endif
@@ -316,3 +317,9 @@ autocmd FileType go nnoremap <Leader>test :GoTest<CR>
 autocmd FileType go nnoremap <Leader>vtest :!go test -v .<CR>
 autocmd FileType go nnoremap <Leader>cov :GoCoverageToggle<CR>
 " let g:go_bin_path="/usr/local/go/bin"
+" copilot
+imap <C-g>d <Plug>(copilot-dismiss)
+imap <C-g>n <Plug>(copilot-next)
+imap <C-g>p <Plug>(copilot-previous)
+imap <C-g>w <Plug>(copilot-accept-word)
+imap <C-g>l <Plug>(copilot-accept-line)
