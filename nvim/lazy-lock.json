@@ -1,0 +1,21 @@
+{
+  "barbar.nvim": { "branch": "master", "commit": "71ac376acd000743146b1e08e62151b4d887bbac" },
+  "fern-git-status.vim": { "branch": "master", "commit": "151336335d3b6975153dad77e60049ca7111da8e" },
+  "fern-renderer-nerdfont.vim": { "branch": "master", "commit": "798a8313433a1569fa2485b8f2b1de68de7e60fe" },
+  "fern.vim": { "branch": "main", "commit": "56f8e4c79da01eecb0f7f3803c051cd23c803b35" },
+  "glyph-palette.vim": { "branch": "master", "commit": "e9d099dcece92959b737bcf211b47b2dc425a3e4" },
+  "indent-blankline.nvim": { "branch": "master", "commit": "12e92044d313c54c438bd786d11684c88f6f78cd" },
+  "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" },
+  "lualine.nvim": { "branch": "master", "commit": "7d131a8d3ba5016229e8a1d08bf8782acea98852" },
+  "nerdfont.vim": { "branch": "master", "commit": "e054fd135ee73db37cd5bf545e0ff9948ffec7bc" },
+  "nvim-web-devicons": { "branch": "master", "commit": "7f30f2da3c3641841ceb0e2c150281f624445e8f" },
+  "plenary.nvim": { "branch": "master", "commit": "4f71c0c4a196ceb656c824a70792f3df3ce6bb6d" },
+  "tcomment_vim": { "branch": "master", "commit": "90eaf759099bcd47aa0471f974109d7fd78e4eea" },
+  "telescope.nvim": { "branch": "master", "commit": "0f865f17af4f9bc1587a0132414cdfd32d91852e" },
+  "transparent.nvim": { "branch": "main", "commit": "fd35a46f4b7c1b244249266bdcb2da3814f01724" },
+  "vim-code-dark": { "branch": "master", "commit": "8def3d890b2087ee4c42af03117d7edc7d693706" },
+  "vim-fugitive": { "branch": "master", "commit": "9f92ff14d9d1169e08f197a2250fcaea88e9c767" },
+  "vim-gitgutter": { "branch": "main", "commit": "67ef116100b40f9ca128196504a2e0bc0a2753b0" },
+  "vim-quickhl": { "branch": "master", "commit": "be1f44169c3fdee3beab629e83380515da03835e" },
+  "winresizer": { "branch": "master", "commit": "9bd559a03ccec98a458e60c705547119eb5350f3" }
+}

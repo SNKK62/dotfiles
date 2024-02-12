@@ -67,3 +67,5 @@ export GOPATH="$HOME/go"
 export GOROOT="/usr/local/go"
 export PATH="$GOPATH/bin:$PATH"
 #===go===
+EMSDK="$HOME/emsdk"
+export PATH="$EMSDK:$EMSDK/upstream/emscripten:$PATH"

@@ -18,3 +18,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 eval "$(rbenv init - bash)"
+source "/Users/kokiseno/emsdk/emsdk_env.sh"
