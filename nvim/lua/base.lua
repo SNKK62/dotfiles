@@ -41,3 +41,5 @@ vim.cmd[[hi ColorColumn ctermbg=52 guibg=#42032c]]
 vim.cmd[[hi NonText    ctermbg=None ctermfg=65 guibg=None guifg=#41946B]]
 vim.cmd[[hi SpecialKey ctermbg=None ctermfg=65 guibg=None guifg=#41946B]]
 
+-- vim.opt.statusline = [[%{substitute(v:lua.status_line, '\^', ' ', 'g')}}]]
+-- vim.o.statusline = vim.fn.substitute(vim.fn['statusline'](), '^', '', 'g')

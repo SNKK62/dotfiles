@@ -14,15 +14,15 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- file browser
-    {
-        "lambdalisue/fern.vim",
+{
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
         dependencies = {
-            "lambdalisue/nerdfont.vim",
-            "lambdalisue/fern-renderer-nerdfont.vim",
-            "lambdalisue/glyph-palette.vim",
-            "lambdalisue/fern-git-status.vim",
-            "nvim-tree/nvim-web-devicons",
-        }
+          "nvim-lua/plenary.nvim",
+          "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+          "MunifTanjim/nui.nvim",
+          -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+        },
     },
     -- browser
     {
@@ -43,6 +43,32 @@ require("lazy").setup({
     },
     "tomasiser/vim-code-dark",
 
+    -- lsp
+    {
+        "nvimtools/none-ls.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        }
+    },
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    {
+        "nvimdev/lspsaga.nvim",
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-tree/nvim-web-devicons',
+        },
+    },
+    -- completion
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/vim-vsnip", -- snippet engine
+    "hrsh7th/cmp-vsnip",
+    "onsails/lspkind.nvim",
+
     "simeji/winresizer", -- <C-e>
     "romgrk/barbar.nvim",
     {
@@ -52,10 +78,11 @@ require("lazy").setup({
         }
     },
     "tomtom/tcomment_vim",
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-    },
-    "t9md/vim-quickhl"
+    "lukas-reineke/indent-blankline.nvim",
+    "t9md/vim-quickhl",
+    { 
+        'nvim-treesitter/nvim-treesitter',
+        build = ':TSUpdate',
+    }
 })
 

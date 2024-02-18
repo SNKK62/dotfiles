@@ -13,6 +13,11 @@ keymap({ 'n', 'v' }, '\'\'', '^', { noremap = true })
 keymap('i', '<C-;><C-;>', '<C-o>$', { noremap = true })
 keymap('i', '<C-\'><C-\'>', '<C-o>^', { noremap = true })
 
+keymap('i', '<C-j>', '<DOWN>', { noremap = true })
+keymap('i', '<C-k>', '<UP>', { noremap = true })
+keymap('i', '<C-h>', '<LEFT>', { noremap = true })
+keymap('i', '<C-l>', '<RIGHT>', { noremap = true })
+
 -- brackets and quotes
 keymap('i', '{', '{}<LEFT>', { noremap = true })
 keymap('i', '[', '[]<LEFT>', { noremap = true })
@@ -38,12 +43,40 @@ vim.api.nvim_create_autocmd("TermOpen", {
     end
 })
 
--- swap paste keymaps
-keymap({ 'n', 'v' }, 'p', 'P', { noremap = true })
-keymap({ 'n', 'v' }, 'P', 'p', { noremap = true })
-
--- fern
-keymap('n', '<C-f>', ':Fern . -drawer -reveal=% -toggle -width=33<CR>', { noremap = true })
+-- filer (neo-tree)
+keymap(
+    'n',
+    '<C-f>',
+    function()
+      require("neo-tree.command").execute({
+        toggle = true,
+        source = "filesystem",
+        position = "left",
+      })
+    end
+)
+keymap(
+    'n',
+    '<CS-G>',
+    function()
+      require("neo-tree.command").execute({
+        toggle = true,
+        source = "git_status",
+        position = "left",
+      })
+    end
+)
+keymap(
+    'n',
+    '<CS-B>',
+    function()
+      require("neo-tree.command").execute({
+        toggle = true,
+        source = "buffers",
+        position = "left",
+      })
+    end
+)
 
 -- telescope
 local builtin = require('telescope.builtin')
@@ -95,4 +128,23 @@ keymap('n',  '<C-b>d', '<Cmd>BufferPickDelete<CR>', { noremap = true, silent = t
 keymap({ 'n', 'x' }, '<Leader>m', '<Plug>(quickhl-manual-this)', { noremap = true })
 keymap({ 'n', 'x' }, '<Leader>M', '<Plug>(quickhl-manual-reset)', { noremap = true })
 
-
+-- lsp
+-- finder
+keymap("n", "<Leader>fi", "<cmd>Lspsaga finder<CR>", { silent = true })
+keymap("n", "<Leader>ty", "<cmd>Lspsaga finder tyd+ref+imp+def<CR>", { silent = true })
+-- definition
+keymap("n", "<Leader>df", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+-- rename
+keymap("n", "<Leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
+-- document
+keymap("n", "K", "<cmd>Lspsaga hover_doc ++quiet<CR>", { silent = true })
+-- diagnostics
+keymap("n", "<Leader>dl", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
+keymap("n", "<Leader>dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+keymap("n", "<Leader>dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
+keymap("n", "<Leader>db", "<cmd>Lspsaga show_buf_diagnostics<CR>", { silent = true })
+keymap("n", "<Leader>dw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { silent = true })
+-- action
+keymap({"n","v"}, "<Leader>ac", "<cmd>Lspsaga code_action<CR>", { silent = true })
+-- float terminal
+keymap({'n','t'}, 'ƒ', '<cmd>Lspsaga term_toggle<CR>', { silent = true }) -- <A-f>
