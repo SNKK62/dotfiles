@@ -41,8 +41,12 @@ require("lazy").setup({
         "xiyaowong/transparent.nvim",
         rev = '4c3c392f285378e606d154bee393b6b3dd18059c'
     },
-    "tomasiser/vim-code-dark",
-
+    {
+      "folke/tokyonight.nvim",
+      lazy = false,
+      priority = 1000,
+      opts = {},
+    },
     -- lsp
     {
         "nvimtools/none-ls.nvim",
@@ -83,6 +87,7 @@ require("lazy").setup({
     { 
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
-    }
+    },
+    "github/copilot.vim",
 })
 

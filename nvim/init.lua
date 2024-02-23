@@ -1,5 +1,4 @@
 require('plugins')
-require('plugins/fern')
 require('plugins/gitgutter')
 require('plugins/lualine')
 require('plugins/indent-blankline')

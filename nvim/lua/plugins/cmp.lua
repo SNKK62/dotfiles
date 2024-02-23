@@ -3,12 +3,13 @@ local lspkind = require 'lspkind'
 
 local cmp = require("cmp")
 cmp.setup({
+  preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
     end,
   },
-  sources = { 
+  sources = {
     { name = "nvim_lsp" },--ソース類を設定
     { name = 'vsnip' }, -- For vsnip users.
     { name = "buffer" },
@@ -19,7 +20,7 @@ cmp.setup({
     ["<C-j>"] = cmp.mapping.select_next_item(),
     -- ['<C-l>'] = cmp.mapping.complete(),
     ['<C-h>'] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),--Ctrl+yで補完を選択確定
+    ["<CR>"] = cmp.mapping.confirm({ select = false }),--Ctrl+yで補完を選択確定
   }),
   experimental = {
     ghost_text = false,

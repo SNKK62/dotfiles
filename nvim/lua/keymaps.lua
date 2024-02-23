@@ -98,6 +98,13 @@ keymap('n', '<Leader>ghn', ':GitGutterNextHunk<CR>', { noremap = true })
 keymap('n', '<Leader>ghl', ':GitGutterLineHighlightsToggle<CR>', { noremap = true })
 keymap('n', '<Leader>gpr', ':GitGutterPreviewHunk<CR>', { noremap = true })
 
+-- copilot
+keymap('i', '<C-g>d', '<Plug>(copilot-dismiss)', { noremap = true })
+keymap('i', '<C-g>n', '<Plug>(copilot-next)', { noremap = true })
+keymap('i', '<C-g>p', '<Plug>(copilot-previous)', { noremap = true })
+keymap('i', '<C-g>w', '<Plug>(copilot-accept-word)', { noremap = true })
+keymap('i', '<C-g>l', '<Plug>(copilot-accept-line)', { noremap = true })
+
 -- comment/uncomment
 keymap('n', '<C-/>', '<C-_><C-_>', { remap = true })
 keymap('i', '<C-/>', '<C-_><C-_>', { remap = true })
