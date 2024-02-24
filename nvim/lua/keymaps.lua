@@ -78,6 +78,15 @@ keymap(
     end
 )
 
+-- sideber
+keymap(
+    'n',
+    '<C-s>',
+    function()
+        require("sidebar-nvim").toggle()
+    end
+)
+
 -- telescope
 local builtin = require('telescope.builtin')
 keymap('n', '<C-p>', builtin.find_files, {})

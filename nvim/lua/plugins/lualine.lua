@@ -1,3 +1,5 @@
-require('lualine').setup {
-    options = { theme = 'tokyonight' },
-}
+return function()
+    require('lualine').setup {
+        options = { theme = 'tokyonight' },
+    }
+end

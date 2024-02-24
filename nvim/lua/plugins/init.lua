@@ -14,9 +14,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- file browser
-{
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        config = require("plugins/neotree"),
         dependencies = {
           "nvim-lua/plenary.nvim",
           "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -24,6 +25,7 @@ require("lazy").setup({
           -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
     },
+
     -- browser
     {
         "nvim-telescope/telescope.nvim",
@@ -33,8 +35,12 @@ require("lazy").setup({
         }
     },
     -- git
-    "airblade/vim-gitgutter",
-    "tpope/vim-fugitive",
+    {
+        "airblade/vim-gitgutter",
+    },
+    {
+        "tpope/vim-fugitive",
+    },
 
     -- colorscheme
     {
@@ -47,16 +53,23 @@ require("lazy").setup({
       priority = 1000,
       opts = {},
     },
+
     -- lsp
     {
         "nvimtools/none-ls.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
-        }
+        },
     },
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
+    {
+        "williamboman/mason.nvim",
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+    },
+    {
+        "neovim/nvim-lspconfig",
+    },
     {
         "nvimdev/lspsaga.nvim",
         dependencies = {
@@ -73,21 +86,56 @@ require("lazy").setup({
     "hrsh7th/cmp-vsnip",
     "onsails/lspkind.nvim",
 
-    "simeji/winresizer", -- <C-e>
-    "romgrk/barbar.nvim",
+    {
+        "simeji/winresizer", -- <C-e>
+    },
+    {
+        "romgrk/barbar.nvim",
+        dependencies = {
+          'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+          'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+        },
+        init = function() vim.g.barbar_auto_setup = false end,
+        config = require("plugins/barbar"),
+    },
     {
         "nvim-lualine/lualine.nvim",
+        config = require("plugins/lualine"),
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         }
     },
-    "tomtom/tcomment_vim",
-    "lukas-reineke/indent-blankline.nvim",
-    "t9md/vim-quickhl",
-    { 
+    {
+        "tomtom/tcomment_vim",
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        config = require("plugins/indent-blankline"),
+    },
+    {
+        "t9md/vim-quickhl",
+    },
+    {
         'nvim-treesitter/nvim-treesitter',
+        config = require("plugins/treesitter"),
         build = ':TSUpdate',
     },
-    "github/copilot.vim",
+    {
+        "github/copilot.vim",
+    },
+    {
+        'mvllow/modes.nvim',
+        rev = "v0.2.0",
+        config = require("plugins/modes"),
+    },
+    {
+        'sidebar-nvim/sidebar.nvim',
+        config = require("plugins/sidebar"),
+    }
 })
 
+require("plugins/gitgutter")
+require("plugins/lsp")
+require("plugins/lspsaga")
+require("plugins/cmp")
+require("plugins/null-ls")

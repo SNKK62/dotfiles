@@ -1,1 +1,3 @@
-require('ibl').setup {}
+return function()
+    require('ibl').setup {}
+end
