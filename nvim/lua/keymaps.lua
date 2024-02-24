@@ -36,7 +36,7 @@ keymap('n', 'tt', '<Cmd>terminal<CR>', { noremap = true, silent = true })
 keymap('n', 'tx', '<Cmd>belowright new<CR><Cmd>terminal<CR>', { noremap = true, silent = true })
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = "*",
-    callback = function() 
+    callback = function()
         vim.cmd('startinsert')
         vim.opt_local.relativenumber = false
         vim.opt_local.number = false
@@ -81,7 +81,7 @@ keymap(
 -- sideber
 keymap(
     'n',
-    '<C-s>',
+    '<CS-F>',
     function()
         require("sidebar-nvim").toggle()
     end
@@ -92,6 +92,13 @@ local builtin = require('telescope.builtin')
 keymap('n', '<C-p>', builtin.find_files, {})
 keymap('n', '<C-g>', builtin.live_grep, {})
 keymap('n', '<C-b>g', builtin.buffers, {})
+
+-- treesitter-context
+keymap('n', '<Leader>tc', '<Cmd>TSContextToggle<CR>', { noremap = true, silent = true })
+
+-- iswap
+keymap('n', '<Leader>sw', '<Cmd>ISwap<CR>', { noremap = true, silent = true })
+keymap('n', '<Leader>sn', '<Cmd>ISwapNode<CR>', { noremap = true, silent = true })
 
 -- git
 keymap('n', '<Leader><C-a>', ':Gwrite<CR>', { noremap = true })
@@ -160,6 +167,13 @@ keymap("n", "<Leader>dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = tr
 keymap("n", "<Leader>dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
 keymap("n", "<Leader>db", "<cmd>Lspsaga show_buf_diagnostics<CR>", { silent = true })
 keymap("n", "<Leader>dw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { silent = true })
+
+keymap("n", "<leader>xx", function() require("trouble").toggle() end)
+keymap("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+keymap("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+keymap("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+keymap("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+keymap("n", "<leader>xr", function() require("trouble").toggle("lsp_references") end)
 -- action
 keymap({"n","v"}, "<Leader>ac", "<cmd>Lspsaga code_action<CR>", { silent = true })
 -- float terminal

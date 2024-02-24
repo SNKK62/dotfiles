@@ -21,8 +21,10 @@ require("mason-lspconfig").setup_handlers {
   end,
 }
 
+local lspconfig = require("lspconfig")
+
 -- TypeScript
-require("lspconfig").tsserver.setup {
+lspconfig.tsserver.setup {
   on_attach = on_attach,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" },
@@ -33,3 +35,4 @@ require("lspconfig").tsserver.setup {
     }),
   },
 }
+

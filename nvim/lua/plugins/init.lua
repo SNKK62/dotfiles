@@ -32,7 +32,7 @@ require("lazy").setup({
         rev = '0.1.2',
         dependencies = {
             "nvim-lua/plenary.nvim"
-        }
+        },
     },
     -- git
     {
@@ -62,6 +62,10 @@ require("lazy").setup({
         },
     },
     {
+        "MunifTanjim/prettier.nvim",
+        config = require("plugins/prettier"),
+    },
+    {
         "williamboman/mason.nvim",
     },
     {
@@ -76,6 +80,10 @@ require("lazy").setup({
             'nvim-treesitter/nvim-treesitter',
             'nvim-tree/nvim-web-devicons',
         },
+    },
+    {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     -- completion
     "hrsh7th/nvim-cmp",
@@ -121,6 +129,22 @@ require("lazy").setup({
         build = ':TSUpdate',
     },
     {
+        'yioneko/nvim-yati',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+        },
+        config = require("plugins/yati"),
+    },
+    {
+        'nvim-treesitter/nvim-treesitter-context',
+        config = require("plugins/treesitter-context"),
+    },
+    {
+        "mizlan/iswap.nvim",
+        event = "VeryLazy",
+        config = require("plugins/iswap"),
+    },
+    {
         "github/copilot.vim",
     },
     {
@@ -131,6 +155,23 @@ require("lazy").setup({
     {
         'sidebar-nvim/sidebar.nvim',
         config = require("plugins/sidebar"),
+    },
+    {
+        "petertriho/nvim-scrollbar",
+        config = require("plugins/scrollbar"),
+    },
+    {
+        "kevinhwang91/nvim-hlslens",
+        config = function()
+            require("scrollbar.handlers.search").setup()
+        end,
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        config = function()
+            require('gitsigns').setup()
+            require("scrollbar.handlers.gitsigns").setup()
+        end
     }
 })
 
@@ -139,3 +180,4 @@ require("plugins/lsp")
 require("plugins/lspsaga")
 require("plugins/cmp")
 require("plugins/null-ls")
+require("plugins/telescope")

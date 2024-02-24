@@ -100,7 +100,7 @@ return function()
           },
           mappings = {
             ["<cr>"] = {
-                "toggle_node",
+                "open",
                 nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use 
             },
             ["<2-LeftMouse>"] = "open",
@@ -108,7 +108,7 @@ return function()
             ["<esc>"] = "cancel", -- close preview or floating neo-tree window
             ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
             -- Read `# Preview Mode` for more information
-            ["l"] = "focus_preview",
+            ["L"] = "focus_preview",
             ["s"] = "open_split",
             ["S"] = "open_vsplit",
             -- ["S"] = "split_with_window_picker",
@@ -116,13 +116,14 @@ return function()
             ["t"] = "open_tabnew",
             -- ["<cr>"] = "open_drop",
             -- ["t"] = "open_tab_drop",
-            ["w"] = "open_with_window_picker",
+            -- ["w"] = "open_with_window_picker",
             --["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
+            ["l"] = "open",
             ["h"] = "close_node",
             -- ['C'] = 'close_all_subnodes',
             ["z"] = "close_all_nodes",
             --["Z"] = "expand_all_nodes",
-            ["a"] = {
+            ["n"] = {
               "add",
               -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
               -- some commands may take optional config options, see `:h neo-tree-mappings` for details
@@ -130,7 +131,7 @@ return function()
                 show_path = "none" -- "none", "relative", "absolute"
               }
             },
-            ["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
+            ["K"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
             ["d"] = "delete",
             ["r"] = "rename",
             ["y"] = "copy_to_clipboard",
@@ -219,9 +220,9 @@ return function()
             },
             fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
               ["<down>"] = "move_cursor_down",
-              ["<C-n>"] = "move_cursor_down",
+              ["<C-j>"] = "move_cursor_down",
               ["<up>"] = "move_cursor_up",
-              ["<C-p>"] = "move_cursor_up",
+              ["<C-k>"] = "move_cursor_up",
             },
           },
 
@@ -254,7 +255,7 @@ return function()
           window = {
             position = "float",
             mappings = {
-              ["A"]  = "git_add_all",
+              ["gA"]  = "git_add_all",
               ["gu"] = "git_unstage_file",
               ["ga"] = "git_add_file",
               ["gr"] = "git_revert_file",
