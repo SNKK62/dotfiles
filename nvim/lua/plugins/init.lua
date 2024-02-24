@@ -19,19 +19,19 @@ require("lazy").setup({
         branch = "v3.x",
         config = require("plugins/neotree"),
         dependencies = {
-          "nvim-lua/plenary.nvim",
-          "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-          "MunifTanjim/nui.nvim",
-          -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+            -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
     },
 
     -- browser
     {
         "nvim-telescope/telescope.nvim",
-        rev = '0.1.2',
+        rev = "0.1.2",
         dependencies = {
-            "nvim-lua/plenary.nvim"
+            "nvim-lua/plenary.nvim",
         },
     },
     -- git
@@ -45,13 +45,13 @@ require("lazy").setup({
     -- colorscheme
     {
         "xiyaowong/transparent.nvim",
-        rev = '4c3c392f285378e606d154bee393b6b3dd18059c'
+        rev = "4c3c392f285378e606d154bee393b6b3dd18059c",
     },
     {
-      "folke/tokyonight.nvim",
-      lazy = false,
-      priority = 1000,
-      opts = {},
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
     },
 
     -- lsp
@@ -77,8 +77,8 @@ require("lazy").setup({
     {
         "nvimdev/lspsaga.nvim",
         dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-            'nvim-tree/nvim-web-devicons',
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
         },
     },
     {
@@ -100,10 +100,12 @@ require("lazy").setup({
     {
         "romgrk/barbar.nvim",
         dependencies = {
-          'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-          'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+            "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+            "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
         },
-        init = function() vim.g.barbar_auto_setup = false end,
+        init = function()
+            vim.g.barbar_auto_setup = false
+        end,
         config = require("plugins/barbar"),
     },
     {
@@ -111,7 +113,7 @@ require("lazy").setup({
         config = require("plugins/lualine"),
         dependencies = {
             "nvim-tree/nvim-web-devicons",
-        }
+        },
     },
     {
         "tomtom/tcomment_vim",
@@ -124,19 +126,19 @@ require("lazy").setup({
         "t9md/vim-quickhl",
     },
     {
-        'nvim-treesitter/nvim-treesitter',
+        "nvim-treesitter/nvim-treesitter",
         config = require("plugins/treesitter"),
-        build = ':TSUpdate',
+        build = ":TSUpdate",
     },
     {
-        'yioneko/nvim-yati',
+        "yioneko/nvim-yati",
         dependencies = {
-            'nvim-treesitter/nvim-treesitter',
+            "nvim-treesitter/nvim-treesitter",
         },
         config = require("plugins/yati"),
     },
     {
-        'nvim-treesitter/nvim-treesitter-context',
+        "nvim-treesitter/nvim-treesitter-context",
         config = require("plugins/treesitter-context"),
     },
     {
@@ -148,12 +150,12 @@ require("lazy").setup({
         "github/copilot.vim",
     },
     {
-        'mvllow/modes.nvim',
+        "mvllow/modes.nvim",
         rev = "v0.2.0",
         config = require("plugins/modes"),
     },
     {
-        'sidebar-nvim/sidebar.nvim',
+        "sidebar-nvim/sidebar.nvim",
         config = require("plugins/sidebar"),
     },
     {
@@ -169,10 +171,10 @@ require("lazy").setup({
     {
         "lewis6991/gitsigns.nvim",
         config = function()
-            require('gitsigns').setup()
+            require("gitsigns").setup()
             require("scrollbar.handlers.gitsigns").setup()
-        end
-    }
+        end,
+    },
 })
 
 require("plugins/gitgutter")
