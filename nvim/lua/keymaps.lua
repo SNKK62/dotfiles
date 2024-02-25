@@ -18,14 +18,6 @@ keymap('i', '<C-k>', '<UP>', { noremap = true })
 keymap('i', '<C-h>', '<LEFT>', { noremap = true })
 keymap('i', '<C-l>', '<RIGHT>', { noremap = true })
 
--- brackets and quotes
-keymap('i', '{', '{}<LEFT>', { noremap = true })
-keymap('i', '[', '[]<LEFT>', { noremap = true })
-keymap('i', '(', '()<LEFT>', { noremap = true })
-keymap('i', '"', '""<LEFT>', { noremap = true })
-keymap('i', '\'', '\'\'<LEFT>', { noremap = true })
-keymap('i', '`', '``<LEFT>', { noremap = true })
-
 -- substitution
 keymap('n', '<Leader>repg', ':%s//g<LEFT><LEFT>', { noremap = true })
 keymap('n', '<Leader>repc', ':%s//gc<LEFT><LEFT><LEFT>', { noremap = true })

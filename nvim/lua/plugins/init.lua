@@ -177,6 +177,17 @@ require("lazy").setup({
             require("scrollbar.handlers.gitsigns").setup()
         end,
     },
+    {
+        "windwp/nvim-ts-autotag",
+        config = require("plugins/autotag"),
+    },
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = true
+        -- use opts = {} for passing setup options
+        -- this is equalent to setup({}) function
+    },
 })
 
 require("plugins/gitgutter")
