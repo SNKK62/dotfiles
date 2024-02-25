@@ -25,14 +25,30 @@ local lspconfig = require("lspconfig")
 
 -- TypeScript
 lspconfig.tsserver.setup {
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-  cmd = { "typescript-language-server", "--stdio" },
-  settings = { documentFormatting = false },
   handlers = {
     ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
       update_in_insert = true,
     }),
   },
 }
-
+-- eslint
+lspconfig.eslint.setup {
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = true
+    client.server_capabilities.documentRangeFormattingProvider = true
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      update_in_insert = true,
+    }),
+  },
+}

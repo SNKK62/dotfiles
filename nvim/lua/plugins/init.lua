@@ -44,14 +44,16 @@ require("lazy").setup({
 
     -- colorscheme
     {
-        "xiyaowong/transparent.nvim",
-        rev = "4c3c392f285378e606d154bee393b6b3dd18059c",
-    },
-    {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
-        opts = {},
+        opts = {
+            -- transparent = true,
+            styles = {
+              -- sidebars = "transparent",
+              -- floats = "transparent",
+            },
+        },
     },
 
     -- lsp
