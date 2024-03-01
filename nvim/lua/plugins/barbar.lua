@@ -1,3 +1,3 @@
 return function()
-    require('barbar').setup()
+	require("barbar").setup()
 end
