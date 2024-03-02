@@ -209,6 +209,7 @@ require("lazy").setup({
 	},
 	{
 		"norcalli/nvim-colorizer.lua",
+		event = { "BufEnter", "BufWinEnter" },
 		config = require("plugins/colorizer"),
 	},
 	{
