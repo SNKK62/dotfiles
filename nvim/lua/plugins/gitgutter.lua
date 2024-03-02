@@ -1,3 +1,3 @@
-vim.cmd([[highlight GitGutterAdd ctermfg=green]])
-vim.cmd([[highlight GitGutterChange ctermfg=blue]])
-vim.cmd([[highlight GitGutterDelete ctermfg=red]])
+vim.cmd([[highlight GitGutterAdd ctermbg=Green ]])
+vim.cmd([[highlight GitGutterChange ctermbg=Blue ]])
+vim.cmd([[highlight GitGutterDelete ctermbg=Red ]])
