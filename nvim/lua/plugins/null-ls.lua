@@ -25,5 +25,4 @@ null_ls.setup({
 			})
 		end
 	end,
-	save_after_format = false,
 })
