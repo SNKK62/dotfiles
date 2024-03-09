@@ -208,9 +208,9 @@ require("lazy").setup({
 		config = true,
 	},
 	{
-		"norcalli/nvim-colorizer.lua",
+		"brenoprata10/nvim-highlight-colors",
 		event = { "BufEnter", "BufWinEnter" },
-		config = require("plugins/colorizer"),
+		config = require("plugins/highlight-colors"),
 	},
 	{
 		"kylechui/nvim-surround",

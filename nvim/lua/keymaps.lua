@@ -170,3 +170,5 @@ end)
 keymap({ "n", "v" }, "<Leader>ac", "<cmd>Lspsaga code_action<CR>", { silent = true })
 -- float terminal
 keymap({ "n", "t" }, "ƒ", "<cmd>Lspsaga term_toggle<CR>", { silent = true }) -- <A-f>
+-- session
+keymap("c", "SS", "SessionSave", { noremap = true })
