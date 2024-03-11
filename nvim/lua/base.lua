@@ -40,3 +40,19 @@ vim.cmd([[hi ColorColumn ctermbg=52 guibg=#42032c]])
 -- transparent background color
 vim.cmd([[hi NonText    ctermbg=None ctermfg=65 guibg=None guifg=#41946B]])
 vim.cmd([[hi SpecialKey ctermbg=None ctermfg=65 guibg=None guifg=#41946B]])
+
+vim.api.nvim_create_augroup("indent", { clear = true })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = {
+		"javascript",
+		"typescript",
+		"javascriptreact",
+		"typescriptreact",
+		"json",
+		"html",
+		"css",
+		"yaml",
+	},
+	group = "indent",
+	command = "setlocal shiftwidth=2",
+})
