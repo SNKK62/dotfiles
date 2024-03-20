@@ -60,3 +60,6 @@ opt.hlsearch = true
 opt.incsearch = true
 opt.ignorecase = true
 opt.smartcase = true
+
+vim.cmd([[ hi QuickScopePrimary guifg='#fffa99' gui=underline ctermfg=155 cterm=underline ]])
+vim.cmd([[ hi QuickScopeSecondary guifg='#afafff' gui=underline ctermfg=81 cterm=underline ]])

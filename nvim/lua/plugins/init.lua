@@ -54,6 +54,9 @@ local common_plugins = {
 	{
 		"bkad/CamelCaseMotion",
 	},
+	{
+		"unblevable/quick-scope",
+	},
 	-- treesitter for iswap.nvim
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -250,9 +253,6 @@ local pure_plugins = {
 		config = function()
 			require("scrollbar.handlers.search").setup()
 		end,
-	},
-	{
-		"unblevable/quick-scope",
 	},
 }
 
