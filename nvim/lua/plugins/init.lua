@@ -12,7 +12,57 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+local function merge_tables(t1, t2)
+	local merged = {}
+	for _, v in ipairs(t1) do
+		table.insert(merged, v)
+	end
+	for _, v in ipairs(t2) do
+		table.insert(merged, v)
+	end
+	return merged
+end
+
+local common_plugins = {
+	--others
+	{
+		"t9md/vim-quickhl",
+	},
+	{
+		"mizlan/iswap.nvim",
+		event = "VeryLazy",
+		config = require("plugins/iswap"),
+	},
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	},
+	{
+		"ggandor/lightspeed.nvim",
+	},
+	{
+		"hadronized/hop.nvim",
+		branch = "v2",
+		config = require("plugins/hop"),
+	},
+	{
+		"bkad/CamelCaseMotion",
+	},
+	-- treesitter for iswap.nvim
+	{
+		"nvim-treesitter/nvim-treesitter",
+		config = require("plugins/treesitter"),
+		build = ":TSUpdate",
+	},
+}
+
+local pure_plugins = {
 	-- file browser
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -41,6 +91,7 @@ require("lazy").setup({
 		},
 		config = require("plugins/spectre"),
 	},
+
 	-- git
 	{
 		"airblade/vim-gitgutter",
@@ -141,18 +192,7 @@ require("lazy").setup({
 	{
 		"tomtom/tcomment_vim",
 	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		config = require("plugins/indent-blankline"),
-	},
-	{
-		"t9md/vim-quickhl",
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		config = require("plugins/treesitter"),
-		build = ":TSUpdate",
-	},
+
 	{
 		"yioneko/nvim-yati",
 		dependencies = {
@@ -165,14 +205,6 @@ require("lazy").setup({
 		config = require("plugins/treesitter-context"),
 	},
 	{
-		"mizlan/iswap.nvim",
-		event = "VeryLazy",
-		config = require("plugins/iswap"),
-	},
-	{
-		"github/copilot.vim",
-	},
-	{
 		"mvllow/modes.nvim",
 		rev = "v0.2.0",
 		config = require("plugins/modes"),
@@ -180,6 +212,34 @@ require("lazy").setup({
 	{
 		"sidebar-nvim/sidebar.nvim",
 		config = require("plugins/sidebar"),
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+			require("scrollbar.handlers.gitsigns").setup()
+		end,
+	},
+	{
+		"brenoprata10/nvim-highlight-colors",
+		event = { "BufEnter", "BufWinEnter" },
+		config = require("plugins/highlight-colors"),
+	},
+	{
+		"github/copilot.vim",
+	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		config = require("plugins/indent-blankline"),
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		config = require("plugins/autotag"),
+	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
 	},
 	{
 		"petertriho/nvim-scrollbar",
@@ -192,41 +252,19 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup()
-			require("scrollbar.handlers.gitsigns").setup()
-		end,
+		"unblevable/quick-scope",
 	},
-	{
-		"windwp/nvim-ts-autotag",
-		config = require("plugins/autotag"),
-	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = true,
-	},
-	{
-		"brenoprata10/nvim-highlight-colors",
-		event = { "BufEnter", "BufWinEnter" },
-		config = require("plugins/highlight-colors"),
-	},
-	{
-		"kylechui/nvim-surround",
-		version = "*", -- Use for stability; omit to use `main` branch for the latest features
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
-			})
-		end,
-	},
-})
+}
 
-require("plugins/gitgutter")
-require("plugins/lsp")
-require("plugins/lspsaga")
-require("plugins/cmp")
-require("plugins/null-ls")
-require("plugins/telescope")
+local vscode_plugins = {}
+
+require("lazy").setup(merge_tables(common_plugins, vim.g.vscode and vscode_plugins or pure_plugins))
+
+if not vim.g.vscode then
+	require("plugins/gitgutter")
+	require("plugins/lsp")
+	require("plugins/lspsaga")
+	require("plugins/cmp")
+	require("plugins/null-ls")
+	require("plugins/telescope")
+end
