@@ -47,7 +47,7 @@ switch-arch() {
 #====switch-arch===
 
 #====VSCode====
-export PATH="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code:$PATH"
+export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 #====VSCode====
 
 #====rbenv=======
@@ -57,7 +57,7 @@ export PATH=$HOME/.rbenv/bin:$PATH
 #====neovim====
 alias vim=nvim
 alias vi=nvim
-alias viconfig='nvim ~/.config/nvim/init.vim'
+alias viconfig='nvim ~/.config/nvim'
 #====neovim====
 #====tmux====
 alias tmuxconfig='nvim ~/.tmux.conf'
@@ -67,5 +67,7 @@ export GOPATH="$HOME/go"
 export GOROOT="/usr/local/go"
 export PATH="$GOPATH/bin:$PATH"
 #===go===
+#===emsdk===
 EMSDK="$HOME/emsdk"
+#===emsdk===
 export PATH="$EMSDK:$EMSDK/upstream/emscripten:$PATH"
