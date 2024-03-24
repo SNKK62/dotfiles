@@ -1,0 +1,435 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "a",
+    "command": "explorer.newFile",
+    "when": "neovim.mode != insert && explorerViewletVisible && filesExplorerFocus && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "alt+a",
+    "command": "editor.action.quickFix",
+    "when": "editorHasCodeActionsProvider && textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+b c",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+b c",
+    "command": "workbench.action.closeActiveEditor",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+b g",
+    "command": "workbench.files.action.focusOpenEditorsView",
+    "when": "workbench.explorer.openEditorsView.active"
+  },
+  {
+    "key": "d",
+    "command": "deleteFile",
+    "when": "neovim.mode == normal && explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "alt+d alt+i",
+    "command": "workbench.actions.view.problems",
+    "when": "neovim.mode != insert"
+  },
+  {
+    "key": "alt+d alt+i",
+    "command": "workbench.action.closePanel",
+    "when": "neovim.mode != insert && activePanel == 'workbench.panel.markers'"
+  },
+  {
+    "key": "alt+d alt+n",
+    "command": "editor.action.marker.next",
+    "when": "editorFocus"
+  },
+  {
+    "key": "alt+d alt+p",
+    "command": "editor.action.marker.prev",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+e h",
+    "command": "workbench.action.terminal.resizePaneLeft",
+    "when": "panelFocus"
+  },
+  {
+    "key": "ctrl+e d",
+    "command": "workbench.action.decreaseViewSize",
+    "when": "!panelFocus"
+  },
+  {
+    "key": "ctrl+e l",
+    "command": "workbench.action.terminal.resizePaneRight",
+    "when": "panelFocus"
+  },
+  {
+    "key": "ctrl+e i",
+    "command": "workbench.action.increaseViewSize",
+    "when": "!panelFocus"
+  },
+  {
+    "key": "ctrl+e j",
+    "command": "workbench.action.terminal.resizePaneDown",
+    "when": "panelFocus"
+  },
+  {
+    "key": "ctrl+e k",
+    "command": "workbench.action.terminal.resizePaneUp",
+    "when": "panelFocus"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "workbench.view.explorer",
+    "when": "neovim.mode != insert"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "workbench.action.closeSidebar",
+    "when": "neovim.mode != insert && activeViewlet == 'workbench.view.explorer'"
+  },
+  {
+    "key": "alt+f",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "neovim.mode != insert"
+  },
+  {
+    "key": "alt+f",
+    "command": "workbench.action.closePanel",
+    "when": "neovim.mode != insert && activePanel == 'terminal'"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "workbench.action.findInFiles",
+    "when": "neovim.mode != insert"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "workbench.action.closeSidebar",
+    "when": "neovim.mode != insert && activeViewlet == 'workbench.view.search' && inputBoxFocus"
+  },
+  {
+    "key": "ctrl+shift+g",
+    "command": "workbench.scm.focus",
+    "when": "neovim.mode != insert"
+  },
+  {
+    "key": "ctrl+shift+g",
+    "command": "workbench.action.closeSidebar",
+    "when": "neovim.mode != insert && activeViewlet == 'workbench.view.scm'"
+  },
+  {
+    "key": "alt+h",
+    "command": "workbench.action.previousEditorInGroup"
+  },
+  {
+    "key": "alt+shift+i",
+    "command": "extension.togglePhindWebview"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "neovim.mode == insert && suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "list.focusDown",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "editor.action.pageDownHover",
+    "when": "editorHoverFocused"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "selectNextCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "alt+j",
+    "command": "workbench.action.moveEditorLeftInGroup",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "alt+j",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevSuggestion",
+    "when": "neovim.mode == insert && suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "cursorUp",
+    "when": "neovim.mode == insert && editorFocus  && ( !suggestWidgetMultipleSuggestions || !suggestWidgetVisible )"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "list.focusUp",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "editor.action.pageUpHover",
+    "when": "editorHoverFocused"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "shift+k",
+    "command": "editor.action.showHover",
+    "when": "neovim.mode != insert && editorTextFocus"
+  },
+  {
+    "key": "shift+k",
+    "command": "explorer.newFolder",
+    "when": "neovim.mode != insert && explorerViewletVisible && filesExplorerFocus && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "alt+k",
+    "command": "workbench.action.moveEditorRightInGroup",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "alt+k",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "cursorRight",
+    "when": "neovim.mode == insert && editorFocus"
+  },
+  {
+    "key": "alt+l",
+    "command": "workbench.action.nextEditorInGroup"
+  },
+  {
+    "key": "alt+m",
+    "command": "docs.write",
+    "when": "editorTextFocus && editorLangId =~ /typescript|javascript|python|php|java|c|cpp|csharp|dart|ruby|go|rust/"
+  },
+  {
+    "key": "n",
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult && !inputBoxFocus && searchViewletVisible"
+  },
+  {
+    "key": "shift+n",
+    "command": "search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult && !inputBoxFocus && searchViewletVisible"
+  },
+  {
+    "key": "alt+o",
+    "command": "workbench.action.output.toggleOutput",
+    "when": "neovim.mode != insert"
+  },
+  {
+    "key": "alt+o",
+    "command": "workbench.action.closePanel",
+    "when": "neovim.mode != insert && activePanel == 'workbench.panel.output'"
+  },
+  {
+    "key": "p",
+    "command": "filesExplorer.paste",
+    "when": "neovim.mode != insert && explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+shift+p",
+    "command": "workbench.action.showCommands",
+    "when": "neovim.mode !== insert"
+  },
+  {
+    "key": "alt+p alt+a",
+    "command": "phind.acceptCodeChanges"
+  },
+  {
+    "key": "alt+p alt+d",
+    "command": "phind.partialRejectCodeChanges"
+  },
+  {
+    "key": "alt+p alt+c",
+    "command": "phind.searchSelection"
+  },
+  {
+    "key": "alt+p alt+n",
+    "command": "phind.newSearchSelection"
+  },
+  {
+    "key": "alt+p alt+r",
+    "command": "phind.rewriteCode"
+  },
+  {
+    "key": "alt+p alt+t",
+    "command": "phind.searchTerminalOutput"
+  },
+  {
+    "key": "r",
+    "command": "renameFile",
+    "when": "neovim.mode != insert && explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "ctrl+shift+r",
+    "command": "toggleSearchRegex",
+    "when": "neovim.mode != insert && activeViewlet == 'workbench.view.search' && sideBarFocus"
+  },
+  {
+    "key": "alt+r alt+f",
+    "command": "references-view.findReferences",
+    "when": "editorHasReferenceProvider"
+  },
+  {
+    "key": "alt+r alt+n",
+    "command": "editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "v",
+    "command": "explorer.openToSide",
+    "when": "neovim.mode != insert && explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "ctrl+w b",
+    "command": "workbench.action.terminal.focusTabs",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+w h",
+    "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+w h",
+    "command": "workbench.action.navigateLeft",
+    "when": "!terminalFocus && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "ctrl+w j",
+    "command": "workbench.action.navigateDown",
+    "when": "!terminalFocus && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "ctrl+w k",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "panelFocus"
+  },
+  {
+    "key": "ctrl+w k",
+    "command": "workbench.action.navigateUp",
+    "when": "!terminalFocus && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "ctrl+w l",
+    "command": "workbench.action.navigateRight",
+    "when": "!terminalFocus && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "ctrl+w l",
+    "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+w m",
+    "command": "workbench.action.maximizeEditorHideSidebar",
+    "when": "!panelFocus"
+  },
+  {
+    "key": "ctrl+w m",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "panelFocus"
+  },
+  {
+    "key": "ctrl+w n",
+    "command": "workbench.action.terminal.newInActiveWorkspace",
+    "when": "neovim.mode != insert && terminalFocus"
+  },
+  {
+    "key": "ctrl+w p",
+    "command": "workbench.action.focusPanel",
+    "when": "panelVisible"
+  },
+  {
+    "key": "ctrl+w r",
+    "command": "workbench.action.terminal.renameActiveTab",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+w s",
+    "command": "workbench.action.splitEditorDown",
+    "when": "!terminalFocus && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "ctrl+w v",
+    "command": "workbench.action.terminal.split",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+w v",
+    "command": "workbench.action.splitEditorRight",
+    "when": "!terminalFocus && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "alt+x",
+    "command": "workbench.view.extensions",
+    "when": "viewContainer.workbench.view.extensions.enabled"
+  },
+  {
+    "key": "alt+x",
+    "command": "workbench.action.closeSidebar",
+    "when": "activeViewlet == 'workbench.view.extensions' && inputFocus && sideBarFocus"
+  },
+  {
+    "key": "y",
+    "command": "filesExplorer.copy",
+    "when": "neovim.mode != insert && explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "shift+y",
+    "command": "copyRelativeFilePath",
+    "when": "neovim.mode != insert && !editorFocus"
+  },
+  {
+    "key": "ctrl+y",
+    "command": "redo"
+  },
+  {
+    "key": "ctrl+z",
+    "command": "undo"
+  },
+  {
+    "key": "ctrl+shift+z",
+    "command": "workbench.action.toggleZenMode"
+  },
+  {
+    "key": "ctrl+[",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "!editorFocus"
+  },
+  {
+    "key": "ctrl+'",
+    "command": "cursorLineStart",
+    "when": "neovim.mode == insert && editorFocus"
+  },
+  {
+    "key": "ctrl+;",
+    "command": "cursorLineEnd",
+    "when": "neovim.mode == insert && editorFocus"
+  },
+  {
+    "key": "escape",
+    "command": "workbench.action.blur",
+    "when": "!editorFocus"
+  }
+]

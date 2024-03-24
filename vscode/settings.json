@@ -1,0 +1,33 @@
+{
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "terminal.integrated.inheritEnv": false,
+  "workbench.editorAssociations": {
+    "*.rds": "default"
+  },
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+  "vscode-neovim.neovimInitVimPaths.darwin": "/Users/kokiseno/.config/nvim/init.lua",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.cursorBlinking": "solid",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.renderWhitespace": "all",
+  "editor.stickyScroll.enabled": true,
+  "workbench.sideBar.location": "right",
+  "indentRainbow.colors": [
+    "rgba(255, 0 , 0,0.2)",
+    "rgba(255, 127, 0,0.2)",
+    "rgba(255, 255, 0,0.2)",
+    "rgba(0, 255, 0,0.2)",
+    "rgba(0, 0, 255,0.2)"
+  ],
+  "typescript.suggest.paths": false,
+  "javascript.suggest.paths": false,
+  "path-intellisense.absolutePathToWorkspace": true,
+  "window.zoomLevel": 1,
+  "workbench.colorCustomizations": {}
+}
