@@ -18,6 +18,14 @@
   "editor.renderWhitespace": "all",
   "editor.stickyScroll.enabled": true,
   "workbench.sideBar.location": "right",
+  "[typescript]": {
+    "editor.indentSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[typescriptreact]": {
+    "editor.indentSize": 2,
+    "editor.insertSpaces": true
+  },
   "indentRainbow.colors": [
     "rgba(255, 0 , 0,0.2)",
     "rgba(255, 127, 0,0.2)",
@@ -30,5 +38,12 @@
   "path-intellisense.absolutePathToWorkspace": true,
   "window.zoomLevel": 1,
   "workbench.colorCustomizations": {},
-  "cSpell.userWords": ["cmdline", "neovim", "phind", "rgba"]
+  "cSpell.userWords": [
+    "cmdline",
+    "markuplint",
+    "neovim",
+    "phind",
+    "rgba",
+    "tailwindcss"
+  ]
 }

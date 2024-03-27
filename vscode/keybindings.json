@@ -426,10 +426,5 @@
     "key": "ctrl+;",
     "command": "cursorLineEnd",
     "when": "neovim.mode == insert && editorFocus"
-  },
-  {
-    "key": "escape",
-    "command": "workbench.action.blur",
-    "when": "!editorFocus"
   }
 ]
