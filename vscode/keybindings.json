@@ -125,10 +125,6 @@
     "command": "workbench.action.previousEditorInGroup"
   },
   {
-    "key": "alt+shift+i",
-    "command": "extension.togglePhindWebview"
-  },
-  {
     "key": "ctrl+j",
     "command": "selectNextSuggestion",
     "when": "neovim.mode == insert && suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
@@ -250,6 +246,10 @@
     "key": "ctrl+shift+p",
     "command": "workbench.action.showCommands",
     "when": "neovim.mode !== insert"
+  },
+  {
+    "key": "alt+shift+p",
+    "command": "extension.togglePhindWebview"
   },
   {
     "key": "alt+p alt+a",

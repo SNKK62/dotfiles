@@ -29,5 +29,6 @@
   "javascript.suggest.paths": false,
   "path-intellisense.absolutePathToWorkspace": true,
   "window.zoomLevel": 1,
-  "workbench.colorCustomizations": {}
+  "workbench.colorCustomizations": {},
+  "cSpell.userWords": ["cmdline", "neovim", "phind", "rgba"]
 }
