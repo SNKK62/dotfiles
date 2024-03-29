@@ -39,7 +39,9 @@
   "window.zoomLevel": 1,
   "workbench.colorCustomizations": {},
   "cSpell.userWords": [
+    "autoincrement",
     "cmdline",
+    "datasource",
     "markuplint",
     "neovim",
     "phind",
