@@ -240,7 +240,8 @@
   },
   {
     "key": "ctrl+p",
-    "command": "workbench.action.quickOpen"
+    "command": "workbench.action.quickOpen",
+    "when": "editorFocus"
   },
   {
     "key": "ctrl+shift+p",
