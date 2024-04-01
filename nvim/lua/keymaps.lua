@@ -18,11 +18,16 @@ keymap("i", "<C-k>", "<UP>", { noremap = true })
 keymap("i", "<C-h>", "<LEFT>", { noremap = true })
 keymap("i", "<C-l>", "<RIGHT>", { noremap = true })
 
--- substitution
-keymap("n", "<Leader>repg", ":%s//g<LEFT><LEFT>", { noremap = true })
-keymap("n", "<Leader>repc", ":%s//gc<LEFT><LEFT><LEFT>", { noremap = true })
+if vim.g.vscode then
+	-- substitution
+	keymap("n", "<Leader>repg", ":%s//g", { noremap = true })
+	keymap("n", "<Leader>repc", ":%s//gc", { noremap = true })
+end
 
 if not vim.g.vscode then
+	-- substitution
+	keymap("n", "<Leader>repg", ":%s//g<LEFT><LEFT>", { noremap = true })
+	keymap("n", "<Leader>repc", ":%s//gc<LEFT><LEFT><LEFT>", { noremap = true })
 	-- terminal mode setting
 	keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
 	keymap("n", "<C-w>t", "<Cmd>terminal<CR>", { noremap = true, silent = true })
