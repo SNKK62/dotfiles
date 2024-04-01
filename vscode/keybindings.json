@@ -125,6 +125,10 @@
     "command": "workbench.action.previousEditorInGroup"
   },
   {
+    "key": "ctrl+shift+h",
+    "command": "editor.action.startFindReplaceAction"
+  },
+  {
     "key": "ctrl+j",
     "command": "selectNextSuggestion",
     "when": "neovim.mode == insert && suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
@@ -380,6 +384,11 @@
     "key": "ctrl+w v",
     "command": "workbench.action.splitEditorRight",
     "when": "!terminalFocus && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "ctrl+w ctrl+w",
+    "command": "workbench.action.focusNextGroup",
+    "when": " !terminalFocus && neovim.mode != 'cmdline'"
   },
   {
     "key": "alt+x",
