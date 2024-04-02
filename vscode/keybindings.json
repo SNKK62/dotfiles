@@ -31,6 +31,11 @@
     "when": "neovim.mode == normal && explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
   },
   {
+    "key": "alt+d alt+f",
+    "command": "editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus"
+  },
+  {
     "key": "alt+d alt+i",
     "command": "workbench.actions.view.problems",
     "when": "neovim.mode != insert"
@@ -149,6 +154,11 @@
     "when": "codeActionMenuVisible"
   },
   {
+    "key": "ctrl+j",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen && neovim.wildMenuVisible || inQuickOpen && neovim.mode != 'cmdline'"
+  },
+  {
     "key": "alt+j",
     "command": "workbench.action.moveEditorLeftInGroup",
     "when": "!terminalFocus"
@@ -182,6 +192,11 @@
     "key": "ctrl+k",
     "command": "selectPrevCodeAction",
     "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen && neovim.wildMenuVisible || inQuickOpen && neovim.mode != 'cmdline'"
   },
   {
     "key": "shift+k",
@@ -220,12 +235,12 @@
   {
     "key": "n",
     "command": "search.action.focusNextSearchResult",
-    "when": "hasSearchResult && !inputBoxFocus && searchViewletVisible"
+    "when": "neovim.mode != insert && hasSearchResult && !inputBoxFocus && searchViewletVisible"
   },
   {
     "key": "shift+n",
     "command": "search.action.focusPreviousSearchResult",
-    "when": "hasSearchResult && !inputBoxFocus && searchViewletVisible"
+    "when": "neovim.mode != insert && hasSearchResult && !inputBoxFocus && searchViewletVisible"
   },
   {
     "key": "alt+o",
