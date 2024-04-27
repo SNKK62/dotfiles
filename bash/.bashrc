@@ -24,6 +24,11 @@ export PATH=$HOME/Environments/anaconda3/bin/python:$PATH
 export PATH=$HOME/Environments/anaconda3/bin/python3:$PATH
 #====anaconda3====
 
+#====java====
+export JAVA_HOME=$HOME/Environments/jdk-21
+export PATH=$JAVA_HOME/Contents/Home/bin:$PATH
+#====java====
+
 #===homebrew==
 if [ "$(uname -m)" = "arm64" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
