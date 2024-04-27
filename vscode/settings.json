@@ -26,6 +26,9 @@
     "editor.indentSize": 2,
     "editor.insertSpaces": true
   },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
   "indentRainbow.colors": [
     "rgba(255, 0 , 0,0.2)",
     "rgba(255, 127, 0,0.2)",
@@ -44,8 +47,12 @@
     "datasource",
     "markuplint",
     "neovim",
+    "noto",
     "phind",
     "rgba",
-    "tailwindcss"
-  ]
+    "signup",
+    "tailwindcss",
+    "Usecase"
+  ],
+  "redhat.telemetry.enabled": true
 }
