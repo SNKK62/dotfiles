@@ -19,3 +19,8 @@ unset __conda_setup
 
 eval "$(rbenv init - bash)"
 source "/Users/kokiseno/emsdk/emsdk_env.sh"
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
+. "$HOME/.cargo/env"
