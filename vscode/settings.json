@@ -54,5 +54,5 @@
     "tailwindcss",
     "Usecase"
   ],
-  "redhat.telemetry.enabled": true
+  "redhat.telemetry.enabled": false
 }
