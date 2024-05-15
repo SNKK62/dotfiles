@@ -54,5 +54,6 @@
     "tailwindcss",
     "Usecase"
   ],
-  "redhat.telemetry.enabled": false
+  "redhat.telemetry.enabled": false,
+  "prisma.showPrismaDataPlatformNotification": false
 }
