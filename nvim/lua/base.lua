@@ -47,6 +47,7 @@ if not vim.g.vscode then
 			"html",
 			"css",
 			"yaml",
+			"c",
 		},
 		group = "indent",
 		command = "setlocal shiftwidth=2",
