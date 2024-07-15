@@ -55,5 +55,6 @@
     "Usecase"
   ],
   "redhat.telemetry.enabled": false,
-  "prisma.showPrismaDataPlatformNotification": false
+  "prisma.showPrismaDataPlatformNotification": false,
+  "github.copilot.editor.enableAutoCompletions": true
 }

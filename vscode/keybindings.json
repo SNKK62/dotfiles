@@ -233,14 +233,14 @@
     "when": "editorTextFocus && editorLangId =~ /typescript|javascript|python|php|java|c|cpp|csharp|dart|ruby|go|rust/"
   },
   {
-    "key": "n",
+    "key": "alt+n",
     "command": "search.action.focusNextSearchResult",
-    "when": "neovim.mode != insert && hasSearchResult && !inputBoxFocus && searchViewletVisible"
+    "when": "neovim.mode != insert && hasSearchResult && searchViewletVisible"
   },
   {
-    "key": "shift+n",
+    "key": "alt+shift+n",
     "command": "search.action.focusPreviousSearchResult",
-    "when": "neovim.mode != insert && hasSearchResult && !inputBoxFocus && searchViewletVisible"
+    "when": "neovim.mode != insert && hasSearchResult && searchViewletVisible"
   },
   {
     "key": "alt+o",
