@@ -362,8 +362,8 @@
   },
   {
     "key": "ctrl+w m",
-    "command": "workbench.action.maximizeEditorHideSidebar",
-    "when": "!panelFocus"
+    "command": "workbench.action.toggleMaximizeEditorGroup",
+    "when": "!panelFocus && (editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups)"
   },
   {
     "key": "ctrl+w m",
@@ -423,7 +423,7 @@
   {
     "key": "shift+y",
     "command": "copyRelativeFilePath",
-    "when": "neovim.mode != insert && !editorFocus"
+    "when": "neovim.mode != insert && explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
   },
   {
     "key": "ctrl+y",

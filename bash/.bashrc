@@ -3,27 +3,28 @@ export LANG="en_US.UTF-8"
 # git
 if [ -e $HOME/.git-completion.bash ]
 then
-	source $HOME/.git-completion.bash
+        source $HOME/.git-completion.bash
 fi
 
 if [ -e $HOME/.git-prompt.sh ]
 then
-	GIT_PS1_SHOWDIRTYSTATE=true
-	GIT_PS1_SHOWUNTRACKEDFILES=
-	GIT_PS1_SHOWSTASHSTATE=
-	GIT_PS1_SHOWUPSTREAM=
+        GIT_PS1_SHOWDIRTYSTATE=true
+        GIT_PS1_SHOWUNTRACKEDFILES=
+        GIT_PS1_SHOWSTASHSTATE=
+        GIT_PS1_SHOWUPSTREAM=
 
-	source $HOME/.git-prompt.sh
-	PS1='\[\e[31m\]($arch|bash)\[\e[00m\e[36m\]\u@MacBook-Pro\[\e[00m\]:\[\e[31m\]\w\[\e[32m\]$(__git_ps1) \[\e[00m\]\$ \[\e[00m\]'	
+        source $HOME/.git-prompt.sh
+        PS1='\[\e[31m\]($arch|bash)\[\e[00m\e[36m\]\u@MacBook-Pro\[\e[00m\]:\[\e[31m\]\w\[\e[32m\]$(__git_ps1) \[\e[00m\]\$ \[\e[00m\]'
 fi
 
 # anaconda3
-export PATH=$HOME/Environments/anaconda3/bin:$PATH
 export PATH=$HOME/Environments/anaconda3/bin/python:$PATH
 export PATH=$HOME/Environments/anaconda3/bin/python3:$PATH
+export PATH=$HOME/Environments/anaconda3/bin:$PATH
 
 # java
 export JAVA_HOME=$HOME/Environments/jdk-21
+# export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.3/libexec/openjdk.jdk/Contents/Home
 export PATH=$JAVA_HOME/Contents/Home/bin:$PATH
 
 # homebrew
@@ -37,12 +38,12 @@ fi
 # switch-arch
 switch-arch() {
     if  [[ "$(uname -m)" == arm64 ]]; then
-	arch=x86_64
-	arch -$arch /bin/bash
-	#arch -$arch /usr/local/bin/bash
+        arch=x86_64
+        arch -$arch /bin/bash
+        #arch -$arch /usr/local/bin/bash
     elif [[ "$(uname -m)" == x86_64 ]]; then
-	arch=arm64
-	arch -$arch /bin/bash
+        arch=arm64
+        arch -$arch /bin/bash
     fi
 }
 
