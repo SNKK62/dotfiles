@@ -22,3 +22,9 @@ configs for neovim, tmux and bash
 ```
 ln -s ${PWD}/.hammerspoon/ ~/.hammerspoo
 ```
+
+### zsh
+
+```
+~/.config/zsh (MacOS)
+```
