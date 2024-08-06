@@ -1,0 +1,42 @@
+format = """
+$username\
+$hostname\
+$directory\
+[](fg:#88C0D0 bg:#394260)\
+$git_branch\
+$git_status\
+[](fg:#394260 bg:#1d2230)\
+$character
+"""
+
+# コマンドラインに1行分のスペースを入れない
+add_newline = true
+
+# left_promptとright_promptの間を何で埋めるか設定
+[fill]
+symbol = ' '
+
+[directory]
+style = "fg:#2E3440 bg:#88C0D0 bold"
+format = "[ $path ]($style)"
+truncation_length = 10
+truncate_to_repo = false
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_branch]
+symbol = ""
+style = "bg:#394260"
+format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
+
+[git_status]
+style = "bg:#394260"
+format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
+
+[character] # 設定対象のモジュール名は 'character'
+success_symbol = ''
