@@ -65,6 +65,8 @@ local function focusScreen(screen)
 	mouse.setAbsolutePosition(pt)
 end
 
-hotkey.bind({ "cmd", "alt" }, "s", function()
+local function moveToNextScreen()
 	focusScreen(window.focusedWindow():screen():next())
-end)
+end
+
+hotkey.bind({ "cmd", "alt" }, "s", moveToNextScreen)
