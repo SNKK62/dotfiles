@@ -48,11 +48,11 @@ hotkey.bind({ "cmd", "shift" }, "g", open_chrome)
 
 -- local application = require("hs.application")
 --Predicate that checks if a window belongs to a screen
-function isInScreen(screen, win)
+local function isInScreen(screen, win)
 	return win:screen() == screen
 end
 
-function focusScreen(screen)
+local function focusScreen(screen)
 	--Get windows within screen, ordered from front to back.
 	--If no windows exist, bring focus to desktop. Otherwise, set focus on
 	--front-most application window.
@@ -65,6 +65,6 @@ function focusScreen(screen)
 	mouse.setAbsolutePosition(pt)
 end
 
-hotkey.bind({ "alt", "shift" }, "4", function()
+hotkey.bind({ "cmd", "alt" }, "s", function()
 	focusScreen(window.focusedWindow():screen():next())
 end)
