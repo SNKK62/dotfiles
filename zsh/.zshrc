@@ -1,5 +1,3 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # setting
 # permission for new files
 umask 027
