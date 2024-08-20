@@ -69,7 +69,7 @@ setopt hist_no_store
 # exxpand history on completion
 setopt hist_expand
 # share history between all sessions
-setopt share_history
+# setopt share_history
 
 # other
 # confirm before showing a huge number of candidates
