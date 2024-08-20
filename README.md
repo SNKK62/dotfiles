@@ -30,7 +30,7 @@ rm -Rf ~/.local/{share, state}/nvim
 
 ### HammerSpoon
 
-[https://www.hammerspoon.org/]()
+[](https://www.hammerspoon.org/)
 
 ```
 ln -s ${PWD}/.hammerspoon/ ~/.hammerspoon
@@ -61,7 +61,8 @@ layout
 cp ./mac/option_blank_layout.keylayout ~/Library/Keyboard\ Layouts
 ```
 
-### font
+### Font
 
 - HackGen
-  [github.com/yuru7/HackGen/releases]()
+
+[](github.com/yuru7/HackGen/releases)
