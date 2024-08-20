@@ -65,4 +65,4 @@ cp ./mac/option_blank_layout.keylayout ~/Library/Keyboard\ Layouts
 
 - HackGen
 
-[github.com/yuru7/HackGen/releases](github.com/yuru7/HackGen/releases)
+[https://github.com/yuru7/HackGen/releases](https://github.com/yuru7/HackGen/releases)
