@@ -1,6 +1,6 @@
 # dotfiles
 
-configs for neovim, tmux and bash
+configs for neovim and so on
 
 ### Neovim
 
