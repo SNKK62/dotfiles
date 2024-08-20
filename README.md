@@ -61,6 +61,12 @@ layout
 cp ./mac/option_blank_layout.keylayout ~/Library/Keyboard\ Layouts
 ```
 
+enable to hold keyboard
+
+```bash
+defaults write -g ApplePressAndHoldEnabled -bool false (requires restart after this command)
+```
+
 ### Font
 
 - HackGen<br>
