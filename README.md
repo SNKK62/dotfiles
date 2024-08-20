@@ -63,6 +63,5 @@ cp ./mac/option_blank_layout.keylayout ~/Library/Keyboard\ Layouts
 
 ### Font
 
-HackGen
-
+HackGen<br>
 [https://github.com/yuru7/HackGen/releases](https://github.com/yuru7/HackGen/releases)
