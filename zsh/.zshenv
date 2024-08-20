@@ -19,7 +19,7 @@ export JAVA_HOME=$HOME/Environments/jdk-21
 export PATH=$JAVA_HOME/Contents/Home/bin:$PATH
 
 # VSCode
-export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+export PATH="/usr/local/bin/code:$PATH"
 
 # go
 export GOPATH="$HOME/go"
