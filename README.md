@@ -8,6 +8,17 @@ configs for neovim, tmux and bash
 ~/.config/nvim (MacOS)
 ```
 
+#### Requirements
+
+- node
+- `brew install fsouza/prettierd/prettierd`
+
+if error occurs while initializing neovim, try to fix
+
+```bash
+rm -Rf ~/.local/{share, state}/nvim
+```
+
 ### VScode
 
 ```
@@ -19,12 +30,38 @@ configs for neovim, tmux and bash
 
 ### HammerSpoon
 
+[https://www.hammerspoon.org/]()
+
 ```
-ln -s ${PWD}/.hammerspoon/ ~/.hammerspoo
+ln -s ${PWD}/.hammerspoon/ ~/.hammerspoon
 ```
 
 ### zsh
 
+write the following in `/etc/zshenv`
+
+```bash
+ZDOTDIR=$HOME/.config/zsh
 ```
-~/.config/zsh (MacOS)
+
 ```
+brew install starship
+
+ln -s ${PWD}/zsh ~/.config/zsh (in /zsh dir)(MacOS)
+
+# for using angigen
+curl -L git.io/antigen > ~/.local/bin/antigen.zsh
+```
+
+### Mac
+
+layout
+
+```
+cp ./mac/option_blank_layout.keylayout ~/Library/Keyboard\ Layouts
+```
+
+### font
+
+- HackGen
+  [github.com/yuru7/HackGen/releases]()
