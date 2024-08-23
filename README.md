@@ -12,6 +12,7 @@ configs for neovim and so on
 
 - node
 - `brew install fsouza/prettierd/prettierd`
+- `brew install lua-language-server`
 
 if error occurs while initializing neovim, try to fix
 
