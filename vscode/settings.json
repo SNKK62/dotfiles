@@ -26,6 +26,9 @@
     "editor.indentSize": 2,
     "editor.insertSpaces": true
   },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
   "editor.quickSuggestions": {
     "strings": true
   },
@@ -56,5 +59,7 @@
   ],
   "redhat.telemetry.enabled": false,
   "prisma.showPrismaDataPlatformNotification": false,
-  "github.copilot.editor.enableAutoCompletions": true
+  "github.copilot.editor.enableAutoCompletions": true,
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.fontFamily": "HackGen35ConsoleNF-Regular"
 }
