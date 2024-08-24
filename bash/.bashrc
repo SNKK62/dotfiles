@@ -88,3 +88,4 @@ export PATH="$WASMER_DIR/bin:$PATH"
 # Rust
 export RUST_PATH="$HOME/.cargo/bin"
 export PATH="$RUST_PATH:$PATH"
+. "$HOME/.cargo/env"
