@@ -24,7 +24,7 @@ export PATH="/usr/local/bin/code:$PATH"
 # go
 export GOPATH="$HOME/go"
 export GOROOT="/usr/local/go"
-export PATH="$GOPATH/bin:$PATH"
+export PATH="$GOROOT/bin:$PATH"
 
 # Rust
 export RUST_PATH="$HOME/.cargo/bin"
