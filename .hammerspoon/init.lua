@@ -44,13 +44,32 @@ local open_chrome = function()
 		app.windows[2]:focus()
 	end
 end
-hotkey.bind({ "cmd", "shift" }, "g", open_chrome)
+-- hotkey.bind({ "cmd", "alt" }, "g", open_chrome)
 
 -- local application = require("hs.application")
 --Predicate that checks if a window belongs to a screen
 local function isInScreen(screen, win)
 	return win:screen() == screen
 end
+
+local function isInScreenAndHasTitle(screen, win)
+	return isInScreen(screen, win) and #win:title() > 0
+end
+
+local cycleApp = function(appName)
+	return function()
+		local focusedWin = window.focusedWindow()
+		local app = application.get(appName)
+		local allWins = fnutils.filter(app:allWindows(), fnutils.partial(isInScreenAndHasTitle, focusedWin:screen()))
+		if focusedWin == nil or #allWins == 0 then
+			application.launchOrFocus(appName)
+			return
+		end
+		allWins[#allWins]:focus()
+	end
+end
+hotkey.bind({ "cmd", "alt" }, "g", cycleApp("Google Chrome"))
+-- hotkey.bind({ "cmd", "alt" }, "h", cycleApp("Finder"))
 
 local function focusScreen(screen)
 	--Get windows within screen, ordered from front to back.
@@ -70,3 +89,12 @@ local function moveToNextScreen()
 end
 
 hotkey.bind({ "cmd", "alt" }, "s", moveToNextScreen)
+
+local function focusNextApp()
+	local currentApp = window.focusedWindow()
+	local sortedWindows =
+		fnutils.filter(window.orderedWindows(), fnutils.partial(isInScreenAndHasTitle, currentApp:screen()))
+	sortedWindows[#sortedWindows]:focus()
+end
+
+hotkey.bind({ "cmd", "alt" }, "n", focusNextApp)
