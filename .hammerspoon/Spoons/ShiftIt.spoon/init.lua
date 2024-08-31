@@ -17,7 +17,7 @@ obj.homepage = "https://github.com/peterklijn/hammerspoon-shiftit"
 obj.license = "https://github.com/peterklijn/hammerspoon-shiftit/blob/master/LICENSE.md"
 
 obj.positionMash = { "cmd" }
-obj.mash = { "alt", "cmd" }
+obj.mash = { "ctrl", "cmd" }
 obj.mapping = {
 	left = { obj.positionMash, "left" },
 	left67 = { obj.positionMash, "9" },
