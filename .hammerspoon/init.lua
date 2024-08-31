@@ -88,7 +88,7 @@ local function moveToNextScreen()
 	focusScreen(window.focusedWindow():screen():next())
 end
 
-hotkey.bind({ "cmd", "alt" }, "s", moveToNextScreen)
+hotkey.bind({ "cmd", "ctrl" }, "s", moveToNextScreen)
 
 local function focusNextApp()
 	local currentApp = window.focusedWindow()
@@ -97,4 +97,4 @@ local function focusNextApp()
 	sortedWindows[#sortedWindows]:focus()
 end
 
-hotkey.bind({ "cmd", "alt" }, "n", focusNextApp)
+hotkey.bind({ "cmd", "ctrl" }, "n", focusNextApp)
