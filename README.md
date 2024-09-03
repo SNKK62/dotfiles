@@ -79,5 +79,8 @@ defaults write -g ApplePressAndHoldEnabled -bool false (requires restart after t
 brew install peco
 brew install coreutils
 brew install gh
+brew install ghq
+
+git config --global ghq.root ~/workspace
 
 ```

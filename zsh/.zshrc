@@ -70,12 +70,28 @@ function peco-cdr () {
 zle -N peco-cdr
 bindkey '^E' peco-cdr
 
+function peco-ghq-look () {
+    local ghq_roots="$(git config --path --get-all ghq.root)"
+    local selected_dir=$(ghq list --full-path | \
+        xargs -I{} ls -dl {}/.git | sort -nr | \
+        sed "s,.*\(${ghq_roots/$'\n'/\|}\)/,," | \
+        sed 's/\/.git//' | \
+        peco --prompt="cd-ghq >" --query "$LBUFFER")
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd $(ghq list --full-path | grep --color=never -E "/$selected_dir$")"
+        zle accept-line
+    fi
+}
+
+zle -N peco-ghq-look
+bindkey '^G' peco-ghq-look
+
 # gh
 eval "$(gh completion -s zsh)"
 
-function ghcr-code
+function ghcr-code() {
  gh repo create $argv
  ghq get $argv[1]
  code (ghq list --full-path -e $argv[1])
-end
+}
 
