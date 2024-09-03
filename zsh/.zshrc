@@ -38,6 +38,7 @@ alias ls='ls -F --color=auto'
 alias vi='nvim'
 alias vim='nvim'
 
+# starship
 eval "$(starship init zsh)"
 
 function peco-history-selection() {
@@ -68,3 +69,13 @@ function peco-cdr () {
 }
 zle -N peco-cdr
 bindkey '^E' peco-cdr
+
+# gh
+eval "$(gh completion -s zsh)"
+
+function ghcr-code
+ gh repo create $argv
+ ghq get $argv[1]
+ code (ghq list --full-path -e $argv[1])
+end
+
