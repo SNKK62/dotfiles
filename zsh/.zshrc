@@ -89,9 +89,8 @@ bindkey '^G' peco-ghq-look
 # gh
 eval "$(gh completion -s zsh)"
 
-function ghcr-code() {
- gh repo create $argv
- ghq get $argv[1]
- code (ghq list --full-path -e $argv[1])
+function ghcr-code()  {
+ gh repo create "$@"
+ ghq get $1
+ code $(ghq list --full-path -e $1)
 }
-
