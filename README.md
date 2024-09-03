@@ -72,3 +72,12 @@ defaults write -g ApplePressAndHoldEnabled -bool false (requires restart after t
 
 - HackGen<br>
   [https://github.com/yuru7/HackGen/releases](https://github.com/yuru7/HackGen/releases)
+
+### CLI
+
+```bash
+brew install peco
+brew install coreutils
+brew install gh
+
+```

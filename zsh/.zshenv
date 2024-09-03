@@ -70,6 +70,7 @@ setopt hist_no_store
 setopt hist_expand
 # share history between all sessions
 setopt share_history
+setopt inc_append_history
 # setopt no_share_history
 # unsetopt share_history
 
