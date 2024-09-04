@@ -80,6 +80,7 @@ brew install peco
 brew install coreutils
 brew install gh
 brew install ghq
+brew install fzf
 
 git config --global ghq.root ~/workspace
 
