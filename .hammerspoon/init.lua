@@ -98,3 +98,24 @@ local function focusNextApp()
 end
 
 hotkey.bind({ "cmd", "ctrl" }, "n", focusNextApp)
+
+local function keyCode(key, mods, callback)
+	mods = mods or {}
+	callback = callback or function() end
+	return function()
+		hs.eventtap.event.newKeyEvent(mods, string.lower(key), true):post()
+		hs.timer.usleep(1000)
+		hs.eventtap.event.newKeyEvent(mods, string.lower(key), false):post()
+
+		callback()
+	end
+end
+
+local function remapKey(modifiers, key, keyCode)
+	hs.hotkey.bind(modifiers, key, keyCode, nil, keyCode)
+end
+
+remapKey({ "ctrl" }, "k", keyCode("up"))
+remapKey({ "ctrl" }, "j", keyCode("down"))
+remapKey({ "ctrl" }, "h", keyCode("left"))
+remapKey({ "ctrl" }, "l", keyCode("right"))

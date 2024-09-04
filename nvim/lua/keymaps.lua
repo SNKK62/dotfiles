@@ -4,9 +4,13 @@ vim.g.mapleader = " "
 
 -- cursor motion
 keymap({ "n", "v" }, "<C-j>", "15j", { noremap = true })
+keymap({ "n", "v" }, "<DOWN>", "15j", { noremap = true })
 keymap({ "n", "v" }, "<C-k>", "15k", { noremap = true })
+keymap({ "n", "v" }, "<UP>", "15k", { noremap = true })
 keymap({ "n", "v" }, "<C-h>", "10h", { noremap = true })
+keymap({ "n", "v" }, "<LEFT>", "10h", { noremap = true })
 keymap({ "n", "v" }, "<C-l>", "10l", { noremap = true })
+keymap({ "n", "v" }, "<RIGHT>", "10l", { noremap = true })
 
 keymap({ "n", "v" }, ";;", "$", { noremap = true })
 keymap({ "n", "v" }, "''", "^", { noremap = true })
