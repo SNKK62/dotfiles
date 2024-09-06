@@ -26,6 +26,11 @@
     "when": "workbench.explorer.openEditorsView.active"
   },
   {
+    "key": "alt+c alt+l",
+    "command": "editor.showCallHierarchy",
+    "when": "editorHasCallHierarchyProvider && editorTextFocus && !inReferenceSearchEditor"
+  },
+  {
     "key": "d",
     "command": "deleteFile",
     "when": "neovim.mode == normal && explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
@@ -130,8 +135,12 @@
     "command": "workbench.action.previousEditorInGroup"
   },
   {
-    "key": "ctrl+shift+h",
+    "key": "cmd+shift+h",
     "command": "editor.action.startFindReplaceAction"
+  },
+  {
+    "key": "alt+shift+h",
+    "command": "workbench.action.moveEditorToPreviousGroup"
   },
   {
     "key": "ctrl+j",
@@ -226,6 +235,10 @@
   {
     "key": "alt+l",
     "command": "workbench.action.nextEditorInGroup"
+  },
+  {
+    "key": "alt+shift+l",
+    "command": "workbench.action.moveEditorToNextGroup"
   },
   {
     "key": "alt+m",
@@ -438,7 +451,7 @@
     "command": "workbench.action.toggleZenMode"
   },
   {
-    "key": "ctrl+[",
+    "key": "ctrl+]",
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "!editorFocus"
   },
