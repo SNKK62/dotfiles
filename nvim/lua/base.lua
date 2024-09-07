@@ -27,7 +27,7 @@ if not vim.g.vscode then
 	opt.swapfile = false
 
 	-- color scheme
-	vim.cmd([[colorscheme tokyonight]])
+	vim.cmd([[colorscheme everforest]])
 
 	-- fill columns after 80 with red
 	opt.colorcolumn = "81"
