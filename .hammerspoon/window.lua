@@ -47,11 +47,6 @@ end
 hotkey.bind({ "cmd", "ctrl" }, "g", cycleApp("Google Chrome"))
 hotkey.bind({ "cmd", "ctrl" }, "v", cycleApp("Code"))
 
-local minimizeCurrentApp = function()
-	window.focusedWindow():minimize()
-end
-hotkey.bind({ "cmd", "ctrl" }, "c", minimizeCurrentApp)
-
 local function focusNextApp()
 	local currentApp = window.focusedWindow()
 	local sortedWindows =
@@ -59,6 +54,13 @@ local function focusNextApp()
 	sortedWindows[#sortedWindows]:focus()
 end
 hotkey.bind({ "cmd", "ctrl" }, "n", focusNextApp)
+
+local function minimizeWindowAndFocusNextApp()
+	local focusedWindow = window.focusedWindow()
+	focusNextApp()
+	focusedWindow:minimize()
+end
+hotkey.bind({ "cmd", "ctrl" }, "c", minimizeWindowAndFocusNextApp)
 
 hotkey.bind({ "cmd", "ctrl", "shift" }, "Right", function()
 	local win = window.focusedWindow()
@@ -68,3 +70,15 @@ hotkey.bind({ "cmd", "ctrl", "shift" }, "Left", function()
 	local win = window.focusedWindow()
 	win:moveOneScreenWest(false, true, 0.5)
 end)
+
+local expose = require("hs.expose")
+local ex = expose.new(nil, { showThumbnails = true })
+hotkey.bind({ "cmd", "ctrl" }, "e", function()
+	ex:toggleShow()
+end)
+
+local function focusDesktop()
+	local desktop = window.desktop()
+	desktop:focus()
+end
+hotkey.bind({ "cmd", "ctrl" }, "d", focusDesktop)
