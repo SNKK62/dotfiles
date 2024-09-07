@@ -81,6 +81,8 @@ brew install coreutils
 brew install gh
 brew install ghq
 brew install fzf
+brew install ripgrep
+brew install bat
 
 git config --global ghq.root ~/workspace
 
