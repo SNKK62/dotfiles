@@ -78,8 +78,82 @@ function cdrepo() {
 # gh
 eval "$(gh completion -s zsh)"
 
+function ghcr() {
+    gh repo create "$@"
+    ghq get $1
+}
 function ghcr-code()  {
- gh repo create "$@"
- ghq get $1
- code $(ghq list --full-path -e $1)
+    ghcr "$@"
+    code $(ghq list --full-path -e $1)
+}
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!**/.git/*"'
+export FZF_DEFAULT_OPTS="
+    --height 50%
+    --reverse
+    --border=sharp
+    --margin=0,1
+    --prompt=' '
+"
+
+# fzf with preview
+function fzfp() {
+    local cmd preview_cmd
+    cmd="rg --files --hidden --follow --glob '!**/.git/*'"
+    preview_cmd="bat --color=always --style=header,grid {} --theme='TwoDark'"
+    eval $cmd | fzf --preview $preview_cmd --preview-window=right:60%
+}
+
+# git checkout
+fgc() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+fcd() {
+    local show_hidden=false
+    local target_dir="."
+
+    while getopts "a" opt; do
+      case "$opt" in
+        a) show_hidden=true ;;
+      esac
+    done
+    shift $((OPTIND - 1))
+
+    if [[ -n "$1" ]]; then
+      target_dir="$1"
+    fi
+
+    if $show_hidden; then
+      dir=$(find "$target_dir" \( -path '*/.git' -o -path '*/.git/*' \) -prune \
+            -o -type d -print 2> /dev/null | fzf +m)
+    else
+      dir=$(find "$target_dir" -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m)
+    fi
+
+    [[ -n "$dir" ]] && cd "$dir"
+}
+
+
+# git add, diff
+fga() {
+  local out q n addfiles
+  while out=$(
+      git status --short |
+      awk '{if (substr($0,2,1) !~ / /) print $2}' |
+      fzf-tmux --multi --exit-0 --expect=ctrl-d); do
+    q=$(head -1 <<< "$out")
+    n=$[$(wc -l <<< "$out") - 1]
+    addfiles=(`echo $(tail "-$n" <<< "$out")`)
+    [[ -z "$addfiles" ]] && continue
+    if [ "$q" = ctrl-d ]; then
+      git diff --color=always $addfiles | less -R
+    else
+      git add $addfiles
+    fi
+  done
 }
