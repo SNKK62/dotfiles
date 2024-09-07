@@ -44,9 +44,14 @@ local cycleApp = function(appName)
 		allWins[#allWins]:focus()
 	end
 end
-hotkey.bind({ "cmd", "alt" }, "g", cycleApp("Google Chrome"))
--- hotkey.bind({ "cmd", "alt" }, "h", cycleApp("Finder"))
---
+hotkey.bind({ "cmd", "ctrl" }, "g", cycleApp("Google Chrome"))
+hotkey.bind({ "cmd", "ctrl" }, "v", cycleApp("Code"))
+
+local minimizeCurrentApp = function()
+	window.focusedWindow():minimize()
+end
+hotkey.bind({ "cmd", "ctrl" }, "c", minimizeCurrentApp)
+
 local function focusNextApp()
 	local currentApp = window.focusedWindow()
 	local sortedWindows =
