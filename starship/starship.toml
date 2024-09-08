@@ -103,7 +103,7 @@ format = "[](fg:background bg:$style)[[ $symbol $branch ](fg:gray5 bg:$style)
 
 [git_status]
 style = "yellow"
-format = "[[($all_status $ahead_behind)](fg:gray5 bg:$style)]()[](fg:$style)"
+format = "[[($all_status $ahead_behind) ](fg:gray5 bg:$style)]()[](fg:$style)"
 
 [character]
 # success_symbol = '[](fg:green bold)'
