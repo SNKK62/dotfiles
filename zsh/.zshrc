@@ -104,15 +104,6 @@ function fzfp() {
     eval $cmd | fzf --preview $preview_cmd --preview-window=right:60%
 }
 
-# git checkout
-fgc() {
-  local branches branch
-  branches=$(git branch --all | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
 fcd() {
     local show_hidden=false
     local target_dir="."
@@ -138,6 +129,20 @@ fcd() {
     [[ -n "$dir" ]] && cd "$dir"
 }
 
+# git checkout
+fgc() {
+    local branches branch
+    branches=$(git branch | grep -v HEAD)
+    while getopts "r" opt; do
+      case "$opt" in
+        r) branches=$(git branch --all | grep -v HEAD) ;;
+      esac
+    done
+    shift $((OPTIND - 1))
+    branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
 
 # git add, diff
 fga() {
@@ -157,3 +162,9 @@ fga() {
     fi
   done
 }
+
+alias ga='git add'
+alias gc='git commit -m'
+alias gp='git push'
+alias gs='git status'
+
