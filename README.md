@@ -84,6 +84,7 @@ brew install fzf
 brew install ripgrep
 brew install bat
 brew install lsd
+brew install neofetch
 
 git config --global ghq.root ~/workspace
 
