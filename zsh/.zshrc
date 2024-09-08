@@ -99,7 +99,7 @@ function fzfp() {
     local cmd preview_cmd
     cmd="rg --files --hidden --follow --glob '!**/.git/*'"
     preview_cmd="bat --color=always --style=header,grid {} --theme='TwoDark'"
-    eval $cmd | fzf --preview $preview_cmd --preview-window=right:60%
+    eval $cmd | fzf --preview $preview_cmd --preview-window=right:60% "$@"
 }
 
 fcd() {
@@ -121,7 +121,7 @@ fcd() {
       dir=$(find "$target_dir" \( -path '*/.git' -o -path '*/.git/*' \) -prune \
             -o -type d -print 2> /dev/null | fzf +m)
     else
-      dir=$(find "$target_dir" -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m)
+        dir=$(find "$target_dir" \( -path '*/\.*' -o -path '*/node_modules/*' \) -prune -o -type d -print 2> /dev/null | fzf +m)
     fi
 
     [[ -n "$dir" ]] && cd "$dir"
@@ -130,10 +130,7 @@ fcd() {
 fvi() {
     local out q n file
     while out=$(
-        rg --files --hidden --follow --glob "!**/.git/*" | fzf \
-            --preview 'bat  --color=always --style=header,grid {}'\
-            --preview-window=right:60%\
-            --expect=ctrl-c
+        rg --files --hidden --follow --glob "!**/.git/*" | fzfp --expect=ctrl-c
     ); do
         q=$(head -1 <<< "$out")
         n=$[$(wc -l <<< "$out") - 1]
@@ -150,16 +147,9 @@ fvi() {
 
 # git checkout
 fgc() {
-    local branches branch
-    branches=$(git branch | grep -v HEAD)
-    while getopts "r" opt; do
-      case "$opt" in
-        r) branches=$(git branch --all | grep -v HEAD) ;;
-      esac
-    done
-    shift $((OPTIND - 1))
-    branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m)
+    local branch
+    branch=$(git branch $@ | grep -v HEAD |
+            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m)
     git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
@@ -167,9 +157,10 @@ fgc() {
 fga() {
   local out q n addfiles
   while out=$(
-      git status --short |
-      awk '{if (substr($0,2,1) !~ / /) print $2}' |
-      fzf-tmux --multi --exit-0 --expect=ctrl-d); do
+    git status --short |
+    awk '{if (substr($0,2,1) !~ / /) print $2}' |
+    fzf-tmux --multi --exit-0 --expect=ctrl-d
+  ); do
     q=$(head -1 <<< "$out")
     n=$[$(wc -l <<< "$out") - 1]
     addfiles=(`echo $(tail "-$n" <<< "$out")`)
@@ -182,11 +173,36 @@ fga() {
   done
 }
 
+# git branch
+fgb() {
+  local out q n selected_branches
+  while out=$(
+      git branch $@ | grep -v HEAD |
+          fzf-tmux --multi --exit-0 --expect=ctrl-d,enter
+  ); do
+    q=$(head -1 <<< "$out")
+    n=$[$(wc -l <<< "$out") - 1]
+    selected_branches=(`echo $(tail "-$n" <<< "$out")`)
+    if [ "$q" = ctrl-d ]; then
+      [[ -z "$selected_branches" ]] && continue
+      git branch -d $selected_branches
+      break
+    elif [ "$q" = enter ]; then
+      echo $selected_branches
+      break
+    fi
+  done
+}
+
 # git
 alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push'
 alias gs='git status'
+alias gb='git branch'
+alias gcb='git checkout -b'
+
+alias cdroot='cd `git rev-parse --show-toplevel`'
 
 # ls
 alias ls='lsd -F --icon never'
