@@ -26,6 +26,9 @@ bright-yellow = "#d5a236"
 cyan = "#90be95"
 bright-cyan = "#58a47e"
 
+blue = "#8cb9b2"
+bright-blue = "#5392c0"
+
 gray1 = "#FFFFFF"
 gray2 = "#D9D9D9"
 gray3 = "#969696"
@@ -68,11 +71,11 @@ else
 fi
 """
 when = "true"
-style = "green"
-format = "[](fg:background bg:$style)[ $output ](fg:gray4 bg:$style bold)[](fg:$style)"
+style = "blue"
+format = "[](fg:background bg:$style)[ $output ](fg:gray4 bg:$style bold)[]($style)"
 
 # [username]
-# format = "[ $user](fg:#e3e5e5 bg:#769ff0)"
+# format = "[](fg:background bg:bright-cyan)[ $user ](fg:gray5 bg:bright-cyan)[](bright-cyan)"
 # disabled = false
 # show_always = true
 
@@ -80,7 +83,7 @@ format = "[](fg:background bg:$style)[ $output ](fg:gray4 bg:$style bold)[
 truncation_length = 0
 truncate_to_repo = false
 style = "cyan"
-format = "[](fg:background bg:$style)[ $path ](fg:gray5 bg:$style)[](fg:$style)"
+format = "[](fg:background bg:$style)[ $path ](fg:gray5 bg:$style)[]($style)"
 
 [custom.git_symbol]
 when = true
@@ -103,7 +106,7 @@ format = "[](fg:background bg:$style)[[ $symbol $branch ](fg:gray5 bg:$style)
 
 [git_status]
 style = "yellow"
-format = "[[($all_status $ahead_behind) ](fg:gray5 bg:$style)]()[](fg:$style)"
+format = "[[($all_status $ahead_behind) ](fg:gray5 bg:$style)]()[]($style)"
 
 [character]
 # success_symbol = '[](fg:green bold)'
