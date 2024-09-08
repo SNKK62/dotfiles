@@ -1,41 +1,111 @@
 format = """
-[░▒▓](#a3aed2)\
-[  ](bg:#a3aed2 fg:#090c0c)\
-[](bg:#769ff0 fg:#a3aed2)\
-$username\
-[](fg:#769ff0 bg:#0312A0)\
+${custom.os_logo}\
 $directory\
-[](fg:#0312A0 bg:#4F5B82)\
+${custom.git_symbol}\
+${custom.git_repo}\
 $git_branch\
 $git_status\
-[ ](fg:#4F5B82)\
-$character"""
+\n
+$character\
+"""
 
-[username]
-format = "[ $user](fg:#e3e5e5 bg:#769ff0)"
-disabled = false
-show_always = true
+right_format = """
+"""
+
+palette = "everforest"
+
+[palettes.everforest]
+background = "#24292d"
+
+green = "#abbf86"
+bright-green = "#90a030"
+
+yellow = "#d5bd86"
+bright-yellow = "#d5a236"
+
+cyan = "#90be95"
+bright-cyan = "#58a47e"
+
+gray1 = "#FFFFFF"
+gray2 = "#D9D9D9"
+gray3 = "#969696"
+gray4 = "#525252"
+gray5 = "#000000"
+
+# palette = "colors"
+#
+# [palettes.colors]
+# background = "#24292d"
+#
+# yellow1 = "#F0F4C3"
+# yellow2 = "#DCE775"
+# yellow3 = "#CDDC39"
+# yellow4 = "#AFB42B"
+# yellow5 = "#827717"
+#
+# green1 = "#DCEDC8"
+# green2 = "#AED581"
+# green3 = "#8BC34A"
+# green4 = "#689F38"
+# green5 = "#33691E"
+#
+# gray1 = "#FFFFFF"
+# gray2 = "#D9D9D9"
+# gray3 = "#969696"
+# gray4 = "#525252"
+# gray5 = "#000000"
+
+[custom.os_logo]
+command = """
+if grep -qi 'ubuntu' /etc/os-release; then
+  echo ""  # Ubuntu
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  echo ""  # Linux
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  echo ""  # macOS
+else
+  echo "?"  # 不明なOS
+fi
+"""
+when = "true"
+style = "green"
+format = "[](fg:background bg:$style)[ $output ](fg:gray4 bg:$style bold)[](fg:$style)"
+
+# [username]
+# format = "[ $user](fg:#e3e5e5 bg:#769ff0)"
+# disabled = false
+# show_always = true
 
 [directory]
-style = "fg:#a0a9cb bg:#0312A0"
-format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
+truncation_length = 0
+truncate_to_repo = false
+style = "cyan"
+format = "[](fg:background bg:$style)[ $path ](fg:gray5 bg:$style)[](fg:$style)"
 
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+[custom.git_symbol]
+when = true
+require_repo = true
+command='echo ""'
+style = "green"
+format = "[](fg:background bg:$style)[ $output](fg:gray4 bg:$style bold)"
+
+[custom.git_repo]
+when = true
+require_repo = true
+command='git rev-parse --show-toplevel | sed -e "s,$(ghq root)/github\.com/,,g" -e "s,$(ghq root)/,,"'
+style = "green"
+format = "[ $output ](fg:gray4 bg:$style bold)[](fg:$style)"
 
 [git_branch]
-symbol = " "
-style = "bg:#394260"
-format = '[[ $symbol $branch ](fg:#769ff0 bg:#4F5B82)]($style)'
+symbol = ""
+style = "yellow"
+format = "[](fg:background bg:$style)[[ $symbol $branch ](fg:gray5 bg:$style)](fg:char bg:$style)"
 
 [git_status]
-style = "bg:#394260"
-format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#4F5B82)]($style)'
+style = "yellow"
+format = "[[($all_status $ahead_behind)](fg:gray5 bg:$style)]()[](fg:$style)"
 
-# [character] # 設定対象のモジュール名は 'character'
-# success_symbol = ''
+[character]
+# success_symbol = '[](fg:green bold)'
+# error_symbol = '[](fg:red bold)'
+
