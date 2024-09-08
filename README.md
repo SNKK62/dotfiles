@@ -83,6 +83,7 @@ brew install ghq
 brew install fzf
 brew install ripgrep
 brew install bat
+brew install lsd
 
 git config --global ghq.root ~/workspace
 

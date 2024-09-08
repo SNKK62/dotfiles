@@ -29,14 +29,12 @@ antigen bundles <<EOBUNDLES
 EOBUNDLES
 
 # Load the theme
-antigen theme robbyrussell
+# antigen theme robbyrussell
 
 # Tell antigen that you're done
 antigen apply
 
-alias ls='ls -F --color=auto'
 alias vi='nvim'
-alias vim='nvim'
 
 # starship
 eval "$(starship init zsh)"
@@ -129,6 +127,27 @@ fcd() {
     [[ -n "$dir" ]] && cd "$dir"
 }
 
+fvi() {
+    local out q n file
+    while out=$(
+        rg --files --hidden --follow --glob "!**/.git/*" | fzf \
+            --preview 'bat  --color=always --style=header,grid {}'\
+            --preview-window=right:60%\
+            --expect=ctrl-c
+    ); do
+        q=$(head -1 <<< "$out")
+        n=$[$(wc -l <<< "$out") - 1]
+        file=(`echo $(tail "-$n" <<< "$out")`)
+        [[ -z "$file" ]] && continue
+        if [ "$q" = ctrl-c ]; then
+            break
+        else
+            vi "$file"
+            break
+        fi
+    done
+}
+
 # git checkout
 fgc() {
     local branches branch
@@ -140,7 +159,7 @@ fgc() {
     done
     shift $((OPTIND - 1))
     branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m)
     git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
@@ -163,8 +182,17 @@ fga() {
   done
 }
 
+# git
 alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push'
 alias gs='git status'
+
+# ls
+alias ls='lsd -F --icon never'
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lta="ls --tree --ignore-glob '.git' --ignore-glob 'node_modules'"
+alias ltd='lta -d' # directories only
 
