@@ -162,6 +162,11 @@ check-further-callbacks = true
 run = ['move-node-to-workspace V']
 
 [[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+check-further-callbacks = true
+run = ['move-node-to-workspace T']
+
+[[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 check-further-callbacks = true
 run = ['move-node-to-workspace B']
