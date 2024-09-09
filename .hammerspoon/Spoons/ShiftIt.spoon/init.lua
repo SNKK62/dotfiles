@@ -17,68 +17,71 @@ obj.homepage = "https://github.com/peterklijn/hammerspoon-shiftit"
 obj.license = "https://github.com/peterklijn/hammerspoon-shiftit/blob/master/LICENSE.md"
 
 obj.positionMash = { "cmd" }
+obj.resizeMash = { "ctrl", "cmd" }
+obj.moveMash = { "ctrl", "cmd", "shift" }
 obj.mash = { "ctrl", "cmd" }
 obj.mapping = {
-	left = { obj.positionMash, "left" },
-	left67 = { obj.positionMash, "9" },
-	right = { obj.positionMash, "right" },
-	right33 = { obj.positionMash, "0" },
-	up = { obj.positionMash, "up" },
-	down = { obj.positionMash, "down" },
-	upright = { obj.positionMash, "1" },
-	upleft = { obj.positionMash, "2" },
-	botleft = { obj.positionMash, "3" },
-	botright = { obj.positionMash, "4" },
+	-- left = { obj.positionMash, "left" },
+	-- left67 = { obj.positionMash, "[" },
+	-- right = { obj.positionMash, "right" },
+	-- right33 = { obj.positionMash, "]" },
+	-- up = { obj.positionMash, "up" },
+	-- down = { obj.positionMash, "down" },
+	-- upright = { obj.positionMash, "1" },
+	-- upleft = { obj.positionMash, "2" },
+	-- botleft = { obj.positionMash, "3" },
+	-- botright = { obj.positionMash, "4" },
 
-	moveUp = { obj.mash, "up" },
-	moveDown = { obj.mash, "down" },
-	moveRight = { obj.mash, "right" },
-	moveLeft = { obj.mash, "left" },
+	moveUp = { obj.moveMash, "up" },
+	moveDown = { obj.moveMash, "down" },
+	moveRight = { obj.moveMash, "right" },
+	moveLeft = { obj.moveMash, "left" },
+
 	maximum = { obj.mash, "m" },
-	toggleFullScreen = { obj.mash, "f" },
+	-- toggleFullScreen = { obj.mash, "f" },
 	-- toggleZoom = { obj.mash, "z" },
-	center = { obj.mash, "c" },
+	-- center = { obj.mash, "c" },
 	-- nextScreen = { obj.mash, "n" },
 	-- previousScreen = { obj.mash, "p" },
-	resizeOut = { obj.mash, "=" },
-	resizeOutWidth = { obj.mash, "l" },
-	resizeOutHeight = { obj.mash, "k" },
-	resizeIn = { obj.mash, "-" },
-	resizeInWidth = { obj.mash, "h" },
-	resizeInHeight = { obj.mash, "j" },
+	resizeOut = { obj.resizeMash, "=" },
+	resizeOutHeight = { obj.resizeMash, "up" },
+	resizeOutWidth = { obj.resizeMash, "right" },
+	resizeIn = { obj.resizeMash, "-" },
+	resizeInHeight = { obj.resizeMash, "down" },
+	resizeInWidth = { obj.resizeMash, "left" },
 }
 
 local units = {
-	left = function(x, _)
-		return { x = 0.00, y = 0.00, w = x / 100, h = 1.00 }
-	end,
-	left67 = function(_, _)
-		return { x = 0.00, y = 0.00, w = 0.67, h = 1.00 }
-	end,
-	right = function(x, _)
-		return { x = 1 - (x / 100), y = 0.00, w = x / 100, h = 1.00 }
-	end,
-	right33 = function(_, _)
-		return { x = 1 - 0.33, y = 0.00, w = 0.33, h = 1.00 }
-	end,
-	top = function(_, y)
-		return { x = 0.00, y = 0.00, w = 1.00, h = y / 100 }
-	end,
-	bot = function(_, y)
-		return { x = 0.00, y = 1 - (y / 100), w = 1.00, h = y / 100 }
-	end,
-	upleft = function(x, y)
-		return { x = 0.00, y = 0.00, w = x / 100, h = y / 100 }
-	end,
-	upright = function(x, y)
-		return { x = 1 - (x / 100), y = 0.00, w = x / 100, h = y / 100 }
-	end,
-	botleft = function(x, y)
-		return { x = 0.00, y = 1 - (y / 100), w = x / 100, h = y / 100 }
-	end,
-	botright = function(x, y)
-		return { x = 1 - (x / 100), y = 1 - (y / 100), w = x / 100, h = y / 100 }
-	end,
+	-- left = function(x, _)
+	-- 	return { x = 0.00, y = 0.00, w = x / 100, h = 1.00 }
+	-- end,
+	-- left67 = function(_, _)
+	-- 	return { x = 0.00, y = 0.00, w = 0.67, h = 1.00 }
+	-- end,
+	-- right = function(x, _)
+	-- 	return { x = 1 - (x / 100), y = 0.00, w = x / 100, h = 1.00 }
+	-- end,
+	-- right33 = function(_, _)
+	-- 	return { x = 1 - 0.33, y = 0.00, w = 0.33, h = 1.00 }
+	-- end,
+	-- top = function(_, y)
+	-- 	return { x = 0.00, y = 0.00, w = 1.00, h = y / 100 }
+	-- end,
+	-- bot = function(_, y)
+	-- 	return { x = 0.00, y = 1 - (y / 100), w = 1.00, h = y / 100 }
+	-- end,
+	-- upleft = function(x, y)
+	-- 	return { x = 0.00, y = 0.00, w = x / 100, h = y / 100 }
+	-- end,
+	-- upright = function(x, y)
+	-- 	return { x = 1 - (x / 100), y = 0.00, w = x / 100, h = y / 100 }
+	-- end,
+	-- botleft = function(x, y)
+	-- 	return { x = 0.00, y = 1 - (y / 100), w = x / 100, h = y / 100 }
+	-- end,
+	-- botright = function(x, y)
+	-- 	return { x = 1 - (x / 100), y = 1 - (y / 100), w = x / 100, h = y / 100 }
+	-- end,
 
 	maximum = { x = 0.00, y = 0.00, w = 1.00, h = 1.00 },
 }
@@ -203,45 +206,45 @@ function obj:resizeWindowInSteps(increment, forWidth, forHeight)
 	self:move({ x = x, y = y, w = w, h = h })
 end
 
-function obj:left()
-	self:moveWithCycles(units.left)
-end
-
-function obj:left67()
-	self:moveWithCycles(units.left67)
-end
-
-function obj:right()
-	self:moveWithCycles(units.right)
-end
-
-function obj:right33()
-	self:moveWithCycles(units.right33)
-end
-
-function obj:up()
-	self:moveWithCycles(units.top)
-end
-
-function obj:down()
-	self:moveWithCycles(units.bot)
-end
-
-function obj:upleft()
-	self:moveWithCycles(units.upleft)
-end
-
-function obj:upright()
-	self:moveWithCycles(units.upright)
-end
-
-function obj:botleft()
-	self:moveWithCycles(units.botleft)
-end
-
-function obj:botright()
-	self:moveWithCycles(units.botright)
-end
+-- function obj:left()
+-- 	self:moveWithCycles(units.left)
+-- end
+--
+-- function obj:left67()
+-- 	self:moveWithCycles(units.left67)
+-- end
+--
+-- function obj:right()
+-- 	self:moveWithCycles(units.right)
+-- end
+--
+-- function obj:right33()
+-- 	self:moveWithCycles(units.right33)
+-- end
+--
+-- function obj:up()
+-- 	self:moveWithCycles(units.top)
+-- end
+--
+-- function obj:down()
+-- 	self:moveWithCycles(units.bot)
+-- end
+--
+-- function obj:upleft()
+-- 	self:moveWithCycles(units.upleft)
+-- end
+--
+-- function obj:upright()
+-- 	self:moveWithCycles(units.upright)
+-- end
+--
+-- function obj:botleft()
+-- 	self:moveWithCycles(units.botleft)
+-- end
+--
+-- function obj:botright()
+-- 	self:moveWithCycles(units.botright)
+-- end
 
 function obj:moveUp()
 	self:moveWindow(true, false, false, false)
@@ -264,18 +267,18 @@ function obj:maximum()
 	self:move(units.maximum)
 end
 
-function obj:toggleFullScreen()
-	self.hs.window.focusedWindow():toggleFullScreen()
-end
+-- function obj:toggleFullScreen()
+-- 	self.hs.window.focusedWindow():toggleFullScreen()
+-- end
 
 -- function obj:toggleZoom()
 -- 	self.hs.window.focusedWindow():toggleZoom()
 -- end
 
-function obj:center()
-	latestMove.direction = "center"
-	self.hs.window.focusedWindow():centerOnScreen(nil, true, 0)
-end
+-- function obj:center()
+-- 	latestMove.direction = "center"
+-- 	self.hs.window.focusedWindow():centerOnScreen(nil, true, 0)
+-- end
 
 -- function obj:nextScreen()
 -- 	self.hs.window.focusedWindow():moveToScreen(self.hs.window.focusedWindow():screen():next(), false, true, 0)
@@ -338,36 +341,36 @@ function obj:bindHotkeys(mapping)
 		end
 	end
 
-	self.hs.hotkey.bind(self.mapping.left[1], self.mapping.left[2], function()
-		self:left()
-	end)
-	self.hs.hotkey.bind(self.mapping.left67[1], self.mapping.left67[2], function()
-		self:left67()
-	end)
-	self.hs.hotkey.bind(self.mapping.right[1], self.mapping.right[2], function()
-		self:right()
-	end)
-	self.hs.hotkey.bind(self.mapping.right33[1], self.mapping.right33[2], function()
-		self:right33()
-	end)
-	self.hs.hotkey.bind(self.mapping.up[1], self.mapping.up[2], function()
-		self:up()
-	end)
-	self.hs.hotkey.bind(self.mapping.down[1], self.mapping.down[2], function()
-		self:down()
-	end)
-	self.hs.hotkey.bind(self.mapping.upleft[1], self.mapping.upleft[2], function()
-		self:upleft()
-	end)
-	self.hs.hotkey.bind(self.mapping.upright[1], self.mapping.upright[2], function()
-		self:upright()
-	end)
-	self.hs.hotkey.bind(self.mapping.botleft[1], self.mapping.botleft[2], function()
-		self:botleft()
-	end)
-	self.hs.hotkey.bind(self.mapping.botright[1], self.mapping.botright[2], function()
-		self:botright()
-	end)
+	-- self.hs.hotkey.bind(self.mapping.left[1], self.mapping.left[2], function()
+	-- 	self:left()
+	-- end)
+	-- self.hs.hotkey.bind(self.mapping.left67[1], self.mapping.left67[2], function()
+	-- 	self:left67()
+	-- end)
+	-- self.hs.hotkey.bind(self.mapping.right[1], self.mapping.right[2], function()
+	-- 	self:right()
+	-- end)
+	-- self.hs.hotkey.bind(self.mapping.right33[1], self.mapping.right33[2], function()
+	-- 	self:right33()
+	-- end)
+	-- self.hs.hotkey.bind(self.mapping.up[1], self.mapping.up[2], function()
+	-- 	self:up()
+	-- end)
+	-- self.hs.hotkey.bind(self.mapping.down[1], self.mapping.down[2], function()
+	-- 	self:down()
+	-- end)
+	-- self.hs.hotkey.bind(self.mapping.upleft[1], self.mapping.upleft[2], function()
+	-- 	self:upleft()
+	-- end)
+	-- self.hs.hotkey.bind(self.mapping.upright[1], self.mapping.upright[2], function()
+	-- 	self:upright()
+	-- end)
+	-- self.hs.hotkey.bind(self.mapping.botleft[1], self.mapping.botleft[2], function()
+	-- 	self:botleft()
+	-- end)
+	-- self.hs.hotkey.bind(self.mapping.botright[1], self.mapping.botright[2], function()
+	-- 	self:botright()
+	-- end)
 	self.hs.hotkey.bind(self.mapping.moveUp[1], self.mapping.moveUp[2], function()
 		self:moveUp()
 	end)
@@ -383,15 +386,15 @@ function obj:bindHotkeys(mapping)
 	self.hs.hotkey.bind(self.mapping.maximum[1], self.mapping.maximum[2], function()
 		self:maximum()
 	end)
-	self.hs.hotkey.bind(self.mapping.toggleFullScreen[1], self.mapping.toggleFullScreen[2], function()
-		self:toggleFullScreen()
-	end)
+	-- self.hs.hotkey.bind(self.mapping.toggleFullScreen[1], self.mapping.toggleFullScreen[2], function()
+	-- 	self:toggleFullScreen()
+	-- end)
 	-- self.hs.hotkey.bind(self.mapping.toggleZoom[1], self.mapping.toggleZoom[2], function()
 	-- 	self:toggleZoom()
 	-- end)
-	self.hs.hotkey.bind(self.mapping.center[1], self.mapping.center[2], function()
-		self:center()
-	end)
+	-- self.hs.hotkey.bind(self.mapping.center[1], self.mapping.center[2], function()
+	-- 	self:center()
+	-- end)
 	-- self.hs.hotkey.bind(self.mapping.nextScreen[1], self.mapping.nextScreen[2], function()
 	-- 	self:nextScreen()
 	-- end)

@@ -64,6 +64,7 @@ end
 
 local rightCmdFlag = false
 local shiftFlag = false
+local alreadyRightCmdFlag = false
 RightCmdEventWatcher = eventtap.new({ events.flagsChanged, events.keyDown }, function(event)
 	local keyCode = event:getKeyCode()
 	local flags = event:getFlags()
@@ -71,21 +72,24 @@ RightCmdEventWatcher = eventtap.new({ events.flagsChanged, events.keyDown }, fun
 	if event:getType() == events.flagsChanged then
 		if noFlags(event) and rightCmdFlag and shiftFlag then
 			switchInputSource("X_layout")
-			rightCmdFlag, shiftFlag = false, false
+			rightCmdFlag, shiftFlag, alreadyRightCmdFlag = false, false, false
 		elseif noFlags(event) and rightCmdFlag then
 			switchInputSource("Japanese")
-			rightCmdFlag, shiftFlag = false, false
-		elseif flags.shift and flags.cmd and onlyTargetFlags(event, { "shift", "cmd" }) and keyCode == map.rightcmd then
-			rightCmdFlag = true
-			shiftFlag = true
+			rightCmdFlag, shiftFlag, alreadyRightCmdFlag = false, false, false
+		elseif
+			flags.shift
+			and flags.cmd
+			and onlyTargetFlags(event, { "shift", "cmd" })
+			and (keyCode == map.rightcmd or (keyCode == map.shift and alreadyRightCmdFlag))
+		then
+			rightCmdFlag, shiftFlag, alreadyRightCmdFlag = true, true, true
 		elseif flags.cmd and onlyTargetFlags(event, { "cmd" }) and keyCode == map.rightcmd then
-			shiftFlag = false
-			rightCmdFlag = true
-		elseif not noFlags(event) and not shiftFlag then
-			rightCmdFlag, shiftFlag = false, false
+			rightCmdFlag, shiftFlag, alreadyRightCmdFlag = true, false, true
+		elseif not noFlags(event) and not onlyTargetFlags(event, { "shift", "cmd" }) then
+			rightCmdFlag, shiftFlag, alreadyRightCmdFlag = false, false, false
 		end
 	else
-		rightCmdFlag, shiftFlag = false, false
+		rightCmdFlag, shiftFlag, alreadyRightCmdFlag = false, false, false
 	end
 end)
 RightCmdEventWatcher:start()
@@ -99,7 +103,7 @@ LeftCmdEventWacher = eventtap.new({ events.flagsChanged, events.keyDown }, funct
 		if noFlags(event) and leftCmdFlag then
 			switchInputSource("English")
 			leftCmdFlag = false
-		elseif flags.cmd and onlyTargetFlags(event, { "cmd" }) and keyCode == map.cmd and not leftCmdFlag then
+		elseif flags.cmd and onlyTargetFlags(event, { "cmd" }) and keyCode == map.cmd then
 			leftCmdFlag = true
 		else
 			leftCmdFlag = false

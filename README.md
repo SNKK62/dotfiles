@@ -89,3 +89,17 @@ brew install neofetch
 git config --global ghq.root ~/workspace
 
 ```
+
+### AeroSpace
+
+#### installation
+
+```bash
+brew install --cask nikitabobko/tap/aerospace
+```
+
+#### configuration
+
+```bash
+ln -s ${PWD}/aerospace ~/.config/aerospace
+```
