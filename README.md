@@ -103,3 +103,17 @@ brew install --cask nikitabobko/tap/aerospace
 ```bash
 ln -s ${PWD}/aerospace ~/.config/aerospace
 ```
+
+### WezTerm
+
+#### installation
+
+```bash
+brew install --cask wezterm
+```
+
+#### configuration
+
+```bash
+ln -s ${PWD}/wezterm ~/.config/wezterm
+```
