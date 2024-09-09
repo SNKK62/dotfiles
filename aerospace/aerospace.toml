@@ -132,13 +132,13 @@ alt-shift-r = 'mode resize'
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
-b = ['balance-sizes']
-r = ['flatten-workspace-tree'] # reset layout
-f = ['layout floating tiling'] # Toggle between floating and tiling layout
+b = ['balance-sizes', 'mode main']
+r = ['flatten-workspace-tree', 'mode main'] # reset layout
+f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-s = ['move-workspace-to-monitor --wrap-around next']
-a = ['close-all-windows-but-current']
-c = ['macos-native-minimize']
+s = ['move-workspace-to-monitor --wrap-around next', 'mode main']
+a = ['close-all-windows-but-current', 'mode main']
+c = ['macos-native-minimize', 'mode main']
 m = ['macos-native-fullscreen']
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 #s = ['layout sticky tiling', 'mode main']
