@@ -74,6 +74,16 @@ config.keys = {
 		mods = "SUPER",
 		action = act.Search({ CaseSensitiveString = "" }),
 	},
+	{
+		key = "Tab",
+		mods = "CTRL",
+		action = act.ActivateTabRelative(1),
+	},
+	{
+		key = "Tab",
+		mods = "CTRL|SHIFT",
+		action = act.ActivateTabRelative(-1),
+	},
 	-- activate copy mode
 	{ key = "x", mods = "CTRL", action = wezterm.action.ActivateCopyMode },
 }
