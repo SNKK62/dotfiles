@@ -125,7 +125,7 @@ alt-shift-v = 'move-node-to-workspace V'
 # alt-tab = 'workspace-back-and-forth'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-alt-shift-s = 'mode service'
+alt-s = 'mode service'
 alt-shift-r = 'mode resize'
 
 # 'service' binding mode declaration.

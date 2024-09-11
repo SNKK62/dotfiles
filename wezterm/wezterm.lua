@@ -17,23 +17,23 @@ config.audible_bell = "Disabled"
 local act = wezterm.action
 config.keys = {
 	-- -- move back one word
-	-- {
-	-- 	key = "",
-	-- 	mods = "",
-	-- 	action = wezterm.action_callback(function(window, pane)
-	-- 		window:perform_action(wezterm.action.SendKey({ key = "[", mods = "CTRL" }), pane)
-	-- 		window:perform_action(wezterm.action.SendKey({ key = "b" }), pane)
-	-- 	end),
-	-- },
+	{
+		key = "h",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action_callback(function(window, pane)
+			window:perform_action(wezterm.action.SendKey({ key = "[", mods = "CTRL" }), pane)
+			window:perform_action(wezterm.action.SendKey({ key = "b" }), pane)
+		end),
+	},
 	-- -- move forward one word
-	-- {
-	-- 	key = "",
-	-- 	mods = "",
-	-- 	action = wezterm.action_callback(function(window, pane)
-	-- 		window:perform_action(wezterm.action.SendKey({ key = "[", mods = "CTRL" }), pane)
-	-- 		window:perform_action(wezterm.action.SendKey({ key = "f" }), pane)
-	-- 	end),
-	-- },
+	{
+		key = "l",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action_callback(function(window, pane)
+			window:perform_action(wezterm.action.SendKey({ key = "[", mods = "CTRL" }), pane)
+			window:perform_action(wezterm.action.SendKey({ key = "f" }), pane)
+		end),
+	},
 	-- delete word
 	{
 		key = "Backspace",
