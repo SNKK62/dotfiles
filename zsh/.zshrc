@@ -185,7 +185,7 @@ fgb() {
     selected_branches=(`echo $(tail "-$n" <<< "$out")`)
     if [ "$q" = ctrl-d ]; then
       [[ -z "$selected_branches" ]] && continue
-      git branch -d $selected_branches
+      git branch -D $selected_branches
       break
     elif [ "$q" = enter ]; then
       echo $selected_branches
