@@ -13,12 +13,15 @@ configs for neovim and so on
 - node
 - `brew install fsouza/prettierd/prettierd`
 - `brew install lua-language-server`
+- `brew install luarocks`
 
 if error occurs while initializing neovim, try to fix
 
 ```bash
 rm -Rf ~/.local/{share, state}/nvim
 ```
+
+after launch nvim, try `:Mason` and search and install `stylua` and `luacheck`
 
 ### VScode
 

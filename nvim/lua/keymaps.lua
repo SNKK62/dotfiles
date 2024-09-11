@@ -108,13 +108,17 @@ if not vim.g.vscode then
 	-- switch buffer
 	keymap("n", "<C-b>h", "<Cmd>BufferPrevious<CR>", { noremap = true, silent = true })
 	keymap("n", "˙", "<Cmd>BufferPrevious<CR>", { noremap = true, silent = true }) -- <A-h>
+	keymap("n", "<A-h>", "<Cmd>BufferPrevious<CR>", { noremap = true, silent = true })
 	keymap("n", "<C-b>l", "<Cmd>BufferNext<CR>", { noremap = true, silent = true })
 	keymap("n", "¬", "<Cmd>BufferNext<CR>", { noremap = true, silent = true }) -- <A-l>
+	keymap("n", "<A-l>", "<Cmd>BufferNext<CR>", { noremap = true, silent = true })
 	-- reorder buffer
 	keymap("n", "<C-b>j", "<Cmd>BufferMovePrevious<CR>", { noremap = true, silent = true })
 	keymap("n", "∆", "<Cmd>BufferMovePrevious<CR>", { noremap = true, silent = true }) -- <A-j>
+	keymap("n", "<A-j>", "<Cmd>BufferMovePrevious<CR>", { noremap = true, silent = true })
 	keymap("n", "<C-b>k", "<Cmd>BufferMoveNext<CR>", { noremap = true, silent = true })
 	keymap("n", "˚", "<Cmd>BufferMoveNext<CR>", { noremap = true, silent = true }) -- <A-k>
+	keymap("n", "<A-k>", "<Cmd>BufferMoveNext<CR>", { noremap = true, silent = true })
 	-- pin/unpin buffer
 	keymap("n", "<C-b>p", "<Cmd>BufferPin<CR>", { noremap = true, silent = true })
 	-- close buffer
@@ -164,6 +168,7 @@ if not vim.g.vscode then
 	keymap({ "n", "v" }, "<Leader>ac", "<cmd>Lspsaga code_action<CR>", { silent = true })
 	-- float terminal
 	keymap({ "n", "t" }, "ƒ", "<cmd>Lspsaga term_toggle<CR>", { silent = true }) -- <A-f>
+	keymap({ "n", "t" }, "<A-f>", "<cmd>Lspsaga term_toggle<CR>", { silent = true })
 
 	-- session
 	keymap("c", "SS", "SessionSave", { noremap = true })
@@ -185,8 +190,8 @@ keymap({ "n", "x" }, "<Leader>m", "<Plug>(quickhl-manual-this)", { noremap = tru
 keymap({ "n", "x" }, "<Leader>M", "<Plug>(quickhl-manual-reset)", { noremap = true })
 
 -- lightspeed
-keymap({ "n", "v" }, "s", "s", { noremap = true })
-keymap({ "n", "v" }, "S", "S", { noremap = true })
+-- keymap({ "n", "v" }, "s", "s", { noremap = true })
+-- keymap({ "n", "v" }, "S", "S", { noremap = true })
 
 -- hop
 keymap({ "n", "v" }, "<Leader>h", "<Cmd>HopWord<CR>", { noremap = true, silent = true })
