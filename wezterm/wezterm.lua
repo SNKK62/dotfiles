@@ -15,6 +15,7 @@ config.font_size = 16
 config.audible_bell = "Disabled"
 
 local act = wezterm.action
+config.disable_default_key_bindings = true
 config.keys = {
 	-- -- move back one word
 	{
@@ -42,6 +43,36 @@ config.keys = {
 			key = "w",
 			mods = "CTRL",
 		}),
+	},
+	{
+		key = "t",
+		mods = "SUPER",
+		action = act.SpawnTab("CurrentPaneDomain"),
+	},
+	{
+		key = "c",
+		mods = "SUPER",
+		action = act.CopyTo("Clipboard"),
+	},
+	{
+		key = "v",
+		mods = "SUPER",
+		action = act.PasteFrom("Clipboard"),
+	},
+	{
+		key = "n",
+		mods = "SUPER",
+		action = act.SpawnWindow,
+	},
+	{
+		key = "w",
+		mods = "SUPER",
+		action = act.CloseCurrentTab({ confirm = true }),
+	},
+	{
+		key = "f",
+		mods = "SUPER",
+		action = act.Search({ CaseSensitiveString = "" }),
 	},
 }
 
