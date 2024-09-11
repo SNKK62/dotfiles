@@ -38,7 +38,7 @@ config.keys = {
 	-- delete word
 	{
 		key = "Backspace",
-		mods = "SHIFT",
+		mods = "CTRL",
 		action = act.SendKey({
 			key = "w",
 			mods = "CTRL",
