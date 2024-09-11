@@ -74,6 +74,8 @@ config.keys = {
 		mods = "SUPER",
 		action = act.Search({ CaseSensitiveString = "" }),
 	},
+	-- activate copy mode
+	{ key = "x", mods = "CTRL", action = wezterm.action.ActivateCopyMode },
 }
 
 config.key_tables = {
@@ -113,6 +115,11 @@ config.key_tables = {
 			key = "LeftArrow",
 			mods = "NONE",
 			action = act.CopyMode("MoveBackwardWord"),
+		},
+		{
+			key = "d",
+			mods = "CTRL",
+			action = act.CopyMode({ MoveByPage = 0.5 }),
 		},
 		{
 			key = "e",
