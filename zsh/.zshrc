@@ -96,6 +96,7 @@ export FZF_DEFAULT_OPTS="
     --margin=0,1
     --prompt=' '
     --bind ctrl-K:preview-up,ctrl-J:preview-down
+    --bind="ctrl-B:preview-page-up,ctrl-F:preview-page-down" \
 "
 
 export BAT_THEME="TwoDark"
@@ -201,7 +202,9 @@ fgd() {
     awk '{if (substr($0,2,1) !~ / /) print $2}' |
     fzf-tmux --preview $preview_cmd --preview-window=right:70% --exit-0
   )
-  git diff-side-by-side $selected
+  if [ -n "$selected" ]; then
+    git diff-side-by-side $selected
+  fi
 }
 
 # git reflog
@@ -249,6 +252,82 @@ fgb() {
   done
 }
 
+# git stash push
+fgstp () {
+  local git_repo_root selected_files files_array filtered_files_array stash_message
+  git_repo_root=$(git rev-parse --show-toplevel)
+  selected_files=$(git status --porcelain |
+                   fzf --multi \
+                       --preview-window='right:70%' \
+                       --preview="
+                          if [[ {} =~ '^\?\?' ]]; then
+                            bat $git_repo_root/{2};
+                          else
+                            git diff {2} | delta;
+                          fi
+                       " |
+                   awk '{ print $2 }'
+                  )
+  if [ -z "$selected_files" ]; then
+    echo "No files selected. Exiting."
+    return 1
+  fi
+
+  # IFS=$'\n' read -rd '' -a files_array <<<"$selected_files"
+  IFS=$'\n' files_array=(${(f)selected_files})
+
+  filtered_files_array=()
+  for file in "${files_array[@]}"; do
+    if [[ $file != *"==="* ]]; then
+      filtered_files_array+=("$file")
+    fi
+  done
+
+  echo -n "Enter a stash message: "
+  read stash_message
+
+  git stash push -u -m "$stash_message" -- "${filtered_files_array[@]}"
+}
+
+# git stash apply/drop
+fgstl() {
+  # ^3 for untracked files
+  local preview_cmd="echo {} | cut -d':' -f1 | xargs -I {STASH} sh -c \"git stash show -p --include-untracked '{STASH}'\" | delta"
+  local out query selection key reflog_selector
+  while out=$(git stash list "$@" |
+            fzf --ansi --print-query --query="$query" \
+              --expect=enter,ctrl-d \
+              --preview=$preview_cmd \
+              --preview-window='right:70%');
+  do
+    selection=("${(f)out}")
+    query="$selection[1]"
+    key="$selection[2]"
+    reflog_selector=$(echo "$selection[3]" | cut -d ':' -f 1)
+
+    case "$key" in
+      enter)
+        git stash apply "$reflog_selector"
+        break
+        ;;
+      ctrl-d)
+        git stash drop "$reflog_selector"
+        ;;
+    esac
+  done
+}
+
+fgst() {
+    case $1 in
+        apply|-a|pop|-p|drop|-d|list|-l)
+            fgstl
+            ;;
+        *)
+            fgstp
+            ;;
+    esac
+}
+
 # delta
 export DELTA_PAGER="less -Rf"
 # git
@@ -260,6 +339,7 @@ alias gc='git commit -m'
 alias gp='git push'
 alias gpl='git pull'
 alias gs='git status'
+alias gst='git stash'
 alias gsw='git switch'
 alias gb='git branch'
 alias gcb='git checkout -b'
