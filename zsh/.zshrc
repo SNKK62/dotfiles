@@ -333,8 +333,9 @@ export DELTA_PAGER="less -Rf"
 # git
 alias g='git'
 alias ga='git add'
-alias gd='git diff'
-alias gds='git diff-side-by-side'
+alias gd='git diff --stat --patch'
+alias gds='git diff-side-by-side --stat --patch'
+alias gda='gds --staged'
 alias gc='git commit -m'
 alias gp='git push'
 alias gpl='git pull'
