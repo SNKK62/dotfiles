@@ -172,18 +172,19 @@ fgc() {
 
 # git add, diff
 fga() {
-  local out q n addfiles
+  local out q n addfiles preview_cmd
+  preview_cmd="git diff {} | bat --color=always --style=grid"
   while out=$(
     git status --short |
     awk '{if (substr($0,2,1) !~ / /) print $2}' |
-    fzf-tmux --multi --exit-0 --expect=ctrl-d
+    fzf-tmux --preview $preview_cmd --preview-window=right:60% --multi --exit-0 --expect=ctrl-d
   ); do
     q=$(head -1 <<< "$out")
     n=$[$(wc -l <<< "$out") - 1]
     addfiles=(`echo $(tail "-$n" <<< "$out")`)
     [[ -z "$addfiles" ]] && continue
     if [ "$q" = ctrl-d ]; then
-      git diff --color=always $addfiles | less -R
+      git diff $addfiles
     else
       git add $addfiles
     fi
@@ -251,6 +252,5 @@ lt() {
     eval "$cmd -d $target_dir"
   fi
 }
-
-
+export DELTA_PAGER="less -Rf"
 
