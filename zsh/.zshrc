@@ -206,18 +206,26 @@ fgd() {
 
 # git reflog
 fgref() {
-  local selected preview_cmd opt
+  local selected preview_cmd opt args
   preview_cmd="echo '{}' | cut -d ' ' -f 1 | xargs -I@ git diff --stat --patch @^ @ | delta"
   selected=$(
     git reflog |
     fzf-tmux --preview $preview_cmd --preview-window=right:70% --exit-0
   )
-  if [ -n "$@" ]; then
-    opt=$@
-  else
+  args=()
+  while [[ $# -gt 0 ]]; do
+    case $1 in
+      --hard|--mixed|--soft)  opt="$1"; shift;;
+      -*|--*) echo "[ERROR] Unknown option $1"; exit 1;;
+      *) args+=("$1"); shift;;
+    esac
+  done
+  set -- "${args[@]}"  #// set $1, $2, ...
+
+  if [ -z $opt ]; then
     opt="--mixed"
   fi
-  git reset $opt `echo $selected | cut -d ' ' -f 1`
+  git reset $opt `echo $selected | cut -d ' ' -f 1` $@
 }
 
 # git branch
