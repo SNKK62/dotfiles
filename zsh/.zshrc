@@ -40,7 +40,7 @@ alias vi='nvim'
 eval "$(starship init zsh)"
 
 function fzf-history-selection() {
-    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | fzf`
+    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | fzf --prompt="command history > " --query "$LBUFFER"`
     CURSOR=$#BUFFER
     zle reset-prompt
 }
@@ -63,6 +63,9 @@ function fzf-cdr () {
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
         zle accept-line
+    else
+        BUFFER=""
+        zle reset-prompt
     fi
 }
 zle -N fzf-cdr
