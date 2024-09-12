@@ -97,9 +97,8 @@ export FZF_DEFAULT_OPTS="
 # fzf with preview
 function fzfp() {
     local cmd preview_cmd
-    cmd="rg --files --hidden --follow --glob '!**/.git/*'"
     preview_cmd="bat --color=always --style=header,grid {} --theme='TwoDark'"
-    eval $cmd | fzf --preview $preview_cmd --preview-window=right:60% "$@"
+    fzf --preview $preview_cmd --preview-window=right:60% "$@"
 }
 
 fcd() {
@@ -209,6 +208,30 @@ alias ls='lsd -F --icon never'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
-alias lta="ls --tree --ignore-glob '.git' --ignore-glob 'node_modules'"
-alias ltd='lta -d' # directories only
+
+lt() {
+  local show_all=false
+  local target_dir="."
+
+  while getopts "a" opt; do
+    case "$opt" in
+      a) show_all=true ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+
+  if [[ -n "$1" ]]; then
+    target_dir="$1"
+  fi
+
+  local cmd="ls --tree --ignore-glob '.git' --ignore-glob 'node_modules'"
+
+  if $show_all; then
+    eval "$cmd $target_dir"
+  else
+    eval "$cmd -d $target_dir"
+  fi
+}
+
+
 
