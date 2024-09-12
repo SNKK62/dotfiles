@@ -194,6 +194,7 @@ fgb() {
 }
 
 # git
+alias g='git'
 alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push'
