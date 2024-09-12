@@ -94,10 +94,12 @@ export FZF_DEFAULT_OPTS="
     --prompt=' '
 "
 
+export BAT_THEME="TwoDark"
+
 # fzf with preview
 function fzfp() {
     local cmd preview_cmd
-    preview_cmd="bat --color=always --style=header,grid {} --theme='TwoDark'"
+    preview_cmd="bat --color=always --style=header,grid {}"
     fzf --preview $preview_cmd --preview-window=right:60% "$@"
 }
 
