@@ -115,10 +115,11 @@ add settings below in `~/.gitconfig`
         syntax-theme = zenburn
         navigate = true
         line-numbers = true
-        side-by-side = true
         keep-plus-minus-markers
 [interactive]
         diffFilter = delta --color-only
+[alias]
+        diff-side-by-side = -c delta.features=side-by-side diff
 ```
 
 ### AeroSpace

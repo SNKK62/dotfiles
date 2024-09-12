@@ -95,6 +95,7 @@ export FZF_DEFAULT_OPTS="
     --border=sharp
     --margin=0,1
     --prompt=' '
+    --bind ctrl-K:preview-up,ctrl-J:preview-down
 "
 
 export BAT_THEME="TwoDark"
@@ -173,18 +174,18 @@ fgc() {
 # git add, diff
 fga() {
   local out q n addfiles preview_cmd
-  preview_cmd="git diff {} | bat --color=always --style=grid"
+  preview_cmd="git diff {} | delta"
   while out=$(
     git status --short |
     awk '{if (substr($0,2,1) !~ / /) print $2}' |
-    fzf-tmux --preview $preview_cmd --preview-window=right:60% --multi --exit-0 --expect=ctrl-d
+    fzf-tmux --preview $preview_cmd --preview-window=right:70% --multi --exit-0 --expect=ctrl-d
   ); do
     q=$(head -1 <<< "$out")
     n=$[$(wc -l <<< "$out") - 1]
     addfiles=(`echo $(tail "-$n" <<< "$out")`)
     [[ -z "$addfiles" ]] && continue
     if [ "$q" = ctrl-d ]; then
-      git diff $addfiles
+      git diff-side-by-side $addfiles
     else
       git add $addfiles
     fi
@@ -212,9 +213,13 @@ fgb() {
   done
 }
 
+# delta
+export DELTA_PAGER="less -Rf"
 # git
 alias g='git'
 alias ga='git add'
+alias gd='git diff'
+alias gds='git diff-side-by-side'
 alias gc='git commit -m'
 alias gp='git push'
 alias gs='git status'
@@ -228,7 +233,8 @@ alias ls='lsd -F --icon never'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
-
+alias lf='fzfp'
+# lsd --tree
 lt() {
   local show_all=false
   local target_dir="."
@@ -252,5 +258,4 @@ lt() {
     eval "$cmd -d $target_dir"
   fi
 }
-export DELTA_PAGER="less -Rf"
 
