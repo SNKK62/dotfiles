@@ -32,6 +32,14 @@ after launch nvim, try `:Mason` and search and install `stylua` and `luacheck`
 ~/Library/Application Support/Code/User/keybindings.json
 ```
 
+### Rust
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# set PATH properly
+rustup component add clippy
+```
+
 ### HammerSpoon
 
 [https://www.hammerspoon.org/](https://www.hammerspoon.org/)

@@ -27,8 +27,22 @@
     "editor.insertSpaces": true
   },
   "[rust]": {
-    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true,
+    "editor.inlayHints.enabled": "offUnlessPressed"
   },
+  "rust-analyzer.rustfmt.rangeFormatting.enable": true,
+  // "rust-analyzer.rustfmt.overrideCommand": [
+  //   "rustup",
+  //   "run",
+  //   "nightly",
+  //   "rustfmt",
+  //   "--unstable-features"
+  // ],
+  "rust-analyzer.checkOnSave": true,
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.check.extraArgs": ["--", "-A", "clippy::needless_return"],
   "editor.quickSuggestions": {
     "strings": true
   },
