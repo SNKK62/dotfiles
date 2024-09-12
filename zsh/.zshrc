@@ -98,9 +98,22 @@ export BAT_THEME="TwoDark"
 
 # fzf with preview
 function fzfp() {
-    local cmd preview_cmd
-    preview_cmd="bat --color=always --style=header,grid {}"
-    fzf --preview $preview_cmd --preview-window=right:60% "$@"
+  local cmd preview_cmd out q n selected_file
+  preview_cmd="bat --color=always --style=header,grid {}"
+
+  while out=$(
+    fzf --preview $preview_cmd --preview-window=right:60% --exit-0 --expect=ctrl-p,enter "$@"
+  ); do
+    q=$(head -1 <<< "$out")
+    n=1
+    selected_file=`echo $(tail "-$n" <<< "$out")`
+    if [ "$q" = ctrl-p ]; then
+      bat $selected_file
+    elif [ "$q" = enter ]; then
+      echo $selected_file
+      break
+    fi
+  done
 }
 
 fcd() {
