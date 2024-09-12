@@ -192,6 +192,34 @@ fga() {
   done
 }
 
+# git diff
+fgd() {
+  local selected preview_cmd
+  preview_cmd="git diff {} | delta"
+  selected=$(
+    git status --short |
+    awk '{if (substr($0,2,1) !~ / /) print $2}' |
+    fzf-tmux --preview $preview_cmd --preview-window=right:70% --exit-0
+  )
+  git diff-side-by-side $selected
+}
+
+# git reflog
+fgref() {
+  local selected preview_cmd opt
+  preview_cmd="echo '{}' | cut -d ' ' -f 1 | xargs -I@ git diff --stat --patch @^ @ | delta"
+  selected=$(
+    git reflog |
+    fzf-tmux --preview $preview_cmd --preview-window=right:70% --exit-0
+  )
+  if [ -n "$@" ]; then
+    opt=$@
+  else
+    opt="--mixed"
+  fi
+  git reset $opt `echo $selected | cut -d ' ' -f 1`
+}
+
 # git branch
 fgb() {
   local out q n selected_branches
@@ -222,9 +250,12 @@ alias gd='git diff'
 alias gds='git diff-side-by-side'
 alias gc='git commit -m'
 alias gp='git push'
+alias gpl='git pull'
 alias gs='git status'
+alias gsw='git switch'
 alias gb='git branch'
 alias gcb='git checkout -b'
+alias gref='git reflog'
 
 alias cdroot='cd `git rev-parse --show-toplevel`'
 
