@@ -84,6 +84,17 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = act.ActivateTabRelative(-1),
 	},
+	{
+		key = "j",
+		mods = "CTRL|SHIFT",
+		action = act.MoveTabRelative(-1),
+	},
+	{
+		key = "k",
+		mods = "CTRL|SHIFT",
+		action = act.MoveTabRelative(1),
+	},
+
 	-- activate copy mode
 	{ key = "x", mods = "CTRL", action = wezterm.action.ActivateCopyMode },
 }
