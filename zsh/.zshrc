@@ -95,8 +95,8 @@ export FZF_DEFAULT_OPTS="
     --border=sharp
     --margin=0,1
     --prompt=' '
-    --bind ctrl-K:preview-up,ctrl-J:preview-down
-    --bind="ctrl-B:preview-page-up,ctrl-F:preview-page-down" \
+    --bind='alt-j:preview-up,alt-k:preview-down'
+    --bind='ctrl-B:preview-page-up,ctrl-F:preview-page-down'
 "
 
 export BAT_THEME="TwoDark"
@@ -233,20 +233,18 @@ fgref() {
 
 # git branch
 fgb() {
-  local out q n selected_branches
+  local out q n selected_branch
   while out=$(
       git branch $@ | grep -v HEAD |
-          fzf-tmux --multi --exit-0 --expect=ctrl-d,enter
+          fzf-tmux --expect=ctrl-d,enter
   ); do
     q=$(head -1 <<< "$out")
-    n=$[$(wc -l <<< "$out") - 1]
-    selected_branches=(`echo $(tail "-$n" <<< "$out")`)
+    selected_branch=`echo $(tail -1 <<< "$out")`
     if [ "$q" = ctrl-d ]; then
-      [[ -z "$selected_branches" ]] && continue
-      git branch -D $selected_branches
-      break
+      [[ -z "$selected_branch" ]] && continue
+      git branch -D $selected_branch
     elif [ "$q" = enter ]; then
-      echo $selected_branches
+      echo $selected_branch
       break
     fi
   done
