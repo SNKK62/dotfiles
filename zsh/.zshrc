@@ -95,7 +95,7 @@ export FZF_DEFAULT_OPTS="
     --border=sharp
     --margin=0,1
     --prompt=' '
-    --bind='alt-j:preview-up,alt-k:preview-down'
+    --bind='ctrl-P:preview-up,ctrl-N:preview-down'
     --bind='ctrl-B:preview-page-up,ctrl-F:preview-page-down'
 "
 
@@ -215,6 +215,9 @@ fgref() {
     git reflog |
     fzf-tmux --preview $preview_cmd --preview-window=right:70% --exit-0
   )
+  if [ -z $selected ]; then
+      return 1
+  fi
   args=()
   while [[ $# -gt 0 ]]; do
     case $1 in
