@@ -26,11 +26,6 @@
     "when": "workbench.explorer.openEditorsView.active"
   },
   {
-    "key": "alt+c alt+l",
-    "command": "editor.showCallHierarchy",
-    "when": "editorHasCallHierarchyProvider && editorTextFocus && !inReferenceSearchEditor"
-  },
-  {
     "key": "d",
     "command": "deleteFile",
     "when": "neovim.mode == normal && explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
@@ -59,6 +54,11 @@
     "key": "alt+d alt+p",
     "command": "editor.action.marker.prev",
     "when": "editorFocus"
+  },
+  {
+    "key": "alt+d alt+y",
+    "command": "editor.action.goToTypeDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus"
   },
   {
     "key": "ctrl+e h",
@@ -281,34 +281,6 @@
     "when": "neovim.mode !== insert"
   },
   {
-    "key": "alt+shift+p",
-    "command": "extension.togglePhindWebview"
-  },
-  {
-    "key": "alt+p alt+a",
-    "command": "phind.acceptCodeChanges"
-  },
-  {
-    "key": "alt+p alt+d",
-    "command": "phind.partialRejectCodeChanges"
-  },
-  {
-    "key": "alt+p alt+c",
-    "command": "phind.searchSelection"
-  },
-  {
-    "key": "alt+p alt+n",
-    "command": "phind.newSearchSelection"
-  },
-  {
-    "key": "alt+p alt+r",
-    "command": "phind.rewriteCode"
-  },
-  {
-    "key": "alt+p alt+t",
-    "command": "phind.searchTerminalOutput"
-  },
-  {
     "key": "r",
     "command": "renameFile",
     "when": "neovim.mode != insert && explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
@@ -317,6 +289,11 @@
     "key": "ctrl+shift+r",
     "command": "toggleSearchRegex",
     "when": "neovim.mode != insert && activeViewlet == 'workbench.view.search' && sideBarFocus"
+  },
+  {
+    "key": "alt+r alt+h",
+    "command": "editor.showCallHierarchy",
+    "when": "editorHasCallHierarchyProvider && editorTextFocus && !inReferenceSearchEditor"
   },
   {
     "key": "alt+r alt+f",
