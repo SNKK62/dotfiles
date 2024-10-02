@@ -37,10 +37,10 @@ saga.setup({
 
 	finder = {
 		keys = {
-			-- toggle_or_open = { "o", "<CR>" },
+			toggle_or_open = { "<CR>" },
 			vsplit = "<C-w>v",
 			split = "<C-w>s",
-			tabe = "<CR>",
+			tabe = "t",
 			quit = { "q", "<ESC>" },
 		},
 		methods = {

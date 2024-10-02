@@ -135,7 +135,7 @@ if not vim.g.vscode then
 	-- reference
 	keymap("n", "<Leader>rf", "<cmd>Lspsaga finder ref<CR>", { silent = true })
 	-- definition
-	keymap("n", "<Leader>df", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+	keymap("n", "<Leader>df", "<cmd>Lspsaga finder def<CR>", { silent = true })
 	keymap("n", "<Leader>ty", "<cmd>Lspsaga finder tyd<CR>", { silent = true })
 	-- rename
 	keymap("n", "<Leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
