@@ -57,11 +57,22 @@ local common_plugins = {
 	{
 		"unblevable/quick-scope",
 	},
+
 	-- treesitter for iswap.nvim
 	{
 		"nvim-treesitter/nvim-treesitter",
 		config = require("plugins/treesitter"),
 		build = ":TSUpdate",
+	},
+	{
+		"ThePrimeagen/refactoring.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("refactoring").setup()
+		end,
 	},
 }
 
@@ -158,6 +169,24 @@ local pure_plugins = {
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		cmd = "Trouble",
+		opts = {
+			modes = {
+				preview_float = {
+					mode = "diagnostics",
+					preview = {
+						type = "float",
+						relative = "editor",
+						border = "rounded",
+						title = "Preview",
+						title_pos = "center",
+						position = { 0, -2 },
+						size = { width = 0.3, height = 0.3 },
+						zindex = 200,
+					},
+				},
+			},
+		},
 	},
 	-- completion
 	"hrsh7th/nvim-cmp",
