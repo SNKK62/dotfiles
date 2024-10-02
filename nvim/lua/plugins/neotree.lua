@@ -1,7 +1,11 @@
 return function()
+	vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+	vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
+	vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
+	vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 	require("neo-tree").setup({
-		auto_clean_after_session_restore = false,
-		close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+		auto_clean_after_session_restore = true,
+		close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
 		popup_border_style = "rounded",
 		enable_git_status = true,
 		enable_diagnostics = true,
@@ -55,8 +59,8 @@ return function()
 			git_status = {
 				symbols = {
 					-- Change type
-					added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-					modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+					added = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
+					modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
 					deleted = "✖", -- this can only be used in the git_status source
 					renamed = "󰁕", -- this can only be used in the git_status source
 					-- Status type
@@ -93,8 +97,7 @@ return function()
 		-- see `:h neo-tree-custom-commands-global`
 		commands = {},
 		window = {
-			position = "left",
-			width = 33,
+			width = 45,
 			mapping_options = {
 				noremap = true,
 				nowait = true,
@@ -111,48 +114,31 @@ return function()
 				-- Read `# Preview Mode` for more information
 				["L"] = "focus_preview",
 				["s"] = "open_split",
-				["S"] = "open_vsplit",
+				["v"] = "open_vsplit",
+				["q"] = "close_window",
+				["R"] = "refresh",
+				[">"] = "prev_source", -- file system -> git -> bufer
+				["<"] = "next_source",
+				["i"] = "show_file_details",
+				["h"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+				["oc"] = { "order_by_created", nowait = false },
+				["od"] = { "order_by_diagnostics", nowait = false },
+				["om"] = { "order_by_modified", nowait = false },
+				["on"] = { "order_by_name", nowait = false },
+				["os"] = { "order_by_size", nowait = false },
+				["ot"] = { "order_by_type", nowait = false },
 				-- ["S"] = "split_with_window_picker",
 				-- ["s"] = "vsplit_with_window_picker",
-				["t"] = "open_tabnew",
+				-- ["t"] = "open_tabnew",
 				-- ["<cr>"] = "open_drop",
 				-- ["t"] = "open_tab_drop",
 				-- ["w"] = "open_with_window_picker",
-				--["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
-				["l"] = "open",
-				["h"] = "close_node",
+				-- ["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
+				-- ["l"] = "open",
+				-- ["h"] = "close_node",
 				-- ['C'] = 'close_all_subnodes',
-				["z"] = "close_all_nodes",
-				--["Z"] = "expand_all_nodes",
-				["n"] = {
-					"add",
-					-- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
-					-- some commands may take optional config options, see `:h neo-tree-mappings` for details
-					config = {
-						show_path = "none", -- "none", "relative", "absolute"
-					},
-				},
-				["K"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
-				["d"] = "delete",
-				["r"] = "rename",
-				["y"] = "copy_to_clipboard",
-				["x"] = "cut_to_clipboard",
-				["p"] = "paste_from_clipboard",
-				["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
-				-- ["c"] = {
-				--  "copy",
-				--  config = {
-				--    show_path = "none" -- "none", "relative", "absolute"
-				--  }
-				--}
-				["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
-				["q"] = "close_window",
-				["<C-f>"] = "close_window",
-				["R"] = "refresh",
-				["?"] = "show_help",
-				["<"] = "prev_source",
-				[">"] = "next_source",
-				["i"] = "show_file_details",
+				-- ["H"] = "close_all_nodes",
+				-- ["Z"] = "expand_all_nodes",
 			},
 		},
 		nesting_rules = {},
@@ -200,25 +186,41 @@ return function()
 			-- instead of relying on nvim autocmd events.
 			window = {
 				mappings = {
+					["a"] = {
+						"add",
+						-- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc).
+						-- see `:h neo-tree-file-actions` for details
+						-- some commands may take optional config options, see `:h neo-tree-mappings` for details
+						config = {
+							show_path = "none", -- "none", "relative", "absolute"
+						},
+					},
+					["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
+					["d"] = "delete",
+					["r"] = "rename",
+					["p"] = "paste_from_clipboard",
+					["x"] = "cut_to_clipboard",
+					["y"] = "copy_to_clipboard",
+					["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
+					-- ["c"] = {
+					--  "copy",
+					--  config = {
+					--    show_path = "none" -- "none", "relative", "absolute"
+					--  }
+					--}
+					["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
 					["<bs>"] = "navigate_up",
 					["."] = "set_root",
+					["<C-f>"] = "close_window",
 					["H"] = "toggle_hidden",
-					["/"] = "fuzzy_finder",
-					["D"] = "fuzzy_finder_directory",
-					["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
+					["g"] = "fuzzy_finder",
+					["G"] = "fuzzy_finder_directory",
+					["/"] = "filter_on_submit",
+					["<Esc>"] = "clear_filter",
+					-- ["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
 					-- ["D"] = "fuzzy_sorter_directory",
-					["f"] = "filter_on_submit",
-					["<c-x>"] = "clear_filter",
-					["[g"] = "prev_git_modified",
-					["]g"] = "next_git_modified",
-					["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
-					["oc"] = { "order_by_created", nowait = false },
-					["od"] = { "order_by_diagnostics", nowait = false },
-					["og"] = { "order_by_git_status", nowait = false },
-					["om"] = { "order_by_modified", nowait = false },
-					["on"] = { "order_by_name", nowait = false },
-					["os"] = { "order_by_size", nowait = false },
-					["ot"] = { "order_by_type", nowait = false },
+					-- ["[g"] = "prev_git_modified",
+					-- ["]g"] = "next_git_modified",
 				},
 				fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
 					["<down>"] = "move_cursor_down",
@@ -230,6 +232,21 @@ return function()
 
 			commands = {}, -- Add a custom command or override a global one using the same function name
 		},
+		git_status = {
+			window = {
+				mappings = {
+					["<C-f>"] = "next_source", -- to file system
+					["<CS-G>"] = "close_window",
+					["ga"] = "git_add_file",
+					["gA"] = "git_add_all",
+					["gu"] = "git_unstage_file",
+					["gr"] = "git_revert_file",
+					["gc"] = "git_commit",
+					["gp"] = "git_push",
+					-- ["gg"] = "git_commit_and_push",
+				},
+			},
+		},
 		buffers = {
 			follow_current_file = {
 				enabled = true, -- This will find and focus the file in the active buffer every time
@@ -240,37 +257,9 @@ return function()
 			show_unloaded = true,
 			window = {
 				mappings = {
-					["bd"] = "buffer_delete",
-					["<bs>"] = "navigate_up",
-					["."] = "set_root",
-					["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
-					["oc"] = { "order_by_created", nowait = false },
-					["od"] = { "order_by_diagnostics", nowait = false },
-					["om"] = { "order_by_modified", nowait = false },
-					["on"] = { "order_by_name", nowait = false },
-					["os"] = { "order_by_size", nowait = false },
-					["ot"] = { "order_by_type", nowait = false },
-				},
-			},
-		},
-		git_status = {
-			window = {
-				position = "float",
-				mappings = {
-					["gA"] = "git_add_all",
-					["gu"] = "git_unstage_file",
-					["ga"] = "git_add_file",
-					["gr"] = "git_revert_file",
-					["gc"] = "git_commit",
-					["gp"] = "git_push",
-					["gg"] = "git_commit_and_push",
-					["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
-					["oc"] = { "order_by_created", nowait = false },
-					["od"] = { "order_by_diagnostics", nowait = false },
-					["om"] = { "order_by_modified", nowait = false },
-					["on"] = { "order_by_name", nowait = false },
-					["os"] = { "order_by_size", nowait = false },
-					["ot"] = { "order_by_type", nowait = false },
+					["<C-f>"] = "prev_source", -- to file system
+					["<CS-B>"] = "close_window",
+					["d"] = "buffer_delete",
 				},
 			},
 		},

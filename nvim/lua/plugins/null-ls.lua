@@ -2,6 +2,7 @@ local null_ls = require("null-ls")
 local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
 
 null_ls.setup({
+	diagnostics_format = "#{m} (#{s}: #{c})",
 	sources = {
 		null_ls.builtins.formatting.stylua,
 		-- null_ls.builtins.diagnostics.luacheck,
@@ -11,7 +12,7 @@ null_ls.setup({
 		-- 	diagnostics_format = "[eslint] #{m}\n(#{c})",
 		-- }),
 		null_ls.builtins.formatting.prettier,
-		null_ls.builtins.diagnostics.fish,
+		-- null_ls.builtins.diagnostics.fish,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

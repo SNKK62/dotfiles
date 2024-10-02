@@ -50,21 +50,21 @@ if not vim.g.vscode then
 		require("neo-tree.command").execute({
 			toggle = true,
 			source = "filesystem",
-			position = "left",
+			position = "right",
 		})
 	end)
 	keymap("n", "<CS-G>", function()
 		require("neo-tree.command").execute({
 			toggle = true,
 			source = "git_status",
-			position = "left",
+			position = "right",
 		})
 	end)
 	keymap("n", "<CS-B>", function()
 		require("neo-tree.command").execute({
 			toggle = true,
 			source = "buffers",
-			position = "left",
+			position = "right",
 		})
 	end)
 	-- sideber
@@ -131,10 +131,12 @@ if not vim.g.vscode then
 
 	-- lsp
 	-- finder
-	keymap("n", "<Leader>fi", "<cmd>Lspsaga finder<CR>", { silent = true })
-	keymap("n", "<Leader>ty", "<cmd>Lspsaga finder tyd+ref+imp+def<CR>", { silent = true })
+	keymap("n", "<Leader>fi", "<cmd>Lspsaga finder tyd+ref+imp+def<CR>", { silent = true })
+	-- reference
+	keymap("n", "<Leader>rf", "<cmd>Lspsaga finder ref<CR>", { silent = true })
 	-- definition
 	keymap("n", "<Leader>df", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+	keymap("n", "<Leader>ty", "<cmd>Lspsaga finder tyd<CR>", { silent = true })
 	-- rename
 	keymap("n", "<Leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
 	-- document
@@ -146,14 +148,8 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>db", "<cmd>Lspsaga show_buf_diagnostics<CR>", { silent = true })
 	keymap("n", "<Leader>dw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { silent = true })
 
-	keymap("n", "<leader>xx", function()
-		require("trouble").toggle()
-	end)
 	keymap("n", "<leader>xw", function()
-		require("trouble").toggle("workspace_diagnostics")
-	end)
-	keymap("n", "<leader>xd", function()
-		require("trouble").toggle("document_diagnostics")
+		require("trouble").toggle("diagnostics")
 	end)
 	keymap("n", "<leader>xq", function()
 		require("trouble").toggle("quickfix")
@@ -185,11 +181,11 @@ end
 keymap("n", "<Leader>sw", "<Cmd>ISwap<CR>", { noremap = true, silent = true })
 keymap("n", "<Leader>sn", "<Cmd>ISwapNode<CR>", { noremap = true, silent = true })
 
--- mark setting
+-- highlight mark setting
 keymap({ "n", "x" }, "<Leader>m", "<Plug>(quickhl-manual-this)", { noremap = true })
 keymap({ "n", "x" }, "<Leader>M", "<Plug>(quickhl-manual-reset)", { noremap = true })
 
--- lightspeed
+-- disable lightspeed
 -- keymap({ "n", "v" }, "s", "s", { noremap = true })
 -- keymap({ "n", "v" }, "S", "S", { noremap = true })
 

@@ -37,10 +37,10 @@ saga.setup({
 
 	finder = {
 		keys = {
-			toggle_or_open = { "o", "<CR>" },
-			vsplit = "v",
-			split = "s",
-			tabe = "t",
+			-- toggle_or_open = { "o", "<CR>" },
+			vsplit = "<C-w>v",
+			split = "<C-w>s",
+			tabe = "<CR>",
 			quit = { "q", "<ESC>" },
 		},
 		methods = {
@@ -71,17 +71,29 @@ saga.setup({
 			exec_action = "o",
 			quit = "q",
 			go_action = "g",
+			vsplit = "<C-w>v",
+			split = "<C-w>s",
+			tabe = "<CR>",
 		},
+		diagnostic_filter = function(diagnostic)
+			if
+				diagnostic.severity == vim.diagnostic.severity.HINT
+				or diagnostic.severity == vim.diagnostic.severity.INFO
+			then
+				return false
+			end
+			return true
+		end,
 	},
 
 	definition = {
 		keys = {
-			edit = "<C-c>o",
-			vsplit = "<C-c>v",
-			split = "<C-c>s",
-			tabe = "<C-c>t",
-			quit = "q",
-			close = "<C-c>q",
+			-- edit = "<C-c>o",
+			vsplit = "<C-w>v",
+			split = "<C-w>s",
+			tabe = "<CR>",
+			quit = { "q", "<ESC>" },
+			-- close = "<C-c>q",
 		},
 	},
 
