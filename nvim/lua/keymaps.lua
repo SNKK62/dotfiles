@@ -60,13 +60,6 @@ if not vim.g.vscode then
 			position = "right",
 		})
 	end)
-	keymap("n", "<CS-B>", function()
-		require("neo-tree.command").execute({
-			toggle = true,
-			source = "buffers",
-			position = "right",
-		})
-	end)
 	-- sideber
 	keymap("n", "<CS-F>", function()
 		require("sidebar-nvim").toggle()
@@ -76,11 +69,10 @@ if not vim.g.vscode then
 	local builtin = require("telescope.builtin")
 	keymap("n", "<C-p>", builtin.find_files, {})
 	keymap("n", "<C-g>", builtin.live_grep, {})
-	keymap("n", "<C-b>g", builtin.buffers, {})
-	keymap("n", "<CS-S>", "<cmd>lua  require('session-lens').search_session()<CR>", { noremap = true, silent = true })
+	keymap("n", "<CS-B>", builtin.buffers, {})
 
 	-- treesitter-context
-	keymap("n", "<Leader>tc", "<Cmd>TSContextToggle<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>tsc", "<Cmd>TSContextToggle<CR>", { noremap = true, silent = true })
 
 	-- vim-spectre
 	keymap("n", "<CS-R>", '<cmd>lua require("spectre").toggle()<CR>')
@@ -138,6 +130,8 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>df", "<Cmd>tab lua vim.lsp.buf.definition()<CR>", { silent = true })
 	-- type definition
 	keymap("n", "<Leader>ty", "<cmd>Lspsaga finder tyd<CR>", { silent = true })
+	-- implementation
+	keymap("n", "<Leader>ip", "<cmd>Lspsaga finder imp<CR>", { silent = true })
 	-- rename
 	keymap("n", "<Leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
 	-- document
@@ -170,6 +164,7 @@ if not vim.g.vscode then
 
 	-- session
 	keymap("c", "SS", "SessionSave", { noremap = true })
+	keymap("n", "<C-S>", "<cmd>Telescope session-lens search_session<CR>", { noremap = true, silent = true })
 
 	-- copilot
 	keymap("i", "<C-g>d", "<Plug>(copilot-dismiss)", { noremap = true })

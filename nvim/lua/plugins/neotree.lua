@@ -117,8 +117,6 @@ return function()
 				["v"] = "open_vsplit",
 				["q"] = "close_window",
 				["R"] = "refresh",
-				[">"] = "prev_source", -- file system -> git -> bufer
-				["<"] = "next_source",
 				["i"] = "show_file_details",
 				["h"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
 				["oc"] = { "order_by_created", nowait = false },
@@ -217,6 +215,8 @@ return function()
 					["G"] = "fuzzy_finder_directory",
 					["/"] = "filter_on_submit",
 					["<Esc>"] = "clear_filter",
+					[">"] = "prev_source", -- file system <-> git
+					["<"] = "prev_source",
 					-- ["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
 					-- ["D"] = "fuzzy_sorter_directory",
 					-- ["[g"] = "prev_git_modified",
@@ -243,25 +243,28 @@ return function()
 					["gr"] = "git_revert_file",
 					["gc"] = "git_commit",
 					["gp"] = "git_push",
+					[">"] = "next_source", -- file system <-> git
+					["<"] = "next_source",
 					-- ["gg"] = "git_commit_and_push",
 				},
 			},
 		},
-		buffers = {
-			follow_current_file = {
-				enabled = true, -- This will find and focus the file in the active buffer every time
-				--              -- the current file is changed while the tree is open.
-				leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
-			},
-			group_empty_dirs = true, -- when true, empty folders will be grouped together
-			show_unloaded = true,
-			window = {
-				mappings = {
-					["<C-f>"] = "prev_source", -- to file system
-					["<CS-B>"] = "close_window",
-					["d"] = "buffer_delete",
-				},
-			},
-		},
+		-- buffers is diabled now
+		-- buffers = {
+		-- 	follow_current_file = {
+		-- 		enabled = true, -- This will find and focus the file in the active buffer every time
+		-- 		--              -- the current file is changed while the tree is open.
+		-- 		leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+		-- 	},
+		-- 	group_empty_dirs = true, -- when true, empty folders will be grouped together
+		-- 	show_unloaded = true,
+		-- 	window = {
+		-- 		mappings = {
+		-- 			["<C-f>"] = "prev_source", -- to file system
+		-- 			["<CS-B>"] = "close_window",
+		-- 			["d"] = "buffer_delete",
+		-- 		},
+		-- 	},
+		-- },
 	})
 end

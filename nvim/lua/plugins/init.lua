@@ -202,13 +202,6 @@ local pure_plugins = {
 		"rmagatti/auto-session",
 		config = require("plugins/auto-session"),
 	},
-	{
-		"rmagatti/session-lens",
-		dependencies = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
-		config = function()
-			require("session-lens").setup()
-		end,
-	},
 
 	-- others
 	{
