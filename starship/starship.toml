@@ -12,7 +12,7 @@ $character\
 right_format = """
 """
 
-palette = "everforest"
+palette = "catppuccin"
 
 [palettes.everforest]
 background = "#343F44"
@@ -35,28 +35,47 @@ gray3 = "#969696"
 gray4 = "#525252"
 gray5 = "#000000"
 
-# palette = "colors"
-#
-# [palettes.colors]
-# background = "#24292d"
-#
-# yellow1 = "#F0F4C3"
-# yellow2 = "#DCE775"
-# yellow3 = "#CDDC39"
-# yellow4 = "#AFB42B"
-# yellow5 = "#827717"
-#
-# green1 = "#DCEDC8"
-# green2 = "#AED581"
-# green3 = "#8BC34A"
-# green4 = "#689F38"
-# green5 = "#33691E"
-#
-# gray1 = "#FFFFFF"
-# gray2 = "#D9D9D9"
-# gray3 = "#969696"
-# gray4 = "#525252"
-# gray5 = "#000000"
+[palettes.catppuccin]
+background = "#303446"
+
+green = "#81c8be"
+bright-green = "#a6d189"
+
+yellow = "#e5c890"
+bright-yellow = "#ef9f76"
+
+cyan = "#babbf1"
+bright-cyan = "#85c1dc"
+
+blue = "#99d1db"
+bright-blue = "#8caaee"
+
+gray1 = "#c6d0f5"
+gray2 = "#a5adce"
+gray3 = "#737994"
+gray4 = "#414559"
+gray5 = "#232634"
+
+[palettes.colors]
+background = "#24292d"
+
+yellow1 = "#F0F4C3"
+yellow2 = "#DCE775"
+yellow3 = "#CDDC39"
+yellow4 = "#AFB42B"
+yellow5 = "#827717"
+
+green1 = "#DCEDC8"
+green2 = "#AED581"
+green3 = "#8BC34A"
+green4 = "#689F38"
+green5 = "#33691E"
+
+gray1 = "#FFFFFF"
+gray2 = "#D9D9D9"
+gray3 = "#969696"
+gray4 = "#525252"
+gray5 = "#000000"
 
 [custom.os_logo]
 command = """

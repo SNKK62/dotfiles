@@ -8,7 +8,8 @@ end
 
 config.automatically_reload_config = true
 
-config.color_scheme = "Everforest Dark (Gogh)"
+-- config.color_scheme = "Everforest Dark (Gogh)"
+config.color_scheme = "Catppuccin Frappe"
 config.window_background_opacity = 0.96
 config.font = wezterm.font("HackGen35 Console NF", { weight = "Regular", stretch = "Normal", style = "Normal" })
 config.font_size = 16
@@ -85,13 +86,13 @@ config.keys = {
 		action = act.ActivateTabRelative(-1),
 	},
 	{
-		key = "j",
-		mods = "CTRL|SHIFT",
+		key = "Tab",
+		mods = "ALT|SHIFT",
 		action = act.MoveTabRelative(-1),
 	},
 	{
-		key = "k",
-		mods = "CTRL|SHIFT",
+		key = "Tab",
+		mods = "ALT",
 		action = act.MoveTabRelative(1),
 	},
 
