@@ -21,7 +21,7 @@ return function()
 			mappings = {
 				-- Mode can be a string or a table, e.g. {"i", "n"} for both insert and normal mode
 				delete_session = { "i", "<C-D>" },
-				alternate_session = { "i", "<C-S>" },
+				alternate_session = { "i", "<CR>" },
 				copy_session = { "i", "<C-Y>" },
 			},
 
