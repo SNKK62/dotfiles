@@ -141,8 +141,11 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
 	keymap("n", "<Leader>dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
 	keymap("n", "<Leader>db", "<cmd>Lspsaga show_buf_diagnostics<CR>", { silent = true })
-	-- keymap("n", "<Leader>dw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { silent = true })
-	keymap("n", "<Leader>dw", "<cmd>Telescope diagnostics<CR>", { silent = true })
+	keymap("n", "<Leader>dw", function()
+		require("telescope.builtin").diagnostics({
+			severity_limit = 1, -- only show more than INFO
+		})
+	end, { silent = true })
 
 	keymap("n", "<leader>xw", function()
 		require("trouble").toggle("diagnostics")
