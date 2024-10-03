@@ -21,7 +21,7 @@ if error occurs while initializing neovim, try to fix
 rm -Rf ~/.local/{share, state}/nvim
 ```
 
-after launch nvim, try `:Mason` and search and install `stylua` and `luacheck`
+after launch nvim, try `:Mason` and search and install `eslint_d`, `stylua` and `luacheck`
 
 ### VScode
 

@@ -80,7 +80,7 @@ require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = {
 		"lua_ls",
-		-- "luacheck",
+		-- "luacheck", -- install directly
 		-- "stylua", -- install directly
 		-- "tsserver",
 		"ts_ls",
