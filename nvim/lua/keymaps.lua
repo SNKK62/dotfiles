@@ -147,18 +147,6 @@ if not vim.g.vscode then
 		})
 	end, { silent = true })
 
-	keymap("n", "<leader>xw", function()
-		require("trouble").toggle("diagnostics")
-	end)
-	keymap("n", "<leader>xq", function()
-		require("trouble").toggle("quickfix")
-	end)
-	keymap("n", "<leader>xl", function()
-		require("trouble").toggle("loclist")
-	end)
-	keymap("n", "<leader>xr", function()
-		require("trouble").toggle("lsp_references")
-	end)
 	-- action
 	keymap({ "n", "v" }, "<Leader>ac", "<cmd>Lspsaga code_action<CR>", { silent = true })
 	-- float terminal
