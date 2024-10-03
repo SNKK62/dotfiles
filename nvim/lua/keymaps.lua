@@ -135,7 +135,8 @@ if not vim.g.vscode then
 	-- reference
 	keymap("n", "<Leader>rf", "<cmd>Lspsaga finder ref<CR>", { silent = true })
 	-- definition
-	keymap("n", "<Leader>df", "<cmd>Lspsaga finder def<CR>", { silent = true })
+	keymap("n", "<Leader>df", "<Cmd>tab lua vim.lsp.buf.definition()<CR>", { silent = true })
+	-- type definition
 	keymap("n", "<Leader>ty", "<cmd>Lspsaga finder tyd<CR>", { silent = true })
 	-- rename
 	keymap("n", "<Leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
@@ -146,7 +147,8 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>dp", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
 	keymap("n", "<Leader>dn", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
 	keymap("n", "<Leader>db", "<cmd>Lspsaga show_buf_diagnostics<CR>", { silent = true })
-	keymap("n", "<Leader>dw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { silent = true })
+	-- keymap("n", "<Leader>dw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", { silent = true })
+	keymap("n", "<Leader>dw", "<cmd>Telescope diagnostics<CR>", { silent = true })
 
 	keymap("n", "<leader>xw", function()
 		require("trouble").toggle("diagnostics")

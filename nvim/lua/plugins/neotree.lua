@@ -97,7 +97,7 @@ return function()
 		-- see `:h neo-tree-custom-commands-global`
 		commands = {},
 		window = {
-			width = 45,
+			width = 40,
 			mapping_options = {
 				noremap = true,
 				nowait = true,
