@@ -148,7 +148,7 @@ if not vim.g.vscode then
 	end, { silent = true })
 
 	-- action
-	keymap({ "n", "v" }, "<Leader>ac", "<cmd>Lspsaga code_action<CR>", { silent = true })
+	keymap({ "n", "v" }, "<Leader>ac", require("actions-preview").code_actions, { silent = true })
 	-- float terminal
 	keymap({ "n", "t" }, "ƒ", "<cmd>Lspsaga term_toggle<CR>", { silent = true }) -- <A-f>
 	keymap({ "n", "t" }, "<A-f>", "<cmd>Lspsaga term_toggle<CR>", { silent = true })
