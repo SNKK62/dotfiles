@@ -9,7 +9,7 @@ end
 config.automatically_reload_config = true
 
 -- config.color_scheme = "Everforest Dark (Gogh)"
-config.color_scheme = "Catppuccin Frappe"
+config.color_scheme = "Catppuccin Mocha"
 config.window_background_opacity = 0.96
 config.font = wezterm.font("HackGen35 Console NF", { weight = "Regular", stretch = "Normal", style = "Normal" })
 config.font_size = 16
@@ -97,7 +97,7 @@ config.keys = {
 	},
 
 	-- activate copy mode
-	{ key = "x", mods = "CTRL", action = wezterm.action.ActivateCopyMode },
+	{ key = "x", mods = "CTRL|SHIFT", action = wezterm.action.ActivateCopyMode },
 }
 
 config.key_tables = {

@@ -27,7 +27,7 @@ if not vim.g.vscode then
 	opt.swapfile = false
 
 	-- color scheme
-	vim.cmd([[colorscheme catppuccin]])
+	vim.cmd.colorscheme("catppuccin-mocha")
 
 	-- fill columns after 80 with red
 	opt.colorcolumn = "81"
@@ -35,6 +35,7 @@ if not vim.g.vscode then
 	-- transparent background color
 	vim.cmd([[hi NonText    ctermbg=None ctermfg=65 guibg=None guifg=#41946B]])
 	vim.cmd([[hi SpecialKey ctermbg=None ctermfg=65 guibg=None guifg=#41946B]])
+	vim.cmd([[ hi Normal guibg=NONE ctermbg=NONE ]])
 
 	vim.api.nvim_create_augroup("indent", { clear = true })
 	vim.api.nvim_create_autocmd({ "FileType" }, {

@@ -20,7 +20,7 @@ cmp.setup({
 		["<C-j>"] = cmp.mapping.select_next_item(),
 		-- ['<C-l>'] = cmp.mapping.complete(),
 		["<C-h>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping.confirm({ select = false }), --Ctrl+yで補完を選択確定
+		["<CR>"] = cmp.mapping.confirm({ select = false }),
 	}),
 	experimental = {
 		ghost_text = false,
