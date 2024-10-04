@@ -88,6 +88,9 @@ local pure_plugins = {
 		end,
 	},
 	{
+		"rhysd/git-messenger.vim",
+	},
+	{
 		"github/copilot.vim",
 	},
 
