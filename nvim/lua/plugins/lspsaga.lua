@@ -69,21 +69,12 @@ saga.setup({
 		jump_num_shortcut = true,
 		keys = {
 			exec_action = "o",
-			quit = "q",
 			go_action = "g",
 			vsplit = "<C-w>v",
 			split = "<C-w>s",
 			tabe = "<CR>",
+			quit = { "q", "<ESC>" },
 		},
-		diagnostic_filter = function(diagnostic)
-			if
-				diagnostic.severity == vim.diagnostic.severity.HINT
-				or diagnostic.severity == vim.diagnostic.severity.INFO
-			then
-				return false
-			end
-			return true
-		end,
 	},
 
 	definition = {

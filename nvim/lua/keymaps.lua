@@ -143,7 +143,7 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>db", "<cmd>Lspsaga show_buf_diagnostics<CR>", { silent = true })
 	keymap("n", "<Leader>dw", function()
 		require("telescope.builtin").diagnostics({
-			severity_limit = 1, -- only show more than INFO
+			severity_limit = 3, -- only show more than INFO
 		})
 	end, { silent = true })
 

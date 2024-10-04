@@ -1,3 +1,21 @@
+-- define inlay hints colors
+local colors = require("colors")
+local palette = colors.palette
+require("utils").force_set_highlights("lspconfig_hl", {
+	-- https://github.com/catppuccin/vscode/blob/catppuccin-vsc-v3.15.2/packages/catppuccin-vsc/src/theme/extensions/error-lens.ts
+	DiagnosticErrorLine = { bg = colors.alpha_blend(palette.red, palette.base, 0.15) },
+	DiagnosticWarnLine = { bg = colors.alpha_blend(palette.peach, palette.base, 0.15) },
+	DiagnosticInfoLine = { bg = colors.alpha_blend(palette.blue, palette.base, 0.15) },
+	DiagnosticHintLine = { bg = colors.alpha_blend(palette.green, palette.base, 0.15) },
+})
+-- make background color of virtual text transparent
+require("utils").set_highlights("lsp_dignostic_virtual_text", {
+	DiagnosticVirtualTextError = { bg = "none" },
+	DiagnosticVirtualTextWarn = { bg = "none" },
+	DiagnosticVirtualTextInfo = { bg = "none" },
+	DiagnosticVirtualTextHint = { bg = "none" },
+})
+
 -- diagnostics seviry
 vim.diagnostic.config({
 	severity_sort = true,
@@ -8,11 +26,22 @@ vim.diagnostic.config({
 		end,
 	},
 	float = {
-		severity_sort = true,
-		severity = { min = vim.diagnostic.severity.WARN },
+		severity = { min = vim.diagnostic.severity.HINT },
 	},
 	signs = {
 		severity = { min = vim.diagnostic.severity.HINT },
+		text = {
+			[vim.diagnostic.severity.ERROR] = "󰅚",
+			[vim.diagnostic.severity.WARN] = "󰀪",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+		},
+		linehl = {
+			[vim.diagnostic.severity.ERROR] = "DiagnosticErrorLine",
+			[vim.diagnostic.severity.WARN] = "DiagnosticWarnLine",
+			[vim.diagnostic.severity.INFO] = "DiagnosticInfoLine",
+			[vim.diagnostic.severity.HINT] = "DiagnosticHintLine",
+		},
 	},
 	underline = {
 		severity = { min = vim.diagnostic.severity.WARN },
@@ -82,7 +111,6 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		-- "luacheck", -- install directly
 		-- "stylua", -- install directly
-		-- "tsserver",
 		"ts_ls",
 		"eslint",
 		--  "eslint_d", -- install directly
