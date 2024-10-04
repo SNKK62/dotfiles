@@ -98,13 +98,6 @@ local pure_plugins = {
 			"nvim-lua/plenary.nvim",
 		},
 	},
-	{
-		"nvim-pack/nvim-spectre",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		config = require("plugins/spectre"),
-	},
 
 	-- git
 	{

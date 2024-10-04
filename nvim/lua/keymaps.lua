@@ -146,9 +146,6 @@ if not vim.g.vscode then
 	-- treesitter-context
 	keymap("n", "<Leader>tsc", "<Cmd>TSContextToggle<CR>", { noremap = true, silent = true })
 
-	-- vim-spectre
-	keymap("n", "<CS-R>", '<cmd>lua require("spectre").toggle()<CR>')
-
 	-- git
 	keymap("n", "<Leader><C-a>", ":Gwrite<CR>", { noremap = true })
 	keymap("n", "<Leader>ga", ":!git add<Space>", { noremap = true })
