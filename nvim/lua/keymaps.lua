@@ -22,6 +22,78 @@ keymap("i", "<C-k>", "<UP>", { noremap = true })
 keymap("i", "<C-h>", "<LEFT>", { noremap = true })
 keymap("i", "<C-l>", "<RIGHT>", { noremap = true })
 
+keymap("n", "F<CR>", "{", { noremap = true })
+keymap("n", "f<CR>", "}", { noremap = true })
+
+-- buffer
+-- delete
+keymap({ "n", "x" }, "x", '"_x', { noremap = true })
+keymap("n", "D", '"_d', { noremap = true })
+
+-- word object
+keymap({ "o", "x" }, "i<SPACE>", "iW", { noremap = true })
+
+-- redo
+keymap("n", "U", "<C-r>", { noremap = true })
+
+-- matchup
+keymap("n", "M", "<plug>(matchup-%)", { noremap = true, silent = true })
+
+-- release prefix-q
+keymap("n", "q", "<NOP>", { noremap = true })
+-- macro
+-- only q is used for recording
+keymap("n", "qq", "qq", { noremap = true })
+keymap("n", "<ESC>", "q", { noremap = true, silent = true })
+keymap("n", "Q", "v:lua.toggle_macro_playback()", { noremap = true, expr = true, silent = true })
+function _G.toggle_macro_playback()
+	if vim.fn.reg_recording() == "" then
+		-- not in recording
+		return "@q"
+	else
+		-- in recording
+		return "q"
+	end
+end
+
+-- selection
+keymap("x", "y", "mzy`z", { noremap = true })
+keymap("n", "gV", "`[V`]", { noremap = true })
+
+-- paste
+keymap("x", "p", "P", { noremap = true })
+keymap("n", "p", "]p`]", { noremap = true })
+keymap("n", "P", "]P`]", { noremap = true })
+
+-- indent in a row
+keymap("x", "<", "<gv", { noremap = true })
+keymap("x", ">", ">gv", { noremap = true })
+
+-- move line
+keymap("n", "<CS-k>", "$<Cmd>move-1-{v:count1}<CR>=l", { noremap = true })
+keymap("n", "<CS-j>", "^<Cmd>move+{v:count1}<CR>=l", { noremap = true })
+keymap("x", "<CS-k>", ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
+keymap("x", "<CS-j>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
+
+-- change case in insert mode
+keymap("i", "<C-g>u", "<ESC>gUiwgi", { noremap = true })
+keymap("i", "<C-g>l", "<ESC>guiwgi", { noremap = true })
+keymap("i", "<C-g>c", "<ESC>bgUlgi", { noremap = true })
+
+-- search
+keymap("n", "/", "/\\v", { noremap = true })
+keymap("n", "?", "?\\v", { noremap = true })
+keymap("n", "<ESC><ESC>", ":nohl<CR>", { noremap = true, silent = true })
+
+-- substitution
+keymap("n", "<Leader>repw", ":%s/\\V<C-r><C-w>//g<LEFT><LEFT>", { noremap = true })
+keymap(
+	"x",
+	"<Leader>repw",
+	[["zy:%s/\V<C-r><C-r>=escape(@z,'/\')<CR>//gce<Left><Left><Left><Left>]],
+	{ noremap = true }
+)
+
 if vim.g.vscode then
 	-- substitution
 	keymap("n", "<Leader>repg", ":%s//g", { noremap = true })
@@ -162,7 +234,7 @@ if not vim.g.vscode then
 	keymap("i", "<C-g>n", "<Plug>(copilot-next)", { noremap = true })
 	keymap("i", "<C-g>p", "<Plug>(copilot-previous)", { noremap = true })
 	keymap("i", "<C-g>w", "<Plug>(copilot-accept-word)", { noremap = true })
-	keymap("i", "<C-g>l", "<Plug>(copilot-accept-line)", { noremap = true })
+	-- keymap("i", "<C-g>l", "<Plug>(copilot-accept-line)", { noremap = true })
 end
 
 -- iswap

@@ -263,6 +263,9 @@ local pure_plugins = {
 		config = require("plugins/highlight-colors"),
 	},
 	{
+		"andymass/vim-matchup",
+	},
+	{
 		"github/copilot.vim",
 	},
 	{
