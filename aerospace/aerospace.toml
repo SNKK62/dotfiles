@@ -88,7 +88,7 @@ outer.right =      4
 # '''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-cmd-ctrl-slash = 'layout tiles horizontal vertical'
+cmd-ctrl-slash = 'layout tiles vertical horizontal '
 cmd-ctrl-period = 'layout v_accordion'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
