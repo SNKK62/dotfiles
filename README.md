@@ -11,7 +11,7 @@ configs for neovim and so on
 #### Requirements
 
 - node
-- `brew install fsouza/prettierd/prettierd`
+- (`brew install fsouza/prettierd/prettierd` now maybe not needed)
 - `brew install lua-language-server`
 - `brew install luarocks`
 
