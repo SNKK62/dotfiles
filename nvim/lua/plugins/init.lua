@@ -75,16 +75,16 @@ local pure_plugins = {
 
 	-- git
 	{
-		"airblade/vim-gitgutter",
-	},
-	{
-		"tpope/vim-fugitive",
-	},
-	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require("gitsigns").setup()
 			require("scrollbar.handlers.gitsigns").setup()
+		end,
+	},
+	{
+		"sindrets/diffview.nvim",
+		config = function()
+			require("diffview").setup({})
 		end,
 	},
 	{

@@ -147,18 +147,16 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>tsc", "<Cmd>TSContextToggle<CR>", { noremap = true, silent = true })
 
 	-- git
-	keymap("n", "<Leader><C-a>", ":Gwrite<CR>", { noremap = true })
-	keymap("n", "<Leader>ga", ":!git add<Space>", { noremap = true })
-	keymap("n", "<Leader>gc", ":!git commit -m ''<LEFT>", { noremap = true })
-	keymap("n", "<Leader><C-p>", ":!git push<CR>", { noremap = true })
-	keymap("n", "<Leader>gp", ":!git push -u origin<Space>", { noremap = true })
-	keymap("n", "<Leader>gd", ":Gdiff<CR>", { noremap = true })
-	keymap("n", "<Leader>gb", ":Git blame<CR>", { noremap = true })
-	keymap("n", "<Leader>gs", ":Git status<CR>", { noremap = true })
-	keymap("n", "<Leader>ghp", ":GitGutterPrevHunk<CR>", { noremap = true })
-	keymap("n", "<Leader>ghn", ":GitGutterNextHunk<CR>", { noremap = true })
-	keymap("n", "<Leader>ghl", ":GitGutterLineHighlightsToggle<CR>", { noremap = true })
-	keymap("n", "<Leader>gpr", ":GitGutterPreviewHunk<CR>", { noremap = true })
+	keymap("n", "<Leader>gd", "<Cmd>DiffviewOpen<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>gh", "<Cmd>DiffviewFileHistory<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>gc", "<Cmd>DiffviewClose<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>gb", require("gitsigns").toggle_current_line_blame)
+
+	-- copilot
+	keymap("i", "<C-g>d", "<Plug>(copilot-dismiss)", { noremap = true })
+	keymap("i", "<C-g>n", "<Plug>(copilot-next)", { noremap = true })
+	keymap("i", "<C-g>p", "<Plug>(copilot-previous)", { noremap = true })
+	keymap("i", "<C-g>w", "<Plug>(copilot-accept-word)", { noremap = true })
 
 	-- comment/uncomment
 	keymap("n", "<C-/>", "<C-_><C-_>", { remap = true })
@@ -221,12 +219,6 @@ if not vim.g.vscode then
 	-- session
 	keymap("c", "SS", "SessionSave", { noremap = true })
 	keymap("n", "<C-S>", "<cmd>Telescope session-lens search_session<CR>", { noremap = true, silent = true })
-
-	-- copilot
-	keymap("i", "<C-g>d", "<Plug>(copilot-dismiss)", { noremap = true })
-	keymap("i", "<C-g>n", "<Plug>(copilot-next)", { noremap = true })
-	keymap("i", "<C-g>p", "<Plug>(copilot-previous)", { noremap = true })
-	keymap("i", "<C-g>w", "<Plug>(copilot-accept-word)", { noremap = true })
 end
 
 -- highlight mark setting
