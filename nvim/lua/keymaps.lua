@@ -167,17 +167,13 @@ if not vim.g.vscode then
 
 	-- barbar
 	-- switch buffer
-	keymap("n", "<C-b>h", "<Cmd>BufferPrevious<CR>", { noremap = true, silent = true })
 	keymap("n", "˙", "<Cmd>BufferPrevious<CR>", { noremap = true, silent = true }) -- <A-h>
 	keymap("n", "<A-h>", "<Cmd>BufferPrevious<CR>", { noremap = true, silent = true })
-	keymap("n", "<C-b>l", "<Cmd>BufferNext<CR>", { noremap = true, silent = true })
 	keymap("n", "¬", "<Cmd>BufferNext<CR>", { noremap = true, silent = true }) -- <A-l>
 	keymap("n", "<A-l>", "<Cmd>BufferNext<CR>", { noremap = true, silent = true })
 	-- reorder buffer
-	keymap("n", "<C-b>j", "<Cmd>BufferMovePrevious<CR>", { noremap = true, silent = true })
 	keymap("n", "∆", "<Cmd>BufferMovePrevious<CR>", { noremap = true, silent = true }) -- <A-j>
 	keymap("n", "<A-j>", "<Cmd>BufferMovePrevious<CR>", { noremap = true, silent = true })
-	keymap("n", "<C-b>k", "<Cmd>BufferMoveNext<CR>", { noremap = true, silent = true })
 	keymap("n", "˚", "<Cmd>BufferMoveNext<CR>", { noremap = true, silent = true }) -- <A-k>
 	keymap("n", "<A-k>", "<Cmd>BufferMoveNext<CR>", { noremap = true, silent = true })
 	-- pin/unpin buffer
@@ -231,12 +227,7 @@ if not vim.g.vscode then
 	keymap("i", "<C-g>n", "<Plug>(copilot-next)", { noremap = true })
 	keymap("i", "<C-g>p", "<Plug>(copilot-previous)", { noremap = true })
 	keymap("i", "<C-g>w", "<Plug>(copilot-accept-word)", { noremap = true })
-	-- keymap("i", "<C-g>l", "<Plug>(copilot-accept-line)", { noremap = true })
 end
-
--- iswap
-keymap("n", "<Leader>sw", "<Cmd>ISwap<CR>", { noremap = true, silent = true })
-keymap("n", "<Leader>sn", "<Cmd>ISwapNode<CR>", { noremap = true, silent = true })
 
 -- highlight mark setting
 keymap({ "n", "x" }, "<Leader>m", "<Plug>(quickhl-manual-this)", { noremap = true })
@@ -245,9 +236,6 @@ keymap({ "n", "x" }, "<Leader>M", "<Plug>(quickhl-manual-reset)", { noremap = tr
 -- disable lightspeed
 -- keymap({ "n", "v" }, "s", "s", { noremap = true })
 -- keymap({ "n", "v" }, "S", "S", { noremap = true })
-
--- hop
-keymap({ "n", "v" }, "<Leader>h", "<Cmd>HopWord<CR>", { noremap = true, silent = true })
 
 -- CamelCaseMotion
 keymap({ "n", "v" }, "w", "<Plug>CamelCaseMotion_w", { noremap = true })

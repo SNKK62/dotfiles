@@ -24,14 +24,13 @@ local function merge_tables(t1, t2)
 end
 
 local common_plugins = {
-	--others
+	-- marker highlight
 	{
 		"t9md/vim-quickhl",
 	},
+	-- highlight for characters easy to search
 	{
-		"mizlan/iswap.nvim",
-		event = "VeryLazy",
-		config = require("plugins/iswap"),
+		"unblevable/quick-scope",
 	},
 	{
 		"kylechui/nvim-surround",
@@ -47,37 +46,12 @@ local common_plugins = {
 		"ggandor/lightspeed.nvim",
 	},
 	{
-		"hadronized/hop.nvim",
-		branch = "v2",
-		config = require("plugins/hop"),
-	},
-	{
 		"bkad/CamelCaseMotion",
-	},
-	{
-		"unblevable/quick-scope",
-	},
-
-	-- treesitter for iswap.nvim
-	{
-		"nvim-treesitter/nvim-treesitter",
-		config = require("plugins/treesitter"),
-		build = ":TSUpdate",
-	},
-	{
-		"ThePrimeagen/refactoring.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("refactoring").setup()
-		end,
 	},
 }
 
 local pure_plugins = {
-	-- file browser
+	-- file tree
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
@@ -90,7 +64,7 @@ local pure_plugins = {
 		},
 	},
 
-	-- browser
+	-- browsing
 	{
 		"nvim-telescope/telescope.nvim",
 		rev = "0.1.2",
@@ -105,6 +79,16 @@ local pure_plugins = {
 	},
 	{
 		"tpope/vim-fugitive",
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+			require("scrollbar.handlers.gitsigns").setup()
+		end,
+	},
+	{
+		"github/copilot.vim",
 	},
 
 	-- colorscheme
@@ -189,39 +173,23 @@ local pure_plugins = {
 			})
 		end,
 	},
-
-	-- session
+	-- treesitter
 	{
-		"rmagatti/auto-session",
-		config = require("plugins/auto-session"),
-	},
-
-	-- others
-	{
-		"simeji/winresizer", -- <C-e>
+		"nvim-treesitter/nvim-treesitter",
+		config = require("plugins/treesitter"),
+		build = ":TSUpdate",
 	},
 	{
-		"romgrk/barbar.nvim",
+		"ThePrimeagen/refactoring.nvim",
 		dependencies = {
-			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
-			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
 		},
-		init = function()
-			vim.g.barbar_auto_setup = false
+		config = function()
+			require("refactoring").setup()
 		end,
-		config = require("plugins/barbar"),
 	},
-	{
-		"nvim-lualine/lualine.nvim",
-		config = require("plugins/lualine"),
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-	},
-	{
-		"tomtom/tcomment_vim",
-	},
-
+	-- treesitter
 	{
 		"yioneko/nvim-yati",
 		dependencies = {
@@ -233,33 +201,67 @@ local pure_plugins = {
 		"nvim-treesitter/nvim-treesitter-context",
 		config = require("plugins/treesitter-context"),
 	},
+	-- session
+	{
+		"rmagatti/auto-session",
+		config = require("plugins/auto-session"),
+	},
+	-- window resizer
+	{
+		"simeji/winresizer", -- <C-e>
+	},
+	-- bufferline
+	{
+		"romgrk/barbar.nvim",
+		dependencies = {
+			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
+		},
+		init = function()
+			vim.g.barbar_auto_setup = false
+		end,
+		config = require("plugins/barbar"),
+	},
+	-- statusline
+	{
+		"nvim-lualine/lualine.nvim",
+		config = require("plugins/lualine"),
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
+	-- commnet/uncomment
+	{
+		"tomtom/tcomment_vim",
+	},
+	-- highlight
 	{
 		"mvllow/modes.nvim",
 		rev = "v0.2.0",
 		config = require("plugins/modes"),
 	},
 	{
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup()
-			require("scrollbar.handlers.gitsigns").setup()
-		end,
-	},
-	{
 		"brenoprata10/nvim-highlight-colors",
 		event = { "BufEnter", "BufWinEnter" },
 		config = require("plugins/highlight-colors"),
 	},
+	-- search result detail numbers
+	{
+		"kevinhwang91/nvim-hlslens",
+		config = function()
+			require("scrollbar.handlers.search").setup()
+		end,
+	},
+	-- match jump
 	{
 		"andymass/vim-matchup",
 	},
-	{
-		"github/copilot.vim",
-	},
+	-- indent
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		config = require("plugins/indent-blankline"),
 	},
+	-- auto completion
 	{
 		"windwp/nvim-ts-autotag",
 		config = require("plugins/autotag"),
@@ -269,15 +271,10 @@ local pure_plugins = {
 		event = "InsertEnter",
 		config = true,
 	},
+	-- scrollbar
 	{
 		"petertriho/nvim-scrollbar",
 		config = require("plugins/scrollbar"),
-	},
-	{
-		"kevinhwang91/nvim-hlslens",
-		config = function()
-			require("scrollbar.handlers.search").setup()
-		end,
 	},
 }
 
