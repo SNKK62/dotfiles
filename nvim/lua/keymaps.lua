@@ -3,10 +3,10 @@ local keymap = vim.keymap.set
 vim.g.mapleader = " "
 
 -- cursor motion
-keymap({ "n", "v" }, "<C-j>", "15j", { noremap = true })
-keymap({ "n", "v" }, "<DOWN>", "15j", { noremap = true })
-keymap({ "n", "v" }, "<C-k>", "15k", { noremap = true })
-keymap({ "n", "v" }, "<UP>", "15k", { noremap = true })
+keymap({ "n", "v" }, "<C-j>", "12j", { noremap = true })
+keymap({ "n", "v" }, "<DOWN>", "12j", { noremap = true })
+keymap({ "n", "v" }, "<C-k>", "12k", { noremap = true })
+keymap({ "n", "v" }, "<UP>", "12k", { noremap = true })
 keymap({ "n", "v" }, "<C-h>", "10h", { noremap = true })
 keymap({ "n", "v" }, "<LEFT>", "10h", { noremap = true })
 keymap({ "n", "v" }, "<C-l>", "10l", { noremap = true })
@@ -83,7 +83,7 @@ keymap("x", "<CS-j>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
 -- change case in insert mode
 keymap("i", "<C-g>u", "<ESC>gUiwgi", { noremap = true })
 keymap("i", "<C-g>l", "<ESC>guiwgi", { noremap = true })
-keymap("i", "<C-g>c", "<ESC>bgUlgi", { noremap = true })
+keymap("i", "<C-g>h", "<ESC>bgUlgi", { noremap = true })
 
 -- search
 keymap("n", "/", "/\\v", { noremap = true })
@@ -98,6 +98,8 @@ keymap(
 	[["zy:%s/\V<C-r><C-r>=escape(@z,'/\')<CR>//gce<Left><Left><Left><Left>]],
 	{ noremap = true }
 )
+keymap("n", "<Leader>repg", ":%s//g<LEFT><LEFT>", { noremap = true })
+keymap("n", "<Leader>repc", ":%s//gc<LEFT><LEFT><LEFT>", { noremap = true })
 
 if vim.g.vscode then
 	-- substitution
@@ -106,9 +108,6 @@ if vim.g.vscode then
 end
 
 if not vim.g.vscode then
-	-- substitution
-	keymap("n", "<Leader>repg", ":%s//g<LEFT><LEFT>", { noremap = true })
-	keymap("n", "<Leader>repc", ":%s//gc<LEFT><LEFT><LEFT>", { noremap = true })
 	-- terminal mode setting
 	keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
 	keymap("n", "<C-w>t", "<Cmd>terminal<CR>", { noremap = true, silent = true })
@@ -136,10 +135,6 @@ if not vim.g.vscode then
 			source = "git_status",
 			position = "right",
 		})
-	end)
-	-- sideber
-	keymap("n", "<CS-F>", function()
-		require("sidebar-nvim").toggle()
 	end)
 
 	-- telescope

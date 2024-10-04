@@ -122,7 +122,6 @@ local pure_plugins = {
 	-- 	opts = {
 	-- 		-- transparent = true,
 	-- 		styles = {
-	-- 			-- sidebars = "transparent",
 	-- 			-- floats = "transparent",
 	-- 		},
 	-- 	},
@@ -245,10 +244,6 @@ local pure_plugins = {
 		"mvllow/modes.nvim",
 		rev = "v0.2.0",
 		config = require("plugins/modes"),
-	},
-	{
-		"sidebar-nvim/sidebar.nvim",
-		config = require("plugins/sidebar"),
 	},
 	{
 		"lewis6991/gitsigns.nvim",
