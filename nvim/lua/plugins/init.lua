@@ -283,7 +283,6 @@ local vscode_plugins = {}
 require("lazy").setup(merge_tables(common_plugins, vim.g.vscode and vscode_plugins or pure_plugins))
 
 if not vim.g.vscode then
-	require("plugins/gitgutter")
 	require("plugins/lsp")
 	require("plugins/lspsaga")
 	require("plugins/cmp")

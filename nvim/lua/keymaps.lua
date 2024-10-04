@@ -150,7 +150,7 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>gd", "<Cmd>DiffviewOpen<CR>", { noremap = true, silent = true })
 	keymap("n", "<Leader>gh", "<Cmd>DiffviewFileHistory<CR>", { noremap = true, silent = true })
 	keymap("n", "<Leader>gc", "<Cmd>DiffviewClose<CR>", { noremap = true, silent = true })
-	keymap("n", "<Leader>gb", require("gitsigns").toggle_current_line_blame)
+	keymap("n", "<Leader>gb", require("gitsigns").blame)
 
 	-- copilot
 	keymap("i", "<C-g>d", "<Plug>(copilot-dismiss)", { noremap = true })
