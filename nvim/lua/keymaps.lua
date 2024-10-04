@@ -25,6 +25,11 @@ keymap("i", "<C-l>", "<RIGHT>", { noremap = true })
 keymap("n", "F<CR>", "{", { noremap = true })
 keymap("n", "f<CR>", "}", { noremap = true })
 
+keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
+keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
+keymap("n", "n", "nzz", { noremap = true })
+keymap("n", "N", "Nzz", { noremap = true })
+
 -- buffer
 -- delete
 keymap({ "n", "x" }, "x", '"_x', { noremap = true })
