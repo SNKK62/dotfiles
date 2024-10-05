@@ -192,7 +192,6 @@ local pure_plugins = {
 			require("refactoring").setup()
 		end,
 	},
-	-- treesitter
 	{
 		"yioneko/nvim-yati",
 		dependencies = {
@@ -261,8 +260,9 @@ local pure_plugins = {
 	},
 	-- indent
 	{
-		"lukas-reineke/indent-blankline.nvim",
-		config = require("plugins/indent-blankline"),
+		"shellRaining/hlchunk.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = require("plugins/hlchunk"),
 	},
 	-- auto completion
 	{

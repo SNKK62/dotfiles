@@ -5,14 +5,13 @@ if not vim.g.vscode then
 	opt.number = true
 	opt.syntax = "on"
 	opt.termguicolors = true
-	opt.background = "dark"
 	opt.title = true
 	opt.list = true
 	opt.listchars = "tab:>_,trail:~,extends:>,precedes:<,nbsp:%,eol:↲"
-	-- opt.ambiwidth = double
 	opt.autoindent = true
-	opt.shiftwidth = 4
-	opt.softtabstop = 4
+	opt.tabstop = 4
+	opt.softtabstop = -1 -- depend on shiftwidth
+	opt.shiftwidth = 0 -- depend on tabstop
 	opt.expandtab = true
 	opt.encoding = "utf-8"
 	opt.laststatus = 2
@@ -39,6 +38,7 @@ if not vim.g.vscode then
 
 	vim.api.nvim_create_augroup("indent", { clear = true })
 	vim.api.nvim_create_autocmd({ "FileType" }, {
+		group = "indent",
 		pattern = {
 			"javascript",
 			"typescript",
@@ -50,8 +50,18 @@ if not vim.g.vscode then
 			"yaml",
 			"c",
 		},
+		callback = function()
+			opt.tabstop = 2
+		end,
+	})
+	vim.api.nvim_create_autocmd({ "FileType" }, {
 		group = "indent",
-		command = "setlocal shiftwidth=2",
+		pattern = {
+			"lua",
+		},
+		callback = function()
+			opt.tabstop = 4
+		end,
 	})
 end
 
