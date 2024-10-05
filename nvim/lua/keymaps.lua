@@ -219,7 +219,7 @@ if not vim.g.vscode then
 	keymap({ "n", "t" }, "<A-f>", "<cmd>Lspsaga term_toggle<CR>", { silent = true })
 
 	-- session
-	keymap("c", "SS", "SessionSave", { noremap = true })
+	keymap("c", "ss", "SessionSave", { noremap = true })
 	keymap("n", "<C-S>", "<cmd>Telescope session-lens search_session<CR>", { noremap = true, silent = true })
 end
 
