@@ -19,22 +19,10 @@ if not vim.g.vscode then
 	opt.completeopt = "menuone"
 	opt.backspace = "indent,eol,start"
 	opt.cursorline = true
-	vim.cmd([[hi clear CursorLine]])
 	opt.conceallevel = 0
 	opt.backup = false
 	opt.writebackup = false
 	opt.swapfile = false
-
-	-- color scheme
-	vim.cmd.colorscheme("catppuccin-mocha")
-
-	-- fill columns after 80 with red
-	opt.colorcolumn = "81"
-	vim.cmd([[hi ColorColumn ctermbg=52 guibg=#42032c]])
-	-- transparent background color
-	vim.cmd([[hi NonText    ctermbg=None ctermfg=65 guibg=None guifg=#41946B]])
-	vim.cmd([[hi SpecialKey ctermbg=None ctermfg=65 guibg=None guifg=#41946B]])
-	vim.cmd([[ hi Normal guibg=NONE ctermbg=NONE ]])
 
 	vim.api.nvim_create_augroup("indent", { clear = true })
 	vim.api.nvim_create_autocmd({ "FileType" }, {
@@ -54,15 +42,6 @@ if not vim.g.vscode then
 			opt.tabstop = 2
 		end,
 	})
-	vim.api.nvim_create_autocmd({ "FileType" }, {
-		group = "indent",
-		pattern = {
-			"lua",
-		},
-		callback = function()
-			opt.tabstop = 4
-		end,
-	})
 end
 
 opt.updatetime = 500
@@ -72,6 +51,3 @@ opt.hlsearch = true
 opt.incsearch = true
 opt.ignorecase = true
 opt.smartcase = true
-
-vim.cmd([[ hi QuickScopePrimary guifg='#fffa99' gui=underline ctermfg=155 cterm=underline ]])
-vim.cmd([[ hi QuickScopeSecondary guifg='#bbffff' gui=underline ctermfg=81 cterm=underline ]])

@@ -31,6 +31,9 @@ local common_plugins = {
 	-- highlight for characters easy to search
 	{
 		"unblevable/quick-scope",
+		config = function()
+			require("plugins/quick-scope")
+		end,
 	},
 	{
 		"kylechui/nvim-surround",
@@ -228,6 +231,7 @@ local pure_plugins = {
 	{
 		"nvim-lualine/lualine.nvim",
 		config = require("plugins/lualine"),
+		event = "VeryLazy",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
