@@ -1,6 +1,7 @@
 return function()
 	require("utils").set_highlights("neotree", {
 		NeoTreeNormal = { bg = "none" },
+		NeoTreeNormalNC = { bg = "none" },
 	})
 	require("neo-tree").setup({
 		auto_clean_after_session_restore = true,
