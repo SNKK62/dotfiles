@@ -95,8 +95,8 @@ export FZF_DEFAULT_OPTS="
     --border=sharp
     --margin=0,1
     --prompt=' '
-    --bind='ctrl-P:preview-up,ctrl-N:preview-down'
-    --bind='ctrl-B:preview-page-up,ctrl-F:preview-page-down'
+    --bind='ctrl-B:preview-up,ctrl-F:preview-down'
+    --bind='ctrl-P:preview-page-up,ctrl-N:preview-page-down'
 "
 
 export BAT_THEME="TwoDark"
