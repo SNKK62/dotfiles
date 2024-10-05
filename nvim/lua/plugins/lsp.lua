@@ -93,11 +93,35 @@ local function map(tbl, func)
 	return t
 end
 
+-- Step 1: Get files under Git management with git ls-files
 local workspace_files = vim.fn.split(vim.fn.system("git ls-files"), "\n")
--- convert paths to absolute
-workspace_files = map(workspace_files, function(_, path)
+
+-- Step 2: Get local changes with git status --porcelain
+local status_output = vim.fn.system("git status --porcelain")
+local status_lines = vim.fn.split(status_output, "\n")
+
+for _, line in ipairs(status_lines) do
+	-- if line starts with "??", it means untracked file
+	if string.sub(line, 1, 2) == "??" then
+		local new_file = string.sub(line, 4)
+		table.insert(workspace_files, new_file)
+	end
+	-- if line starts with " D", it means deleted file
+	if string.sub(line, 1, 2) == " D" then
+		local deleted_file = vim.fn.matchstr(line, "^ D \\zs.*")
+		for i, file in ipairs(workspace_files) do
+			if file == deleted_file then
+				table.remove(workspace_files, i)
+				break
+			end
+		end
+	end
+end
+
+-- Step 3: convert paths to absolute
+workspace_files = vim.tbl_map(function(path)
 	return vim.fn.fnamemodify(path, ":p")
-end)
+end, workspace_files)
 
 local general_on_attach = function(client, bufnr)
 	--client.server_capabilities.documentFormattingProvider = false
