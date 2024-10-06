@@ -206,6 +206,12 @@ local pure_plugins = {
 		"nvim-treesitter/nvim-treesitter-context",
 		config = require("plugins/treesitter-context"),
 	},
+	{
+		"andersevenrud/nvim_context_vt",
+		config = function()
+			require("nvim_context_vt").setup({})
+		end,
+	},
 	-- session
 	{
 		"rmagatti/auto-session",
