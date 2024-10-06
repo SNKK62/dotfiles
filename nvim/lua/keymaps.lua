@@ -3,6 +3,10 @@ local keymap = vim.keymap.set
 vim.g.mapleader = " "
 
 -- cursor motion
+
+keymap({ "n", "v" }, "j", "gj", { noremap = true })
+keymap({ "n", "v" }, "k", "gk", { noremap = true })
+
 keymap({ "n", "v" }, "<C-j>", "12j", { noremap = true })
 keymap({ "n", "v" }, "<DOWN>", "12j", { noremap = true })
 keymap({ "n", "v" }, "<C-k>", "12k", { noremap = true })
@@ -49,7 +53,7 @@ keymap("n", "q", "<NOP>", { noremap = true })
 
 -- macro
 ---@param key string key
-function _G.set_keybind(key)
+function _G.set_macro_keybind(key)
 	if vim.fn.reg_recording() == "" then
 		-- not in recording
 		return "q" .. key
@@ -59,7 +63,7 @@ function _G.set_keybind(key)
 	end
 end
 local function add_macro(key)
-	keymap("n", "q" .. key, "v:lua.set_keybind('" .. key .. "')", { noremap = true, expr = true, silent = true })
+	keymap("n", "q" .. key, "v:lua.set_macro_keybind('" .. key .. "')", { noremap = true, expr = true, silent = true })
 end
 -- only q is used for recording
 add_macro("q")
