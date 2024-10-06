@@ -46,20 +46,36 @@ keymap("n", "M", "<plug>(matchup-%)", { noremap = true, silent = true })
 
 -- release prefix-q
 keymap("n", "q", "<NOP>", { noremap = true })
+
 -- macro
--- only q is used for recording
-keymap("n", "qq", "qq", { noremap = true })
-keymap("n", "<ESC>", "q", { noremap = true, silent = true })
-keymap("n", "Q", "v:lua.toggle_macro_playback()", { noremap = true, expr = true, silent = true })
-function _G.toggle_macro_playback()
+---@param key string key
+function _G.set_keybind(key)
 	if vim.fn.reg_recording() == "" then
 		-- not in recording
-		return "@q"
+		return "q" .. key
 	else
 		-- in recording
 		return "q"
 	end
 end
+local function add_macro(key)
+	keymap("n", "q" .. key, "v:lua.set_keybind('" .. key .. "')", { noremap = true, expr = true, silent = true })
+end
+-- only q is used for recording
+add_macro("q")
+
+keymap("n", "<ESC>", "v:lua.escape_in_macro()", { noremap = true, expr = true, silent = true })
+function _G.escape_in_macro()
+	if vim.fn.reg_recording() == "" then
+		-- not in recording
+		return "<ESC>"
+	else
+		-- in recording
+		return "q"
+	end
+end
+
+keymap("n", "Q", "@q", { noremap = true, expr = true, silent = true })
 
 -- selection
 keymap("x", "y", "mzy`z", { noremap = true })
@@ -219,8 +235,8 @@ if not vim.g.vscode then
 	keymap({ "n", "t" }, "<A-f>", "<cmd>Lspsaga term_toggle<CR>", { silent = true })
 
 	-- session
-	keymap("c", "ss", "SessionSave", { noremap = true })
-	keymap("n", "<C-S>", "<cmd>Telescope session-lens search_session<CR>", { noremap = true, silent = true })
+	keymap("n", "<C-s>", ":SessionSave<CR>", { noremap = true })
+	keymap("n", "<CS-S>", "<cmd>Telescope session-lens search_session<CR>", { noremap = true, silent = true })
 end
 
 -- highlight mark setting
