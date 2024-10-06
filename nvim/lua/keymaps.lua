@@ -46,7 +46,7 @@ keymap({ "o", "x" }, "i<SPACE>", "iW", { noremap = true })
 keymap("n", "U", "<C-r>", { noremap = true })
 
 -- matchup
-keymap("n", "M", "<plug>(matchup-%)", { noremap = true, silent = true })
+keymap({ "n", "x" }, "M", "<plug>(matchup-%)", { noremap = true, silent = true })
 
 -- release prefix-q
 keymap("n", "q", "<NOP>", { noremap = true })
@@ -104,6 +104,32 @@ keymap("x", "<CS-j>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
 keymap("i", "<C-g>u", "<ESC>gUiwgi", { noremap = true })
 keymap("i", "<C-g>l", "<ESC>guiwgi", { noremap = true })
 keymap("i", "<C-g>h", "<ESC>bgUlgi", { noremap = true })
+
+-- dial
+vim.keymap.set("n", "<C-a>", function()
+	require("dial.map").manipulate("increment", "normal")
+end)
+vim.keymap.set("n", "<C-x>", function()
+	require("dial.map").manipulate("decrement", "normal")
+end)
+vim.keymap.set("n", "g<C-a>", function()
+	require("dial.map").manipulate("increment", "gnormal")
+end)
+vim.keymap.set("n", "g<C-x>", function()
+	require("dial.map").manipulate("decrement", "gnormal")
+end)
+vim.keymap.set("v", "<C-a>", function()
+	require("dial.map").manipulate("increment", "visual")
+end)
+vim.keymap.set("v", "<C-x>", function()
+	require("dial.map").manipulate("decrement", "visual")
+end)
+vim.keymap.set("v", "g<C-a>", function()
+	require("dial.map").manipulate("increment", "gvisual")
+end)
+vim.keymap.set("v", "g<C-x>", function()
+	require("dial.map").manipulate("decrement", "gvisual")
+end)
 
 -- search
 keymap("n", "/", "/\\v", { noremap = true })

@@ -51,6 +51,10 @@ local common_plugins = {
 	{
 		"bkad/CamelCaseMotion",
 	},
+	{
+		"monaqa/dial.nvim",
+		config = require("plugins/dial"),
+	},
 }
 
 local pure_plugins = {
