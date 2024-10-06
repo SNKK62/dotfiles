@@ -236,6 +236,12 @@ local pure_plugins = {
 			"nvim-tree/nvim-web-devicons",
 		},
 	},
+	{
+		"b0o/incline.nvim",
+		config = require("plugins/incline"),
+		-- Optional: Lazy load Incline
+		event = "VeryLazy",
+	},
 	-- commnet/uncomment
 	{
 		"tomtom/tcomment_vim",
