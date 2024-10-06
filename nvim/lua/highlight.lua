@@ -1,8 +1,3 @@
-local colors = require("colors")
-
--- color scheme
-vim.cmd.colorscheme(colors.colorscheme)
-
 -- fill columns after 80 with red
 vim.opt.colorcolumn = "81"
 vim.cmd([[hi ColorColumn ctermbg=52 guibg=#42032c]])
