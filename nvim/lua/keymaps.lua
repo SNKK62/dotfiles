@@ -207,9 +207,8 @@ if not vim.g.vscode then
 	keymap("i", "<C-g>w", "<Plug>(copilot-accept-word)", { noremap = true })
 
 	-- comment/uncomment
-	keymap("n", "<C-/>", "<C-_><C-_>", { remap = true })
-	keymap("i", "<C-/>", "<C-_><C-_>", { remap = true })
-	keymap("v", "<C-/>", "gc", { remap = true })
+	keymap("n", "<C-/>", "gcc", { remap = true })
+	keymap("x", "<C-/>", "gc", { remap = true })
 
 	-- barbar
 	-- switch buffer
