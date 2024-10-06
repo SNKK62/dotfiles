@@ -1,3 +1,5 @@
+local colorscheme = require("colorscheme")
+
 -- install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -11,13 +13,6 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-
--- colorscheme
-local colorscheme = "catppuccin-mocha"
----@param colorscheme string colorscheme name
-local function set_colorscheme(colorscheme)
-	vim.cmd.colorscheme(colorscheme)
-end
 
 local function merge_tables(t1, t2)
 	local merged = {}
@@ -137,9 +132,7 @@ local pure_plugins = {
 		name = "catppuccin",
 		priority = 1000,
 		lazy = false, -- https://github.com/izumin5210/dotfiles/pull/573/files
-		config = function()
-			set_colorscheme(colorscheme)
-		end,
+		config = colorscheme.set,
 	},
 	-- https://github.com/izumin5210/dotfiles/pull/573/files
 	{
@@ -160,7 +153,7 @@ local pure_plugins = {
 				---@diagnostic disable-next-line: unused-local
 				function(r, g, b, hl_group_info)
 					local colors = require("colors")
-					local palette = colors.palette
+					local palette = require("palette")
 					local hex = colors.alpha_blend(colors.rgb_to_hex({ r = r, g = g, b = b }), palette.base, 0.5)
 					local rgb = colors.hex_to_rgb(hex)
 					return rgb.r, rgb.g, rgb.b
@@ -282,7 +275,7 @@ local pure_plugins = {
 	-- statusline
 	{
 		"nvim-lualine/lualine.nvim",
-		config = require("plugins/lualine")(colorscheme),
+		config = require("plugins/lualine"),
 		event = "VeryLazy",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",

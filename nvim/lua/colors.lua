@@ -2,11 +2,6 @@
 
 local M = {}
 
-M.colorscheme = "catppuccin-mocha"
-local palletes = require("catppuccin.palettes")
-local palette = palletes.get_palette("mocha")
-M.palette = palette
-
 ---@alias RGB { r: number, g: number, b: number }
 
 ---Converts a hex color code to RGB

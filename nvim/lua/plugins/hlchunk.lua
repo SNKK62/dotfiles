@@ -1,6 +1,6 @@
 return function()
 	local colors = require("colors")
-	local palette = colors.palette
+	local palette = require("palette")
 	require("hlchunk").setup({
 		chunk = {
 			enable = true,

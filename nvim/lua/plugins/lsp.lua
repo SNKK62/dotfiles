@@ -1,6 +1,6 @@
 -- define inlay hints colors
 local colors = require("colors")
-local palette = colors.palette
+local palette = require("palette")
 require("utils").force_set_highlights("lspconfig_hl", {
 	-- https://github.com/catppuccin/vscode/blob/catppuccin-vsc-v3.15.2/packages/catppuccin-vsc/src/theme/extensions/error-lens.ts
 	DiagnosticErrorLine = { bg = colors.alpha_blend(palette.red, palette.base, 0.15) },
