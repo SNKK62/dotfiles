@@ -348,6 +348,12 @@ local pure_plugins = {
 		"petertriho/nvim-scrollbar",
 		config = require("plugins/scrollbar"),
 	},
+	-- buffer management
+	{
+		"chrisgrieser/nvim-early-retirement",
+		config = true,
+		event = "VeryLazy",
+	},
 }
 
 local vscode_plugins = {}
