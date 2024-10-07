@@ -179,7 +179,7 @@ fga() {
   while out=$(
     git status --short |
     awk '{if (substr($0,2,1) !~ / /) print $2}' |
-    fzf-tmux --preview $preview_cmd --preview-window=right:70% --multi --exit-0 --expect=ctrl-d
+    fzf-tmux --preview $preview_cmd --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
   ); do
     q=$(head -1 <<< "$out")
     n=$[$(wc -l <<< "$out") - 1]
@@ -200,7 +200,7 @@ fgd() {
   selected=$(
     git status --short |
     awk '{if (substr($0,2,1) !~ / /) print $2}' |
-    fzf-tmux --preview $preview_cmd --preview-window=right:70% --exit-0
+    fzf-tmux --preview $preview_cmd --preview-window=right:70%:wrap --exit-0
   )
   if [ -n "$selected" ]; then
     git diff-side-by-side $selected
@@ -213,7 +213,7 @@ fgref() {
   preview_cmd="echo '{}' | cut -d ' ' -f 1 | xargs -I@ git diff --stat --patch @^ @ | delta"
   selected=$(
     git reflog |
-    fzf-tmux --preview $preview_cmd --preview-window=right:70% --exit-0
+    fzf-tmux --preview $preview_cmd --preview-window=right:70%:wrap --exit-0
   )
   if [ -z $selected ]; then
       return 1
@@ -259,7 +259,7 @@ fgstp () {
   git_repo_root=$(git rev-parse --show-toplevel)
   selected_files=$(git status --porcelain |
                    fzf --multi \
-                       --preview-window='right:70%' \
+                       --preview-window='right:70%:wrap' \
                        --preview="
                           if [[ {} =~ '^\?\?' ]]; then
                             bat $git_repo_root/{2};
@@ -299,7 +299,7 @@ fgstl() {
             fzf --ansi --print-query --query="$query" \
               --expect=enter,ctrl-d \
               --preview=$preview_cmd \
-              --preview-window='right:70%');
+              --preview-window='right:70%:wrap');
   do
     selection=("${(f)out}")
     query="$selection[1]"
@@ -368,7 +368,7 @@ lt() {
   shift $((OPTIND - 1))
 
   if [[ -n "$1" ]]; then
-    target_dir="$1"
+    target_dir="$@"
   fi
 
   local cmd="ls --tree --ignore-glob '.git' --ignore-glob 'node_modules'"
