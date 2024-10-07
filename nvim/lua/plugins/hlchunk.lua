@@ -18,13 +18,13 @@ return function()
 	local alpha = 0.45
 	indent({
 		style = {
-			colors.alpha_blend(palette.red, palette.base, alpha),
-			colors.alpha_blend(palette.peach, palette.base, alpha),
-			colors.alpha_blend(palette.yellow, palette.base, alpha),
-			colors.alpha_blend(palette.green, palette.base, alpha),
-			colors.alpha_blend(palette.sky, palette.base, alpha),
-			colors.alpha_blend(palette.blue, palette.base, alpha),
-			colors.alpha_blend(palette.mauve, palette.base, alpha),
+			colors.alpha_blend(palette.red, palette.background, alpha),
+			colors.alpha_blend(palette.orange, palette.background, alpha),
+			colors.alpha_blend(palette.yellow, palette.background, alpha),
+			colors.alpha_blend(palette.green, palette.background, alpha),
+			colors.alpha_blend(palette.sky, palette.background, alpha),
+			colors.alpha_blend(palette.blue, palette.background, alpha),
+			colors.alpha_blend(palette.purple, palette.background, alpha),
 		},
 	}):enable()
 end

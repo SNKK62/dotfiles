@@ -3,10 +3,10 @@ local colors = require("colors")
 local palette = require("palette")
 require("utils").force_set_highlights("lspconfig_hl", {
 	-- https://github.com/catppuccin/vscode/blob/catppuccin-vsc-v3.15.2/packages/catppuccin-vsc/src/theme/extensions/error-lens.ts
-	DiagnosticErrorLine = { bg = colors.alpha_blend(palette.red, palette.base, 0.15) },
-	DiagnosticWarnLine = { bg = colors.alpha_blend(palette.peach, palette.base, 0.15) },
-	DiagnosticInfoLine = { bg = colors.alpha_blend(palette.blue, palette.base, 0.15) },
-	DiagnosticHintLine = { bg = colors.alpha_blend(palette.green, palette.base, 0.15) },
+	DiagnosticErrorLine = { bg = colors.alpha_blend(palette.error, palette.background, 0.15) },
+	DiagnosticWarnLine = { bg = colors.alpha_blend(palette.warn, palette.background, 0.15) },
+	DiagnosticInfoLine = { bg = colors.alpha_blend(palette.info, palette.background, 0.15) },
+	DiagnosticHintLine = { bg = colors.alpha_blend(palette.hint, palette.background, 0.15) },
 })
 -- make background color of virtual text transparent
 require("utils").set_highlights("lsp_dignostic_virtual_text", {

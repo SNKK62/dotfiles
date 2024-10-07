@@ -154,7 +154,7 @@ local pure_plugins = {
 				function(r, g, b, hl_group_info)
 					local colors = require("colors")
 					local palette = require("palette")
-					local hex = colors.alpha_blend(colors.rgb_to_hex({ r = r, g = g, b = b }), palette.base, 0.65)
+					local hex = colors.alpha_blend(colors.rgb_to_hex({ r = r, g = g, b = b }), palette.background, 0.65)
 					local rgb = colors.hex_to_rgb(hex)
 					return rgb.r, rgb.g, rgb.b
 				end,

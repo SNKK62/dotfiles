@@ -8,9 +8,9 @@ return function()
 			bg = palette.yellow,
 		},
 	})
-	local normal_bg = colors.alpha_blend(palette.base, "#ffffff", 0.85)
-	local selected_bg = colors.alpha_blend(palette.base, "#ffffff", 0.55)
-	local normal_fg = colors.alpha_blend(palette.text, palette.base, 0.6)
+	local normal_bg = colors.alpha_blend(palette.background, "#ffffff", 0.85)
+	local selected_bg = colors.alpha_blend(palette.background, "#ffffff", 0.55)
+	local normal_fg = colors.alpha_blend(palette.text, palette.background, 0.6)
 	require("bufferline").setup({
 		options = {
 			mode = "buffers",
@@ -108,50 +108,51 @@ return function()
 				bg = selected_bg,
 			},
 			error = {
-				fg = palette.red,
+				fg = palette.error,
 				bg = normal_bg,
 			},
 			error_selected = {
+				fg = palette.error,
 				bg = selected_bg,
 			},
 			error_diagnostic = {
-				fg = palette.red,
+				fg = palette.error,
 				bg = normal_bg,
 			},
 			error_diagnostic_selected = {
-				fg = palette.red,
+				fg = palette.error,
 				bg = selected_bg,
 			},
 			warning = {
-				fg = palette.peach,
+				fg = palette.warn,
 				bg = normal_bg,
 			},
 			warning_selected = {
-				fg = palette.peach,
+				fg = palette.warn,
 				bg = selected_bg,
 			},
 			warning_diagnostic = {
-				fg = palette.peach,
+				fg = palette.warn,
 				bg = normal_bg,
 			},
 			warning_diagnostic_selected = {
-				fg = palette.peach,
+				fg = palette.warn,
 				bg = selected_bg,
 			},
 			info = {
-				fg = palette.blue,
+				fg = palette.info,
 				bg = normal_bg,
 			},
 			info_selected = {
-				fg = palette.blue,
+				fg = palette.info,
 				bg = selected_bg,
 			},
 			hint = {
-				fg = palette.green,
+				fg = palette.hint,
 				bg = normal_bg,
 			},
 			hint_selected = {
-				fg = palette.green,
+				fg = palette.hint,
 				bg = selected_bg,
 			},
 			modified = {
@@ -164,6 +165,14 @@ return function()
 				bg = normal_bg,
 			},
 			pick_selected = {
+				bg = selected_bg,
+			},
+			duplicate = {
+				fg = normal_fg,
+				bg = normal_bg,
+			},
+			duplicate_selected = {
+				fg = palette.text,
 				bg = selected_bg,
 			},
 		},
