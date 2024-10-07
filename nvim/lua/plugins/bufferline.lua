@@ -1,94 +1,170 @@
 return function()
 	local palette = require("palette")
 	local colors = require("colors")
+	local utils = require("utils")
+	-- this is required for underline indicator
+	utils.set_highlights("buffer_line_underline_indicator_highlight", {
+		TabLineSel = {
+			bg = palette.yellow,
+		},
+	})
+	local normal_bg = colors.alpha_blend(palette.base, "#ffffff", 0.85)
+	local selected_bg = colors.alpha_blend(palette.base, "#ffffff", 0.55)
+	local normal_fg = colors.alpha_blend(palette.text, palette.base, 0.6)
 	require("bufferline").setup({
 		options = {
 			mode = "buffers",
-			diagnostics = "nvim_lsp",
 			numbers = "none",
-			separator_style = "slant", -- "slant" | "slope" | "thick" | "thin"
+			separator_style = "slope", -- "slant" | "slope" | "thick" | "thin"
 			show_buffer_close_icons = true,
 			show_close_icon = true,
 			color_icons = true,
+			indicator = {
+				-- this requires underline_thickness in terminal setting
+				-- TabLineSel is the color of the underline
+				style = "underline",
+			},
+			diagnostics = "nvim_lsp",
+			---@diagnostic disable-next-line: unused-local
+			diagnostics_indicator = function(count, level, diagnostics_dict, context)
+				local output = ""
+				for k, v in pairs(diagnostics_dict) do
+					if k:match("error") then
+						if output ~= "" then
+							output = output .. " | "
+						end
+						output = output .. " " .. v
+					elseif k:match("warning") then
+						if output ~= "" then
+							output = output .. " | "
+						end
+						output = output .. " " .. v
+					end
+				end
+				return output
+			end,
+			custom_areas = {
+				right = function()
+					local result = {}
+					local seve = vim.diagnostic.severity
+					local error = #vim.diagnostic.get(0, { severity = seve.ERROR })
+					local warning = #vim.diagnostic.get(0, { severity = seve.WARN })
+					local info = #vim.diagnostic.get(0, { severity = seve.INFO })
+					local hint = #vim.diagnostic.get(0, { severity = seve.HINT })
+
+					if error ~= 0 then
+						table.insert(result, { text = "  " .. error, link = "DiagnosticError" })
+					end
+
+					if warning ~= 0 then
+						table.insert(result, { text = "  " .. warning, link = "DiagnosticWarn" })
+					end
+
+					if hint ~= 0 then
+						table.insert(result, { text = "  " .. hint, link = "DiagnosticHint" })
+					end
+
+					if info ~= 0 then
+						table.insert(result, { text = "  " .. info, link = "DiagnosticInfo" })
+					end
+					return result
+				end,
+			},
 		},
 		highlights = {
 			fill = { -- The color of the remainder at the end
 				fg = "#000000",
 				bg = "#000000",
 			},
-			separator = {
-				fg = "#000000", -- between buffers
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.8),
-			},
 			background = {
-				fg = palette.text,
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.8),
-			},
-			close_button = {
-				fg = palette.text,
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.8),
-			},
-			diagnostic = {
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.8),
-			},
-			error = {
-				fg = palette.red,
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.8),
-			},
-			warning = {
-				fg = palette.peach,
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.8),
-			},
-			info = {
-				fg = palette.blue,
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.8),
-			},
-			hint = {
-				fg = palette.green,
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.8),
-			},
-			modified = {
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.8),
-			},
-			pick = {
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.8),
-			},
-			separator_selected = {
-				fg = "#000000", -- between buffers
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.55),
+				fg = normal_fg,
+				bg = normal_bg,
 			},
 			buffer_selected = {
 				fg = palette.text,
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.55),
+				bg = selected_bg,
 				bold = true,
+			},
+			separator = {
+				fg = "#000000", -- between buffers
+				bg = normal_bg,
+			},
+			separator_selected = {
+				fg = "#000000", -- between buffers
+				bg = selected_bg,
+			},
+			close_button = {
+				fg = normal_fg,
+				bg = normal_bg,
 			},
 			close_button_selected = {
 				fg = palette.text,
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.55),
+				bg = selected_bg,
+			},
+			diagnostic = {
+				bg = normal_bg,
 			},
 			diagnostic_selected = {
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.55),
+				bg = selected_bg,
+			},
+			error = {
+				fg = palette.red,
+				bg = normal_bg,
 			},
 			error_selected = {
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.55),
+				bg = selected_bg,
+			},
+			error_diagnostic = {
+				fg = palette.red,
+				bg = normal_bg,
+			},
+			error_diagnostic_selected = {
+				fg = palette.red,
+				bg = selected_bg,
+			},
+			warning = {
+				fg = palette.peach,
+				bg = normal_bg,
 			},
 			warning_selected = {
 				fg = palette.peach,
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.55),
+				bg = selected_bg,
+			},
+			warning_diagnostic = {
+				fg = palette.peach,
+				bg = normal_bg,
+			},
+			warning_diagnostic_selected = {
+				fg = palette.peach,
+				bg = selected_bg,
+			},
+			info = {
+				fg = palette.blue,
+				bg = normal_bg,
 			},
 			info_selected = {
 				fg = palette.blue,
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.55),
+				bg = selected_bg,
+			},
+			hint = {
+				fg = palette.green,
+				bg = normal_bg,
 			},
 			hint_selected = {
 				fg = palette.green,
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.55),
+				bg = selected_bg,
+			},
+			modified = {
+				bg = normal_bg,
 			},
 			modified_selected = {
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.55),
+				bg = selected_bg,
+			},
+			pick = {
+				bg = normal_bg,
 			},
 			pick_selected = {
-				bg = colors.alpha_blend(palette.base, "#ffffff", 0.55),
+				bg = selected_bg,
 			},
 		},
 	})
