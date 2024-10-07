@@ -199,6 +199,7 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>gb", require("gitsigns").blame)
 	keymap("n", "<Leader>gp", require("gitsigns").preview_hunk)
 	keymap("n", "<Leader>gm", "<Cmd>GitMessenger<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>ga", "<A-f>fga<CR>", { remap = true })
 
 	-- copilot
 	keymap("i", "<C-g>d", "<Plug>(copilot-dismiss)", { noremap = true })
