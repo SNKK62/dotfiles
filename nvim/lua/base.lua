@@ -14,9 +14,9 @@ if not vim.g.vscode then
 	opt.shiftwidth = 0 -- depend on tabstop
 	opt.expandtab = true
 	opt.encoding = "utf-8"
-	opt.wrap = false
+	opt.wrap = true
 	opt.laststatus = 3
-	opt.cmdheight = 2
+	opt.cmdheight = 1
 	opt.completeopt = "menuone"
 	opt.backspace = "indent,eol,start"
 	opt.cursorline = true
