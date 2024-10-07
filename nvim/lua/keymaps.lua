@@ -211,26 +211,18 @@ if not vim.g.vscode then
 	keymap("n", "<C-/>", "gcc", { remap = true })
 	keymap("x", "<C-/>", "gc", { remap = true })
 
-	-- barbar
-	-- switch buffer
-	keymap("n", "˙", "<Cmd>BufferPrevious<CR>", { noremap = true, silent = true }) -- <A-h>
-	keymap("n", "<A-h>", "<Cmd>BufferPrevious<CR>", { noremap = true, silent = true })
-	keymap("n", "¬", "<Cmd>BufferNext<CR>", { noremap = true, silent = true }) -- <A-l>
-	keymap("n", "<A-l>", "<Cmd>BufferNext<CR>", { noremap = true, silent = true })
-	-- reorder buffer
-	keymap("n", "∆", "<Cmd>BufferMovePrevious<CR>", { noremap = true, silent = true }) -- <A-j>
-	keymap("n", "<A-j>", "<Cmd>BufferMovePrevious<CR>", { noremap = true, silent = true })
-	keymap("n", "˚", "<Cmd>BufferMoveNext<CR>", { noremap = true, silent = true }) -- <A-k>
-	keymap("n", "<A-k>", "<Cmd>BufferMoveNext<CR>", { noremap = true, silent = true })
-	-- pin/unpin buffer
-	keymap("n", "<C-b>p", "<Cmd>BufferPin<CR>", { noremap = true, silent = true })
-	-- close buffer
-	keymap("n", "<C-b>c", "<Cmd>BufferClose<CR>", { noremap = true, silent = true })
-	-- restore buffer
-	keymap("n", "<C-b>z", "<Cmd>BufferRestore<CR>", { noremap = true, silent = true })
-	-- magic buffer-picking mode
-	keymap("n", "<C-b>s", "<Cmd>BufferPick<CR>", { noremap = true, silent = true })
-	keymap("n", "<C-b>d", "<Cmd>BufferPickDelete<CR>", { noremap = true, silent = true })
+	-- bufferline
+	keymap("n", "<C-b>c", "<CMD>bdelete!<CR>", { noremap = true, silent = true })
+	keymap("n", "<C-b>d", "<CMD>BufferLinePickClose<CR>", { noremap = true, silent = true })
+	keymap("n", "<C-b>s", "<CMD>BufferLinePick<CR>", { noremap = true, silent = true })
+	keymap("n", "¬", "<CMD>BufferLineCycleNext<CR>", { noremap = true, silent = true }) -- <A-l>
+	keymap("n", "<A-l>", "<CMD>BufferLineCycleNext<CR>", { noremap = true, silent = true })
+	keymap("n", "˙", "<CMD>BufferLineCyclePrev<CR>", { noremap = true, silent = true }) -- <A-h>
+	keymap("n", "<A-h>", "<CMD>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
+	keymap("n", "˚", "<CMD>BufferLineMoveNext<CR>", { noremap = true, silent = true }) -- <A-k>
+	keymap("n", "<A-k>", "<CMD>BufferLineMoveNext<CR>", { noremap = true, silent = true })
+	keymap("n", "∆", "<CMD>BufferLineMovePrev<CR>", { noremap = true, silent = true }) -- <A-j>
+	keymap("n", "<A-j>", "<CMD>BufferLineMovePrev<CR>", { noremap = true, silent = true })
 
 	-- lsp
 	-- finder
