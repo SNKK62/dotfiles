@@ -15,7 +15,7 @@ config.font = wezterm.font("HackGen35 Console NF", { weight = "Regular", stretch
 config.font_size = 16
 config.audible_bell = "Disabled"
 
-config.underline_thickness = "1.5px"
+config.underline_thickness = "2.5px"
 
 local act = wezterm.action
 config.disable_default_key_bindings = true

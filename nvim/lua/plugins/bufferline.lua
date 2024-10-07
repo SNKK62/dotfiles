@@ -5,7 +5,7 @@ return function()
 	-- this is required for underline indicator
 	utils.set_highlights("buffer_line_underline_indicator_highlight", {
 		TabLineSel = {
-			bg = palette.yellow,
+			bg = palette.red,
 		},
 	})
 	local normal_bg = colors.alpha_blend(palette.background, "#ffffff", 0.85)
