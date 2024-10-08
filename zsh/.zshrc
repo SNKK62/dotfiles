@@ -175,15 +175,24 @@ fgc() {
 # git add, diff
 fga() {
   local out q n addfiles preview_cmd
-  preview_cmd="git diff {} | delta"
   while out=$(
     git status --short |
-    awk '{if (substr($0,2,1) !~ / /) print $2}' |
-    fzf-tmux --preview $preview_cmd --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
+    awk '{
+      if (substr($0,2,1) !~ / /) {
+        if ($1 == "??") {
+            print $2 " (new)"
+        } else if ($1 == " D") {
+            print $2 " (deleted)"
+        } else {
+            print $2 " (modified)"
+        }
+      } 
+    }' |
+    fzf-tmux --preview '[[ {2} == "(new)" || {2} == "(deleted)" ]] && bat {1} --color=always --style=header,grid || git diff {1} | delta' --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
   ); do
     q=$(head -1 <<< "$out")
     n=$[$(wc -l <<< "$out") - 1]
-    addfiles=(`echo $(tail "-$n" <<< "$out")`)
+    addfiles=(`echo $(tail "-$n" <<< "$out") | sed 's/ (new)//; s/ (deleted)//; s/ (modified)//'`)
     [[ -z "$addfiles" ]] && continue
     if [ "$q" = ctrl-d ]; then
       git diff-side-by-side $addfiles
@@ -199,9 +208,20 @@ fgd() {
   preview_cmd="git diff {} | delta"
   selected=$(
     git status --short |
-    awk '{if (substr($0,2,1) !~ / /) print $2}' |
-    fzf-tmux --preview $preview_cmd --preview-window=right:70%:wrap --exit-0
+    awk '{
+      if (substr($0,2,1) !~ / /) {
+        if ($1 == "??") {
+            print $2 " (new)"
+        } else if ($1 == " D") {
+            print $2 " (deleted)"
+        } else {
+            print $2 " (modified)"
+        }
+      } 
+    }' |
+    fzf-tmux --preview '[[ {2} == "(new)" || {2} == "(deleted)" ]] && bat {1} --color=always --style=header,grid || git diff {1} | delta' --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
   )
+  selected=(`echo $selected | sed 's/ (new)//; s/ (deleted)//; s/ (modified)//'`)
   if [ -n "$selected" ]; then
     git diff-side-by-side $selected
   fi
