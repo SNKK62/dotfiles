@@ -181,14 +181,14 @@ fga() {
       if (substr($0,2,1) !~ / /) {
         if ($1 == "??") {
             print $2 " (new)"
-        } else if ($1 == " D") {
+        } else if ($1 == "D") {
             print $2 " (deleted)"
         } else {
             print $2 " (modified)"
         }
       } 
     }' |
-    fzf-tmux --preview '[[ {2} == "(new)" || {2} == "(deleted)" ]] && bat {1} --color=always --style=header,grid || git diff {1} | delta' --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
+        fzf-tmux --preview '[[ {2} == "(new)" ]] && bat {1} --color=always --style=header,grid || [[ {2} == "(deleted)" ]] && ext=$(echo {1} | awk -F. "{if (NF>1 && \$1 != \"\") print \$NF; else print \"txt\"}") && git show HEAD:$(echo $(pwd)/{1} | sed "s|$(git rev-parse --show-toplevel)/||") | bat --color=always --style=header,grid --language $ext || git diff {1} | delta' --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
   ); do
     q=$(head -1 <<< "$out")
     n=$[$(wc -l <<< "$out") - 1]
@@ -212,14 +212,14 @@ fgd() {
       if (substr($0,2,1) !~ / /) {
         if ($1 == "??") {
             print $2 " (new)"
-        } else if ($1 == " D") {
+        } else if ($1 == "D") {
             print $2 " (deleted)"
         } else {
             print $2 " (modified)"
         }
       } 
     }' |
-    fzf-tmux --preview '[[ {2} == "(new)" || {2} == "(deleted)" ]] && bat {1} --color=always --style=header,grid || git diff {1} | delta' --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
+    fzf-tmux --preview '[[ {2} == "(new)" ]] && bat {1} --color=always --style=header,grid || [[ {2} == "(deleted)" ]] && ext=$(echo {1} | awk -F. "{if (NF>1 && \$1 != \"\") print \$NF; else print \"txt\"}") && git show HEAD:$(echo $(pwd)/{1} | sed "s|$(git rev-parse --show-toplevel)/||") | bat --color=always --style=header,grid --language $ext || git diff {1} | delta' --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
   )
   selected=(`echo $selected | sed 's/ (new)//; s/ (deleted)//; s/ (modified)//'`)
   if [ -n "$selected" ]; then
