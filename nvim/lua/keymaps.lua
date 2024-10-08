@@ -235,16 +235,17 @@ if not vim.g.vscode then
 		'<cmd>lua require("plugins/copilot-chat.utils").copilotChatSelection()<cr>',
 		{ noremap = true, silent = true }
 	)
+	keymap("n", "<Leader>ct", "<cmd>CopilotChatToggle<cr>", { noremap = true, silent = true })
 	-- (Copilot Chat Prompt) display the action prompt using telescope
 	keymap(
 		"n",
-		"<Leader>cg",
+		"<Leader>cl",
 		'<cmd>lua require("plugins/copilot-chat.utils").showCopilotChatActionPrompt()<cr>',
 		{ noremap = true, silent = true }
 	)
 	keymap(
 		"v",
-		"<Leader>cg",
+		"<Leader>cl",
 		'<cmd>lua require("plugins/copilot-chat.utils").showCopilotChatActionPromptVisualSelection()<cr>',
 		{ noremap = true, silent = true }
 	)
