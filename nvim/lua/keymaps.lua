@@ -193,13 +193,21 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>tsc", "<Cmd>TSContextToggle<CR>", { noremap = true, silent = true })
 
 	-- git
+	-- diff
 	keymap("n", "<Leader>gd", "<Cmd>DiffviewOpen<CR>", { noremap = true, silent = true })
+	-- history
 	keymap("n", "<Leader>gh", "<Cmd>DiffviewFileHistory<CR>", { noremap = true, silent = true })
+	-- close
 	keymap("n", "<Leader>gc", "<Cmd>DiffviewClose<CR>", { noremap = true, silent = true })
+	-- blame
 	keymap("n", "<Leader>gb", require("gitsigns").blame)
+	-- preview
 	keymap("n", "<Leader>gp", require("gitsigns").preview_hunk)
+	-- messenger
 	keymap("n", "<Leader>gm", "<Cmd>GitMessenger<CR>", { noremap = true, silent = true })
+	-- add
 	keymap("n", "<Leader>ga", "<A-f>fga<CR>", { remap = true })
+	-- copy url
 	keymap(
 		"v",
 		"gy",
@@ -212,6 +220,48 @@ if not vim.g.vscode then
 	keymap("i", "<C-g>n", "<Plug>(copilot-next)", { noremap = true })
 	keymap("i", "<C-g>p", "<Plug>(copilot-previous)", { noremap = true })
 	keymap("i", "<C-g>w", "<Plug>(copilot-accept-word)", { noremap = true })
+	-- copilot chat
+	-- (Copilot Chat Buffer) chat with Copilot using the entire buffer content
+	keymap(
+		"n",
+		"<Leader>cc",
+		'<cmd>lua require("plugins/copilot-chat.utils").copilotChatBuffer()<cr>',
+		{ noremap = true, silent = true }
+	)
+	-- (Copilot Chat Selection) chat with Copilot using the selected content
+	keymap(
+		"v",
+		"<Leader>cc",
+		'<cmd>lua require("plugins/copilot-chat.utils").copilotChatSelection()<cr>',
+		{ noremap = true, silent = true }
+	)
+	-- (Copilot Chat Prompt) display the action prompt using telescope
+	keymap(
+		"n",
+		"<Leader>cg",
+		'<cmd>lua require("plugins/copilot-chat.utils").showCopilotChatActionPrompt()<cr>',
+		{ noremap = true, silent = true }
+	)
+	keymap(
+		"v",
+		"<Leader>cg",
+		'<cmd>lua require("plugins/copilot-chat.utils").showCopilotChatActionPromptVisualSelection()<cr>',
+		{ noremap = true, silent = true }
+	)
+	-- (Copilot Chat Help) display the action help using telescope
+	keymap(
+		"n",
+		"<Leader>ch",
+		'<cmd>lua require("plugins/copilot-chat.utils").showCopilotChatActionHelp()<cr>',
+		{ noremap = true, silent = true }
+	)
+	-- (Copilot Chat Reset) reset the Copilot chat content
+	keymap(
+		"n",
+		"<Leader>cr",
+		'<cmd>lua require("plugins/copilot-chat.utils").copilotChatReset()<cr>',
+		{ noremap = true, silent = true }
+	)
 
 	-- comment/uncomment
 	keymap("n", "<C-/>", "gcc", { remap = true })
