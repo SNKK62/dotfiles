@@ -256,9 +256,7 @@ local pure_plugins = {
 	},
 	{
 		"andersevenrud/nvim_context_vt",
-		config = function()
-			require("nvim_context_vt").setup({})
-		end,
+		config = require("plugins/nvim_context_vt"),
 	},
 	-- session
 	{
