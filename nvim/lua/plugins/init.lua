@@ -100,6 +100,15 @@ local pure_plugins = {
 		"rhysd/git-messenger.vim",
 	},
 	{
+		"ruifm/gitlinker.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			require("gitlinker").setup()
+		end,
+	},
+	{
 		"github/copilot.vim",
 	},
 

@@ -200,6 +200,12 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>gp", require("gitsigns").preview_hunk)
 	keymap("n", "<Leader>gm", "<Cmd>GitMessenger<CR>", { noremap = true, silent = true })
 	keymap("n", "<Leader>ga", "<A-f>fga<CR>", { remap = true })
+	keymap(
+		"v",
+		"gy",
+		'<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require("gitlinker.actions").copy_to_clipboard})<cr><ESC>',
+		{ remap = true, silent = true }
+	)
 
 	-- copilot
 	keymap("i", "<C-g>d", "<Plug>(copilot-dismiss)", { noremap = true })
