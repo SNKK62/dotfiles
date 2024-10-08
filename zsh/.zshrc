@@ -257,7 +257,7 @@ fgb() {
 fgstp () {
   local git_repo_root selected_files files_array filtered_files_array stash_message
   git_repo_root=$(git rev-parse --show-toplevel)
-  selected_files=$(git status --porcelain |
+  selected_files=$(git status --short|
                    fzf --multi \
                        --preview-window='right:70%:wrap' \
                        --preview="
@@ -295,7 +295,7 @@ fgstl() {
   # ^3 for untracked files
   local preview_cmd="echo {} | cut -d':' -f1 | xargs -I {STASH} sh -c \"git stash show -p --include-untracked '{STASH}'\" | delta"
   local out query selection key reflog_selector
-  while out=$(git stash list "$@" |
+  while out=$(git stash list |
             fzf --ansi --print-query --query="$query" \
               --expect=enter,ctrl-d \
               --preview=$preview_cmd \
@@ -308,7 +308,11 @@ fgstl() {
 
     case "$key" in
       enter)
-        git stash apply "$reflog_selector"
+        if [ "$1" = "pop" ]; then
+          git stash pop "$reflog_selector"
+        else
+          git stash apply "$reflog_selector"
+        fi
         break
         ;;
       ctrl-d)
@@ -320,8 +324,11 @@ fgstl() {
 
 fgst() {
     case $1 in
-        apply|-a|pop|-p|drop|-d|list|-l)
-            fgstl
+        apply|-a|list|-l)
+            fgstl apply
+            ;;
+        pop|-p)
+            fgstl pop
             ;;
         *)
             fgstp
