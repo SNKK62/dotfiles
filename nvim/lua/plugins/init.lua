@@ -270,6 +270,14 @@ local pure_plugins = {
 		"andersevenrud/nvim_context_vt",
 		config = require("plugins/nvim_context_vt"),
 	},
+	-- splitting/joining
+	{
+		"Wansmer/treesj",
+		dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
+		config = function()
+			require("treesj").setup({})
+		end,
+	},
 	-- session
 	{
 		"rmagatti/auto-session",

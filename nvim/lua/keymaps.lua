@@ -196,6 +196,12 @@ if not vim.g.vscode then
 	-- treesitter-context
 	keymap("n", "<Leader>tsc", "<Cmd>TSContextToggle<CR>", { noremap = true, silent = true })
 
+	-- splitting/joining
+	vim.keymap.set("n", "<Leader>sj", require("treesj").toggle)
+	vim.keymap.set("n", "<Leader>sJ", function()
+		require("treesj").toggle({ split = { recursive = true } })
+	end)
+
 	-- git
 	-- diff
 	keymap("n", "<Leader>gd", "<Cmd>DiffviewOpen<CR>", { noremap = true, silent = true })
