@@ -80,11 +80,9 @@ config.underline_thickness = "2.5px"
 
 ---@diagnostic disable-next-line: unused-local
 wezterm.on("update-right-status", function(window, pane)
-	local name = window:active_key_table()
-	if name then
-		name = "TABLE: " .. name
-	end
-	window:set_right_status(name or "")
+	local mode = "TABLE: " .. (window:active_key_table() or "NORMAL")
+	local workspace = "WORKSPACE: " .. window:active_workspace()
+	window:set_right_status(mode .. " " .. workspace)
 end)
 
 config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 1000 }
