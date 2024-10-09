@@ -1,42 +1,6 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 return {
-	{
-		-- workspaceの切り替え
-		key = "w",
-		mods = "LEADER",
-		action = act.ShowLauncherArgs({ flags = "WORKSPACES", title = "Select workspace" }),
-	},
-	{
-		--workspaceの名前変更
-		key = "$",
-		mods = "LEADER",
-		action = act.PromptInputLine({
-			description = "(wezterm) Set workspace title:",
-			action = wezterm.action_callback(function(win, pane, line)
-				if line then
-					wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
-				end
-			end),
-		}),
-	},
-	{
-		key = "W",
-		mods = "LEADER|SHIFT",
-		action = act.PromptInputLine({
-			description = "(wezterm) Create new workspace:",
-			action = wezterm.action_callback(function(window, pane, line)
-				if line then
-					window:perform_aciton(
-						act.SwitchToWorkspace({
-							name = line,
-						}),
-						pane
-					)
-				end
-			end),
-		}),
-	},
 	-- -- move back one word
 	{
 		key = "h",
@@ -89,6 +53,7 @@ return {
 		mods = "SUPER",
 		action = act.CloseCurrentTab({ confirm = true }),
 	},
+	{ key = "q", mods = "SUPER", action = wezterm.action.QuitApplication },
 	{
 		key = "f",
 		mods = "SUPER",
@@ -119,5 +84,8 @@ return {
 
 	-- activate copy mode
 	{ key = "v", mods = "LEADER", action = act.ActivateCopyMode },
+	-- activate pane mode
 	{ key = "p", mods = "LEADER", action = act.ActivateKeyTable({ name = "pane", one_shot = false }) },
+	-- activate workspace mode
+	{ key = "w", mods = "LEADER", action = act.ActivateKeyTable({ name = "workspace" }) },
 }

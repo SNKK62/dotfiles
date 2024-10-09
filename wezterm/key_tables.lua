@@ -147,4 +147,38 @@ return {
 		{ key = "Escape", action = "PopKeyTable" },
 		{ key = "c", mods = "CTRL", action = "PopKeyTable" },
 	},
+	workspace = {
+		{
+			key = "p",
+			action = act.ShowLauncherArgs({ flags = "WORKSPACES", title = "Select workspace" }),
+		},
+		{
+			key = "r",
+			action = act.PromptInputLine({
+				description = "(wezterm) Set workspace title:",
+				---@diagnostic disable-next-line: unused-local
+				action = wezterm.action_callback(function(win, pane, line)
+					if line then
+						wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
+					end
+				end),
+			}),
+		},
+		{
+			key = "n",
+			action = act.PromptInputLine({
+				description = "(wezterm) Create new workspace:",
+				action = wezterm.action_callback(function(window, pane, line)
+					if line then
+						window:perform_aciton(
+							act.SwitchToWorkspace({
+								name = line,
+							}),
+							pane
+						)
+					end
+				end),
+			}),
+		},
+	},
 }
