@@ -213,6 +213,15 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>ga", "<A-f>fga<CR>", { remap = true })
 	-- copy url
 	keymap(
+		"n",
+		"<Leader>gy",
+		'<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = function(url) '
+			.. 'local file_url = url:match("^(.-)#") or url;'
+			.. 'require("gitlinker.actions").copy_to_clipboard(file_url); '
+			.. "end})<cr><ESC>",
+		{ remap = true, silent = true }
+	)
+	keymap(
 		"v",
 		"gy",
 		'<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require("gitlinker.actions").copy_to_clipboard})<cr><ESC>',
