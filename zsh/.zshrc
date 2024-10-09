@@ -192,7 +192,7 @@ fga() {
   ); do
     q=$(head -1 <<< "$out")
     n=$[$(wc -l <<< "$out") - 1]
-    addfiles=(`echo $(tail "-$n" <<< "$out") | sed 's/ (new)//; s/ (deleted)//; s/ (modified)//'`)
+    addfiles=(`echo $(tail "-$n" <<< "$out") | sed 's/(new)//g; s/(deleted)//g; s/(modified)//g'`)
     [[ -z "$addfiles" ]] && continue
     if [ "$q" = ctrl-d ]; then
       git diff-side-by-side $addfiles
@@ -221,7 +221,7 @@ fgd() {
     }' |
     fzf-tmux --preview '[[ {2} == "(new)" ]] && bat {1} --color=always --style=header,grid || [[ {2} == "(deleted)" ]] && ext=$(echo {1} | awk -F. "{if (NF>1 && \$1 != \"\") print \$NF; else print \"txt\"}") && git show HEAD:$(echo $(pwd)/{1} | sed "s|$(git rev-parse --show-toplevel)/||") | bat --color=always --style=header,grid --language $ext || git diff {1} | delta' --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
   )
-  selected=(`echo $selected | sed 's/ (new)//; s/ (deleted)//; s/ (modified)//'`)
+  selected=(`echo $selected | sed 's/(new)//g; s/ (deleted)//g; s/ (modified)//g'`)
   if [ -n "$selected" ]; then
     git diff-side-by-side $selected
   fi
