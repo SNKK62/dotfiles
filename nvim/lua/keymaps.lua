@@ -220,9 +220,10 @@ if not vim.g.vscode then
 	keymap("i", "<C-g>n", "<Plug>(copilot-next)", { noremap = true })
 	keymap("i", "<C-g>p", "<Plug>(copilot-previous)", { noremap = true })
 	keymap("i", "<C-g>w", "<Plug>(copilot-accept-word)", { noremap = true })
-	keymap("i", "<C-g>a", "copilot#Accept()", {
+	keymap("i", "<C-g>a", 'copilot#Accept("")', {
 		expr = true,
 		noremap = true,
+		silent = true,
 	})
 	-- copilot chat
 	-- (Copilot Chat Buffer) chat with Copilot using the entire buffer content

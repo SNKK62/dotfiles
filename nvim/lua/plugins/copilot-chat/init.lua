@@ -1,5 +1,9 @@
+-- https://github.com/ykamikawa/nvim-packer-lsp/blob/afe3267ffba71bf825ce0bcaf4491242de84010e/after/plugin/copilot.rc.lua
 return function()
 	local chat = require("CopilotChat")
+	-- Setup the CMP integration
+	require("CopilotChat.integrations.cmp").setup()
+
 	local select = require("CopilotChat.select")
 	chat.setup({
 		debug = true, -- Enable debug mode
@@ -8,9 +12,61 @@ return function()
 
 		model = "gpt-4o", -- Model to use for chat
 		temperature = 0.1, -- Temperature for sampling
-
 		-- Override the default prompts
 		prompts = {
+			-- https://github.com/jellydn/lazy-nvim-ide/blob/5238b765d423a16098c23d7b0a581695ead54c93/lua/plugins/extras/copilot-chat-v2.lua
+			-- additonal prompts
+			Review = {
+				prompt = "Please review the following code and provide suggestions for improvement.",
+				selection = select.selection,
+			},
+			FixCode = {
+				prompt = "Please fix the following code to make it work as intended.",
+				selection = select.selection,
+			},
+			FixError = {
+				prompt = "Please explain the error in the following text and provide a solution.",
+				selection = select.selection,
+			},
+			BetterNamings = {
+				prompt = "Please provide better names for the following variables and functions.",
+				selection = select.selection,
+			},
+			Documentation = {
+				prompt = "Please provide documentation for the following code.",
+				selection = select.selection,
+			},
+			SwaggerApiDocs = {
+				prompt = "Please provide documentation for the following API using Swagger.",
+				selection = select.selection,
+			},
+			SwaggerJsDocs = {
+				prompt = "Please write JSDoc for the following API using Swagger.",
+				selection = select.selection,
+			},
+			-- Text related prompts
+			Summarize = {
+				prompt = "Please summarize the following text.",
+				selection = select.selection,
+			},
+			Spelling = {
+				prompt = "Please correct any grammar and spelling errors in the following text.",
+				selection = select.selection,
+			},
+			Wording = {
+				prompt = "Please improve the grammar and wording of the following text.",
+				selection = select.selection,
+			},
+			Concise = {
+				prompt = "Please rewrite the following text to make it more concise.",
+				selection = select.selection,
+			},
+			Translate = {
+				prompt = "Please translate the following text to Japanese.",
+				selection = select.selection,
+			},
+
+			-- Japanse prompts
 			ExplainJP = {
 				prompt = "/COPILOT_EXPLAIN 選択したコードの説明を段落をつけて書いてください。",
 				selection = select.selection,
@@ -50,7 +106,7 @@ return function()
 		},
 		window = {
 			layout = "vertical", -- 'vertical', 'horizontal', 'float', 'replace'
-			width = 0.3, -- fractional width of parent, or absolute width in columns when > 1
+			width = 0.4, -- fractional width of parent, or absolute width in columns when > 1
 			height = 0.3, -- fractional height of parent, or absolute height in rows when > 1
 			-- Options below only apply to floating windows
 			relative = "editor", -- 'editor', 'win', 'cursor', 'mouse'

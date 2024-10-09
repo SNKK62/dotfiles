@@ -1,3 +1,4 @@
+-- https://github.com/ykamikawa/nvim-packer-lsp/blob/afe3267ffba71bf825ce0bcaf4491242de84010e/after/plugin/copilot.rc.lua
 local M = {}
 
 local chat = require("CopilotChat")
