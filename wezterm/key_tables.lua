@@ -39,6 +39,11 @@ return {
 			action = act.CopyMode("MoveBackwardWord"),
 		},
 		{
+			key = "h",
+			mods = "CTRL",
+			action = act.CopyMode("MoveBackwardWord"),
+		},
+		{
 			key = "d",
 			mods = "CTRL",
 			action = act.CopyMode({ MoveByPage = 0.5 }),
@@ -96,6 +101,11 @@ return {
 			action = act.CopyMode("MoveForwardWord"),
 		},
 		{
+			key = "l",
+			mods = "CTRL",
+			action = act.CopyMode("MoveForwardWord"),
+		},
+		{
 			key = "y",
 			mods = "NONE",
 			action = act.Multiple({
@@ -106,7 +116,9 @@ return {
 			}),
 		},
 		{ key = "UpArrow", mods = "NONE", action = act.CopyMode("MoveUp") },
+		{ key = "k", mods = "CTRL", action = act.CopyMode("MoveUp") },
 		{ key = "DownArrow", mods = "NONE", action = act.CopyMode("MoveDown") },
+		{ key = "j", mods = "CTRL", action = act.CopyMode("MoveDown") },
 	},
 	pane = {
 		{ key = "h", action = act.ActivatePaneDirection("Left") },
