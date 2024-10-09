@@ -192,5 +192,9 @@ return {
 				end),
 			}),
 		},
+		-- Cancel the mode
+		{ key = "Enter", action = "PopKeyTable" },
+		{ key = "Escape", action = "PopKeyTable" },
+		{ key = "c", mods = "CTRL", action = "PopKeyTable" },
 	},
 }
