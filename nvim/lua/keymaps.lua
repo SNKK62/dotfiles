@@ -29,6 +29,7 @@ keymap("i", "<C-l>", "<RIGHT>", { noremap = true })
 keymap("n", "F<CR>", "{", { noremap = true })
 keymap("n", "f<CR>", "}", { noremap = true })
 
+-- set the cursr position to the center
 keymap("n", "<C-d>", "<C-d>zz", { noremap = true })
 keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
 keymap("n", "n", "nzz", { noremap = true })
@@ -41,9 +42,6 @@ keymap("n", "D", '"_d', { noremap = true })
 
 -- word object
 keymap({ "o", "x" }, "i<SPACE>", "iW", { noremap = true })
-
--- redo
-keymap("n", "U", "<C-r>", { noremap = true })
 
 -- matchup
 keymap({ "n", "x" }, "M", "<plug>(matchup-%)", { noremap = true, silent = true })
@@ -62,11 +60,17 @@ function _G.set_macro_keybind(key)
 		return "q"
 	end
 end
+local macro_prefix = "Q"
 local function add_macro(key)
-	keymap("n", "q" .. key, "v:lua.set_macro_keybind('" .. key .. "')", { noremap = true, expr = true, silent = true })
+	keymap(
+		"n",
+		macro_prefix .. key,
+		"v:lua.set_macro_keybind('" .. key .. "')",
+		{ noremap = true, expr = true, silent = true }
+	)
 end
--- only q is used for recording
-add_macro("q")
+-- only W is used for recording
+add_macro("W")
 
 keymap("n", "<ESC>", "v:lua.escape_in_macro()", { noremap = true, expr = true, silent = true })
 function _G.escape_in_macro()
@@ -79,16 +83,16 @@ function _G.escape_in_macro()
 	end
 end
 
-keymap("n", "Q", "@q", { noremap = true, expr = true, silent = true })
+keymap("n", "@", "@W", { noremap = true })
 
 -- selection
-keymap("x", "y", "mzy`z", { noremap = true })
-keymap("n", "gV", "`[V`]", { noremap = true })
+keymap("x", "y", "mzy`z", { noremap = true }) -- remain the cursor position
+keymap("n", "gV", "`[V`]", { noremap = true }) -- select the last pasted text
 
 -- paste
-keymap("x", "p", "P", { noremap = true })
-keymap("n", "p", "]p`]", { noremap = true })
-keymap("n", "P", "]P`]", { noremap = true })
+keymap("x", "p", "P", { noremap = true }) -- prevent polluting the register on paste in visual mode
+keymap("n", "p", "]p`]", { noremap = true }) -- set the cursor position to the end of the pasted text
+keymap("n", "P", "]P`]", { noremap = true }) -- set the cursor position to the end of the pasted text
 
 -- indent in a row
 keymap("x", "<", "<gv", { noremap = true })
