@@ -260,6 +260,9 @@ local pure_plugins = {
 		config = require("plugins/yati"),
 	},
 	{
+		"RRethy/nvim-treesitter-textsubjects",
+	},
+	{
 		"nvim-treesitter/nvim-treesitter-context",
 		config = require("plugins/treesitter-context"),
 	},
