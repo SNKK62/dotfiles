@@ -2,12 +2,13 @@ return function()
 	local palette = require("palette")
 	local colors = require("colors")
 	local utils = require("utils")
-	-- this is required for underline indicator
 	utils.set_highlights("buffer_line_underline_indicator_highlight", {
+		-- this is required for underline indicator
 		TabLineSel = {
 			bg = palette.red,
 		},
 	})
+
 	local normal_bg = colors.alpha_blend(palette.background, "#ffffff", 0.85)
 	local selected_bg = colors.alpha_blend(palette.background, "#ffffff", 0.55)
 	local normal_fg = colors.alpha_blend(palette.text, palette.background, 0.6)
@@ -73,8 +74,8 @@ return function()
 		},
 		highlights = {
 			fill = { -- The color of the remainder at the end
-				fg = "#000000",
-				bg = "#000000",
+				fg = palette.background,
+				bg = palette.background,
 			},
 			background = {
 				fg = normal_fg,
@@ -86,11 +87,11 @@ return function()
 				bold = true,
 			},
 			separator = {
-				fg = "#000000", -- between buffers
+				fg = palette.background, -- between buffers
 				bg = normal_bg,
 			},
 			separator_selected = {
-				fg = "#000000", -- between buffers
+				fg = palette.background, -- between buffers
 				bg = selected_bg,
 			},
 			close_button = {
