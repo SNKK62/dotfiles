@@ -31,7 +31,7 @@ config.audible_bell = "Disabled"
 config.window_decorations = "RESIZE"
 -- hide tab bar
 config.show_tabs_in_tab_bar = true
-config.hide_tab_bar_if_only_one_tab = true
+config.hide_tab_bar_if_only_one_tab = false
 config.show_new_tab_button_in_tab_bar = false
 config.show_close_tab_button_in_tabs = false
 config.use_fancy_tab_bar = true
@@ -80,9 +80,9 @@ config.underline_thickness = "2.5px"
 
 ---@diagnostic disable-next-line: unused-local
 wezterm.on("update-right-status", function(window, pane)
-	local mode = "TABLE: " .. (window:active_key_table() or "NORMAL")
-	local workspace = "WORKSPACE: " .. window:active_workspace()
-	window:set_right_status(mode .. " " .. workspace)
+	local mode = "TABLE:  " .. (window:active_key_table() or "normal")
+	local workspace = 'WORKSPACE:  " ' .. window:active_workspace() .. ' "'
+	window:set_right_status(mode .. ",  " .. workspace)
 end)
 
 config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 1000 }

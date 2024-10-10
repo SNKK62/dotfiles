@@ -161,7 +161,7 @@ return {
 	},
 	workspace = {
 		{
-			key = "p",
+			key = "s",
 			action = act.ShowLauncherArgs({ flags = "WORKSPACES", title = "Select workspace" }),
 		},
 		{
