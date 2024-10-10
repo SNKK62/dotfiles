@@ -16,7 +16,7 @@ return function()
 			"less",
 			"markdown",
 			"scss",
-			"typescript",
+			-- "typescript",
 			-- "typescriptreact",
 			"yaml",
 		},
