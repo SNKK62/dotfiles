@@ -19,7 +19,7 @@ local colors = {
 	},
 }
 
-config.window_background_opacity = 0.92
+config.window_background_opacity = 0.95
 config.macos_window_background_blur = 50
 
 config.font = wezterm.font("HackGen35 Console NF", { weight = "Regular", stretch = "Normal", style = "Normal" })
