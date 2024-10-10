@@ -129,7 +129,7 @@ end, workspace_files)
 
 local general_on_attach = function(client, bufnr)
 	--client.server_capabilities.documentFormattingProvider = false
-	trigger_workspace_diagnostics(client, bufnr, workspace_files)
+	-- trigger_workspace_diagnostics(client, bufnr, workspace_files)
 end
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
