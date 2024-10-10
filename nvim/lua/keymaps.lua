@@ -333,6 +333,10 @@ if not vim.g.vscode then
 
 	-- action
 	keymap({ "n", "v" }, "<Leader>ac", require("actions-preview").code_actions, { silent = true })
+
+	-- format
+	keymap("n", "<Leader>fmt", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", { noremap = true, silent = true })
+
 	-- float terminal
 	keymap({ "n", "t" }, "ƒ", "<cmd>Lspsaga term_toggle<CR>", { silent = true }) -- <A-f>
 	keymap({ "n", "t" }, "<A-f>", "<cmd>Lspsaga term_toggle<CR>", { silent = true })

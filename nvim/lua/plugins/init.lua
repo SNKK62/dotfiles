@@ -186,10 +186,10 @@ local pure_plugins = {
 			"nvim-lua/plenary.nvim",
 		},
 	},
-	{
-		"MunifTanjim/prettier.nvim",
-		config = require("plugins/prettier"),
-	},
+	-- {
+	-- 	"MunifTanjim/prettier.nvim",
+	-- 	config = require("plugins/prettier"),
+	-- },
 	{
 		"williamboman/mason.nvim",
 	},

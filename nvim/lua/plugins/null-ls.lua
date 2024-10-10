@@ -11,19 +11,32 @@ null_ls.setup({
 		-- null_ls.builtins.diagnostics.eslint_d.with({
 		-- 	diagnostics_format = "[eslint] #{m}\n(#{c})",
 		-- }),
-		null_ls.builtins.formatting.prettier,
+		-- null_ls.builtins.formatting.prettier, -- TODO: Add more filetypes except js, jsx and t*
 		-- null_ls.builtins.diagnostics.fish,
 	},
 	on_attach = function(client, bufnr)
+		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 		if client.supports_method("textDocument/formatting") then
-			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				group = augroup,
-				buffer = bufnr,
-				callback = function()
-					vim.lsp.buf.format({ async = false })
-				end,
-			})
+			for _, ft in ipairs(client.config.filetypes) do
+				vim.notify(ft)
+			end
+			if
+				vim.tbl_contains(client.config.filetypes, "lua")
+				-- TODO: Add more filetypes except js, jsx and t*
+				-- or vim.tbl_contains(client.config.filetypes, "json")
+				-- or vim.tbl_contains(client.config.filetypes, "yaml")
+			then
+				vim.notify(client.name)
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					group = augroup,
+					buffer = bufnr,
+					callback = function()
+						vim.lsp.buf.format({
+							async = false,
+						})
+					end,
+				})
+			end
 		end
 	end,
 })

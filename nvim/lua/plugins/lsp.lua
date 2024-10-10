@@ -184,10 +184,10 @@ lspconfig.eslint.setup({
 		general_on_attach(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = true
 		client.server_capabilities.documentRangeFormattingProvider = true
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			buffer = bufnr,
-			command = "EslintFixAll",
-		})
+		-- vim.api.nvim_create_autocmd("BufWritePre", {
+		-- 	buffer = bufnr,
+		-- 	command = "EslintFixAll",
+		-- })
 	end,
 	handlers = {
 		["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
