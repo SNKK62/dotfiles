@@ -195,6 +195,8 @@ if not vim.g.vscode then
 
 	-- treesitter-context
 	keymap("n", "<Leader>tsc", "<Cmd>TSContextToggle<CR>", { noremap = true, silent = true })
+	-- treesitter-context-vt
+	keymap("n", "<Leader>tsv", "<Cmd>TSContextVToggle<CR>", { noremap = true, silent = true })
 
 	-- splitting/joining
 	vim.keymap.set("n", "<Leader>sj", require("treesj").toggle)
