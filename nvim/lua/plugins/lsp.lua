@@ -102,7 +102,7 @@ for _, line in ipairs(status_lines) do
 		local new_file = string.sub(line, 4)
 		-- convert to relative path from the project root
 		new_file = vim.fn.fnamemodify(new_file, ":.")
-		new_file = string.sub(new_file, #sub_dir + 2)
+		new_file = string.sub(new_file, #sub_dir + (#sub_dir == 0 and 1 or 2))
 		-- insert to workspace_files
 		table.insert(workspace_files, new_file)
 	end
@@ -111,7 +111,7 @@ for _, line in ipairs(status_lines) do
 		local deleted_file = string.sub(line, 4)
 		-- convert to relative path from the project root
 		deleted_file = vim.fn.fnamemodify(deleted_file, ":.")
-		deleted_file = string.sub(deleted_file, #sub_dir + 2)
+		deleted_file = string.sub(deleted_file, #sub_dir + (#sub_dir == 0 and 1 or 2))
 		-- remove from workspace_files
 		for i, file in ipairs(workspace_files) do
 			if file == deleted_file then
