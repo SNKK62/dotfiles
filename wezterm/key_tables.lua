@@ -180,9 +180,9 @@ return {
 			key = "n",
 			action = act.PromptInputLine({
 				description = "(wezterm) Create new workspace:",
-				action = wezterm.action_callback(function(window, pane, line)
+				action = wezterm.action_callback(function(win, pane, line)
 					if line then
-						window:perform_aciton(
+						win:perform_action(
 							act.SwitchToWorkspace({
 								name = line,
 							}),
