@@ -164,14 +164,6 @@ fvi() {
     done
 }
 
-# git checkout
-fgc() {
-    local branch
-    branch=$(git branch $@ | grep -v HEAD |
-            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m)
-    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
 # git add, diff
 fga() {
   local out q n addfiles preview_cmd
@@ -256,18 +248,29 @@ fgref() {
 
 # git branch
 fgb() {
-  local out q n selected_branch
+  local out q n selected_branch new_branch_name
+  git fetch --prune
   while out=$(
       git branch $@ | grep -v HEAD |
-          fzf-tmux --expect=ctrl-d,enter
+          fzf-tmux --expect=ctrl-c,ctrl-d,ctrl-p,ctrl-n,enter
   ); do
     q=$(head -1 <<< "$out")
     selected_branch=`echo $(tail -1 <<< "$out")`
-    if [ "$q" = ctrl-d ]; then
+    if [ "$q" = ctrl-c ]; then
+      break
+    elif [ "$q" = ctrl-d ]; then
       [[ -z "$selected_branch" ]] && continue
       git branch -D $selected_branch
+    elif [ "$q" = ctrl-p ]; then
+      echo $(echo "$selected_branch" | sed "s/.* //")
+      break
+    elif [ "$q" = ctrl-n ]; then
+      echo -n "Enter a new branch name: "
+      read new_branch_name
+      git checkout -b $new_branch_name
+      break
     elif [ "$q" = enter ]; then
-      echo $selected_branch
+      git switch $(echo "$selected_branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
       break
     fi
   done
