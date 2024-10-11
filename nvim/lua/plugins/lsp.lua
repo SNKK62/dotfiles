@@ -15,6 +15,11 @@ require("utils").set_highlights("lsp_dignostic_virtual_text", {
 	DiagnosticVirtualTextInfo = { bg = "none" },
 	DiagnosticVirtualTextHint = { bg = "none" },
 })
+-- make diagnostic underline to undercurl
+vim.cmd([[hi DiagnosticUnderlineError gui=undercurl ]])
+vim.cmd([[hi DiagnosticUnderlineWarn gui=undercurl ]])
+vim.cmd([[hi DiagnosticUnderlineInfo gui=undercurl ]])
+vim.cmd([[hi DiagnosticUnderlineHint gui=undercurl ]])
 
 -- diagnostics seviry
 vim.diagnostic.config({
