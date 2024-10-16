@@ -1,7 +1,19 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 return {
-	-- -- move back one word
+	-- decrease font size
+	{
+		key = "-",
+		mods = "SUPER",
+		action = act.DecreaseFontSize,
+	},
+	-- increase font size
+	{
+		key = "=",
+		mods = "SUPER",
+		action = act.IncreaseFontSize,
+	},
+	-- move back one word
 	{
 		key = "h",
 		mods = "CTRL|SHIFT",
@@ -10,7 +22,7 @@ return {
 			window:perform_action(act.SendKey({ key = "b" }), pane)
 		end),
 	},
-	-- -- move forward one word
+	-- move forward one word
 	{
 		key = "l",
 		mods = "CTRL|SHIFT",
