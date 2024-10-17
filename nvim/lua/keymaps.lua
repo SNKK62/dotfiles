@@ -314,6 +314,8 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>rf", "<cmd>Lspsaga finder ref<CR>", { silent = true })
 	-- definition
 	keymap("n", "<Leader>df", "<Cmd>tab lua vim.lsp.buf.definition()<CR>", { silent = true })
+	-- close unused navigation window
+	keymap("n", "<Leader>dd", "<C-w>j:q<CR>", { silent = true })
 	-- type definition
 	keymap("n", "<Leader>ty", "<cmd>Lspsaga finder tyd<CR>", { silent = true })
 	-- implementation
