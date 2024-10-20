@@ -151,8 +151,11 @@ require("mason-lspconfig").setup({
 		"jsonls",
 		"tailwindcss",
 		"prismals",
+		"rust_analyzer",
 	},
 })
+
+local augroup = vim.api.nvim_create_augroup("CustomLspFormatting", { clear = true })
 
 local lspconfig = require("lspconfig")
 require("mason-lspconfig").setup_handlers({
@@ -212,6 +215,37 @@ lspconfig.lua_ls.setup({
 		Lua = {
 			diagnostics = {
 				globals = { "vim" },
+			},
+		},
+	},
+	handlers = {
+		["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+			update_in_insert = true,
+		}),
+	},
+})
+
+-- Rust
+lspconfig.rust_analyzer.setup({
+	on_attach = function(client, bufnr)
+		general_on_attach(client, bufnr)
+		client.server_capabilities.documentFormattingProvider = true
+		client.server_capabilities.documentRangeFormattingProvider = true
+		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = augroup,
+			buffer = bufnr,
+			callback = function()
+				vim.lsp.buf.format({
+					async = false,
+				})
+			end,
+		})
+	end,
+	settings = {
+		["rust-analyzer"] = {
+			check = {
+				command = "clippy",
 			},
 		},
 	},
