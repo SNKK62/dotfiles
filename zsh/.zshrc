@@ -410,3 +410,5 @@ lt() {
   fi
 }
 
+# image viewer (in iTerm2, wezterm)
+alias imgcat="wezterm imgcat"
