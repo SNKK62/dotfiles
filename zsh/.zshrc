@@ -249,7 +249,20 @@ fgref() {
 # git branch
 fgb() {
   local out q n selected_branch new_branch_name
-  git fetch --prune
+  case $1 in
+      -r)
+          git fetch --prune
+          shift $((OPTIND - 1))
+          ;;
+      -n)
+          echo -n "Enter a new branch name: "
+          read new_branch_name
+          git checkout -b $new_branch_name
+          return 0
+          ;;
+      *)
+          ;;
+  esac
   while out=$(
       git branch $@ | grep -v HEAD |
           fzf-tmux --expect=ctrl-c,ctrl-d,ctrl-p,ctrl-n,enter
