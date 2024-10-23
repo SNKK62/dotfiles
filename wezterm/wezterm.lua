@@ -85,7 +85,7 @@ wezterm.on("update-right-status", function(window, pane)
 	window:set_right_status(mode .. ",  " .. workspace)
 end)
 
-config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 1000 }
+config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 2000 }
 config.disable_default_key_bindings = true
 config.keys = require("keys")
 config.key_tables = require("key_tables")
