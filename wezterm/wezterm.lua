@@ -85,6 +85,29 @@ wezterm.on("update-right-status", function(window, pane)
 	window:set_right_status(mode .. ",  " .. workspace)
 end)
 
+wezterm.on("tab-closing", function(window, _)
+	local workspace = window:active_workspace()
+	local tabs_in_current_workspace = window:tabs_for_workspace(workspace)
+
+	if #tabs_in_current_workspace == 1 then
+		local all_workspaces = window:workspaces()
+		if #all_workspaces > 1 then
+			local next_workspace = nil
+			for _, ws in ipairs(all_workspaces) do
+				if ws ~= workspace then
+					next_workspace = ws
+					break
+				end
+			end
+			if next_workspace then
+				window:set_active_workspace(next_workspace)
+			end
+			return true
+		end
+	end
+	return true
+end)
+
 config.leader = { key = "a", mods = "SUPER", timeout_milliseconds = 2000 }
 config.disable_default_key_bindings = true
 config.keys = require("keys")
