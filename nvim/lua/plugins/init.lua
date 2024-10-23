@@ -381,6 +381,9 @@ local pure_plugins = {
 		config = true,
 		event = "VeryLazy",
 	},
+	{
+		"Shougo/vinarise.vim",
+	},
 }
 
 local vscode_plugins = {}
