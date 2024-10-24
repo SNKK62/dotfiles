@@ -249,20 +249,6 @@ fgref() {
 # git branch
 fgb() {
   local out q n selected_branch new_branch_name
-  case $1 in
-      -r)
-          git fetch --prune
-          shift $((OPTIND - 1))
-          ;;
-      -n)
-          echo -n "Enter a new branch name: "
-          read new_branch_name
-          git checkout -b $new_branch_name
-          return 0
-          ;;
-      *)
-          ;;
-  esac
   while out=$(
       git branch $@ | grep -v HEAD |
           fzf-tmux --expect=ctrl-c,ctrl-d,ctrl-p,ctrl-n,enter
@@ -382,12 +368,23 @@ alias gds='git diff-side-by-side --stat --patch'
 alias gda='gds --staged'
 alias gc='git commit -m'
 alias gp='git push'
-alias gpl='git pull'
+alias gpl='git pull && git fetch --prune'
 alias gs='git status'
 alias gst='git stash'
 alias gsw='git switch'
-alias gb='git branch'
-alias gcb='git checkout -b'
+gb () {
+  case $1 in
+    -n)
+      echo -n "Enter a new branch name: "
+      read new_branch_name
+      git checkout -b $new_branch_name
+      return 0
+      ;;
+    *)
+      ;;
+  esac
+  git branch $@
+}
 alias gref='git reflog'
 
 alias cdroot='cd `git rev-parse --show-toplevel`'
