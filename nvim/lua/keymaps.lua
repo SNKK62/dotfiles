@@ -158,6 +158,10 @@ if vim.g.vscode then
 end
 
 if not vim.g.vscode then
+	-- window navigation
+	keymap({ "t", "n" }, "<C-w>v", "<C-w>v<C-w>l", { noremap = true })
+	keymap({ "t", "n" }, "<C-w>s", "<C-w>s<C-w>j", { noremap = true })
+
 	-- terminal mode setting
 	keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true })
 	keymap("n", "<C-w>t", "<Cmd>terminal<CR>", { noremap = true, silent = true })
