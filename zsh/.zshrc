@@ -259,7 +259,7 @@ fgb() {
       break
     elif [ "$q" = ctrl-d ]; then
       [[ -z "$selected_branch" ]] && continue
-      git branch -D $selected_branch
+      git branch -D $(echo "$selected_branch" | sed "s/.* //")
     elif [ "$q" = ctrl-p ]; then
       echo $(echo "$selected_branch" | sed "s/.* //")
       break
@@ -372,6 +372,7 @@ alias gpl='git pull && git fetch --prune'
 alias gs='git status'
 alias gst='git stash'
 alias gsw='git switch'
+unalias gb # temporary solution
 gb () {
   case $1 in
     -n)
