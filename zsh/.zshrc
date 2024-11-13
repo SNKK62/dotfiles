@@ -234,7 +234,7 @@ fgref() {
   while [[ $# -gt 0 ]]; do
     case $1 in
       --hard|--mixed|--soft)  opt="$1"; shift;;
-      -*|--*) echo "[ERROR] Unknown option $1"; exit 1;;
+      -*|--*) echo "[ERROR] Unknown option $1"; return 1;;
       *) args+=("$1"); shift;;
     esac
   done
