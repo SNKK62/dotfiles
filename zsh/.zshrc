@@ -164,6 +164,14 @@ fvi() {
     done
 }
 
+# ssh
+function fssh() {
+  local host=$(grep -E "^Host " ~/.ssh/config | sed -e 's/Host[ ]*//g' | fzf)
+  if [ -n "$host" ]; then
+    ssh $host
+  fi
+}
+
 # git add, diff
 fga() {
   local out q n addfiles preview_cmd
