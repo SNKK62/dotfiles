@@ -24,7 +24,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 10
 
 # Possible values: tiles|accordion
-default-root-container-layout = 'tiles'
+default-root-container-layout = 'floating'
 
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
@@ -141,7 +141,7 @@ a = ['close-all-windows-but-current', 'mode main']
 # c = ['macos-native-minimize'] # this command is implemented in hammerspoon config
 m = ['macos-native-fullscreen']
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-#s = ['layout sticky tiling', 'mode main']
+# s = ['layout sticky tiling', 'mode main']
 h = ['join-with left']
 j = ['join-with down']
 k = ['join-with up']
@@ -187,15 +187,15 @@ if.app-id = 'com.tinyspeck.slackmacgap'
 check-further-callbacks = true
 run = ['move-node-to-workspace 1']
 
+# [[on-window-detected]]
+# if.workspace = '1'
+# check-further-callbacks = true
+# run = ['layout floating']
+#
 [[on-window-detected]]
-if.workspace = '1'
+if.workspace = '3'
 check-further-callbacks = true
-run = ['layout floating']
-
-[[on-window-detected]]
-if.workspace = '2'
-check-further-callbacks = true
-run = ['layout floating']
+run = ['layout tiling']
 
 [workspace-to-monitor-force-assignment]
 1 = 1 # Monitor sequence number from left to right. 1-based indexing
