@@ -61,11 +61,20 @@ return {
 		action = act.SpawnWindow,
 	},
 	{
+		key = "n",
+		mods = "SUPER|SHIFT",
+		action = act.SplitPane({ direction = "Right" }),
+	},
+	{
 		key = "w",
 		mods = "SUPER",
 		action = act.CloseCurrentTab({ confirm = true }),
 	},
 	{ key = "q", mods = "SUPER", action = wezterm.action.QuitApplication },
+	{ key = "h", mods = "SUPER", action = act.ActivatePaneDirection("Left") },
+	{ key = "l", mods = "SUPER", action = act.ActivatePaneDirection("Right") },
+	{ key = "k", mods = "SUPER", action = act.ActivatePaneDirection("Up") },
+	{ key = "j", mods = "SUPER", action = act.ActivatePaneDirection("Down") },
 	{
 		key = "f",
 		mods = "SUPER",
