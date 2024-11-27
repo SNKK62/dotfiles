@@ -241,17 +241,19 @@ fgref() {
   args=()
   while [[ $# -gt 0 ]]; do
     case $1 in
-      --hard|--mixed|--soft)  opt="$1"; shift;;
+      --hard|-h|--mixed|-m|--soft|-s)  opt="$1"; shift;;
       -*|--*) echo "[ERROR] Unknown option $1"; return 1;;
       *) args+=("$1"); shift;;
     esac
   done
-  set -- "${args[@]}"  #// set $1, $2, ...
+  set -- "${args[@]}"  # set $1, $2, ...
 
   if [ -z $opt ]; then
-    opt="--mixed"
+    # copy commit hash to clipboard
+    echo $selected | cut -d ' ' -f 1 | pbcopy # work on Mac // TODO: for Linux
+  else
+    git reset $opt `echo $selected | cut -d ' ' -f 1` $@
   fi
-  git reset $opt `echo $selected | cut -d ' ' -f 1` $@
 }
 
 # git branch
