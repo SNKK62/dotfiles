@@ -425,7 +425,7 @@ lt() {
   local cmd="ls --tree --ignore-glob '.git' --ignore-glob 'node_modules'"
 
   if $show_all; then
-    eval "$cmd $target_dir"
+    eval "$cmd -a $target_dir"
   else
     eval "$cmd -d $target_dir"
   fi
