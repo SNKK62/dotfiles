@@ -410,10 +410,14 @@ alias lf='fzfp'
 lt() {
   local show_all=false
   local target_dir="."
+  local ignore_paths=('.git' 'node_modules')
+  local depth
 
-  while getopts "a" opt; do
+  while getopts "a:i:d:" opt; do
     case "$opt" in
       a) show_all=true ;;
+      i) ignore_paths+=("$OPTARG") ;;
+      d) depth="$OPTARG" ;;
     esac
   done
   shift $((OPTIND - 1))
@@ -422,13 +426,22 @@ lt() {
     target_dir="$@"
   fi
 
-  local cmd="ls --tree --ignore-glob '.git' --ignore-glob 'node_modules'"
+  local cmd="ls --tree"
 
-  if $show_all; then
-    eval "$cmd -a $target_dir"
+  for p in "${ignore_paths[@]}"; do
+    echo $p
+    cmd+=" --ignore-glob '$p'"
+  done
+
+  if [[ -n "$depth" ]]; then
+    cmd+=" --depth $depth"
+  elif $show_all; then
+    cmd+=" -a"
   else
-    eval "$cmd -d $target_dir"
+    cmd+=" --directory-only"
   fi
+
+  eval "$cmd $target_dir"
 }
 
 # image viewer (in iTerm2, wezterm)
