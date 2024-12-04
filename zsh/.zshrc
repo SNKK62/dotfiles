@@ -413,7 +413,7 @@ lt() {
   local ignore_paths=('.git' 'node_modules')
   local depth
 
-  while getopts "a:i:d:" opt; do
+  while getopts "ai:d:" opt; do
     case "$opt" in
       a) show_all=true ;;
       i) ignore_paths+=("$OPTARG") ;;
@@ -429,7 +429,6 @@ lt() {
   local cmd="ls --tree"
 
   for p in "${ignore_paths[@]}"; do
-    echo $p
     cmd+=" --ignore-glob '$p'"
   done
 
