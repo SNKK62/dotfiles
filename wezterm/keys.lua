@@ -60,11 +60,7 @@ return {
 		mods = "SUPER",
 		action = act.SpawnWindow,
 	},
-	{
-		key = "n",
-		mods = "SUPER|SHIFT",
-		action = act.SplitPane({ direction = "Right" }),
-	},
+	{ key = "d", mods = "SUPER", action = act({ CloseCurrentPane = { confirm = true } }) },
 	{
 		key = "w",
 		mods = "SUPER",
@@ -72,9 +68,29 @@ return {
 	},
 	{ key = "q", mods = "SUPER", action = wezterm.action.QuitApplication },
 	{ key = "h", mods = "SUPER", action = act.ActivatePaneDirection("Left") },
+	{
+		key = "l",
+		mods = "SUPER|SHIFT",
+		action = act.SplitPane({ direction = "Right" }),
+	},
 	{ key = "l", mods = "SUPER", action = act.ActivatePaneDirection("Right") },
+	{
+		key = "h",
+		mods = "SUPER|SHIFT",
+		action = act.SplitPane({ direction = "Left" }),
+	},
 	{ key = "k", mods = "SUPER", action = act.ActivatePaneDirection("Up") },
+	{
+		key = "k",
+		mods = "SUPER|SHIFT",
+		action = act.SplitPane({ direction = "Up" }),
+	},
 	{ key = "j", mods = "SUPER", action = act.ActivatePaneDirection("Down") },
+	{
+		key = "j",
+		mods = "SUPER|SHIFT",
+		action = act.SplitPane({ direction = "Down" }),
+	},
 	{
 		key = "f",
 		mods = "SUPER",
