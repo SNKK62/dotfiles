@@ -7,10 +7,10 @@ vim.g.mapleader = " "
 keymap({ "n", "v" }, "j", "gj", { noremap = true })
 keymap({ "n", "v" }, "k", "gk", { noremap = true })
 
-keymap({ "n", "v" }, "<C-j>", "12j", { noremap = true })
-keymap({ "n", "v" }, "<DOWN>", "12j", { noremap = true })
-keymap({ "n", "v" }, "<C-k>", "12k", { noremap = true })
-keymap({ "n", "v" }, "<UP>", "12k", { noremap = true })
+keymap({ "n", "v" }, "<C-j>", "11j", { noremap = true })
+keymap({ "n", "v" }, "<DOWN>", "11j", { noremap = true })
+keymap({ "n", "v" }, "<C-k>", "11k", { noremap = true })
+keymap({ "n", "v" }, "<UP>", "11k", { noremap = true })
 keymap({ "n", "v" }, "<C-h>", "10h", { noremap = true })
 keymap({ "n", "v" }, "<LEFT>", "10h", { noremap = true })
 keymap({ "n", "v" }, "<C-l>", "10l", { noremap = true })
@@ -38,52 +38,13 @@ keymap("n", "N", "Nzz", { noremap = true })
 -- buffer
 -- delete
 keymap({ "n", "x" }, "x", '"_x', { noremap = true })
-keymap("n", "D", '"_d', { noremap = true })
+keymap("n", "X", '"_d', { noremap = true })
 
 -- word object
 keymap({ "o", "x" }, "i<SPACE>", "iW", { noremap = true })
 
 -- matchup
 keymap({ "n", "x" }, "M", "<plug>(matchup-%)", { noremap = true, silent = true })
-
--- release prefix-q
-keymap("n", "q", "<NOP>", { noremap = true })
-
--- macro
----@param key string key
-function _G.set_macro_keybind(key)
-	if vim.fn.reg_recording() == "" then
-		-- not in recording
-		return "q" .. key
-	else
-		-- in recording
-		return "q"
-	end
-end
-local macro_prefix = "Q"
-local function add_macro(key)
-	keymap(
-		"n",
-		macro_prefix .. key,
-		"v:lua.set_macro_keybind('" .. key .. "')",
-		{ noremap = true, expr = true, silent = true }
-	)
-end
--- only W is used for recording
-add_macro("W")
-
-keymap("n", "<ESC>", "v:lua.escape_in_macro()", { noremap = true, expr = true, silent = true })
-function _G.escape_in_macro()
-	if vim.fn.reg_recording() == "" then
-		-- not in recording
-		return "<ESC>"
-	else
-		-- in recording
-		return "q"
-	end
-end
-
-keymap("n", "@", "@W", { noremap = true })
 
 -- selection
 keymap("x", "y", "mzy`z", { noremap = true }) -- remain the cursor position
