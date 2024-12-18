@@ -72,7 +72,12 @@ zle -N fzf-cdr
 bindkey '^E' fzf-cdr
 
 function cdrepo() {
-    local repodir=$(ghq list | fzf -1 +m)
+    local repodir=$(ghq list | fzf)
+     if [ -z "$repodir" ]; then
+        echo "No repository selected. Exiting."
+        return 1
+    fi
+
     cd $(ghq root)/$repodir
 }
 
@@ -107,13 +112,15 @@ function fzfp() {
   preview_cmd="bat --color=always --style=header,grid {}"
 
   while out=$(
-    fzf --preview $preview_cmd --preview-window=right:60% --exit-0 --expect=ctrl-p,enter "$@"
+    fzf --preview $preview_cmd --preview-window=right:60% --exit-0 --expect=ctrl-p,ctrl-c,enter "$@"
   ); do
     q=$(head -1 <<< "$out")
     n=1
     selected_file=`echo $(tail "-$n" <<< "$out")`
     if [ "$q" = ctrl-p ]; then
       bat $selected_file
+    elif [ "$q" = ctrl-c ]; then
+      break
     elif [ "$q" = enter ]; then
       echo $selected_file
       break
@@ -147,21 +154,9 @@ fcd() {
 }
 
 fvi() {
-    local out q n file
-    while out=$(
-        rg --files --hidden --follow --glob "!**/.git/*" | fzfp --expect=ctrl-c
-    ); do
-        q=$(head -1 <<< "$out")
-        n=$[$(wc -l <<< "$out") - 1]
-        file=(`echo $(tail "-$n" <<< "$out")`)
-        [[ -z "$file" ]] && continue
-        if [ "$q" = ctrl-c ]; then
-            break
-        else
-            vi "$file"
-            break
-        fi
-    done
+    local out=$(rg --files --hidden --follow --glob "!**/.git/*" | fzfp);
+    [[ -z "$out" ]] && return 1
+    vi "$out"
 }
 
 # ssh
