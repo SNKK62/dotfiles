@@ -68,6 +68,16 @@ return {
 	{ key = "q", mods = "SUPER", action = wezterm.action.QuitApplication },
 	{ key = "p", mods = "SUPER", action = act.ActivateCommandPalette },
 	{ key = "r", mods = "SUPER", action = act.ReloadConfiguration },
+	{
+		key = "RightArrow",
+		mods = "SUPER",
+		action = act.ActivateTabRelative(1),
+	},
+	{
+		key = "LeftArrow",
+		mods = "SUPER",
+		action = act.ActivateTabRelative(-1),
+	},
 	-- workaround for zellij
 	{
 		key = "h",
