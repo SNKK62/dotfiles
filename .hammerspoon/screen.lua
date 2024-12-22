@@ -23,4 +23,4 @@ local function moveToNextScreen()
 	focusScreen(window.focusedWindow():screen():next())
 end
 
-hotkey.bind({ "cmd", "ctrl" }, "s", moveToNextScreen)
+-- hotkey.bind({ "cmd", "ctrl" }, "s", moveToNextScreen)

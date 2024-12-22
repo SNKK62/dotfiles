@@ -36,11 +36,11 @@ local function focusNextApp()
 		fnutils.filter(window.orderedWindows(), fnutils.partial(utils.isInScreenAndHasTitle, currentApp:screen()))
 	sortedWindows[#sortedWindows]:focus()
 end
-hotkey.bind({ "cmd", "ctrl" }, "n", focusNextApp)
+-- hotkey.bind({ "cmd", "ctrl" }, "n", focusNextApp)
 
 local function minimizeWindowAndFocusNextApp()
 	local focusedWindow = window.focusedWindow()
 	focusNextApp()
 	focusedWindow:minimize()
 end
-hotkey.bind({ "cmd", "ctrl" }, "c", minimizeWindowAndFocusNextApp)
+-- hotkey.bind({ "cmd", "ctrl" }, "c", minimizeWindowAndFocusNextApp)
