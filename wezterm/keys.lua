@@ -255,6 +255,23 @@ return {
 			mods = "ALT",
 		}),
 	},
+	-- for neovim in zellij
+	{
+		key = ";",
+		mods = "CTRL",
+		action = act.SendKey({
+			key = ";",
+			mods = "ALT",
+		}),
+	},
+	{
+		key = "'",
+		mods = "CTRL",
+		action = act.SendKey({
+			key = "'",
+			mods = "ALT",
+		}),
+	},
 	-- activate copy mode
 	{ key = "v", mods = "LEADER", action = act.ActivateCopyMode },
 	-- activate workspace mode
