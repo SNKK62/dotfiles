@@ -19,7 +19,7 @@ local colors = {
 	},
 }
 
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.88
 config.macos_window_background_blur = 50
 
 config.font = wezterm.font("HackGen35 Console NF", { weight = "Regular", stretch = "Normal", style = "Normal" })
@@ -31,7 +31,7 @@ config.audible_bell = "Disabled"
 config.window_decorations = "RESIZE"
 -- hide tab bar
 config.show_tabs_in_tab_bar = true
-config.hide_tab_bar_if_only_one_tab = false
+config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
 config.show_close_tab_button_in_tabs = false
 config.use_fancy_tab_bar = true
@@ -78,12 +78,12 @@ end)
 -- for underline of bufferline in neovim
 config.underline_thickness = "2.5px"
 
----@diagnostic disable-next-line: unused-local
-wezterm.on("update-right-status", function(window, pane)
-	local mode = "TABLE:  " .. (window:active_key_table() or "normal")
-	local workspace = 'WORKSPACE:  " ' .. window:active_workspace() .. ' "'
-	window:set_right_status(mode .. ",  " .. workspace)
-end)
+-- -@diagnostic disable-next-line: unused-local
+-- wezterm.on("update-right-status", function(window, pane)
+-- 	local mode = "TABLE:  " .. (window:active_key_table() or "normal")
+-- 	local workspace = 'WORKSPACE:  " ' .. window:active_workspace() .. ' "'
+-- 	window:set_right_status(mode .. ",  " .. workspace)
+-- end)
 
 wezterm.on("tab-closing", function(window, _)
 	local workspace = window:active_workspace()

@@ -149,3 +149,18 @@ brew install --cask wezterm
 ```bash
 ln -s ${PWD}/wezterm ~/.config/wezterm
 ```
+
+### Zellij
+
+#### installation
+
+```bash
+brew install zellij
+```
+
+#### configuration
+
+```bash
+ln -s ${PWD}/zellij ~/.config/zellij
+```
+

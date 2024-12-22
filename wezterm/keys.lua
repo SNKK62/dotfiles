@@ -41,11 +41,6 @@ return {
 		}),
 	},
 	{
-		key = "t",
-		mods = "SUPER",
-		action = act.SpawnTab("CurrentPaneDomain"),
-	},
-	{
 		key = "c",
 		mods = "SUPER",
 		action = act.CopyTo("Clipboard"),
@@ -60,69 +55,198 @@ return {
 		mods = "SUPER",
 		action = act.SpawnWindow,
 	},
-	{ key = "d", mods = "SUPER", action = act({ CloseCurrentPane = { confirm = true } }) },
+	{
+		key = "n",
+		mods = "SUPER|SHIFT",
+		action = act.SpawnTab("CurrentPaneDomain"),
+	},
 	{
 		key = "w",
-		mods = "SUPER",
+		mods = "SUPER|SHIFT",
 		action = act.CloseCurrentTab({ confirm = true }),
 	},
 	{ key = "q", mods = "SUPER", action = wezterm.action.QuitApplication },
-	{ key = "h", mods = "SUPER", action = act.ActivatePaneDirection("Left") },
+	{ key = "p", mods = "SUPER", action = act.ActivateCommandPalette },
+	{ key = "r", mods = "SUPER", action = act.ReloadConfiguration },
+	-- workaround for zellij
+	{
+		key = "h",
+		mods = "SUPER",
+		action = act.SendKey({
+			key = "1",
+			mods = "ALT",
+		}),
+	},
 	{
 		key = "l",
-		mods = "SUPER|SHIFT",
-		action = act.SplitPane({ direction = "Right" }),
+		mods = "SUPER",
+		action = act.SendKey({
+			key = "2",
+			mods = "ALT",
+		}),
 	},
-	{ key = "l", mods = "SUPER", action = act.ActivatePaneDirection("Right") },
+	{
+		key = "j",
+		mods = "SUPER",
+		action = act.SendKey({
+			key = "3",
+			mods = "ALT",
+		}),
+	},
+	{
+		key = "k",
+		mods = "SUPER",
+		action = act.SendKey({
+			key = "4",
+			mods = "ALT",
+		}),
+	},
 	{
 		key = "h",
 		mods = "SUPER|SHIFT",
-		action = act.SplitPane({ direction = "Left" }),
+		action = act.SendKey({
+			key = "!",
+			mods = "ALT",
+		}),
 	},
-	{ key = "k", mods = "SUPER", action = act.ActivatePaneDirection("Up") },
 	{
-		key = "k",
+		key = "l",
 		mods = "SUPER|SHIFT",
-		action = act.SplitPane({ direction = "Up" }),
+		action = act.SendKey({
+			key = "@",
+			mods = "ALT",
+		}),
 	},
-	{ key = "j", mods = "SUPER", action = act.ActivatePaneDirection("Down") },
 	{
 		key = "j",
 		mods = "SUPER|SHIFT",
-		action = act.SplitPane({ direction = "Down" }),
+		action = act.SendKey({
+			key = "#",
+			mods = "ALT",
+		}),
 	},
 	{
-		key = "f",
-		mods = "SUPER",
-		action = act.Search({ CaseSensitiveString = "" }),
+		key = "k",
+		mods = "SUPER|SHIFT",
+		action = act.SendKey({
+			key = "$",
+			mods = "ALT",
+		}),
 	},
-	{ key = "p", mods = "SUPER", action = act.ActivateCommandPalette },
-	{ key = "r", mods = "SUPER", action = act.ReloadConfiguration },
+	{
+		key = "d",
+		mods = "SUPER",
+		action = act.SendKey({
+			key = "5",
+			mods = "ALT",
+		}),
+	},
+	{
+		key = "d",
+		mods = "SUPER|SHIFT",
+		action = act.SendKey({
+			key = "%",
+			mods = "ALT",
+		}),
+	},
 	{
 		key = "Tab",
 		mods = "CTRL",
-		action = act.ActivateTabRelative(1),
+		action = act.SendKey({
+			key = "6",
+			mods = "ALT",
+		}),
 	},
 	{
 		key = "Tab",
 		mods = "CTRL|SHIFT",
-		action = act.ActivateTabRelative(-1),
+		action = act.SendKey({
+			key = "^",
+			mods = "ALT",
+		}),
 	},
 	{
 		key = "Tab",
 		mods = "ALT",
-		action = act.MoveTabRelative(1),
+		action = act.SendKey({
+			key = "7",
+			mods = "ALT",
+		}),
 	},
 	{
 		key = "Tab",
 		mods = "ALT|SHIFT",
-		action = act.MoveTabRelative(-1),
+		action = act.SendKey({
+			key = "&",
+			mods = "ALT",
+		}),
 	},
-
+	{
+		key = "t",
+		mods = "SUPER",
+		action = act.SendKey({
+			key = "8",
+			mods = "ALT",
+		}),
+	},
+	{
+		key = "w",
+		mods = "SUPER",
+		action = act.SendKey({
+			key = "9",
+			mods = "ALT",
+		}),
+	},
+	{
+		key = "f",
+		mods = "SUPER",
+		action = act.SendKey({
+			key = "0",
+			mods = "ALT",
+		}),
+	},
+	{
+		key = "p",
+		mods = "SUPER|SHIFT",
+		action = act.SendKey({
+			key = "-",
+			mods = "ALT",
+		}),
+	},
+	{
+		key = "r",
+		mods = "SUPER|SHIFT",
+		action = act.SendKey({
+			key = "_",
+			mods = "ALT",
+		}),
+	},
+	{
+		key = "m",
+		mods = "SUPER|SHIFT",
+		action = act.SendKey({
+			key = "*",
+			mods = "ALT",
+		}),
+	},
+	{
+		key = "t",
+		mods = "SUPER|SHIFT",
+		action = act.SendKey({
+			key = "(",
+			mods = "ALT",
+		}),
+	},
+	{
+		key = "s",
+		mods = "SUPER|SHIFT",
+		action = act.SendKey({
+			key = ")",
+			mods = "ALT",
+		}),
+	},
 	-- activate copy mode
 	{ key = "v", mods = "LEADER", action = act.ActivateCopyMode },
-	-- activate pane mode
-	{ key = "p", mods = "LEADER", action = act.ActivateKeyTable({ name = "pane", one_shot = false }) },
 	-- activate workspace mode
 	{ key = "w", mods = "LEADER", action = act.ActivateKeyTable({ name = "workspace" }) },
 }

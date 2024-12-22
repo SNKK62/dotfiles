@@ -120,45 +120,6 @@ return {
 		{ key = "DownArrow", mods = "NONE", action = act.CopyMode("MoveDown") },
 		{ key = "j", mods = "CTRL", action = act.CopyMode("MoveDown") },
 	},
-	pane = {
-		{ key = "h", action = act.ActivatePaneDirection("Left") },
-		{ key = "l", action = act.ActivatePaneDirection("Right") },
-		{ key = "k", action = act.ActivatePaneDirection("Up") },
-		{ key = "j", action = act.ActivatePaneDirection("Down") },
-		{
-			key = "H",
-			mods = "SHIFT",
-			action = act.SplitPane({ direction = "Left" }),
-		},
-		{
-			key = "L",
-			mods = "SHIFT",
-			action = act.SplitPane({ direction = "Right" }),
-		},
-		{
-			key = "K",
-			mods = "SHIFT",
-			action = act.SplitPane({ direction = "Up" }),
-		},
-		{
-			key = "J",
-			mods = "SHIFT",
-			action = act.SplitPane({ direction = "Down" }),
-		},
-		{ key = "h", mods = "CTRL", action = act.AdjustPaneSize({ "Left", 5 }) },
-		{ key = "LeftArrow", action = act.AdjustPaneSize({ "Left", 5 }) },
-		{ key = "l", mods = "CTRL", action = act.AdjustPaneSize({ "Right", 5 }) },
-		{ key = "RightArrow", action = act.AdjustPaneSize({ "Right", 5 }) },
-		{ key = "k", mods = "CTRL", action = act.AdjustPaneSize({ "Up", 5 }) },
-		{ key = "UpArrow", action = act.AdjustPaneSize({ "Up", 5 }) },
-		{ key = "j", mods = "CTRL", action = act.AdjustPaneSize({ "Down", 5 }) },
-		{ key = "DownArrow", action = act.AdjustPaneSize({ "Down", 5 }) },
-		{ key = "d", action = act({ CloseCurrentPane = { confirm = true } }) },
-		-- Cancel the mode
-		{ key = "Enter", action = "PopKeyTable" },
-		{ key = "Escape", action = "PopKeyTable" },
-		{ key = "c", mods = "CTRL", action = "PopKeyTable" },
-	},
 	workspace = {
 		{
 			key = "s",
