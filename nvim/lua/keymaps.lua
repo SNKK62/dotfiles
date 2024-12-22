@@ -258,6 +258,9 @@ if not vim.g.vscode then
 	-- comment/uncomment
 	keymap("n", "<C-/>", "gcc", { remap = true })
 	keymap("x", "<C-/>", "gc", { remap = true })
+	-- for zellij
+	keymap("n", "<C-_>", "gcc", { remap = true })
+	keymap("x", "<C-_>", "gc", { remap = true })
 
 	-- bufferline
 	keymap("n", "<C-b>c", "<CMD>bdelete!<CR>", { noremap = true, silent = true })

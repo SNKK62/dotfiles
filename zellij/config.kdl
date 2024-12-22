@@ -141,13 +141,6 @@ keybinds clear-defaults=true {
     }
 }
 
-layout {
-    pane size=1 borderless=true {
-        plugin location="tab-bar"
-    }
-    pane
-}
-
 // Plugin aliases - can be used to change the implementation of Zellij
 // changing these requires a restart to take effect
 plugins {
