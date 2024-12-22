@@ -8,12 +8,13 @@ keymap({ "n", "v" }, "j", "gj", { noremap = true })
 keymap({ "n", "v" }, "k", "gk", { noremap = true })
 
 keymap({ "n", "v" }, "<C-j>", "11j", { noremap = true })
-keymap({ "n", "v" }, "<DOWN>", "11j", { noremap = true })
 keymap({ "n", "v" }, "<C-k>", "11k", { noremap = true })
-keymap({ "n", "v" }, "<UP>", "11k", { noremap = true })
 keymap({ "n", "v" }, "<C-h>", "10h", { noremap = true })
-keymap({ "n", "v" }, "<LEFT>", "10h", { noremap = true })
 keymap({ "n", "v" }, "<C-l>", "10l", { noremap = true })
+-- with hammerspoon
+keymap({ "n", "v" }, "<DOWN>", "11j", { noremap = true })
+keymap({ "n", "v" }, "<UP>", "11k", { noremap = true })
+keymap({ "n", "v" }, "<LEFT>", "10h", { noremap = true })
 keymap({ "n", "v" }, "<RIGHT>", "10l", { noremap = true })
 
 keymap({ "n", "v" }, ";;", "$", { noremap = true })
@@ -64,6 +65,11 @@ keymap("n", "<CS-k>", "$<Cmd>move-1-{v:count1}<CR>=l", { noremap = true })
 keymap("n", "<CS-j>", "^<Cmd>move+{v:count1}<CR>=l", { noremap = true })
 keymap("x", "<CS-k>", ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
 keymap("x", "<CS-j>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
+-- wit hammerspoon
+keymap("n", "<S-UP>", "$<Cmd>move-1-{v:count1}<CR>=l", { noremap = true })
+keymap("n", "<S-DOWN>", "^<Cmd>move+{v:count1}<CR>=l", { noremap = true })
+keymap("x", "<S-UP>", ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
+keymap("x", "<S-DOWN>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
 
 -- change case in insert mode
 keymap("i", "<C-g>u", "<ESC>gUiwgi", { noremap = true })
