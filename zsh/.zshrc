@@ -440,3 +440,56 @@ lt() {
 
 # image viewer (in iTerm2, wezterm)
 alias imgcat="wezterm imgcat"
+
+# zellij
+zl() {
+  # If there are arguments, pass them directly to zellij
+  if [[ $# -gt 0 ]]; then
+    zellij "$@"
+    return
+  fi
+
+  local selection
+  local key
+  local session_name
+  local new_session_name
+  while selection=$(
+    # Get the list of zellij sessions and remove ANSI color codes
+    zellij ls \
+      | sed 's/\x1b\[[0-9;]*m//g' \
+      | fzf --header="Select a Zellij session" \
+            --expect="ctrl-n,ctrl-d,ctrl-c,enter"
+  ); do
+    key=$(head -1 <<< "$selection")
+    session_name=`echo $(tail -1 <<< "$selection") | awk '{print $1}'`
+
+    if [[ $? -ne 0 ]]; then
+      return
+    fi
+
+    case "$key" in
+      ctrl-n)
+        echo -n "Enter a new session name: "
+        read new_session_name
+        if [[ -n "$new_session_name" ]]; then
+          zellij -s "$new_session_name"
+          break
+        fi
+        ;;
+      ctrl-d)
+        if [[ -n "$session_name" ]]; then
+          zellij kill-session "$session_name"
+        fi
+        ;;
+      ctrl-c)
+        break
+        ;;
+      enter)
+        if [[ -n "$session_name" ]]; then
+          zellij attach "$session_name"
+          break
+        fi
+        ;;
+    esac
+  done
+}
