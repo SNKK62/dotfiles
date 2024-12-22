@@ -84,11 +84,13 @@ keybinds clear-defaults=true {
         bind "Ctrl u" { HalfPageScrollUp; }
         bind "n" { Search "down"; }
         bind "Shift n" { Search "up"; }
+        bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "c" { SearchToggleOption "CaseSensitivity"; }
         bind "w" { SearchToggleOption "Wrap"; }
         bind "o" { SearchToggleOption "WholeWord"; }
     }
     entersearch {
+        bind "Enter" { SwitchToMode "Search"; }
     }
     session {
         // bind "d" { Detach; }
@@ -117,6 +119,7 @@ keybinds clear-defaults=true {
     tmux {
     }
     shared {
+        // Super+Shift+d
         bind "Alt %" { Detach; }
     }
     shared_except "normal" {
@@ -124,7 +127,7 @@ keybinds clear-defaults=true {
     }
     shared_except "search" {
         // Super+f
-        bind "Alt 0" { SwitchToMode "Search"; }
+        bind "Alt 0" { SwitchToMode "EnterSearch"; SearchInput 0; }
     }
     shared_except "move" {
         // Super+Shift+m
