@@ -22,10 +22,26 @@ return {
 			window:perform_action(act.SendKey({ key = "b" }), pane)
 		end),
 	},
+	{
+		key = "LeftArrow",
+		mods = "SHIFT",
+		action = wezterm.action_callback(function(window, pane)
+			window:perform_action(act.SendKey({ key = "[", mods = "CTRL" }), pane)
+			window:perform_action(act.SendKey({ key = "b" }), pane)
+		end),
+	},
 	-- move forward one word
 	{
 		key = "l",
 		mods = "CTRL|SHIFT",
+		action = wezterm.action_callback(function(window, pane)
+			window:perform_action(act.SendKey({ key = "[", mods = "CTRL" }), pane)
+			window:perform_action(act.SendKey({ key = "f" }), pane)
+		end),
+	},
+	{
+		key = "RightArrow",
+		mods = "SHIFT",
 		action = wezterm.action_callback(function(window, pane)
 			window:perform_action(act.SendKey({ key = "[", mods = "CTRL" }), pane)
 			window:perform_action(act.SendKey({ key = "f" }), pane)
