@@ -496,4 +496,45 @@ zl() {
 
 # pyenv
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init - | sed s/precmd/chpwd/g)"
+# custimized pyenv-virtualenv
+# eval "$(pyenv virtualenv-init - | sed s/precmd/chpwd/g)"
+export PATH="$HOME/.pyenv/plugins/pyenv-virtualenv/shims:${PATH}";
+export PYENV_VIRTUALENV_INIT=1;
+_pyenv_virtualenv_hook() {
+  local ret=$?
+  if (( $VIRTUAL_ENV_WATCH_ACTIVATED - 1)) ; then
+    return $ret
+  fi
+  if [ -n "${VIRTUAL_ENV-}" ]; then
+    eval "$(pyenv sh-activate --quiet || pyenv sh-deactivate --quiet || true)" || true
+  else
+    eval "$(pyenv sh-activate --quiet || true)" || true
+  fi
+  return $ret
+};
+typeset -g -a chpwd_functions
+if [[ -z $chpwd_functions[(r)_pyenv_virtualenv_hook] ]]; then
+  chpwd_functions=(_pyenv_virtualenv_hook $chpwd_functions);
+fi
+
+export VIRTUAL_ENV_WATCH_ACTIVATED=0
+activate-virtualenv-watch() {
+  if (( $VIRTUAL_ENV_WATCH_ACTIVATED )); then
+    echo "Virtualenv is already activated"
+  else
+    echo "Successfully activated virtualenv"
+    export VIRTUAL_ENV_WATCH_ACTIVATED=1
+  fi
+}
+alias avw=activate-virtualenv-watch
+
+deactivate-virtualenv-watch() {
+  if (( $VIRTUAL_ENV_WATCH_ACTIVATED )); then
+    echo "Successfully deactivated virtualenv"
+    export VIRTUAL_ENV_WATCH_ACTIVATED=0
+  else
+    echo "Virtualenv is already deactivated"
+  fi
+}
+alias dvw=deactivate-virtualenv-watch
+
