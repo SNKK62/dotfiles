@@ -493,3 +493,7 @@ zl() {
     esac
   done
 }
+
+# pyenv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init - | sed s/precmd/chpwd/g)"

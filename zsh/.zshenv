@@ -8,11 +8,6 @@ export XDG_STATE_HOME=${HOME}/.local/state
 export PATH=${HOME}/.local/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
 
-# anaconda3
-export PATH=$HOME/Environments/anaconda3/bin/python:$PATH
-export PATH=$HOME/Environments/anaconda3/bin/python3:$PATH
-export PATH=$HOME/Environments/anaconda3/bin:$PATH
-
 # java
 export JAVA_HOME=$HOME/Environments/jdk-21
 # export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.3/libexec/openjdk.jdk/Contents/Home
