@@ -168,3 +168,31 @@ I want to use `Super` modifier key, but now it seems not to be supported.<br>
 So I use `Alt(+Shift)+[0-9]` key for temporary workaround.<br>
 For details, `Super+h` is remapped to `Alt+1` in wezterm config.
 
+### Python
+
+#### Requirements
+
+```sh
+brew install readline openssl zlib xz
+brew install pyenv pyenv-virtualenv
+```
+
+#### Installation (on MacOS)
+
+```sh
+PYTHON_CONFIGURE_OPTS="--host=arm-apple-darwin --build=arm-apple-darwin" \
+CFLAGS="-I$(brew --prefix readline)/include -I$(brew --prefix openssl)/include -I$(brew --prefix zlib)/include -I$(brew --prefix xz)/include -arch arm64" \
+LDFLAGS="-L$(brew --prefix readline)/lib -L$(brew --prefix openssl)/lib -L$(brew --prefix zlib)/lib -L$(brew --prefix xz)/lib -arch arm64" \
+pyenv install -v <version>
+```
+
+```sh
+pyenv install <version> <env_name>
+```
+
+#### Activation
+
+```sh
+pyenv local [<version>|<env_name>]
+pyenv activate <env_name> (optional)
+```
