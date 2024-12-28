@@ -119,7 +119,7 @@ keybinds clear-defaults=true {
     tmux {
     }
     shared {
-        // Super+Shift+d
+        // Super+e
         bind "Alt %" { Detach; }
     }
     shared_except "normal" {

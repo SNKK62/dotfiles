@@ -81,6 +81,7 @@ return {
 		mods = "SUPER|SHIFT",
 		action = act.CloseCurrentTab({ confirm = true }),
 	},
+	{ key = "d", mods = "SUPER|SHIFT", action = act({ CloseCurrentPane = { confirm = true } }) },
 	{ key = "q", mods = "SUPER", action = wezterm.action.QuitApplication },
 	{ key = "p", mods = "SUPER", action = act.ActivateCommandPalette },
 	{ key = "r", mods = "SUPER", action = act.ReloadConfiguration },
@@ -167,9 +168,10 @@ return {
 			mods = "ALT",
 		}),
 	},
+	-- exit session
 	{
-		key = "d",
-		mods = "SUPER|SHIFT",
+		key = "e",
+		mods = "SUPER",
 		action = act.SendKey({
 			key = "%",
 			mods = "ALT",
@@ -290,6 +292,8 @@ return {
 	},
 	-- activate copy mode
 	{ key = "v", mods = "LEADER", action = act.ActivateCopyMode },
+	-- activate pane mode
+	{ key = "p", mods = "LEADER", action = act.ActivateKeyTable({ name = "pane", one_shot = false }) },
 	-- activate workspace mode
 	{ key = "w", mods = "LEADER", action = act.ActivateKeyTable({ name = "workspace" }) },
 }
