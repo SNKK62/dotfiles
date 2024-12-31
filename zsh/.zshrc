@@ -4,9 +4,6 @@ umask 027
 # prevent remaining core dump
 limit coredumpsize 0
 
-# homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # antigen
 source $HOME/.local/bin/antigen.zsh
 

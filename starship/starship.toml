@@ -135,7 +135,7 @@ gray5 = "#000000"
 [custom.os_logo]
 command = """
 if grep -qi 'ubuntu' /etc/os-release; then
-  echo ""  # Ubuntu
+  echo ""  # Ubuntu
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo ""  # Linux
 elif [[ "$OSTYPE" == "darwin"* ]]; then
