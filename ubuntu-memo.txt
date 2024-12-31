@@ -1,0 +1,107 @@
+zsh 
+
+sudo apt-get install zsh
+chsh -s $(which zsh)
+sudo reboot
+
+in /etc/zsh/zshenv
+ZDOTDIR=$HOME/.config/zsh
+
+ln -s $PWD/zsh/.zshrc $PWD/zsh/ubuntu/.zshrc
+ln -s $PWD/zsh/ubuntu ~/.config/zsh
+
+starship
+curl -sS https://starship.rs/install.sh | sh
+ln -s $PWD/starship/starship.toml ~/.config/starship.toml
+
+node
+sudo apt install nodejs npm
+sudo npm install n -g
+sudo n lts(latest)
+sudo apt purge nodejs npm
+(sudo n)
+
+neovim
+see: https://github.com/neovim/neovim/blob/master/INSTALL.md#linux
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+sudo mv nvim.appimage /usr/local/bin/nvim
+
+sudo apt install luarocks
+
+xclip (sync clipboard)
+sudo apt install xclip 
+
+if lockfile alerady exists in lsp
+:MasonInstall --force typescript-language-server
+:MasonInstall --force lua-language-server
+:MasonInstall --force eslint-lsp
+:MasonInstall --force json-lsp
+
+if prettierd is required
+sudo npm install -g @fsouza/prettierd
+
+
+sudo apt install coreutils gh ripgrep neofetch 
+
+install go
+wget https://go.dev/dl/go1.23.4.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.23.4.linux-amd64.tar.gz
+rm -rf go1.23.4.linux-amd64.tar.gz
+
+ghq
+see: https://github.com/x-motemen/ghq/releases
+sudo apt install unzip
+https://github.com/x-motemen/ghq/releases/download/v1.7.1/ghq_linux_amd64.zip
+unzip..
+sudo mv ghq_linux_amd64/ghq /usr/local/bin
+
+after install rust
+git-delta
+cargo install git-delta
+
+cannot install with apt
+sudo snap install lsd --devmode
+
+wezterm
+see: https://wezfurlong.org/wezterm/install/linux.html#pre-built-deb-packages
+see: https://github.com/wez/wezterm/releases
+curl -LO https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/wezterm-20240203-110809-5046fc22.Ubuntu20.04.deb
+sudo apt install -y ./wezterm-20240203-110809-5046fc22.Ubuntu20.04.deb
+
+bat
+see: https://github.com/sharkdp/bat/releases/
+curl -LO https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_amd64.deb
+sudo apt install ./bat_0.24.0_amd64.deb
+
+fzf
+see: https://github.com/junegunn/fzf/releases
+sudo tar -C /usr/local/bin -xzf <path>/.tar.gz
+
+zellij
+see: https://zellij.dev/
+see: https://github.com/zellij-org/zellij/releases
+sudo tar -C /usr/local/bin -xzf <path>/.tar.gz
+
+pyenv
+sudo apt-get install build-essential gdb lcov pkg-config \
+      libbz2-dev libffi-dev libgdbm-dev libgdbm-compat-dev liblzma-dev \
+      libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev \
+      lzma lzma-dev tk-dev uuid-dev zlib1g-dev libmpdec-dev
+curl https://pyenv.run | bash
+
+pyenv-virtualenv
+
+if installing pyenv-virtualenv is required
+(git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv)
+
+input-remapper
+wget https://github.com/sezanzeb/input-remapper/releases/download/2.0.1/input-remapper-2.0.1.deb
+sudo apt install -f ./input-remapper-2.0.1.deb
+
+# in Ubuntu 20.04, 1.5.1 is the latest version
+https://github.com/sezanzeb/input-remapper/releases/tag/1.5.1
+
+
+
+
