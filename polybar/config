@@ -1,0 +1,325 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+background = #282A2E
+background-alt = #373B41
+foreground = #C5C8C6
+primary = #79DE79
+secondary = #A8E4EF
+disabled = #707880
+
+red = #FB6962
+orange = #FFB347
+yellow = #FCFC99
+green = #79DE79
+blue = #A8E4EF
+
+[bar/mybar]
+monitor = ${env:MONITOR:}
+
+width = 100%
+height = 20
+radius = 0
+
+; dpi = 96
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3pt
+
+border-size = 3
+border-color = #282A2E
+; border-color = #00000000
+
+padding-left = 0
+padding-right = 1
+
+module-margin = 3
+
+separator = |
+separator-foreground = ${colors.disabled}
+
+font-0 = Noto Sans CJK JP:size=8;1
+; https://github.com/Templarian/MaterialDesign-Font
+font-1 = Material Design Icons Desktop:pixelsize=10;1
+
+modules-left = xworkspaces
+modules-center = xwindow
+modules-right = pulseaudio cpu memory wlan eth date gnome-control powermenu
+
+cursor-click = pointers
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+tray-position = left
+; Tray icon max size
+tray-maxsize = 16
+tray-background = ${colors.background}
+tray-foreground = ${colors.foreground}
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 0
+tray-scale = 1.0
+
+; wm-restack = generic
+; wm-restack = bspwm
+; wm-restack = i3
+
+; override-redirect = true
+
+[module/xworkspaces]
+type = internal/xworkspaces
+
+label-active = %name%
+label-active-background = ${colors.background-alt}
+label-active-underline= ${colors.primary}
+label-active-padding = 3
+
+label-occupied = %name%
+label-occupied-padding = 3
+
+label-urgent = %name%
+label-urgent-background = ${colors.red}
+label-urgent-padding = 3
+
+label-empty = %name%
+label-empty-foreground = ${colors.disabled}
+label-empty-padding = 3
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:60:...%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#F0C674}%mountpoint%%{F-} %percentage_used%%
+
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.disabled}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${root.foreground}
+
+label-muted = 󰖁
+label-muted-foreground = ${colors.red}
+
+ramp-volume-0 = 󰕿
+ramp-volume-0-foreground = ${colors.orange}
+ramp-volume-1 = 󰖀
+ramp-volume-1-foreground = ${colors.yellow}
+ramp-volume-2 = 󰕾
+ramp-volume-2-foreground = ${colors.blue}
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = "󰌌 "
+format-prefix-foreground = ${colors.foreground}
+format-prefix-underline = ${colors.primary}
+
+label-layout = %name%
+label-layout-underline = ${colors.primary}
+
+; label-indicator-padding = 2
+; label-indicator-margin = 1
+; label-indicator-background = ${colors.secondary}
+; label-indicator-underline = ${colors.secondary}
+
+[module/memory]
+type = internal/memory
+interval = 2
+
+format = <ramp-used> <label>
+
+ramp-used-0 = 󰘚
+ramp-used-0-foreground = ${colors.blue}
+ramp-used-1 = 󰘚
+ramp-used-1-foreground = ${colors.green}
+ramp-used-2 = 󰘚
+ramp-used-2-foreground = ${colors.yellow}
+ramp-used-3 = 󰘚
+ramp-used-3-foreground = ${colors.orange}
+ramp-used-4 = 󰘚
+ramp-used-4-foreground = ${colors.red}
+
+label = %percentage_used%%
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+
+format = <ramp-load> <label>
+
+ramp-load-0 = 󰍛
+ramp-load-0-foreground = ${colors.blue}
+ramp-load-1 = 󰍛
+ramp-load-1-foreground = ${colors.green}
+ramp-load-2 = 󰍛
+ramp-load-2-foreground = ${colors.yellow}
+ramp-load-3 = 󰍛
+ramp-load-3-foreground = ${colors.orange}
+ramp-load-4 = 󰍛
+ramp-load-4-foreground = ${colors.red}
+
+label = %percentage%%
+
+[module/wlan]
+type = internal/network
+interface = wlp7s0
+interface-type = wireless
+interval = 1
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid% %downspeed:9%
+
+format-disconnected = <label-disconnected>
+label-disconnected = 󰤮
+label-disconnected-foreground = ${colors.red}
+
+ramp-signal-0 = 󰤯
+ramp-signal-0-foreground = ${colors.red}
+ramp-signal-1 = 󰤟
+ramp-signal-1-foreground = ${colors.orange}
+ramp-signal-2 = 󰤢
+ramp-signal-2-foreground = ${colors.yellow}
+ramp-signal-3 = 󰤨
+ramp-signal-3-foreground = ${colors.green}
+ramp-signal-4 = 󰤨
+ramp-signal-4-foreground = ${colors.green}
+
+[module/eth]
+type = internal/network
+interface = enp9s0
+interface-type = wired
+interval = 1
+
+format-connected = <label-connected>
+format-connected-prefix = "󰀁 "
+format-connected-prefix-foreground = ${colors.green}
+label-connected = %local_ip% %downspeed:9%
+
+format-disconnected = <label-disconnected>
+label-disconnected = 
+label-disconnected-foreground = ${colors.red}
+
+[module/bluetooth]
+type = custom/script
+exec = echo "%{F#98c379}"
+exec-if = echo info | bluetoothctl | grep 'Device'
+interval = 10
+click-left = exec blueman-manager
+click-right = exec blueman-manager
+format-padding = 1
+format-background = ${colors.green}
+format-foreground = ${colors.green}
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = " %Y-%m-%d"
+; date-alt = " %d %a %b, %Y"
+
+time = %H:%M:%S
+; time-alt = %I:%M %p
+
+format-prefix = 󰃭
+format-prefix-foreground = ${colors.foreground}
+
+label = %date% %time%
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+interval = 5
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 󰔏
+ramp-0-foreground = ${colors.blue}
+ramp-1 = 󰔏
+ramp-1-foreground = ${colors.green}
+ramp-2 = 󰔏
+ramp-2-foreground = ${colors.yellow}
+ramp-3 = 󰔏
+ramp-3-foreground = ${colors.orange}
+ramp-4 = 󰔏
+ramp-4-foreground = ${colors.red}
+
+[module/powerbutton]
+type = custom/text
+content = 󰐥
+click-left = i3-msg exit
+
+[module/gnome-control]
+type = custom/text
+content = 󰒓
+click-left = gnome-control-center
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+; main label
+label-open = 󰐥
+label-open-foreground = ${colors.foreground}
+; main close
+label-close = "󰅖"
+label-close-foreground = ${colors.foreground}
+label-separator = |
+label-separator-foreground = ${colors.foreground}
+
+; log out
+menu-0-0 = "󰍃"
+menu-0-0-exec = i3-msg exit
+menu-0-0-foreground = ${colors.yellow}
+; reboot
+menu-0-1 = "󰤁"
+menu-0-1-exec = reboot
+menu-0-1-foreground = ${colors.orange}
+; poweroff
+menu-0-2 = "󰤂"
+menu-0-2-exec = poweroff
+menu-0-2-foreground = ${colors.red}
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+; vim:ft=dosini

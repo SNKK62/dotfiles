@@ -102,6 +102,70 @@ sudo apt install -f ./input-remapper-2.0.1.deb
 # in Ubuntu 20.04, 1.5.1 is the latest version
 https://github.com/sezanzeb/input-remapper/releases/tag/1.5.1
 
+i3
+sudo apt install i3
+
+check WM_CLASS
+xprop | grep WM_CLASS | awk '{print $4}'
+
+IME
+sudo apt remove ibus
+sudo apt remove uim uim-mozc
+sudo apt install fcitx5 fcitx5-mozc
+im-config -> fcitx5
+
+~/.profile
+
+~/.config/fcitx5/
+fcitx5
+fcitx5-configtool
+
+wallpaper
+sudo apt install feh
+
+cursor
+.icons/
+.Xresources
+
+xrdb ~/.Xresources
+
+i3lock-color(https://github.com/Raymo111/i3lock-color)
+sudo apt install autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev
+
+./install-i3lock-color.sh
+
+font for polybar
+https://github.com/Templarian/MaterialDesign-Font
+
+polybar
+sudo apt install polybar
+~/.config/polybar
+
+lancher
+sudo apt install rofi
+
+notification
+sudo apt install dunst
+
+graphics optimiser
+sudo apt install picom
+動画再生やアニメーションに不審なちらつきが認められる場合は~/.config/picom.confのbackend = "xrender";をbackend = "glx";に書き換えると解消される。
+なぜかrofi~これを入れたらIMEがweztermで使えるようになった
+
+status-bar
+https://aur.archlinux.org/bumblebee-status
+pip install --user bumblebee-status
+pip install psutil
+(sudo apt install cpu)
+
+
+
+
+
+
+
+
+
 
 
 
