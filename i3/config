@@ -139,6 +139,11 @@ bindsym Mod1+Shift+t move container to workspace $terminal
 bindsym Mod1+Shift+b move container to workspace $browser
 bindsym Mod1+Shift+c move container to workspace $note
 
+# open file manager on startup in workspace 3
+workspace $ws3 output primary
+exec --no-startup-id nautilus
+exec --no-startup-id nautilus
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym Mod4+Control+r restart
 
