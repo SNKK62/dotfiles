@@ -20,9 +20,11 @@ TogglePreedit=
 
 [Hotkey/ActivateKeys]
 0=Control+space
+1=Hiragana_Katakana
 
 [Hotkey/DeactivateKeys]
 0=Control+space
+1=Muhenkan
 
 [Hotkey/PrevPage]
 0=Up

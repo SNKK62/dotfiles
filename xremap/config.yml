@@ -1,0 +1,37 @@
+modmap:
+- name: Global
+  remap:
+    # CapsLock -> Ctrl_L
+    CapsLock: Ctrl_L
+
+    # HHKB: [Alt_L] [Muhenkan] [Space] [Henkan] [KatakanaHiragana]
+
+- name: Super -> Kana
+  remap:
+    Super_R:
+      held: Super_R
+      alone: KatakanaHiragana
+    Super_L:
+      held: Super_L
+      alone: Muhenkan
+
+keymap:
+- name: Arrow
+  remap:
+    C-h: left
+    C-j: down
+    C-k: up
+    C-l: right
+
+    C-Super-h: C-Super-h
+    C-Super-j: C-Super-j
+    C-Super-k: C-Super-k
+    C-Super-l: C-Super-l
+
+    C-A-Super-h: C-A-Super-h
+    C-A-Super-j: C-A-Super-j
+    C-A-Super-k: C-A-Super-k
+    C-A-Super-l: C-A-Super-l
+
+    Shift-backspace: Delete
+

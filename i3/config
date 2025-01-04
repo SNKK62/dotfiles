@@ -37,6 +37,10 @@ exec --no-startup-id nm-applet
 # IME
 exec --no-startup-id fcitx5
 
+# Keyboard remap
+exec --no-startup-id ~/.cargo/bin/xremap ~/.config/xremap/config.yml
+
+
 # Wallpaper
 exec --no-startup-id feh --bg-fill ~/.config/i3/wallpaper-beach.jpg
 

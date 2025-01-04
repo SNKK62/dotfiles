@@ -154,13 +154,16 @@ sudo apt install picom
 
 status-bar
 https://aur.archlinux.org/bumblebee-status
-pip install --user bumblebee-status
+pip install --user bumblebee-status # install to ~/.local/bin
 pip install psutil
 (sudo apt install cpu)
 
+xremap
+cargo install xremap --features x11
 
-
-
+without sudo
+sudo gpasswd -a $USER input
+echo 'KERNEL=="uinput", GROUP="input", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/input.rules
 
 
 
