@@ -33,5 +33,15 @@ keymap:
     C-A-Super-k: C-A-Super-k
     C-A-Super-l: C-A-Super-l
 
+    C-Super-Shift-h: C-Super-Shift-h
+    C-Super-Shift-j: C-Super-Shift-j
+    C-Super-Shift-k: C-Super-Shift-k
+    C-Super-Shift-l: C-Super-Shift-l
+
+    C-A-Super-Shift-h: C-A-Super-Shift-h
+    C-A-Super-Shift-j: C-A-Super-Shift-j
+    C-A-Super-Shift-k: C-A-Super-Shift-k
+    C-A-Super-Shift-l: C-A-Super-Shift-l
+
     Shift-backspace: Delete
 

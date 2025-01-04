@@ -172,7 +172,7 @@ mode "service" {
 }
 
 # floating by default
-for_window [class="Org.gnome.Nautilus"] floating enable, resize set 1024 780, move position center
+# for_window [class="Org.gnome.Nautilus"] floating enable, resize set 1024 780, move position center
 
 bindsym Mod1+Shift+r mode "resize"
 mode "resize" {
