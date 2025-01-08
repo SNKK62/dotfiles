@@ -1,7 +1,7 @@
 {
   "CamelCaseMotion": { "branch": "master", "commit": "de439d7c06cffd0839a29045a103fe4b44b15cdc" },
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
-  "CopilotChat.nvim": { "branch": "main", "commit": "9333944fde3c65868818e245c73aa29eef826e9b" },
+  "CopilotChat.nvim": { "branch": "canary", "commit": "9333944fde3c65868818e245c73aa29eef826e9b" },
   "actions-preview.nvim": { "branch": "master", "commit": "9f52a01c374318e91337697ebed51c6fae57f8a4" },
   "auto-session": { "branch": "main", "commit": "21e33854fb3e561cb738dfefcd9d1d84fe6faaef" },
   "catppuccin": { "branch": "main", "commit": "63685e1562ef53873c9764b483d7ac5c7a608922" },
@@ -17,7 +17,7 @@
   "gitsigns.nvim": { "branch": "main", "commit": "863903631e676b33e8be2acb17512fdc1b80b4fb" },
   "hlchunk.nvim": { "branch": "main", "commit": "ba6e2347177fec8ec6af4ae26d11a468c9e0ca72" },
   "incline.nvim": { "branch": "main", "commit": "16fc9c073e3ea4175b66ad94375df6d73fc114c0" },
-  "lazy.nvim": { "branch": "main", "commit": "7e6c863bc7563efbdd757a310d17ebc95166cef3" },
+  "lazy.nvim": { "branch": "main", "commit": "1159bdccd8910a0fd0914b24d6c3d186689023d9" },
   "lightspeed.nvim": { "branch": "main", "commit": "fcc72d8a4d5f4ebba62d8a3a0660f88f1b5c3b05" },
   "lspkind.nvim": { "branch": "master", "commit": "59c3f419af48a2ffb2320cea85e44e5a95f71664" },
   "lspsaga.nvim": { "branch": "main", "commit": "e64351d0e6335eadf089aa2b9f17221e54ca10a4" },
