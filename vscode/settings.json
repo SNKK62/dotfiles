@@ -29,8 +29,8 @@
   "[rust]": {
     "editor.tabSize": 4,
     "editor.defaultFormatter": "rust-lang.rust-analyzer",
-    "editor.formatOnSave": true,
-    "editor.inlayHints.enabled": "offUnlessPressed"
+    "editor.formatOnSave": true
+    // "editor.inlayHints.enabled": "offUnlessPressed"
   },
   "rust-analyzer.rustfmt.rangeFormatting.enable": true,
   // "rust-analyzer.rustfmt.overrideCommand": [
