@@ -1,0 +1,8 @@
+{
+  "filterLinkHints": true,
+  "waitForEnterForFilteredHints": false,
+  "keyMappings": "unmap <c-e>\nunmap <c-y>\nunmap gT\nunmap gt\nunmap J\nunmap K\nunmap f\nunmap F\nmap f LinkHints.activateMode\nmap F LinkHints.activateModeToOpenInNewForegroundTab\nmap <a-h> previousTab\nmap <a-˙> previousTab # for mac\nmap <a-l> nextTab\nmap <a-¬> nextTab # for mac\nmap g' firstTab\nmap g; lastTab\nmap <a-π> togglePinTab # for mac\nmap <a-µ> toggleMuteTab # for mac\nmap R reload hard\nmap <a-k> moveTabRight\nmap <a-j> moveTabLeft\nmap <a-˚> moveTabRight # for mac\nmap <a-∆> moveTabLeft # for mac\nmap <a-K> moveTabRight count=1000\nmap <a-J> moveTabLeft count=1000\nmap <a-> moveTabRight count=1000 # for mac\nmap <a-Ô> moveTabLeft count=1000 # for mac",
+  "linkHintNumbers": "asdfjkl",
+  "scrollStepSize": 100,
+  "settingsVersion": "2.1.2"
+}
