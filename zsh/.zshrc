@@ -180,7 +180,7 @@ fga() {
         }
       } 
     }' |
-        fzf-tmux --preview '[[ {2} == "(new)" ]] && bat {1} --color=always --style=header,grid || [[ {2} == "(deleted)" ]] && ext=$(echo {1} | awk -F. "{if (NF>1 && \$1 != \"\") print \$NF; else print \"txt\"}") && git show HEAD:$(echo $(pwd)/{1} | sed "s|$(git rev-parse --show-toplevel)/||") | bat --color=always --style=header,grid --language $ext || git diff {1} | delta' --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
+        fzf --preview '[[ {2} == "(new)" ]] && bat {1} --color=always --style=header,grid || [[ {2} == "(deleted)" ]] && ext=$(echo {1} | awk -F. "{if (NF>1 && \$1 != \"\") print \$NF; else print \"txt\"}") && git show HEAD:$(echo $(pwd)/{1} | sed "s|$(git rev-parse --show-toplevel)/||") | bat --color=always --style=header,grid --language $ext || git diff {1} | delta' --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
   ); do
     q=$(head -1 <<< "$out")
     n=$[$(wc -l <<< "$out") - 1]
@@ -211,7 +211,7 @@ fgd() {
         }
       } 
     }' |
-    fzf-tmux --preview '[[ {2} == "(new)" ]] && bat {1} --color=always --style=header,grid || [[ {2} == "(deleted)" ]] && ext=$(echo {1} | awk -F. "{if (NF>1 && \$1 != \"\") print \$NF; else print \"txt\"}") && git show HEAD:$(echo $(pwd)/{1} | sed "s|$(git rev-parse --show-toplevel)/||") | bat --color=always --style=header,grid --language $ext || git diff {1} | delta' --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
+    fzf --preview '[[ {2} == "(new)" ]] && bat {1} --color=always --style=header,grid || [[ {2} == "(deleted)" ]] && ext=$(echo {1} | awk -F. "{if (NF>1 && \$1 != \"\") print \$NF; else print \"txt\"}") && git show HEAD:$(echo $(pwd)/{1} | sed "s|$(git rev-parse --show-toplevel)/||") | bat --color=always --style=header,grid --language $ext || git diff {1} | delta' --preview-window=right:70%:wrap --multi --exit-0 --expect=ctrl-d
   )
   selected=(`echo $selected | sed 's/(new)//g; s/ (deleted)//g; s/ (modified)//g'`)
   if [ -n "$selected" ]; then
@@ -225,7 +225,7 @@ fgref() {
   preview_cmd="echo '{}' | cut -d ' ' -f 1 | xargs -I@ git diff --stat --patch @^ @ | delta"
   selected=$(
     git reflog |
-    fzf-tmux --preview $preview_cmd --preview-window=right:70%:wrap --exit-0
+    fzf --preview $preview_cmd --preview-window=right:70%:wrap --exit-0
   )
   if [ -z $selected ]; then
       return 1
@@ -253,7 +253,7 @@ fgb() {
   local out q n selected_branch new_branch_name
   while out=$(
       git branch $@ | grep -v HEAD |
-          fzf-tmux --expect=ctrl-c,ctrl-d,ctrl-p,ctrl-n,enter
+          fzf --expect=ctrl-c,ctrl-d,ctrl-p,ctrl-n,enter
   ); do
     q=$(head -1 <<< "$out")
     selected_branch=`echo $(tail -1 <<< "$out")`
