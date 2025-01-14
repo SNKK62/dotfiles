@@ -10,8 +10,8 @@ if not vim.g.vscode then
 	opt.listchars = "tab:>_,trail:~,extends:>,precedes:<,nbsp:%,eol:↲"
 	opt.autoindent = true
 	opt.tabstop = 4
-	opt.softtabstop = -1 -- depend on shiftwidth
 	opt.shiftwidth = 0 -- depend on tabstop
+	opt.softtabstop = -1 -- depend on shiftwidth
 	opt.expandtab = true
 	opt.encoding = "utf-8"
 	opt.wrap = true
@@ -41,6 +41,16 @@ if not vim.g.vscode then
 		},
 		callback = function()
 			opt.tabstop = 2
+		end,
+	})
+	vim.api.nvim_create_augroup("indent6", { clear = true })
+	vim.api.nvim_create_autocmd({ "FileType" }, {
+		group = "indent6",
+		pattern = {
+			"ocaml",
+		},
+		callback = function()
+			opt.tabstop = 6
 		end,
 	})
 end
