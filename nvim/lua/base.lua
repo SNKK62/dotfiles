@@ -37,7 +37,6 @@ if not vim.g.vscode then
 			"html",
 			"css",
 			"yaml",
-			"c",
 		},
 		callback = function()
 			opt.tabstop = 2
@@ -51,6 +50,17 @@ if not vim.g.vscode then
 		},
 		callback = function()
 			opt.tabstop = 6
+		end,
+	})
+	vim.api.nvim_create_augroup("indentTab", { clear = true })
+	vim.api.nvim_create_autocmd({ "FileType" }, {
+		group = "indentTab",
+		pattern = {
+			"c",
+		},
+		callback = function()
+			opt.tabstop = 4
+			opt.expandtab = false
 		end,
 	})
 end
