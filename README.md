@@ -196,3 +196,10 @@ pyenv install <version> <env_name>
 pyenv local [<version>|<env_name>]
 pyenv activate <env_name> (optional)
 ```
+
+### VHS
+
+```sh
+brew install ffmpeg ttyd
+brew install charmbracelet/tap/vhs
+```
