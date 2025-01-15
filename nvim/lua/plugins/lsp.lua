@@ -152,6 +152,8 @@ require("mason-lspconfig").setup({
 		"tailwindcss",
 		"prismals",
 		"rust_analyzer",
+		"ocamllsp",
+		-- "ocamlformat", -- install directly
 	},
 })
 

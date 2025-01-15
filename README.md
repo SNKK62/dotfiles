@@ -203,3 +203,27 @@ pyenv activate <env_name> (optional)
 brew install ffmpeg ttyd
 brew install charmbracelet/tap/vhs
 ```
+
+### OCaml
+
+#### Installation
+```sh
+brew install opam
+opam init
+# install ocaml-lsp-server (in neovim maison)
+# install ocamlformat (in neovim maison)
+opam install dune utop
+```
+#### Create project
+```sh
+dune init project <project_name>
+```
+
+#### Development
+
+Run the following commmand in the project directory while editing the source code.
+
+```sh
+dune build --watch
+```
+
