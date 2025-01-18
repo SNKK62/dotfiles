@@ -227,3 +227,11 @@ Run the following commmand in the project directory while editing the source cod
 dune build --watch
 ```
 
+#### Formatting
+```sh
+# for the first time
+echo "version = `ocamlformat --version`" > .ocamlformat
+
+# format
+opam exec -- dune fmt
+```
