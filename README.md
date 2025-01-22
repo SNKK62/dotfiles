@@ -187,7 +187,7 @@ pyenv install -v <version>
 ```
 
 ```sh
-pyenv install <version> <env_name>
+pyenv virtualenv <version> <env_name>
 ```
 
 #### Activation
