@@ -154,6 +154,7 @@ require("mason-lspconfig").setup({
 		"rust_analyzer",
 		"ocamllsp",
 		-- "ocamlformat", -- install directly
+		-- "pyright", -- install directly
 	},
 })
 
@@ -259,3 +260,14 @@ lspconfig.rust_analyzer.setup({
 		}),
 	},
 })
+
+lspconfig.pyright.setup({
+	on_attach = function(_, _) end,
+	settings = {
+		python = {
+			pythonPath = "$HOME/.pyenv/shims/python",
+		},
+	},
+})
+
+vim.g.python3_host_prog = "$HOME/.pyenv/shims/python"

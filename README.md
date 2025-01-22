@@ -194,7 +194,7 @@ pyenv install <version> <env_name>
 
 ```sh
 pyenv local [<version>|<env_name>]
-pyenv activate <env_name> (optional)
+pyenv activate <env_name>
 ```
 
 ### VHS
