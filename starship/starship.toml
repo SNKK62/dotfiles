@@ -157,14 +157,14 @@ format = "[](fg:$style)[ $output ](fg:gray4 bg:$style bold)[](fg:$style)"
 truncation_length = 0
 truncate_to_repo = false
 style = "directory"
-format = "[](fg:$style)[ $path ](fg:gray5 bg:$style)[](fg:$style bg:background)"
+format = "[](fg:$style)[ $path ](fg:gray5 bg:$style)[](fg:$style)"
 
 [custom.git_symbol]
 when = true
 require_repo = true
 command='echo ""'
 style = "repo"
-format = "[](fg:background bg:$style)[ $output](fg:gray4 bg:$style bold)"
+format = "[](fg:$style)[ $output](fg:gray4 bg:$style bold)"
 
 [custom.git_repo]
 when = true
