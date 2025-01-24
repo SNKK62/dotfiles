@@ -9,12 +9,22 @@ end
 config.automatically_reload_config = true
 
 config.color_scheme = "Catppuccin Mocha"
+-- config.color_scheme = "Everforest Dark Soft (Gogh)"
 local colors = {
 	catppuccin = {
 		mocha = {
 			background = "#1e1e2e",
 			text = "#cdd6f4",
 			selected = "#eba0ac",
+		},
+	},
+	everforest = {
+		dark = {
+			soft = {
+				background = "#333c43",
+				text = "#cdd6f4",
+				selected = "#88c0d0",
+			},
 		},
 	},
 }
@@ -38,6 +48,7 @@ config.use_fancy_tab_bar = true
 
 config.window_background_gradient = {
 	colors = { colors.catppuccin.mocha.background },
+	-- colors = { colors.everforest.dark.soft.background },
 }
 config.window_frame = {
 	inactive_titlebar_bg = "none",

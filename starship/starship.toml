@@ -14,123 +14,77 @@ right_format = """
 
 palette = "catppuccin_mocha"
 
-[palettes.everforest]
-background = "#343F44"
+[palettes.everforest_dark_soft]
+background = "#333c43"
+text-black = "#181926"
+text-white = "#cad3f5"
+logo = "#a7c080"
+directory = "#7fbbb3"
+repo = "#e69875"
+git = "#d699b6"
 
-color1 = "#abbf86"
-color2 = "#90a030"
-color3 = "#d5bd86"
-color4 = "#d5a236"
-color5 = "#90be95"
-color6= "#58a47e"
-color7 = "#8cb9b2"
-color8 = "#5392c0"
-
-gray1 = "#FFFFFF"
-gray2 = "#D9D9D9"
-gray3 = "#969696"
-gray4 = "#525252"
-gray5 = "#000000"
-
-[palettes.catppuccin_frappe]
-background = "#303446"
-
-color1 = "#f2d5cf"
-color2 = "#eebebe"
-color3 = "#f4b8e4"
-color4 = "#ca9ee6"
-color5 = "#e78284"
-color6 = "#ea999c"
-color7 = "#ef9f76"
-color8 = "#e5c890"
-color9 = "#a6d189"
-color10 = "#81c8be"
-color11 = "#99d1db"
-color12 = "#85c1dc"
-color13 = "#8caaee"
-
-gray1 = "#c6d0f5"
-gray2 = "#a5adce"
-gray3 = "#737994"
-gray4 = "#414559"
-gray5 = "#232634"
-
-[palettes.catppuccin_macchiato]
-background = "#24273a"
-
-color1 = "#f4dbd6"
-color2 = "#f0c6c6"
-color3 = "#f5bde6"
-color4 = "#c6a0f6"
-color5 = "#ed8796"
-color6 = "#ee99a0"
-color7 = "#f5a97f"
-color8 = "#eed49f"
-color9 = "#a6da95"
-color10 = "#8bd5ca"
-color11 = "#91d7e3"
-color12 = "#7dc4e4"
-color13 = "#8aadf4"
-
-logo = "#a6da95"
-directory = "#8bd5ca"
-repo = "#c6a0f6"
-git = "#8aadf4"
-
-gray1 = "#cad3f5"
-gray2 = "#8087a2"
-gray3 = "#494d64"
-gray4 = "#363a4f"
-gray5 = "#181926"
+fg = "#d3c6aa"
+red = "#e67e80"
+orange = "#e69875"
+yellow = "#dbbc7f"
+green = "#a7c080"
+aqua = "#83c092"
+blue = "#7fbbb3"
+purple = "#d699b6"
+grey0 = "#7a8478"
+grey1 = "#859289"
+grey2 = "#9da9a0"
+statusline1 = "#a7c080"
+statusline2 = "#d3c6aa"
+statusline3 = "#e67e80"
+bg_dim = "#293136"
+bg0 = "#333c43"
+bg1 = "#3a464c"
+bg2 = "#434f55"
+bg3 = "#4d5960"
+bg4 = "#555f66"
+bg5 = "#5d6b66"
+bg_visual = "#5c3f4f"
+bg_red = "#59464c"
+bg_green = "#48584e"
+bg_blue = "#3f5865"
+bg_yellow = "#55544a"
 
 [palettes.catppuccin_mocha]
 background = "#1e1e2e"
+text-black = "#181926"
+text-white = "#cad3f5"
+logo = "#a6da95"
+directory = "#8bd5ca"
+repo = "#8aadf4"
+git = "#c6a0f6"
 
-color1 = "#f5e0dc"
-color2 = "#f2cdcd"
-color3 = "#f5c2e7"
-color4 = "#cba6f7"
-color5 = "#f38ba8"
-color6 = "#eba0ac"
-color7 = "#fab387"
-color8 = "#f9e2af"
-color9 = "#a6e3a1"
-color10 = "#94e2d5"
-color11 = "#89dceb"
-color12 = "#74c7ec"
-color13 = "#89b4fa"
-
-logo = "#a6e3a1"
-directory = "#94e2d5"
-repo = "#89b4fa"
-git = "#cba6f7"
-
-gray1 = "#cdd6f4"
-gray2 = "#9399b2"
-gray3 = "#45475a"
-gray4 = "#313244"
-gray5 = "#11111b"
-
-[palettes.colors]
-background = "#24292d"
-
-yellow1 = "#F0F4C3"
-yellow2 = "#DCE775"
-yellow3 = "#CDDC39"
-yellow4 = "#AFB42B"
-yellow5 = "#827717"
-
-green1 = "#DCEDC8"
-green2 = "#AED581"
-green3 = "#8BC34A"
-green4 = "#689F38"
-green5 = "#33691E"
-
-gray1 = "#FFFFFF"
-gray2 = "#D9D9D9"
-gray3 = "#969696"
-gray4 = "#525252"
-gray5 = "#000000"
+rosewater = "#f4dbd6"
+flamingo = "#f0c6c6"
+pink = "#f5bde6"
+mauve = "#c6a0f6"
+red = "#ed8796"
+maroon = "#ee99a0"
+peach = "#f5a97f"
+yellow = "#eed49f"
+green = "#a6da95"
+teal = "#8bd5ca"
+sky = "#91d7e3"
+sapphire = "#7dc4e4"
+blue = "#8aadf4"
+lavender = "#b7bdf8"
+text = "#cad3f5"
+subtext1 = "#b8c0e0"
+subtext0 = "#a5adcb"
+overlay2 = "#939ab7"
+overlay1 = "#8087a2"
+overlay0 = "#6e738d"
+surface2 = "#5b6078"
+surface1 = "#494d64"
+surface0 = "#363a4f"
+base = "#24273a"
+mantle = "#1e2030"
+crust = "#181926"
 
 [custom.os_logo]
 command = """
@@ -146,7 +100,7 @@ fi
 """
 when = "true"
 style = "logo"
-format = "[](fg:$style)[ $output ](fg:gray4 bg:$style bold)[](fg:$style)"
+format = "[](fg:$style)[ $output ](fg:text-black bg:$style bold)[](fg:$style)"
 
 # [username]
 # format = "[](fg:background bg:bright-cyan)[ $user ](fg:gray5 bg:bright-cyan)[](bright-cyan)"
@@ -157,30 +111,30 @@ format = "[](fg:$style)[ $output ](fg:gray4 bg:$style bold)[](fg:$style)"
 truncation_length = 0
 truncate_to_repo = false
 style = "directory"
-format = "[](fg:$style)[ $path ](fg:gray5 bg:$style)[](fg:$style)"
+format = "[](fg:$style)[ $path ](fg:text-black bg:$style)[](fg:$style)"
 
 [custom.git_symbol]
 when = true
 require_repo = true
 command='echo ""'
 style = "repo"
-format = "[](fg:$style)[ $output](fg:gray4 bg:$style bold)"
+format = "[](fg:$style)[ $output](fg:text-black bg:$style bold)"
 
 [custom.git_repo]
 when = true
 require_repo = true
 command='git rev-parse --show-toplevel | sed -e "s,$(ghq root)/github\.com/,,g" -e "s,$(ghq root)/,,"'
 style = "repo"
-format = "[ $output ](fg:gray4 bg:$style bold)[](fg:$style bg:background)"
+format = "[ $output ](fg:text-black bg:$style bold)[](fg:$style bg:background)"
 
 [git_branch]
 symbol = ""
 style = "git"
-format = "[](fg:background bg:$style)[[ $symbol $branch ](fg:gray5 bg:$style)](fg:char bg:$style)"
+format = "[](fg:background bg:$style)[[ $symbol $branch ](fg:text-black bg:$style)](fg:char bg:$style)"
 
 [git_status]
 style = "git"
-format = "[[($all_status $ahead_behind) ](fg:gray5 bg:$style)]()[](fg:$style)"
+format = "[[($all_status $ahead_behind) ](fg:text-black bg:$style)]()[](fg:$style)"
 
 [character]
 # success_symbol = '[](fg:green bold)'
