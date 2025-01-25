@@ -98,7 +98,7 @@ local status_output = vim.fn.system("git status --porcelain")
 local status_lines = vim.fn.split(status_output, "\n")
 local git_root = vim.fn.system("git rev-parse --show-toplevel")
 local current_dir = vim.fn.getcwd()
--- INFO: git_root finised with newline '\n'
+-- INFO: git_root finished with newline '\n'
 local sub_dir = string.sub(current_dir, #git_root + 1)
 
 for _, line in ipairs(status_lines) do
@@ -155,6 +155,8 @@ require("mason-lspconfig").setup({
 		"ocamllsp",
 		-- "ocamlformat", -- install directly
 		-- "pyright", -- install directly
+		-- "typos,"
+		"typos_lsp",
 	},
 })
 
@@ -271,3 +273,10 @@ lspconfig.pyright.setup({
 })
 
 vim.g.python3_host_prog = "$HOME/.pyenv/shims/python"
+
+-- typos
+require("lspconfig").typos_lsp.setup({
+	init_options = {
+		config = "$HOME/.config/nvim/spell/.typos.toml",
+	},
+})
