@@ -32,6 +32,8 @@ local colors = {
 config.window_background_opacity = 0.88
 config.macos_window_background_blur = 50
 
+config.native_macos_fullscreen_mode = true
+
 config.font = wezterm.font("HackGen35 Console NF", { weight = "Regular", stretch = "Normal", style = "Normal" })
 config.font_size = 16
 config.use_ime = true

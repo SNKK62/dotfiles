@@ -85,6 +85,7 @@ return {
 	{ key = "q", mods = "SUPER", action = wezterm.action.QuitApplication },
 	{ key = "p", mods = "SUPER", action = act.ActivateCommandPalette },
 	{ key = "r", mods = "SUPER", action = act.ReloadConfiguration },
+	{ key = "f", mods = "SUPER|CTRL", action = act.ToggleFullScreen },
 	{
 		key = "RightArrow",
 		mods = "SUPER",
