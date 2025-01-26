@@ -31,12 +31,8 @@ keybinds clear-defaults=true {
         bind "Alt 8" { NewTab; }
         // Super+w
         bind "Alt 9" { CloseTab; }
-        // Super+Shift+t
-        bind "Alt (" { SwitchToMode "RenameTab"; TabNameInput 0; }
-        // Super+Shift+p
-        bind "Alt -" { SwitchToMode "RenamePane"; PaneNameInput 0; }
         // Super+Shift+s
-        bind "Alt )" {
+        bind "Alt -" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
                 move_to_focused_tab true
@@ -57,6 +53,8 @@ keybinds clear-defaults=true {
         bind "L" { Resize "Decrease Right"; }
         bind "=" "+" { Resize "Increase"; }
         bind "-" { Resize "Decrease"; }
+        bind "t" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "p" { SwitchToMode "RenamePane"; PaneNameInput 0; }
     }
     pane {
     }

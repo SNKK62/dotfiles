@@ -72,7 +72,7 @@ return {
 		action = act.SpawnWindow,
 	},
 	{
-		key = "n",
+		key = "t",
 		mods = "SUPER|SHIFT",
 		action = act.SpawnTab("CurrentPaneDomain"),
 	},
@@ -235,14 +235,6 @@ return {
 		}),
 	},
 	{
-		key = "p",
-		mods = "SUPER|SHIFT",
-		action = act.SendKey({
-			key = "-",
-			mods = "ALT",
-		}),
-	},
-	{
 		key = "r",
 		mods = "SUPER|SHIFT",
 		action = act.SendKey({
@@ -259,18 +251,10 @@ return {
 		}),
 	},
 	{
-		key = "t",
-		mods = "SUPER|SHIFT",
-		action = act.SendKey({
-			key = "(",
-			mods = "ALT",
-		}),
-	},
-	{
 		key = "s",
 		mods = "SUPER|SHIFT",
 		action = act.SendKey({
-			key = ")",
+			key = "-",
 			mods = "ALT",
 		}),
 	},
