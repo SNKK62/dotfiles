@@ -249,7 +249,7 @@ return function()
 				},
 			},
 		},
-		-- buffers is diabled now
+		-- buffers is disabled now
 		-- buffers = {
 		-- 	follow_current_file = {
 		-- 		enabled = true, -- This will find and focus the file in the active buffer every time
