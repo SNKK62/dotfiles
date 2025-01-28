@@ -159,7 +159,8 @@ local pure_plugins = {
 	-- 	-- Optional; default configuration will be used if setup isn't called.
 	-- 	config = function()
 	-- 		require("everforest").setup({
-	-- 			-- background = "hard",
+	-- 			-- background = "soft",
+	-- 			background = "hard",
 	-- 		})
 	-- 		colorscheme.set()
 	-- 	end,

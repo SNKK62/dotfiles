@@ -1,5 +1,5 @@
 -- https://github.com/neanias/everforest-nvim/blob/616864c0c534b1eaf650ef913512dcde80ababfb/lua/everforest/colours.lua
-local hard_background = {
+local base_color = {
 	fg = "#d3c6aa",
 	red = "#e67e80",
 	orange = "#e69875",
@@ -15,6 +15,8 @@ local hard_background = {
 	statusline2 = "#d3c6aa",
 	statusline3 = "#e67e80",
 	none = "NONE",
+}
+local hard_background = {
 	bg_dim = "#1e2326",
 	bg0 = "#272e33",
 	bg1 = "#2e383c",
@@ -28,7 +30,21 @@ local hard_background = {
 	bg_blue = "#384b55",
 	bg_yellow = "#45443c",
 }
-local palette = hard_background
+local soft_background = {
+	bg_dim = "#293136",
+	bg0 = "#333c43",
+	bg1 = "#3a464c",
+	bg2 = "#434f55",
+	bg3 = "#4d5960",
+	bg4 = "#555f66",
+	bg5 = "#5d6b66",
+	bg_visual = "#5c3f4f",
+	bg_red = "#59464c",
+	bg_green = "#48584e",
+	bg_blue = "#3f5865",
+	bg_yellow = "#55544a",
+}
+local palette = vim.tbl_extend("force", base_color, hard_background)
 palette.text = palette.fg
 palette.background = palette.bg0
 palette.error = palette.red

@@ -10,6 +10,7 @@ config.automatically_reload_config = true
 
 config.color_scheme = "Catppuccin Mocha"
 -- config.color_scheme = "Everforest Dark Soft (Gogh)"
+-- config.color_scheme = 'Everforest Dark Hard (Gogh)'
 local colors = {
 	catppuccin = {
 		mocha = {
@@ -26,7 +27,7 @@ local colors = {
 				selected = "#88c0d0",
 			},
 			soft = {
-				background = "#333c43",
+				background = "#293136",
 				text = "#cdd6f4",
 				selected = "#88c0d0",
 			},
@@ -34,7 +35,7 @@ local colors = {
 	},
 }
 
-config.window_background_opacity = 0.88
+config.window_background_opacity = 0.90
 config.macos_window_background_blur = 50
 
 config.native_macos_fullscreen_mode = true
