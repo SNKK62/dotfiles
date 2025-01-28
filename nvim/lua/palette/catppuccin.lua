@@ -1,5 +1,5 @@
-local palletes = require("catppuccin.palettes")
-local palette = palletes.get_palette("mocha")
+local palettes = require("catppuccin.palettes")
+local palette = palettes.get_palette("mocha")
 
 palette.text = palette.text
 palette.background = palette.base
