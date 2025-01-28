@@ -23,6 +23,14 @@ rm -Rf ~/.local/{share, state}/nvim
 
 after launch nvim, try `:Mason` and search and install `eslint_d`, `stylua` and `luacheck`
 
+#### How to change colorscheme
+1. install plugin in `nvm/lua/plugins/init.lua`
+  - make sure exec `colorscheme.set` function at config
+  - update dependency of `tint.nvim`
+2. update colorscheme in `nvm/lua/colorscheme.lua`
+3. create palette in `nvim/lua/palettes/<colorscheme.lua`
+4. (Optional) create and update color theme of wezterm and starship
+
 ### VScode
 
 ```
