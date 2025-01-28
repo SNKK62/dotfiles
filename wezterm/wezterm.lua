@@ -20,6 +20,11 @@ local colors = {
 	},
 	everforest = {
 		dark = {
+			hard = {
+				background = "#1e2326",
+				text = "#cdd6f4",
+				selected = "#88c0d0",
+			},
 			soft = {
 				background = "#333c43",
 				text = "#cdd6f4",
@@ -50,7 +55,7 @@ config.use_fancy_tab_bar = true
 
 config.window_background_gradient = {
 	colors = { colors.catppuccin.mocha.background },
-	-- colors = { colors.everforest.dark.soft.background },
+	-- colors = { colors.everforest.dark.hard.background },
 }
 config.window_frame = {
 	inactive_titlebar_bg = "none",

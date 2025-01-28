@@ -152,14 +152,16 @@ local pure_plugins = {
 	-- },
 	-- {
 	-- 	"neanias/everforest-nvim",
+	-- 	name = "everforest",
 	-- 	version = false,
-	-- 	lazy = false,
 	-- 	priority = 1000, -- make sure to load this before all the other start plugins
+	-- 	lazy = false,
 	-- 	-- Optional; default configuration will be used if setup isn't called.
 	-- 	config = function()
 	-- 		require("everforest").setup({
-	-- 			-- Your config here
+	-- 			-- background = "hard",
 	-- 		})
+	-- 		colorscheme.set()
 	-- 	end,
 	-- },
 	{
@@ -173,6 +175,7 @@ local pure_plugins = {
 	{
 		"levouh/tint.nvim",
 		dependencies = { "catppuccin" },
+		-- dependencies = { "everforest" },
 		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		opts = {
 			highlight_ignore_patterns = {
