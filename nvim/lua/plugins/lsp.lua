@@ -267,12 +267,12 @@ lspconfig.pyright.setup({
 	on_attach = function(_, _) end,
 	settings = {
 		python = {
-			pythonPath = "$HOME/.pyenv/shims/python",
+			pythonPath = "$HOME/.pyenv/shims/python3",
 		},
 	},
 })
 
-vim.g.python3_host_prog = "$HOME/.pyenv/shims/python"
+vim.g.python3_host_prog = "$HOME/.pyenv/shims/python3"
 
 -- typos
 require("lspconfig").typos_lsp.setup({
