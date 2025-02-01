@@ -28,7 +28,7 @@ after launch nvim, try `:Mason` and search and install `eslint_d`, `stylua` and 
   - make sure exec `colorscheme.set` function at config
   - update dependency of `tint.nvim`
 - update colorscheme in `nvm/lua/colorscheme.lua`
-- create palette in `nvim/lua/palettes/<colorscheme.lua`
+- create palette in `nvim/lua/palettes/<colorscheme>.lua`
 - (Optional) create and update color theme of wezterm and starship
 
 ### VScode
