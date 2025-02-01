@@ -8,9 +8,11 @@ end
 
 config.automatically_reload_config = true
 
-config.color_scheme = "Catppuccin Mocha"
--- config.color_scheme = "Everforest Dark Soft (Gogh)"
--- config.color_scheme = 'Everforest Dark Hard (Gogh)'
+-- config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "Everforest Dark Soft (Gogh)"
+-- config.color_scheme = "Everforest Dark Hard (Gogh)"
+local theme = "everforest"
+local variant = "soft"
 local colors = {
 	catppuccin = {
 		mocha = {
@@ -20,22 +22,25 @@ local colors = {
 		},
 	},
 	everforest = {
-		dark = {
-			hard = {
-				background = "#1e2326",
-				text = "#cdd6f4",
-				selected = "#88c0d0",
-			},
-			soft = {
-				background = "#293136",
-				text = "#cdd6f4",
-				selected = "#88c0d0",
-			},
+		hard = {
+			background = "#1e2326",
+			text = "#cdd6f4",
+			selected = "#88c0d0",
+		},
+		soft = {
+			background = "#293136",
+			text = "#cdd6f4",
+			selected = "#88c0d0",
 		},
 	},
 }
+local color = {
+	background = colors[theme][variant].background,
+	text = colors[theme][variant].text,
+	selected = colors[theme][variant].selected,
+}
 
-config.window_background_opacity = 0.90
+config.window_background_opacity = 1
 config.macos_window_background_blur = 50
 
 config.native_macos_fullscreen_mode = true
@@ -51,12 +56,10 @@ config.window_decorations = "RESIZE"
 config.show_tabs_in_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
--- config.show_close_tab_button_in_tabs = false
 config.use_fancy_tab_bar = true
 
 config.window_background_gradient = {
-	colors = { colors.catppuccin.mocha.background },
-	-- colors = { colors.everforest.dark.hard.background },
+	colors = { color.background },
 }
 config.window_frame = {
 	inactive_titlebar_bg = "none",
@@ -72,12 +75,12 @@ local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
 local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
 ---@diagnostic disable-next-line: unused-local, redefined-local
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local background = colors.catppuccin.mocha.background
-	local foreground = colors.catppuccin.mocha.text
+	local background = color.background
+	local foreground = color.text
 	local edge_background = "none"
 	if tab.is_active then
-		background = colors.catppuccin.mocha.selected
-		foreground = colors.catppuccin.mocha.background
+		background = color.selected
+		foreground = color.background
 	end
 	local edge_foreground = background
 	local title = "   " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. "   "

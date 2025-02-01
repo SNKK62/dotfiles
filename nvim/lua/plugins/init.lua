@@ -150,21 +150,20 @@ local pure_plugins = {
 	-- 		},
 	-- 	},
 	-- },
-	-- {
-	-- 	"neanias/everforest-nvim",
-	-- 	name = "everforest",
-	-- 	version = false,
-	-- 	priority = 1000, -- make sure to load this before all the other start plugins
-	-- 	lazy = false,
-	-- 	-- Optional; default configuration will be used if setup isn't called.
-	-- 	config = function()
-	-- 		require("everforest").setup({
-	-- 			-- background = "soft",
-	-- 			background = "hard",
-	-- 		})
-	-- 		colorscheme.set()
-	-- 	end,
-	-- },
+	{
+		"neanias/everforest-nvim",
+		name = "everforest",
+		version = false,
+		priority = 1000, -- make sure to load this before all the other start plugins
+		lazy = false,
+		config = function()
+			require("everforest").setup({
+				background = "soft",
+				-- background = "hard",
+			})
+			colorscheme.set()
+		end,
+	},
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -175,8 +174,7 @@ local pure_plugins = {
 	-- https://github.com/izumin5210/dotfiles/pull/573/files
 	{
 		"levouh/tint.nvim",
-		dependencies = { "catppuccin" },
-		-- dependencies = { "everforest" },
+		dependencies = { "catppuccin", "everforest" },
 		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		opts = {
 			highlight_ignore_patterns = {

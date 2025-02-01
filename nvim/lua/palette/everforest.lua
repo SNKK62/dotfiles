@@ -44,7 +44,8 @@ local soft_background = {
 	bg_blue = "#3f5865",
 	bg_yellow = "#55544a",
 }
-local palette = vim.tbl_extend("force", base_color, hard_background)
+-- local palette = vim.tbl_extend("force", base_color, hard_background)
+local palette = vim.tbl_extend("force", base_color, soft_background)
 palette.text = palette.fg
 palette.background = palette.bg0
 palette.error = palette.red

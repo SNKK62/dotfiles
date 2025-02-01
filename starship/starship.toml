@@ -12,7 +12,8 @@ $character\
 right_format = """
 """
 
-palette = "catppuccin_mocha"
+# palette = "catppuccin_mocha"
+palette = "everforest_dark_soft"
 
 [palettes.everforest_dark_soft]
 background = "#333c43"
@@ -20,7 +21,7 @@ text-black = "#181926"
 text-white = "#cad3f5"
 logo = "#a7c080"
 directory = "#7fbbb3"
-repo = "#e69875"
+repo = "#d3c6aa"
 git = "#d699b6"
 
 fg = "#d3c6aa"
