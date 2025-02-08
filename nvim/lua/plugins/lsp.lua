@@ -155,7 +155,7 @@ require("mason-lspconfig").setup({
 		"ocamllsp",
 		-- "ocamlformat", -- install directly
 		-- "pyright", -- install directly
-		-- "typos,"
+		-- "typos",
 		"typos_lsp",
 	},
 })
