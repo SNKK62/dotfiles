@@ -8,6 +8,9 @@ modmap:
 
 - name: Super -> Kana
   remap:
+    CTRL_R:
+      held: Super_R
+      alone: KatakanaHiragana
     Super_R:
       held: Super_R
       alone: KatakanaHiragana
