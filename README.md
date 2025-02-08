@@ -128,6 +128,7 @@ add settings below in `~/.gitconfig`
         diffFilter = delta --color-only
 [alias]
         diff-side-by-side = -c delta.features=side-by-side diff
+        graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
 ```
 
 ### AeroSpace
@@ -229,7 +230,7 @@ dune init project <project_name>
 
 #### Development
 
-Run the following commmand in the project directory while editing the source code.
+Run the following command in the project directory while editing the source code.
 
 ```sh
 dune build --watch

@@ -7,6 +7,8 @@ sudo reboot
 in /etc/zsh/zshenv
 ZDOTDIR=$HOME/.config/zsh
 
+see: zsh settings to apply antigen
+
 ln -s $PWD/zsh/.zshrc $PWD/zsh/ubuntu/.zshrc
 ln -s $PWD/zsh/ubuntu ~/.config/zsh
 
@@ -21,22 +23,36 @@ sudo n lts(latest)
 sudo apt purge nodejs npm
 (sudo n)
 
+ocaml opam
+see: https://opam.ocaml.org/doc/Install.html
+bash -c "sh <(curl -fsSL https://opam.ocaml.org/install.sh)"
+opam init
+// select 1
+
+
 neovim
 see: https://github.com/neovim/neovim/blob/master/INSTALL.md#linux
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-chmod u+x nvim.appimage
-sudo mv nvim.appimage /usr/local/bin/nvim
+see: https://github.com/neovim/neovim/releases
+
+// run appimage like below
+chmod +x nvim-*.appimage
+./nvim-*.appimage --appimage-extract
+./squashfs-root/usr/local/bin/nvim
+// This is unstable
+// sudo mv ./squashfs-root/usr/local/bin/nvim /usr/local/bin/nvim
+sudo ln -s $PWD/squashfs-root/usr/local/bin/nvim /usr/local/bin/nvim
 
 sudo apt install luarocks
 
 xclip (sync clipboard)
 sudo apt install xclip 
 
-if lockfile alerady exists in lsp
+if lockfile already exists in lsp
 :MasonInstall --force typescript-language-server
 :MasonInstall --force lua-language-server
 :MasonInstall --force eslint-lsp
 :MasonInstall --force json-lsp
+....
 
 if prettierd is required
 sudo npm install -g @fsouza/prettierd
@@ -115,8 +131,14 @@ sudo apt install fcitx5 fcitx5-mozc
 im-config -> fcitx5
 
 ~/.profile
+export DefaultImModule=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
 
+// link config
 ~/.config/fcitx5/
+
 fcitx5
 fcitx5-configtool
 
