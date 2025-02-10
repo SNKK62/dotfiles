@@ -1,3 +1,7 @@
+if [ -f ~/.env ]; then
+  source ~/.env
+fi
+
 # setting
 # permission for new files
 umask 027
