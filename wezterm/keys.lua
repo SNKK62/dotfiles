@@ -87,14 +87,31 @@ return {
 	{ key = "r", mods = "SUPER", action = act.ReloadConfiguration },
 	{ key = "f", mods = "SUPER|CTRL", action = act.ToggleFullScreen },
 	{
-		key = "RightArrow",
+		key = ";",
 		mods = "SUPER",
 		action = act.ActivateTabRelative(1),
 	},
 	{
-		key = "LeftArrow",
+		key = "'",
 		mods = "SUPER",
 		action = act.ActivateTabRelative(-1),
+	},
+	-- workaround for hammerspoon
+	{
+		key = "LeftArrow",
+		mods = "SUPER",
+		action = act.SendKey({
+			key = "'",
+			mods = "CTRL",
+		}),
+	},
+	{
+		key = "RightArrow",
+		mods = "SUPER",
+		action = act.SendKey({
+			key = ";",
+			mods = "CTRL",
+		}),
 	},
 	-- workaround for zellij
 	{

@@ -1,6 +1,10 @@
 local eventtap = require("hs.eventtap")
 local timer = require("hs.timer")
 local hotkey = require("hs.hotkey")
+local alert = require("hs.alert")
+local application = require("hs.application")
+local fnutils = require("hs.fnutils")
+local keycodes = require("hs.keycodes")
 
 local function keyCode(key, mods, callback)
 	mods = mods or {}
@@ -14,19 +18,74 @@ local function keyCode(key, mods, callback)
 	end
 end
 
-local function remapKey(modifiers, key, _keyCode)
-	hotkey.bind(modifiers, key, _keyCode, nil, _keyCode)
+local function remapKey(modifiers, key, action)
+	hotkey.bind(modifiers, key, action, nil, action)
 end
 
--- Ctrl + h/j/k/l to arrows
-remapKey({ "ctrl" }, "k", keyCode("up"))
-remapKey({ "ctrl" }, "j", keyCode("down"))
-remapKey({ "ctrl" }, "h", keyCode("left"))
-remapKey({ "ctrl" }, "l", keyCode("right"))
--- Ctrl + Shift + h/j/k/l to Shift + arrows
-remapKey({ "ctrl", "shift" }, "k", keyCode("up", { "shift" }))
-remapKey({ "ctrl", "shift" }, "j", keyCode("down", { "shift" }))
-remapKey({ "ctrl", "shift" }, "h", keyCode("left", { "shift" }))
-remapKey({ "ctrl", "shift" }, "l", keyCode("right", { "shift" }))
--- Optional: Shift + Delete to Forward Delete (if needed)
+local excludedApps = { "Terminal", "Code", "WezTerm" }
+
+local function isExcludedApp()
+	local app = application.frontmostApplication()
+	return app and fnutils.contains(excludedApps, app:name())
+end
+
+local isVisualMode = false
+
+local function toggleVisualMode()
+	isVisualMode = not isVisualMode
+	if isVisualMode then
+		alert.show("Visual Mode ON")
+	else
+		alert.show("Visual Mode OFF")
+	end
+end
+hotkey.bind({ "ctrl", "shift" }, "v", toggleVisualMode)
+
+-- cmd + c/x to exit visual mode
+ExitVisualMode = eventtap.new({ eventtap.event.types.keyDown }, function(event)
+	local keycode = event:getKeyCode()
+	local flags = event:getFlags()
+
+	if flags.cmd and (keycode == keycodes.map["c"] or keycode == keycodes.map["x"]) then
+		if isVisualMode then
+			isVisualMode = false
+			alert.show("Visual Mode OFF")
+		end
+	end
+	return false
+end)
+ExitVisualMode:start()
+
+local function addVisualMove(direction, mods)
+	mods = mods or {}
+	return function()
+		if isExcludedApp() then
+			keyCode(direction, mods)()
+		elseif isVisualMode then
+			local localMods = {}
+			for _, v in ipairs(mods) do
+				table.insert(localMods, v)
+			end
+			table.insert(localMods, "shift")
+			keyCode(direction, localMods)()
+		else
+			keyCode(direction, mods)()
+		end
+	end
+end
+
+-- ctrl + h/j/k/l to arrows
+remapKey({ "ctrl" }, "h", addVisualMove("left"))
+remapKey({ "ctrl" }, "l", addVisualMove("right"))
+remapKey({ "ctrl" }, "k", addVisualMove("up"))
+remapKey({ "ctrl" }, "j", addVisualMove("down"))
+
+-- ctrl+ '/; to cmd + left/right
+remapKey({ "ctrl" }, "'", addVisualMove("left", { "cmd" }))
+remapKey({ "ctrl" }, ";", addVisualMove("right", { "cmd" }))
+-- ctrl + shift + '/; to home/end
+remapKey({ "ctrl" }, ",", addVisualMove("home"))
+remapKey({ "ctrl" }, ".", addVisualMove("end"))
+
+-- Shift + Delete to Forward Delete
 remapKey({ "shift" }, "delete", keyCode("forwarddelete"))
