@@ -5,6 +5,7 @@ local alert = require("hs.alert")
 local application = require("hs.application")
 local fnutils = require("hs.fnutils")
 local keycodes = require("hs.keycodes")
+local menubar = require("hs.menubar")
 
 local function keyCode(key, mods, callback)
 	mods = mods or {}
@@ -31,12 +32,35 @@ end
 
 local isVisualMode = false
 
-local function toggleVisualMode()
-	isVisualMode = not isVisualMode
+local visualModeIcon = nil
+local function updateVisualModeIcon()
 	if isVisualMode then
-		alert.show("Visual Mode ON")
+		visualModeIcon = menubar.new()
+		if visualModeIcon then
+			visualModeIcon:setTitle("visual")
+		end
 	else
-		alert.show("Visual Mode OFF")
+		if visualModeIcon then
+			visualModeIcon:delete()
+		end
+	end
+end
+
+local function activateVisualMode()
+	isVisualMode = true
+	updateVisualModeIcon()
+end
+
+local function deactivateVisualMode()
+	isVisualMode = false
+	updateVisualModeIcon()
+end
+
+local function toggleVisualMode()
+	if isVisualMode then
+		deactivateVisualMode()
+	else
+		activateVisualMode()
 	end
 end
 hotkey.bind({ "ctrl", "shift" }, "v", toggleVisualMode)
@@ -48,8 +72,7 @@ ExitVisualMode = eventtap.new({ eventtap.event.types.keyDown }, function(event)
 
 	if flags.cmd and (keycode == keycodes.map["c"] or keycode == keycodes.map["x"]) then
 		if isVisualMode then
-			isVisualMode = false
-			alert.show("Visual Mode OFF")
+			deactivateVisualMode()
 		end
 	end
 	return false
