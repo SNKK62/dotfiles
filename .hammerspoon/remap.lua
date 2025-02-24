@@ -1,7 +1,6 @@
 local eventtap = require("hs.eventtap")
 local timer = require("hs.timer")
 local hotkey = require("hs.hotkey")
-local alert = require("hs.alert")
 local application = require("hs.application")
 local fnutils = require("hs.fnutils")
 local keycodes = require("hs.keycodes")
@@ -106,6 +105,11 @@ remapKey({ "ctrl" }, "h", addVisualMove("left"))
 remapKey({ "ctrl" }, "l", addVisualMove("right"))
 remapKey({ "ctrl" }, "k", addVisualMove("up"))
 remapKey({ "ctrl" }, "j", addVisualMove("down"))
+-- ctrl + shift + h/j/k/l to shift + arrows
+remapKey({ "ctrl", "shift" }, "h", keyCode("left", { "shift" }))
+remapKey({ "ctrl", "shift" }, "l", keyCode("right", { "shift" }))
+remapKey({ "ctrl", "shift" }, "k", keyCode("up", { "shift" }))
+remapKey({ "ctrl", "shift" }, "j", keyCode("down", { "shift" }))
 
 -- ctrl+ '/; to cmd + left/right
 remapKey({ "ctrl" }, "'", addVisualMove("left", { "cmd" }))
