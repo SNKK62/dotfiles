@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
-return {
+local keys = {
 	-- decrease font size
 	{
 		key = "-",
@@ -95,23 +95,6 @@ return {
 		key = "'",
 		mods = "SUPER",
 		action = act.ActivateTabRelative(-1),
-	},
-	-- workaround for hammerspoon
-	{
-		key = "LeftArrow",
-		mods = "SUPER",
-		action = act.SendKey({
-			key = "'",
-			mods = "CTRL",
-		}),
-	},
-	{
-		key = "RightArrow",
-		mods = "SUPER",
-		action = act.SendKey({
-			key = ";",
-			mods = "CTRL",
-		}),
 	},
 	-- workaround for zellij
 	{
@@ -299,3 +282,25 @@ return {
 	-- activate workspace mode
 	{ key = "w", mods = "LEADER", action = act.ActivateKeyTable({ name = "workspace" }) },
 }
+
+if wezterm.target_triple == "aarch64-apple-darwin" then
+	-- workaround for hammerspoon
+	table.insert(keys, {
+		key = "LeftArrow",
+		mods = "SUPER",
+		action = act.SendKey({
+			key = "'",
+			mods = "CTRL",
+		}),
+	})
+	table.insert(keys, {
+		key = "RightArrow",
+		mods = "SUPER",
+		action = act.SendKey({
+			key = ";",
+			mods = "CTRL",
+		}),
+	})
+end
+
+return keys
