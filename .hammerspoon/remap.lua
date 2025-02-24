@@ -65,12 +65,15 @@ local function toggleVisualMode()
 end
 hotkey.bind({ "ctrl", "shift" }, "v", toggleVisualMode)
 
--- cmd + c/x to exit visual mode
+-- cmd + c/x and basksapace to exit visual mode
 ExitVisualMode = eventtap.new({ eventtap.event.types.keyDown }, function(event)
 	local keycode = event:getKeyCode()
 	local flags = event:getFlags()
 
-	if flags.cmd and (keycode == keycodes.map["c"] or keycode == keycodes.map["x"]) then
+	if
+		(flags.cmd and (keycode == keycodes.map["c"] or keycode == keycodes.map["x"]))
+		or keycode == keycodes.map["delete"]
+	then
 		if isVisualMode then
 			deactivateVisualMode()
 		end
