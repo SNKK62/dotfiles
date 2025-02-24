@@ -73,6 +73,7 @@ ExitVisualMode = eventtap.new({ eventtap.event.types.keyDown }, function(event)
 	if
 		(flags.cmd and (keycode == keycodes.map["c"] or keycode == keycodes.map["x"]))
 		or keycode == keycodes.map["delete"]
+		or keycode == keycodes.map["escape"]
 	then
 		if isVisualMode then
 			deactivateVisualMode()
