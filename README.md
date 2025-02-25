@@ -145,6 +145,12 @@ brew install --cask nikitabobko/tap/aerospace
 ln -s ${PWD}/aerospace ~/.config/aerospace
 ```
 
+### Image in Terminal
+
+```bash
+brew install libsixel
+```
+
 ### WezTerm
 
 #### installation
