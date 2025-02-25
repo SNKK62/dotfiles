@@ -458,6 +458,7 @@ zl() {
     # Get the list of zellij sessions and remove ANSI color codes
     zellij ls \
       | sed 's/\x1b\[[0-9;]*m//g' \
+      | grep -v "EXITED" \
       | fzf --header="Select a Zellij session" \
             --expect="ctrl-n,ctrl-d,ctrl-c,enter"
   ); do
