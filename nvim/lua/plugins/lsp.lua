@@ -155,6 +155,9 @@ require("mason-lspconfig").setup({
 		-- "ocamllsp", -- install directly
 		-- "ocamlformat", -- install directly
 		-- "pyright", -- install directly
+		-- "mypy", -- install directly
+		-- "ruff", -- install directly
+		-- "black", -- install directly
 		-- "typos",
 		"typos_lsp",
 	},
@@ -263,12 +266,53 @@ lspconfig.rust_analyzer.setup({
 	},
 })
 
+local filter = require("utils").filter
+local function check_ignored_pyright_diagnostics(diagnostic)
+	-- Allow kwargs to be unused, sometimes you want many functions to take the
+	-- same arguments but you don't use all the arguments in all the functions,
+	-- so kwargs is used to suck up all the extras
+	-- if diagnostic.message == '"kwargs" is not accessed' then
+	-- 	return false
+	-- end
+
+	-- Allow variables starting with an underscore
+	-- if string.match(diagnostic.message, '"_.+" is not accessed') then
+	-- 	return false
+	-- end
+
+	if string.match(diagnostic.message, '".+" is not accessed') then
+		return false
+	end
+
+	return true
+end
+local function filter_pyright_diagnostics(diagnostic)
+	filter(diagnostic, check_ignored_pyright_diagnostics)
+end
+
 lspconfig.pyright.setup({
 	on_attach = function(_, _) end,
 	settings = {
+		pyright = {
+			disableOrganizeImports = true, -- Using Ruff
+		},
 		python = {
 			pythonPath = "$HOME/.pyenv/shims/python3",
+			analysis = {
+				diagnosticSeverityOverrides = {
+					-- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#type-check-diagnostics-settings
+					reportAssignmentType = "none",
+				},
+			},
 		},
+	},
+	handlers = {
+		["textDocument/publishDiagnostics"] = vim.lsp.with(function(a, params, client_id, c, config)
+			filter_pyright_diagnostics(params.diagnostics)
+			vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
+		end, {
+			update_in_insert = true,
+		}),
 	},
 })
 

@@ -13,26 +13,23 @@ null_ls.setup({
 		-- }),
 		-- null_ls.builtins.formatting.prettier, -- TODO: Add more filetypes except js, jsx and t*
 		-- null_ls.builtins.diagnostics.fish,
+		null_ls.builtins.diagnostics.mypy.with({
+			extra_args = { "--disable-error-code", "import-untyped" },
+		}),
+		null_ls.builtins.formatting.black,
 	},
 	on_attach = function(client, bufnr)
 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 		if client.supports_method("textDocument/formatting") then
-			if
-				vim.tbl_contains(client.config.filetypes, "lua")
-				-- TODO: Add more filetypes except js, jsx and t*
-				-- or vim.tbl_contains(client.config.filetypes, "json")
-				-- or vim.tbl_contains(client.config.filetypes, "yaml")
-			then
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					group = augroup,
-					buffer = bufnr,
-					callback = function()
-						vim.lsp.buf.format({
-							async = false,
-						})
-					end,
-				})
-			end
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format({
+						async = false,
+					})
+				end,
+			})
 		end
 	end,
 })

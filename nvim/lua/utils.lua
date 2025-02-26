@@ -40,4 +40,22 @@ function M.force_set_highlights(gname, highlights)
 	end)
 end
 
+---@param arr table
+---@param func fun(v: any, i: number): boolean
+function M.filter(arr, func)
+	-- Filter in place
+	-- https://stackoverflow.com/questions/49709998/how-to-filter-a-lua-array-inplace
+	local new_index = 1
+	local size_orig = #arr
+	for old_index, v in ipairs(arr) do
+		if func(v, old_index) then
+			arr[new_index] = v
+			new_index = new_index + 1
+		end
+	end
+	for i = new_index, size_orig do
+		arr[i] = nil
+	end
+end
+
 return M
