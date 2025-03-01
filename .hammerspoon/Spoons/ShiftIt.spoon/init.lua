@@ -16,10 +16,10 @@ obj.author = "Peter Klijn"
 obj.homepage = "https://github.com/peterklijn/hammerspoon-shiftit"
 obj.license = "https://github.com/peterklijn/hammerspoon-shiftit/blob/master/LICENSE.md"
 
-obj.positionMash = { "cmd" }
-obj.resizeMash = { "ctrl", "cmd" }
-obj.moveMash = { "ctrl", "cmd", "shift" }
-obj.mash = { "ctrl", "cmd" }
+-- obj.positionMash = { "cmd" }
+obj.resizeMash = { "ctrl", "cmd", "shift" }
+obj.moveMash = { "ctrl", "cmd" }
+-- obj.mash = { "ctrl", "cmd" }
 obj.mapping = {
 	-- left = { obj.positionMash, "left" },
 	-- left67 = { obj.positionMash, "[" },
@@ -37,16 +37,16 @@ obj.mapping = {
 	moveRight = { obj.moveMash, "right" },
 	moveLeft = { obj.moveMash, "left" },
 
-	maximum = { obj.mash, "m" },
+	-- maximum = { obj.mash, "m" },
 	-- toggleFullScreen = { obj.mash, "f" },
 	-- toggleZoom = { obj.mash, "z" },
 	-- center = { obj.mash, "c" },
 	-- nextScreen = { obj.mash, "n" },
 	-- previousScreen = { obj.mash, "p" },
-	resizeOut = { obj.resizeMash, "=" },
+	-- resizeOut = { obj.resizeMash, "=" },
 	resizeOutHeight = { obj.resizeMash, "up" },
 	resizeOutWidth = { obj.resizeMash, "right" },
-	resizeIn = { obj.resizeMash, "-" },
+	-- resizeIn = { obj.resizeMash, "-" },
 	resizeInHeight = { obj.resizeMash, "down" },
 	resizeInWidth = { obj.resizeMash, "left" },
 }
@@ -83,7 +83,7 @@ local units = {
 	-- 	return { x = 1 - (x / 100), y = 1 - (y / 100), w = x / 100, h = y / 100 }
 	-- end,
 
-	maximum = { x = 0.00, y = 0.00, w = 1.00, h = 1.00 },
+	-- maximum = { x = 0.00, y = 0.00, w = 1.00, h = 1.00 },
 }
 
 local latestMove = {
@@ -126,8 +126,8 @@ end
 function obj:moveWindow(isUp, isRight, isDown, isLeft)
 	local screen = self.hs.window.focusedWindow():screen():frame()
 	local window = self.hs.window.focusedWindow():frame()
-	local xStep = math.floor(screen.w / 24)
-	local yStep = math.floor(screen.h / 24)
+	local xStep = math.floor(screen.w / 18)
+	local yStep = math.floor(screen.h / 18)
 	local x, y, w, h = window.x, window.y, window.w, window.h
 	if isUp then
 		y = y - yStep
@@ -147,8 +147,8 @@ end
 function obj:resizeWindowInSteps(increment, forWidth, forHeight)
 	local screen = self.hs.window.focusedWindow():screen():frame()
 	local window = self.hs.window.focusedWindow():frame()
-	local wStep = math.floor(screen.w / 12)
-	local hStep = math.floor(screen.h / 12)
+	local wStep = math.floor(screen.w / 24)
+	local hStep = math.floor(screen.h / 24)
 	local x, y, w, h = window.x, window.y, window.w, window.h
 
 	if increment then
@@ -262,10 +262,10 @@ function obj:moveLeft()
 	self:moveWindow(false, false, false, true)
 end
 
-function obj:maximum()
-	latestMove.direction = "maximum"
-	self:move(units.maximum)
-end
+-- function obj:maximum()
+-- 	latestMove.direction = "maximum"
+-- 	self:move(units.maximum)
+-- end
 
 -- function obj:toggleFullScreen()
 -- 	self.hs.window.focusedWindow():toggleFullScreen()
@@ -288,9 +288,9 @@ end
 -- 	self.hs.window.focusedWindow():moveToScreen(self.hs.window.focusedWindow():screen():previous(), false, true, 0)
 -- end
 
-function obj:resizeOut()
-	self:resizeWindowInSteps(true, true, true)
-end
+-- function obj:resizeOut()
+-- 	self:resizeWindowInSteps(true, true, true)
+-- end
 
 function obj:resizeOutWidth()
 	self:resizeWindowInSteps(true, true, false)
@@ -300,9 +300,9 @@ function obj:resizeOutHeight()
 	self:resizeWindowInSteps(true, false, true)
 end
 
-function obj:resizeIn()
-	self:resizeWindowInSteps(false, true, true)
-end
+-- function obj:resizeIn()
+-- 	self:resizeWindowInSteps(false, true, true)
+-- end
 
 function obj:resizeInWidth()
 	self:resizeWindowInSteps(false, true, false)
@@ -383,9 +383,9 @@ function obj:bindHotkeys(mapping)
 	self.hs.hotkey.bind(self.mapping.moveLeft[1], self.mapping.moveLeft[2], function()
 		self:moveLeft()
 	end)
-	self.hs.hotkey.bind(self.mapping.maximum[1], self.mapping.maximum[2], function()
-		self:maximum()
-	end)
+	-- self.hs.hotkey.bind(self.mapping.maximum[1], self.mapping.maximum[2], function()
+	-- 	self:maximum()
+	-- end)
 	-- self.hs.hotkey.bind(self.mapping.toggleFullScreen[1], self.mapping.toggleFullScreen[2], function()
 	-- 	self:toggleFullScreen()
 	-- end)
@@ -401,18 +401,18 @@ function obj:bindHotkeys(mapping)
 	-- self.hs.hotkey.bind(self.mapping.previousScreen[1], self.mapping.previousScreen[2], function()
 	-- 	self:prevScreen()
 	-- end)
-	self.hs.hotkey.bind(self.mapping.resizeOut[1], self.mapping.resizeOut[2], function()
-		self:resizeOut()
-	end)
+	-- self.hs.hotkey.bind(self.mapping.resizeOut[1], self.mapping.resizeOut[2], function()
+	-- 	self:resizeOut()
+	-- end)
 	self.hs.hotkey.bind(self.mapping.resizeOutWidth[1], self.mapping.resizeOutWidth[2], function()
 		self:resizeOutWidth()
 	end)
 	self.hs.hotkey.bind(self.mapping.resizeOutHeight[1], self.mapping.resizeOutHeight[2], function()
 		self:resizeOutHeight()
 	end)
-	self.hs.hotkey.bind(self.mapping.resizeIn[1], self.mapping.resizeIn[2], function()
-		self:resizeIn()
-	end)
+	-- self.hs.hotkey.bind(self.mapping.resizeIn[1], self.mapping.resizeIn[2], function()
+	-- 	self:resizeIn()
+	-- end)
 	self.hs.hotkey.bind(self.mapping.resizeInWidth[1], self.mapping.resizeInWidth[2], function()
 		self:resizeInWidth()
 	end)
