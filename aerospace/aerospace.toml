@@ -111,6 +111,7 @@ alt-b = 'workspace B'
 alt-c = 'workspace C'
 alt-t = 'workspace T'
 alt-v = 'workspace V'
+alt-n = 'workspace N'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -120,6 +121,7 @@ alt-shift-b = 'move-node-to-workspace B'
 alt-shift-c = 'move-node-to-workspace C'
 alt-shift-t = 'move-node-to-workspace T'
 alt-shift-v = 'move-node-to-workspace V'
+alt-shift-n = 'move-node-to-workspace N'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 # alt-tab = 'workspace-back-and-forth'
@@ -158,24 +160,23 @@ ctrl-c = ['mode main']
 ctrl-leftSquareBracket = ['mode main']
 
 [[on-window-detected]]
+check-further-callbacks = true
+run = ['layout floating']
+
+[[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
 check-further-callbacks = true
-run = ['move-node-to-workspace V']
+run = ['layout tiling', 'move-node-to-workspace V']
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 check-further-callbacks = true
-run = ['move-node-to-workspace T']
+run = ['layout tiling', 'move-node-to-workspace T']
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 check-further-callbacks = true
-run = ['move-node-to-workspace B']
-
-[[on-window-detected]]
-if.app-id = 'com.google.Chrome.app.ngboffpgmgciiinnflnkgedmbalfkeeg'
-check-further-callbacks = true
-run = ['move-node-to-workspace C']
+run = ['layout tiling', 'move-node-to-workspace B']
 
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
@@ -188,13 +189,14 @@ check-further-callbacks = true
 run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
+if.app-id = 'com.openai.chat'
 check-further-callbacks = true
-run = ['layout floating']
+run = ['layout tiling', 'move-node-to-workspace C']
 
 [[on-window-detected]]
-if.workspace = '3'
+if.app-id = 'com.electron.nota'
 check-further-callbacks = true
-run = ['layout tiling']
+run = ['layout tiling', 'move-node-to-workspace N']
 
 [workspace-to-monitor-force-assignment]
 1 = 1 # Monitor sequence number from left to right. 1-based indexing
