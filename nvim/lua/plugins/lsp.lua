@@ -321,6 +321,6 @@ vim.g.python3_host_prog = "$HOME/.pyenv/shims/python3"
 -- typos
 require("lspconfig").typos_lsp.setup({
 	init_options = {
-		config = "$HOME/.config/nvim/spell/.typos.toml",
+		config = "~/.config/nvim/spell/.typos.toml",
 	},
 })
