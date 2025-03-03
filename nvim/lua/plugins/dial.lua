@@ -17,6 +17,11 @@ return function()
 				word = false,
 				cyclic = true,
 			}),
+			augend.constant.new({
+				elements = { "True", "False" },
+				word = false,
+				cyclic = true,
+			}),
 		},
 	})
 end
