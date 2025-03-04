@@ -107,6 +107,7 @@ cmd-ctrl-shift-l = 'move right'
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
 alt-b = 'workspace B'
 alt-c = 'workspace C'
 alt-t = 'workspace T'
@@ -117,6 +118,7 @@ alt-n = 'workspace N'
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-b = 'move-node-to-workspace B'
 alt-shift-c = 'move-node-to-workspace C'
 alt-shift-t = 'move-node-to-workspace T'
@@ -158,6 +160,8 @@ equal = 'resize smart +50'
 esc = ['mode main']
 ctrl-c = ['mode main']
 ctrl-leftSquareBracket = ['mode main']
+
+# check the app-id with `aerospace list-apps`
 
 [[on-window-detected]]
 check-further-callbacks = true
