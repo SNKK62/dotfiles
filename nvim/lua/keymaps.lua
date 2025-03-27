@@ -11,7 +11,7 @@ keymap({ "n", "v" }, "<C-j>", "11j", { noremap = true })
 keymap({ "n", "v" }, "<C-k>", "11k", { noremap = true })
 keymap({ "n", "v" }, "<C-h>", "10h", { noremap = true })
 keymap({ "n", "v" }, "<C-l>", "10l", { noremap = true })
--- with hammerspoon
+-- with keyboard remapping
 keymap({ "n", "v" }, "<DOWN>", "11j", { noremap = true })
 keymap({ "n", "v" }, "<UP>", "11k", { noremap = true })
 keymap({ "n", "v" }, "<LEFT>", "10h", { noremap = true })
@@ -22,9 +22,9 @@ keymap({ "v" }, ";;", "$h", { noremap = true })
 keymap({ "n", "v" }, "''", "^", { noremap = true })
 keymap("i", "<C-;>", "<C-o>$", { noremap = true })
 keymap("i", "<C-'>", "<C-o>^", { noremap = true })
--- with wezterm (for zellij)
-keymap("i", "<A-;>", "<C-o>$", { noremap = true })
-keymap("i", "<A-'>", "<C-o>^", { noremap = true })
+-- workaround for hammerspoon and wezterm
+keymap("i", "<C-a>", "<C-o>$", { noremap = true })
+keymap("i", "<C-e>", "<C-o>^", { noremap = true })
 
 keymap("i", "<C-j>", "<DOWN>", { noremap = true })
 keymap("i", "<C-k>", "<UP>", { noremap = true })

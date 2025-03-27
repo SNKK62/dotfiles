@@ -47,6 +47,18 @@ local keys = {
 			window:perform_action(act.SendKey({ key = "f" }), pane)
 		end),
 	},
+	-- move to the beginning of the line
+	{
+		key = "'",
+		mods = "CTRL",
+		action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
+	},
+	-- move to the end of the line
+	{
+		key = ";",
+		mods = "CTRL",
+		action = wezterm.action.SendKey({ key = "e", mods = "CTRL" }),
+	},
 	-- delete word
 	{
 		key = "Backspace",
@@ -96,7 +108,7 @@ local keys = {
 		mods = "SUPER",
 		action = act.ActivateTabRelative(-1),
 	},
-	-- workaround for zellij
+	-- workaround for zellij --
 	{
 		key = "h",
 		mods = "SUPER",
@@ -258,23 +270,7 @@ local keys = {
 			mods = "ALT",
 		}),
 	},
-	-- for neovim in zellij
-	{
-		key = ";",
-		mods = "CTRL",
-		action = act.SendKey({
-			key = ";",
-			mods = "ALT",
-		}),
-	},
-	{
-		key = "'",
-		mods = "CTRL",
-		action = act.SendKey({
-			key = "'",
-			mods = "ALT",
-		}),
-	},
+	-- end of workaround for zellij --
 	-- activate copy mode
 	{ key = "v", mods = "LEADER", action = act.ActivateCopyMode },
 	-- activate pane mode
@@ -288,18 +284,12 @@ if wezterm.target_triple == "aarch64-apple-darwin" then
 	table.insert(keys, {
 		key = "LeftArrow",
 		mods = "SUPER",
-		action = act.SendKey({
-			key = "'",
-			mods = "CTRL",
-		}),
+		action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
 	})
 	table.insert(keys, {
 		key = "RightArrow",
 		mods = "SUPER",
-		action = act.SendKey({
-			key = ";",
-			mods = "CTRL",
-		}),
+		action = wezterm.action.SendKey({ key = "e", mods = "CTRL" }),
 	})
 end
 

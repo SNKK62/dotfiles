@@ -114,9 +114,6 @@ remapKey({ "ctrl", "shift" }, "j", keyCode("down", { "shift" }))
 -- ctrl+ '/; to cmd + left/right
 remapKey({ "ctrl" }, "'", addVisualMove("left", { "cmd" }))
 remapKey({ "ctrl" }, ";", addVisualMove("right", { "cmd" }))
--- ctrl + shift + '/; to home/end
-remapKey({ "ctrl" }, ",", addVisualMove("home"))
-remapKey({ "ctrl" }, ".", addVisualMove("end"))
 
 -- Shift + Delete to Forward Delete
 remapKey({ "shift" }, "delete", keyCode("forwarddelete"))

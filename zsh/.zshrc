@@ -70,7 +70,7 @@ function fzf-cdr () {
     fi
 }
 zle -N fzf-cdr
-bindkey '^E' fzf-cdr
+bindkey '^T' fzf-cdr
 
 function cdrepo() {
     local repodir=$(ghq list | fzf)
