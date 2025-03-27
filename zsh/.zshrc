@@ -498,3 +498,39 @@ zl() {
 # pyenv
 eval "$(pyenv init -)"
 
+fpyenv() {
+  local selection key version display_name
+
+  while selection=$(
+    pyenv versions --bare \
+      | awk '{ if ($0 ~ /envs\//) print substr($0, index($0, "envs/") + 5); else print $0 }' \
+      | fzf --header="Select a Python version or virtualenv" \
+            --expect="enter,ctrl-l,ctrl-d"
+  ); do
+    key=$(head -1 <<< "$selection")
+    display_name=$(tail -1 <<< "$selection")
+
+    if [[ -z "$display_name" ]]; then
+      return
+    fi
+
+    case "$key" in
+      enter)
+        echo "Setting global Python version to $version..."
+        pyenv activate "$version"
+        ;;
+      ctrl-l)
+        echo "Setting local Python version to $version..."
+        pyenv local "$version"
+        ;;
+      ctrl-d)
+        echo -n "Are you sure you want to delete virtualenv $display_name? [y/N]: "
+        read confirm
+        if [[ "$confirm" =~ ^[Yy]$ ]]; then
+          pyenv virtualenv-delete -f "$display_name"
+        fi
+        ;;
+    esac
+  done
+}
+
