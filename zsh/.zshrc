@@ -538,7 +538,7 @@ fpyenv() {
 create_pyenv_settings() {
     echo '{
     "venvPath": "'$HOME'/.pyenv/versions",
-    "venv": "'$PYENV_VERSION'",
+    "venv": "'$PYENV_VERSION'"
 }' > ./pyrightconfig.json
 
   echo "[mypy]
