@@ -516,7 +516,7 @@ fpyenv() {
 
     case "$key" in
       enter)
-        echo "Setting global Python version to $version..."
+        echo "Activate virtualenv to $version..."
         pyenv activate "$version"
         ;;
       ctrl-l)
