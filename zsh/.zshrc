@@ -501,37 +501,36 @@ eval "$(pyenv init -)"
 fpyenv() {
   local selection key version display_name
 
-  while selection=$(
+  selection=$(
     pyenv versions --bare \
-      | awk '{ if ($0 ~ /envs\//) print substr($0, index($0, "envs/") + 5); else print $0 }' \
-      | fzf --header="Select a Python version or virtualenv" \
-            --expect="enter,ctrl-l,ctrl-d"
-  ); do
-    key=$(head -1 <<< "$selection")
-    display_name=$(tail -1 <<< "$selection")
+        | awk '{ if (!($0 ~ /envs\//)) print $0 }' \
+        | fzf --header="Select a virtualenv" \
+              --expect="enter,ctrl-l,ctrl-d"
+  );
+  key=$(head -1 <<< "$selection")
+  display_name=$(tail -1 <<< "$selection")
 
-    if [[ -z "$display_name" ]]; then
-      return
-    fi
+  if [[ -z "$display_name" ]]; then
+    return
+  fi
 
-    case "$key" in
-      enter)
-        echo "Activate virtualenv to $version..."
-        pyenv activate "$version"
-        ;;
-      ctrl-l)
-        echo "Setting local Python version to $version..."
-        pyenv local "$version"
-        ;;
-      ctrl-d)
-        echo -n "Are you sure you want to delete virtualenv $display_name? [y/N]: "
-        read confirm
-        if [[ "$confirm" =~ ^[Yy]$ ]]; then
-          pyenv virtualenv-delete -f "$display_name"
-        fi
-        ;;
-    esac
-  done
+  case "$key" in
+    enter)
+      echo "Activate virtualenv to $display_name..."
+      pyenv activate "$display_name"
+      ;;
+    ctrl-l)
+      echo "Setting local Python version to $display_name..."
+      pyenv local "$display_name"
+      ;;
+    ctrl-d)
+      echo -n "Are you sure you want to delete virtualenv $display_name? [y/N]: "
+      read confirm
+      if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        pyenv virtualenv-delete -f "$display_name"
+      fi
+      ;;
+  esac
 }
 
 
