@@ -120,3 +120,8 @@ remapKey({ "ctrl", "shift" }, ";", keyCode("right", { "cmd", "shift" }))
 
 -- Shift + Delete to Forward Delete
 remapKey({ "shift" }, "delete", keyCode("forwarddelete"))
+
+-- option + ; to †
+hotkey.bind({ "option" }, ";", function()
+	eventtap.keyStrokes("†")
+end)
