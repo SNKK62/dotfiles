@@ -23,8 +23,8 @@ keymap({ "n", "v" }, "''", "^", { noremap = true })
 keymap("i", "<C-;>", "<C-o>$", { noremap = true })
 keymap("i", "<C-'>", "<C-o>^", { noremap = true })
 -- workaround for hammerspoon and wezterm
-keymap("i", "<C-a>", "<C-o>$", { noremap = true })
-keymap("i", "<C-e>", "<C-o>^", { noremap = true })
+keymap("i", "<C-e>", "<C-o>$", { noremap = true })
+keymap("i", "<C-a>", "<C-o>^", { noremap = true })
 
 keymap("i", "<C-j>", "<DOWN>", { noremap = true })
 keymap("i", "<C-k>", "<UP>", { noremap = true })
