@@ -155,8 +155,8 @@ require("mason-lspconfig").setup({
 		-- "ocamllsp", -- install directly
 		-- "ocamlformat", -- install directly
 		-- "pyright", -- install directly
-		-- "mypy", -- install directly
-		-- "ruff", -- install directly
+		-- "mypy", -- install directly -- deprecated
+		-- "ruff", -- install directly -- deprecated
 		-- "black", -- install directly
 		-- "typos",
 		"typos_lsp",
@@ -280,9 +280,9 @@ local function check_ignored_pyright_diagnostics(diagnostic)
 	-- 	return false
 	-- end
 
-	if string.match(diagnostic.message, '".+" is not accessed') then
-		return false
-	end
+	-- if string.match(diagnostic.message, '".+" is not accessed') then
+	-- 	return false
+	-- end
 
 	return true
 end
@@ -293,9 +293,9 @@ end
 lspconfig.pyright.setup({
 	on_attach = function(_, _) end,
 	settings = {
-		pyright = {
-			disableOrganizeImports = true, -- Using Ruff
-		},
+		-- pyright = {
+		-- 	disableOrganizeImports = true, -- Using Ruff
+		-- },
 		python = {
 			pythonPath = "$HOME/.pyenv/shims/python3",
 			analysis = {
@@ -303,6 +303,13 @@ lspconfig.pyright.setup({
 					-- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#type-check-diagnostics-settings
 					reportAssignmentType = "none",
 				},
+				typeCheckingMode = "basic", -- "off", "basic", or "strict", Perform lightweight type checking
+				autoSearchPaths = true, -- Automatically detect virtual environments and library paths
+				useLibraryCodeForTypes = true, -- Infer types from source code if type stubs are missing
+				diagnosticMode = "openFilesOnly", -- "openFilesOnly" or "workspace", Show diagnostics only for open files (quieter)
+				-- reportMissingImports = false, -- Suppress warnings for missing imports
+				reportMissingTypeStubs = false, -- Do not warn about missing type stubs for libraries
+				reportUnknownMemberType = false, -- Suppress warnings for unknown attribute types,
 			},
 		},
 	},
