@@ -543,3 +543,32 @@ create_pyenv_settings() {
 # python_executable = $(which python3)
 # " > ./.mypy.ini
 }
+
+
+imgpaste() {
+    local img_path=$1
+    local png_img_path=${img_path}.png
+    local target_img_path
+    local format=$2
+    if [[ -z $format || $format == "png" ]]; then
+        pngpaste ${png_img_path}
+        return 0
+    fi
+
+    if [[ $format == "jpeg" ]]; then
+        target_img_path=${img_path}.jpg
+    elif [[ $format == "heic" ]]; then
+        target_img_path=${img_path}.heic
+    elif [[ $format == "tiff" ]]; then
+        target_img_path=${img_path}.tiff
+    elif [[ $format == "bmp" ]]; then
+        target_img_path=${img_path}.bmp
+    else
+        echo "Invalid format. Use 'jpeg', 'png', 'heic', 'tiff', or 'bmp'."
+        return 1
+    fi
+
+    pngpaste ${png_img_path} &&
+        sips -s format $format ${png_img_path} --out ${target_img_path} &&
+        rm ${png_img_path}
+}
