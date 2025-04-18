@@ -13,9 +13,9 @@ null_ls.setup({
 		-- }),
 		-- null_ls.builtins.formatting.prettier, -- TODO: Add more filetypes except js, jsx and t*
 		-- null_ls.builtins.diagnostics.fish,
-		null_ls.builtins.diagnostics.mypy.with({
-			extra_args = { "--disable-error-code", "import-untyped", "--disable-error-code", "import" },
-		}),
+		-- null_ls.builtins.diagnostics.mypy.with({
+		-- 	extra_args = { "--disable-error-code", "import-untyped", "--disable-error-code", "import" },
+		-- }),
 		null_ls.builtins.formatting.black,
 	},
 	on_attach = function(client, bufnr)
