@@ -4,11 +4,32 @@ local eventtap = require("hs.eventtap")
 local events = eventtap.event.types
 local map = keycodes.map
 
+--- for debugging new input source
+-- local keyDown = eventtap.event.types.keyDown
+-- local flagsChanged = eventtap.event.types.flagsChanged
+--
+-- eventTap = eventtap.new({ keyDown, flagsChanged }, function(event)
+-- 	local flags = event:getFlags()
+-- 	if flags["shift"] then
+-- 		print(keycodes.currentSourceID())
+-- 		print(keycodes.currentMethod())
+-- 		print(keycodes.currentLayout())
+-- 	end
+-- end)
+-- eventTap:start()
+---
+
 local SOURCES = {
 	Japanese = {
 		layout = "ABC",
 		method = "Hiragana",
 		id = "com.apple.inputmethod.Kotoeri.RomajiTyping.Japanese",
+	},
+	-- azoo
+	Anzoo = {
+		layout = "U.S.",
+		method = "azooKey (日本語)",
+		id = "dev.ensan.inputmethod.azooKeyMac.Japanese",
 	},
 	English = {
 		layout = "ABC",
@@ -74,7 +95,8 @@ RightCmdEventWatcher = eventtap.new({ events.flagsChanged, events.keyDown }, fun
 			switchInputSource("X_layout")
 			rightCmdFlag, shiftFlag, alreadyRightCmdFlag = false, false, false
 		elseif noFlags(event) and rightCmdFlag then
-			switchInputSource("Japanese")
+			-- switchInputSource("Japanese")
+			switchInputSource("Anzoo")
 			rightCmdFlag, shiftFlag, alreadyRightCmdFlag = false, false, false
 		elseif
 			flags.shift
