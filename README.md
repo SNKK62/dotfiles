@@ -149,6 +149,7 @@ ln -s ${PWD}/aerospace ~/.config/aerospace
 
 ```bash
 brew install libsixel
+brew install pngpaste
 ```
 
 ### WezTerm
