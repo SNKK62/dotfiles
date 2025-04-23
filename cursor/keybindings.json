@@ -47,7 +47,7 @@
   },
   {
     "key": "ctrl+f",
-    "command": "workbench.view.explorer",
+    "command": "workbench.view.explorer"
   },
   {
     "key": "ctrl+f",
@@ -56,7 +56,7 @@
   },
   {
     "key": "alt+f",
-    "command": "workbench.action.terminal.toggleTerminal",
+    "command": "workbench.action.terminal.toggleTerminal"
   },
   {
     "key": "alt+f",
@@ -65,7 +65,7 @@
   },
   {
     "key": "ctrl+g",
-    "command": "workbench.action.findInFiles",
+    "command": "workbench.action.findInFiles"
   },
   {
     "key": "ctrl+g",
@@ -74,7 +74,7 @@
   },
   {
     "key": "ctrl+shift+g",
-    "command": "workbench.scm.focus",
+    "command": "workbench.scm.focus"
   },
   {
     "key": "ctrl+shift+g",
@@ -97,9 +97,7 @@
     "key": "shift+left",
     "command": "runCommands",
     "args": {
-      "commands": [
-        "workbench.action.moveEditorToPreviousGroup"
-      ],
+      "commands": ["workbench.action.moveEditorToPreviousGroup"]
     }
   },
   {
@@ -120,9 +118,7 @@
     "key": "shift+down",
     "command": "runCommands",
     "args": {
-      "commands": [
-        "editor.action.moveLinesDownAction"
-      ],
+      "commands": ["editor.action.moveLinesDownAction"]
     }
   },
   {
@@ -148,9 +144,7 @@
     "key": "shift+up",
     "command": "runCommands",
     "args": {
-      "commands": [
-        "editor.action.moveLinesUpAction"
-      ],
+      "commands": ["editor.action.moveLinesUpAction"]
     }
   },
   {
@@ -165,9 +159,7 @@
     "key": "shift+right",
     "command": "runCommands",
     "args": {
-      "commands": [
-        "workbench.action.moveEditorToNextGroup"
-      ],
+      "commands": ["workbench.action.moveEditorToNextGroup"]
     }
   },
   {
@@ -192,7 +184,7 @@
   },
   {
     "key": "ctrl+shift+p",
-    "command": "workbench.action.showCommands",
+    "command": "workbench.action.showCommands"
   },
   {
     "key": "r",
@@ -302,5 +294,5 @@
   {
     "key": "ctrl+/",
     "command": "editor.action.commentLine"
-  },
+  }
 ]

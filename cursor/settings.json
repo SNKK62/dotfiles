@@ -1,25 +1,32 @@
 {
-  "[python]": {
-    "editor.formatOnType": true
-  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.cursorBlinking": "solid",
-  "workbench.colorTheme": "Everforest Dark",
+  "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.activityBar.orientation": "vertical",
   "editor.renderWhitespace": "all",
   "files.trimTrailingWhitespace": true,
   "editor.stickyScroll.enabled": true,
   "workbench.sideBar.location": "right",
+  "[json][jsonc]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[python]": {
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
   "[typescript]": {
     "editor.indentSize": 2,
     "editor.insertSpaces": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[typescriptreact]": {
     "editor.indentSize": 2,
     "editor.insertSpaces": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[rust]": {
     "editor.tabSize": 4,
@@ -64,7 +71,20 @@
   "javascript.suggest.paths": false,
   "path-intellisense.absolutePathToWorkspace": true,
   "window.zoomLevel": 1,
-  "workbench.colorCustomizations": {},
+  "workbench.colorCustomizations": {
+    // 選択範囲の背景色と境界線の色
+    "editor.selectionBackground": "#7883e182", // 選択範囲の背景色
+    // カーソルを合わせた単語と同じ単語の背景色と境界線の色
+    "editor.wordHighlightBackground": "#66b3ff10", // カーソルを合わせた単語と同じ単語の背景色
+    "editor.wordHighlightBorder":"#66b3ff55", // カーソルを合わせた単語と同じ単語の境界線の色
+    // 検索で一致したすべての結果の背景色と境界線の色
+    "editor.findMatchHighlightBackground": "#ff6f6f10", // 検索で一致したすべての結果の背景色
+    "editor.findMatchHighlightBorder": "#ff6f6f55", // 検索で一致したすべての結果の境界線の色
+    // カーソルがある行の背景色と境界線の色
+    "editor.lineHighlightBackground": "#00fff210", // カーソルがある行の背景色
+    // ホバー時の背景色
+    "editor.hoverHighlightBackground": "#66b3ff55", // ホバー時の背景色
+  },
   "cSpell.userWords": [
     "autoincrement",
     "cmdline",
@@ -88,7 +108,7 @@
   "vim.hlsearch": true,
   "vim.leader": "<space>",
   "vim.handleKeys": {
-    "<C-f>": false
+    "<C-f>": false,
   },
   // "vim.insertModeKeyBindings": [
   //     {
@@ -98,231 +118,168 @@
   // ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        "u"
-      ],
-      "commands": [
-        {
-          "command": "undo"
-        }
-      ]
+      "before": ["<leader>", "a", "c"],
+      "commands": ["editor.action.quickFix"]
     },
     {
-      "before": [
-        "<C-r>"
-      ],
-      "commands": [
-        {
-          "command": "redo"
-        }
-      ]
+      "before": ["<C-d>"],
+      "after": ["<C-d>", "z", "z"]
     },
     {
-      "before": [
-        "j"
-      ],
-      "after": [
-        "g",
-        "j"
-      ]
+      "before": ["<leader>", "d", "f"],
+      "commands": ["editor.action.revealDefinition"]
     },
     {
-      "before": [
-        "k"
-      ],
-      "after": [
-        "g",
-        "k"
-      ]
+      "before": ["<leader>", "d", "d"],
+      "commands": ["workbench.action.closePanel"]
     },
     {
-      "before": [
-        "<C-/>"
-      ],
-      "commands": [
-        {
-          "command": "editor.action.commentLine"
-        }
-      ]
+      "before": ["<leader>", "d", "i"],
+      "commands": ["workbench.actions.view.problems"]
     },
     {
-      "before": [
-        "<Esc>",
-        "<Esc>"
-      ],
-      "after": [
-        ":",
-        "n",
-        "o",
-        "h",
-        "l",
-        "<CR>"
-      ]
+      "before": ["<leader>", "d", "n"],
+      "commands": ["editor.action.marker.next"]
     },
     {
-      "before": [
-        "M"
-      ],
-      "after": [
-        "%"
-      ]
+      "before": ["<leader>", "d", "p"],
+      "commands": ["editor.action.marker.prev"]
     },
     {
-      "before": [
-        "<leader>",
-        "a",
-        "c"
-      ],
-      "commands": [
-        {
-          "command": "editor.action.quickFix"
-        }
-      ]
+      "before": ["<leader>", "d", "y"],
+      "commands": ["editor.action.goToTypeDefinition"]
     },
     {
-      "before": [
-        "<leader>",
-        "z"
-      ],
-      "commands": [
-        {
-          "command": "workbench.action.toggleZenMode"
-        }
-      ]
+      "before": ["j"],
+      "after": ["g", "j"]
     },
     {
-      "before": [
-        "<leader>",
-        "d",
-        "f"
-      ],
-      "commands": [
-        {
-          "command": "editor.action.revealDefinition"
-        }
-      ]
+      "before": ["k"],
+      "after": ["g", "k"]
     },
     {
-      "before": [
-        "<leader>",
-        "d",
-        "d"
-      ],
-      "commands": [
-        {
-          "command": "workbench.action.closePanel"
-        }
-      ]
+      "before": ["M"],
+      "after": ["%"]
     },
     {
-      "before": [
-        "<leader>",
-        "d",
-        "i"
-      ],
-      "commands": [
-        {
-          "command": "workbench.actions.view.problems"
-        }
-      ]
+      "before": ["n"],
+      "after": ["n", "z", "z"]
     },
     {
-      "before": [
-        "<leader>",
-        "d",
-        "n"
-      ],
-      "commands": [
-        {
-          "command": "editor.action.marker.next"
-        }
-      ]
+      "before": ["N"],
+      "after": ["N", "z", "z"]
     },
     {
-      "before": [
-        "<leader>",
-        "d",
-        "p"
-      ],
-      "commands": [
-        {
-          "command": "editor.action.marker.prev"
-        }
-      ]
+      "before": ["u"],
+      "commands": ["undo"]
     },
     {
-      "before": [
-        "<leader>",
-        "d",
-        "y"
-      ],
-      "commands": [
-        {
-          "command": "editor.action.goToTypeDefinition"
-        }
-      ]
+      "before": ["<C-u>"],
+      "after": ["<C-u>", "z", "z"]
     },
     {
-      "before": [
-        "<leader>",
-        "r",
-        "h"
-      ],
-      "commands": [
-        {
-          "command": "editor.showCallHierarchy"
-        }
-      ]
+      "before": ["<Esc>", "<Esc>"],
+      "after": [":", "n", "o", "h", "l", "<CR>"]
     },
     {
-      "before": [
-        "<leader>",
-        "r",
-        "f"
-      ],
-      "commands": [
-        {
-          "command": "references-view.findReferences"
-        }
-      ]
+      "before": ["<C-r>"],
+      "commands": ["redo"]
     },
     {
-      "before": [
-        "<leader>",
-        "r",
-        "n"
-      ],
-      "commands": [
-        {
-          "command": "editor.action.rename"
-        }
-      ]
+      "before": ["<leader>", "r", "f"],
+      "commands": ["references-view.findReferences"]
+    },
+    {
+      "before": ["<leader>", "r", "h"],
+      "commands": ["editor.showCallHierarchy"]
+    },
+    {
+      "before": ["<leader>", "r", "n"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },
+    {
+      "before": ["X"],
+      "after": ["\"", "_", "d"]
+    },
+    {
+      "before": ["<leader>", "z"],
+      "commands": ["workbench.action.toggleZenMode"]
+    },
+    {
+      "before": ["<Right>"],
+      "after": ["1", "1", "l"]
+    },
+    {
+      "before": ["<Left>"],
+      "after": ["1", "1", "h"]
+    },
+    {
+      "before": ["<Up>"],
+      "after": ["1", "0", "k"]
+    },
+    {
+      "before": ["<Down>"],
+      "after": ["1", "0", "j"]
+    },
+    {
+      "before": [";", ";"],
+      "after": ["$"]
+    },
+    {
+      "before": ["'", "'"],
+      "after": ["^"]
+    },
+    {
+      "before": ["<Esc>", "<Esc>"],
+      "after": [":", "n", "o", "h", "l", "<CR>"]
     },
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        ">"
-      ],
-      "commands": [
-        "editor.action.indentLines"
-      ]
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
     },
     {
-      "before": [
-        "<"
-      ],
-      "commands": [
-        "editor.action.outdentLines"
-      ]
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
     },
     {
-      "before": [
-        "M"
-      ],
-      "after": [
-        "%"
-      ]
+      "before": ["M"],
+      "after": ["%"]
+    },
+    {
+      "before": ["<Right>"],
+      "after": ["1", "1", "l"]
+    },
+    {
+      "before": ["<Left>"],
+      "after": ["1", "1", "h"]
+    },
+    {
+      "before": ["<Up>"],
+      "after": ["1", "0", "k"]
+    },
+    {
+      "before": ["<Down>"],
+      "after": ["1", "0", "j"]
+    },
+    {
+      "before": [";", ";"],
+      "after": ["$", "h"]
+    },
+    {
+      "before": ["'", "'"],
+      "after": ["^"]
     }
   ],
+  "vim.operatorPendingModeKeyBindingsNonRecursive": [
+    {
+      "before": ["p"],
+      "after": ["P"]
+    },
+  ]
 }
