@@ -1,0 +1,328 @@
+{
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "editor.formatOnSave": true,
+  "editor.cursorBlinking": "solid",
+  "workbench.colorTheme": "Everforest Dark",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.activityBar.orientation": "vertical",
+  "editor.renderWhitespace": "all",
+  "files.trimTrailingWhitespace": true,
+  "editor.stickyScroll.enabled": true,
+  "workbench.sideBar.location": "right",
+  "[typescript]": {
+    "editor.indentSize": 2,
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[typescriptreact]": {
+    "editor.indentSize": 2,
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[rust]": {
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true
+    // "editor.inlayHints.enabled": "offUnlessPressed"
+  },
+  "rust-analyzer.rustfmt.rangeFormatting.enable": true,
+  // "rust-analyzer.rustfmt.overrideCommand": [
+  //   "rustup",
+  //   "run",
+  //   "nightly",
+  //   "rustfmt",
+  //   "--unstable-features"
+  // ],
+  "rust-analyzer.checkOnSave": true,
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.check.extraArgs": [
+    "--",
+    "-A",
+    "clippy::needless_return"
+  ],
+  "terminal.integrated.inheritEnv": false,
+  "workbench.editorAssociations": {
+    "*.rds": "default"
+  },
+  "// To improve performance",
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "indentRainbow.colors": [
+    "rgba(255, 0, 0, 0.2)",
+    "rgba(255, 127, 0, 0.2)",
+    "rgba(255, 255, 0, 0.2)",
+    "rgba(0, 255, 0, 0.2)",
+    "rgba(0, 0, 255, 0.2)"
+  ],
+  "typescript.suggest.paths": false,
+  "javascript.suggest.paths": false,
+  "path-intellisense.absolutePathToWorkspace": true,
+  "window.zoomLevel": 1,
+  "workbench.colorCustomizations": {},
+  "cSpell.userWords": [
+    "autoincrement",
+    "cmdline",
+    "datasource",
+    "markuplint",
+    "neovim",
+    "noto",
+    "phind",
+    "rgba",
+    "signup",
+    "tailwindcss",
+    "Usecase"
+  ],
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.fontFamily": "HackGen35ConsoleNF-Regular",
+  "window.commandCenter": true,
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-f>": false
+  },
+  // "vim.insertModeKeyBindings": [
+  //     {
+  //     "before": ["j", "j"],
+  //     "after": ["<Esc>"]
+  //     }
+  // ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "u"
+      ],
+      "commands": [
+        {
+          "command": "undo"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<C-r>"
+      ],
+      "commands": [
+        {
+          "command": "redo"
+        }
+      ]
+    },
+    {
+      "before": [
+        "j"
+      ],
+      "after": [
+        "g",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "k"
+      ],
+      "after": [
+        "g",
+        "k"
+      ]
+    },
+    {
+      "before": [
+        "<C-/>"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.commentLine"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<Esc>",
+        "<Esc>"
+      ],
+      "after": [
+        ":",
+        "n",
+        "o",
+        "h",
+        "l",
+        "<CR>"
+      ]
+    },
+    {
+      "before": [
+        "M"
+      ],
+      "after": [
+        "%"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "a",
+        "c"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.quickFix"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "z"
+      ],
+      "commands": [
+        {
+          "command": "workbench.action.toggleZenMode"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "d",
+        "f"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.revealDefinition"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "d",
+        "d"
+      ],
+      "commands": [
+        {
+          "command": "workbench.action.closePanel"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "d",
+        "i"
+      ],
+      "commands": [
+        {
+          "command": "workbench.actions.view.problems"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "d",
+        "n"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.marker.next"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "d",
+        "p"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.marker.prev"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "d",
+        "y"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.goToTypeDefinition"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "r",
+        "h"
+      ],
+      "commands": [
+        {
+          "command": "editor.showCallHierarchy"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "r",
+        "f"
+      ],
+      "commands": [
+        {
+          "command": "references-view.findReferences"
+        }
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "r",
+        "n"
+      ],
+      "commands": [
+        {
+          "command": "editor.action.rename"
+        }
+      ]
+    },
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        ">"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ]
+    },
+    {
+      "before": [
+        "<"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ]
+    },
+    {
+      "before": [
+        "M"
+      ],
+      "after": [
+        "%"
+      ]
+    }
+  ],
+}
