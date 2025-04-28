@@ -14,7 +14,7 @@
       "strings": true
     },
     "editor.suggest.insertMode": "replace",
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[python]": {
     "editor.formatOnType": true,
@@ -22,11 +22,11 @@
   },
   "[typescript]": {
     "editor.indentSize": 2,
-    "editor.insertSpaces": true,
+    "editor.insertSpaces": true
   },
   "[typescriptreact]": {
     "editor.indentSize": 2,
-    "editor.insertSpaces": true,
+    "editor.insertSpaces": true
   },
   "[rust]": {
     "editor.tabSize": 4,
@@ -44,16 +44,12 @@
   // ],
   "rust-analyzer.checkOnSave": true,
   "rust-analyzer.check.command": "clippy",
-  "rust-analyzer.check.extraArgs": [
-    "--",
-    "-A",
-    "clippy::needless_return"
-  ],
+  "rust-analyzer.check.extraArgs": ["--", "-A", "clippy::needless_return"],
   "terminal.integrated.inheritEnv": false,
   "workbench.editorAssociations": {
     "*.rds": "default"
   },
-  "// To improve performance",
+  // To improve performance
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1
   },
@@ -76,14 +72,14 @@
     "editor.selectionBackground": "#7883e182", // 選択範囲の背景色
     // カーソルを合わせた単語と同じ単語の背景色と境界線の色
     "editor.wordHighlightBackground": "#66b3ff10", // カーソルを合わせた単語と同じ単語の背景色
-    "editor.wordHighlightBorder":"#66b3ff55", // カーソルを合わせた単語と同じ単語の境界線の色
+    "editor.wordHighlightBorder": "#66b3ff55", // カーソルを合わせた単語と同じ単語の境界線の色
     // 検索で一致したすべての結果の背景色と境界線の色
     "editor.findMatchHighlightBackground": "#ff6f6f10", // 検索で一致したすべての結果の背景色
     "editor.findMatchHighlightBorder": "#ff6f6f55", // 検索で一致したすべての結果の境界線の色
     // カーソルがある行の背景色と境界線の色
     "editor.lineHighlightBackground": "#00fff210", // カーソルがある行の背景色
     // ホバー時の背景色
-    "editor.hoverHighlightBackground": "#66b3ff55", // ホバー時の背景色
+    "editor.hoverHighlightBackground": "#66b3ff55" // ホバー時の背景色
   },
   "cSpell.userWords": [
     "autoincrement",
@@ -108,7 +104,7 @@
   "vim.hlsearch": true,
   "vim.leader": "<space>",
   "vim.handleKeys": {
-    "<C-f>": false,
+    "<C-f>": false
   },
   // "vim.insertModeKeyBindings": [
   //     {
@@ -156,6 +152,10 @@
     {
       "before": ["k"],
       "after": ["g", "k"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
     },
     {
       "before": ["M"],
@@ -236,7 +236,7 @@
     {
       "before": ["<Esc>", "<Esc>"],
       "after": [":", "n", "o", "h", "l", "<CR>"]
-    },
+    }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     {
@@ -280,6 +280,6 @@
     {
       "before": ["p"],
       "after": ["P"]
-    },
+    }
   ]
 }

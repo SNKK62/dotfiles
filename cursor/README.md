@@ -12,8 +12,11 @@ pkief.material-icon-theme
 sainnhe.everforest
 streetsidesoftware.code-spell-checker
 vscodevim.vim
+ms-vscode-remote.remote-ssh
+ms-vscode-remote.remote-ssh-edit
+ms-vscode.remote-explorer
 ```
 
 ```sh
-cursor --isntall-extension <id>
+cursor --install-extension <id>
 ```

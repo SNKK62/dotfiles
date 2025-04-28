@@ -122,11 +122,6 @@
     }
   },
   {
-    "key": "shift+k",
-    "command": "editor.action.showHover",
-    "when": "neovim.mode != insert && editorTextFocus"
-  },
-  {
     "key": "alt+k",
     "command": "workbench.action.moveEditorRightInGroup",
     "when": "!terminalFocus"
