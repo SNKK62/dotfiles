@@ -34,6 +34,9 @@
     "editor.formatOnSave": true
     // "editor.inlayHints.enabled": "offUnlessPressed"
   },
+  "[markdown]": {
+    "editor.indentSize": 2
+  },
   "rust-analyzer.rustfmt.rangeFormatting.enable": true,
   // "rust-analyzer.rustfmt.overrideCommand": [
   //   "rustup",
@@ -146,6 +149,10 @@
       "commands": ["editor.action.goToTypeDefinition"]
     },
     {
+      "before": ["<C-i>"],
+      "commands": ["workbench.action.navigateForward"]
+    },
+    {
       "before": ["j"],
       "after": ["g", "j"]
     },
@@ -168,6 +175,10 @@
     {
       "before": ["N"],
       "after": ["N", "z", "z"]
+    },
+    {
+      "before": ["<C-o>"],
+      "commands": ["workbench.action.navigateBack"]
     },
     {
       "before": ["u"],
@@ -250,6 +261,10 @@
     {
       "before": ["M"],
       "after": ["%"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
     },
     {
       "before": ["<Right>"],
