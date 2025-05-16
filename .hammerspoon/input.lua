@@ -95,8 +95,7 @@ RightCmdEventWatcher = eventtap.new({ events.flagsChanged, events.keyDown }, fun
 			switchInputSource("X_layout")
 			rightCmdFlag, shiftFlag, alreadyRightCmdFlag = false, false, false
 		elseif noFlags(event) and rightCmdFlag then
-			-- switchInputSource("Japanese")
-			switchInputSource("Anzoo")
+			switchInputSource("Japanese")
 			rightCmdFlag, shiftFlag, alreadyRightCmdFlag = false, false, false
 		elseif
 			flags.shift
