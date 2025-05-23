@@ -173,6 +173,11 @@ check-further-callbacks = true
 run = ['layout tiling', 'move-node-to-workspace V']
 
 [[on-window-detected]]
+if.app-id = 'com.todesktop.230313mzl4w4u92' # Cursor
+check-further-callbacks = true
+run = ['layout tiling', 'move-node-to-workspace V']
+
+[[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 check-further-callbacks = true
 run = ['layout tiling', 'move-node-to-workspace T']
