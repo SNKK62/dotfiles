@@ -49,13 +49,13 @@ local keys = {
 	},
 	-- move to the beginning of the line
 	{
-		key = "'",
+		key = ";",
 		mods = "CTRL",
 		action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
 	},
 	-- move to the end of the line
 	{
-		key = ";",
+		key = "'",
 		mods = "CTRL",
 		action = wezterm.action.SendKey({ key = "e", mods = "CTRL" }),
 	},
@@ -99,12 +99,12 @@ local keys = {
 	{ key = "r", mods = "SUPER", action = act.ReloadConfiguration },
 	{ key = "f", mods = "SUPER|CTRL", action = act.ToggleFullScreen },
 	{
-		key = ";",
+		key = "'",
 		mods = "SUPER",
 		action = act.ActivateTabRelative(1),
 	},
 	{
-		key = "'",
+		key = ";",
 		mods = "SUPER",
 		action = act.ActivateTabRelative(-1),
 	},
