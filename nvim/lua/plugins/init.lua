@@ -128,15 +128,15 @@ local pure_plugins = {
 	{
 		"github/copilot.vim",
 	},
-	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		lazy = false,
-		dependencies = {
-			"github/copilot.vim",
-			"nvim-lua/plenary.nvim",
-		},
-		config = require("plugins/copilot-chat"),
-	},
+	-- {
+	--	"CopilotC-Nvim/CopilotChat.nvim",
+	--	lazy = false,
+	--	dependencies = {
+	--		"github/copilot.vim",
+	--		"nvim-lua/plenary.nvim",
+	--	},
+	--	config = require("plugins/copilot-chat"),
+	--},
 
 	-- colorscheme
 	-- {

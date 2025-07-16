@@ -166,19 +166,19 @@ require("mason-lspconfig").setup({
 local augroup = vim.api.nvim_create_augroup("CustomLspFormatting", { clear = true })
 
 local lspconfig = require("lspconfig")
-require("mason-lspconfig").setup_handlers({
-	function(server_name) -- default handler (optional)
-		lspconfig[server_name].setup({
-			on_attach = general_on_attach,
-			capabilities = capabilities,
-			handlers = {
-				["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-					update_in_insert = true,
-				}),
-			},
-		})
-	end,
-})
+-- require("mason-lspconfig").setup_handlers({
+-- 	function(server_name) -- default handler (optional)
+-- 		lspconfig[server_name].setup({
+-- 			on_attach = general_on_attach,
+-- 			capabilities = capabilities,
+-- 			handlers = {
+-- 				["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+-- 					update_in_insert = true,
+-- 				}),
+-- 			},
+-- 		})
+-- 	end,
+-- })
 
 -- TypeScript
 lspconfig.ts_ls.setup({
