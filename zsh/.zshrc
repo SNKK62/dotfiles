@@ -41,7 +41,15 @@ alias vi='nvim'
 eval "$(starship init zsh)"
 
 function fzf-history-selection() {
-    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | fzf --prompt="command history > " --query "$LBUFFER"`
+    BUFFER=$(
+        history -n 1 \
+        | tac \
+        | awk '!seen[$0]++' \
+        | fzf --prompt="command history > " \
+              --query "$LBUFFER" \
+              --tiebreak=index \
+              --no-sort
+    )
     CURSOR=$#BUFFER
     zle reset-prompt
 }
