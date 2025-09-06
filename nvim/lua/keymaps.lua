@@ -221,49 +221,6 @@ if not vim.g.vscode then
 		noremap = true,
 		silent = true,
 	})
-	-- copilot chat
-	-- (Copilot Chat Buffer) chat with Copilot using the entire buffer content
-	keymap(
-		"n",
-		"<Leader>cc",
-		'<cmd>lua require("plugins/copilot-chat.utils").copilotChatBuffer()<cr>',
-		{ noremap = true, silent = true }
-	)
-	-- (Copilot Chat Selection) chat with Copilot using the selected content
-	keymap(
-		"v",
-		"<Leader>cc",
-		'<cmd>lua require("plugins/copilot-chat.utils").copilotChatSelection()<cr>',
-		{ noremap = true, silent = true }
-	)
-	keymap("n", "<Leader>ct", "<cmd>CopilotChatToggle<cr>", { noremap = true, silent = true })
-	-- (Copilot Chat Prompt) display the action prompt using telescope
-	keymap(
-		"n",
-		"<Leader>cl",
-		'<cmd>lua require("plugins/copilot-chat.utils").showCopilotChatActionPrompt()<cr>',
-		{ noremap = true, silent = true }
-	)
-	keymap(
-		"v",
-		"<Leader>cl",
-		'<cmd>lua require("plugins/copilot-chat.utils").showCopilotChatActionPromptVisualSelection()<cr>',
-		{ noremap = true, silent = true }
-	)
-	-- (Copilot Chat Help) display the action help using telescope
-	keymap(
-		"n",
-		"<Leader>ch",
-		'<cmd>lua require("plugins/copilot-chat.utils").showCopilotChatActionHelp()<cr>',
-		{ noremap = true, silent = true }
-	)
-	-- (Copilot Chat Reset) reset the Copilot chat content
-	keymap(
-		"n",
-		"<Leader>cr",
-		'<cmd>lua require("plugins/copilot-chat.utils").copilotChatReset()<cr>',
-		{ noremap = true, silent = true }
-	)
 
 	-- comment/uncomment
 	keymap("n", "<C-/>", "gcc", { remap = true })
@@ -325,7 +282,7 @@ if not vim.g.vscode then
 
 	-- session
 	keymap("n", "<C-s>", ":SessionSave<CR>", { noremap = true })
-	keymap("n", "<CS-S>", "<cmd>Telescope session-lens search_session<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>sl", "<cmd>Telescope session-lens search_session<CR>", { noremap = true, silent = true })
 end
 
 -- highlight mark setting
