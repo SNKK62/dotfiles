@@ -7,13 +7,9 @@ vim.g.mapleader = " "
 keymap({ "n", "v" }, "j", "gj", { noremap = true })
 keymap({ "n", "v" }, "k", "gk", { noremap = true })
 
-keymap({ "n", "v" }, "<C-j>", "11j", { noremap = true })
-keymap({ "n", "v" }, "<C-k>", "11k", { noremap = true })
 keymap({ "n", "v" }, "<C-h>", "10h", { noremap = true })
 keymap({ "n", "v" }, "<C-l>", "10l", { noremap = true })
 -- with keyboard remapping
-keymap({ "n", "v" }, "<DOWN>", "11j", { noremap = true })
-keymap({ "n", "v" }, "<UP>", "11k", { noremap = true })
 keymap({ "n", "v" }, "<LEFT>", "10h", { noremap = true })
 keymap({ "n", "v" }, "<RIGHT>", "10l", { noremap = true })
 
@@ -40,7 +36,10 @@ keymap("n", "<C-u>", "<C-u>zz", { noremap = true })
 keymap("n", "n", "nzz", { noremap = true })
 keymap("n", "N", "Nzz", { noremap = true })
 
--- buffer
+-- window buffer
+keymap("c", "bd", "bp|bd #", { noremap = true, silent = true })
+
+-- text buffer
 -- delete
 keymap({ "n", "x" }, "x", '"_x', { noremap = true })
 keymap("n", "X", '"_d', { noremap = true })
@@ -230,7 +229,6 @@ if not vim.g.vscode then
 	keymap("x", "<C-_>", "gc", { remap = true })
 
 	-- bufferline
-	keymap("n", "<C-b>c", "<CMD>bdelete!<CR>", { noremap = true, silent = true })
 	keymap("n", "<C-b>d", "<CMD>BufferLinePickClose<CR>", { noremap = true, silent = true })
 	keymap("n", "<C-b>s", "<CMD>BufferLinePick<CR>", { noremap = true, silent = true })
 	keymap("n", "¬", "<CMD>BufferLineCycleNext<CR>", { noremap = true, silent = true }) -- <A-l>
