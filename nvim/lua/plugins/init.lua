@@ -386,11 +386,11 @@ local pure_plugins = {
 		config = require("plugins/scrollbar"),
 	},
 	-- buffer management
-	{
-		"chrisgrieser/nvim-early-retirement",
-		config = true,
-		event = "VeryLazy",
-	},
+	-- {
+	-- 	"chrisgrieser/nvim-early-retirement",
+	-- 	config = true,
+	-- 	event = "VeryLazy",
+	-- },
 	{
 		"Shougo/vinarise.vim",
 	},
