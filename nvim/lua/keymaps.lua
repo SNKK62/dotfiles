@@ -80,28 +80,28 @@ keymap("i", "<C-g>l", "<ESC>guiwgi", { noremap = true })
 keymap("i", "<C-g>h", "<ESC>bgUlgi", { noremap = true })
 
 -- dial
-vim.keymap.set("n", "<C-a>", function()
+keymap("n", "<C-a>", function()
 	require("dial.map").manipulate("increment", "normal")
 end)
-vim.keymap.set("n", "<C-x>", function()
+keymap("n", "<C-x>", function()
 	require("dial.map").manipulate("decrement", "normal")
 end)
-vim.keymap.set("n", "g<C-a>", function()
+keymap("n", "g<C-a>", function()
 	require("dial.map").manipulate("increment", "gnormal")
 end)
-vim.keymap.set("n", "g<C-x>", function()
+keymap("n", "g<C-x>", function()
 	require("dial.map").manipulate("decrement", "gnormal")
 end)
-vim.keymap.set("v", "<C-a>", function()
+keymap("v", "<C-a>", function()
 	require("dial.map").manipulate("increment", "visual")
 end)
-vim.keymap.set("v", "<C-x>", function()
+keymap("v", "<C-x>", function()
 	require("dial.map").manipulate("decrement", "visual")
 end)
-vim.keymap.set("v", "g<C-a>", function()
+keymap("v", "g<C-a>", function()
 	require("dial.map").manipulate("increment", "gvisual")
 end)
-vim.keymap.set("v", "g<C-x>", function()
+keymap("v", "g<C-x>", function()
 	require("dial.map").manipulate("decrement", "gvisual")
 end)
 
@@ -169,8 +169,6 @@ if not vim.g.vscode then
 
 	-- treesitter-context
 	keymap("n", "<Leader>tsc", "<Cmd>TSContextToggle<CR>", { noremap = true, silent = true })
-	-- treesitter-context-vt
-	keymap("n", "<Leader>tsv", "<Cmd>TSContextVToggle<CR>", { noremap = true, silent = true })
 
 	-- splitting/joining
 	vim.keymap.set("n", "<Leader>sj", require("treesj").toggle)
@@ -191,8 +189,6 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>gp", require("gitsigns").preview_hunk)
 	-- messenger
 	keymap("n", "<Leader>gm", "<Cmd>GitMessenger<CR>", { noremap = true, silent = true })
-	-- add
-	keymap("n", "<Leader>ga", "<A-f>fga<CR>", { remap = true })
 	-- copy url
 	keymap(
 		"n",
@@ -214,12 +210,24 @@ if not vim.g.vscode then
 	keymap("i", "<C-g>d", "<Plug>(copilot-dismiss)", { noremap = true })
 	keymap("i", "<C-g>n", "<Plug>(copilot-next)", { noremap = true })
 	keymap("i", "<C-g>p", "<Plug>(copilot-previous)", { noremap = true })
-	keymap("i", "<C-g>w", "<Plug>(copilot-accept-word)", { noremap = true })
-	keymap("i", "<C-g>a", 'copilot#Accept("")', {
-		expr = true,
-		noremap = true,
-		silent = true,
-	})
+
+	-- copilot-chat
+	keymap("n", "<A-g>", "<Cmd>CopilotChatToggle<CR>", { noremap = true, silent = true })
+	keymap("n", "©", "<Cmd>CopilotChatToggle<CR>", { noremap = true, silent = true })
+	keymap("n", "<Leader>cr", "<Cmd>CopilotChatReset<CR>", { noremap = true, silent = true })
+
+	-- gen docstring
+	keymap(
+		"n",
+		"<Leader>doc",
+		"<Leader>crvafov<Cmd>Neogen<CR><Esc>vaf<Cmd>CopilotChat Docs<CR>",
+		{ remap = true, silent = true }
+	)
+
+	-- fold
+	keymap("n", "<Leader>K", function()
+		require("ufo.preview"):peekFoldedLinesUnderCursor()
+	end, { noremap = true, silent = true })
 
 	-- comment/uncomment
 	keymap("n", "<C-/>", "gcc", { remap = true })
@@ -270,6 +278,11 @@ if not vim.g.vscode then
 
 	-- action
 	keymap({ "n", "v" }, "<Leader>ac", require("actions-preview").code_actions, { silent = true })
+
+	-- symbol picker
+	vim.keymap.set("n", "<leader>ss", function()
+		require("symbol-picker").symbols_picker()
+	end, { desc = "LSP Symbols (kind switcher)", noremap = true, silent = true })
 
 	-- format
 	keymap("n", "<Leader>fmt", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", { noremap = true, silent = true })

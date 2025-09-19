@@ -128,7 +128,45 @@ local pure_plugins = {
 	{
 		"github/copilot.vim",
 	},
-
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", branch = "master" },
+		},
+		build = "make tiktoken",
+		opts = {
+			-- See Configuration section for options
+			window = {
+				layout = "float", -- 'vertical', 'horizontal', 'float'
+				width = 0.8,
+				height = 0.8,
+			},
+			mappings = {
+				complete = {
+					insert = "",
+					callback = function()
+						require("CopilotChat.completion").complete()
+					end,
+				},
+			},
+		},
+	},
+	-- docstring
+	{
+		"danymat/neogen",
+		config = function()
+			require("neogen").setup({
+				enabled = true,
+				languages = {
+					python = {
+						template = {
+							annotation_convention = "google_docstrings",
+						},
+					},
+				},
+			})
+		end,
+	},
 	-- colorscheme
 	-- {
 	-- 	"folke/tokyonight.nvim",
@@ -270,15 +308,71 @@ local pure_plugins = {
 		config = require("plugins/yati"),
 	},
 	{
-		"RRethy/nvim-treesitter-textsubjects",
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				textobjects = {
+					select = {
+						enable = true,
+
+						-- Automatically jump forward to textobj, similar to targets.vim
+						lookahead = true,
+
+						keymaps = {
+							-- You can use the capture groups defined in textobjects.scm
+							["af"] = {
+								query = "@function.outer",
+								desc = "Select outer part of a method/function definition",
+							},
+							["if"] = {
+								query = "@function.inner",
+								desc = "Select inner part of a method/function definition",
+							},
+							["ac"] = {
+								query = "@class.outer",
+								desc = "Select outer part of a class",
+							},
+							["ic"] = {
+								query = "@class.inner",
+								desc = "Select inner part of a class",
+							},
+							["ab"] = {
+								query = "@block.outer",
+								desc = "Select outer part of a block",
+							},
+							["ib"] = {
+								query = "@block.inner",
+								desc = "Select inner part of a block",
+							},
+						},
+					},
+				},
+			})
+		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		config = require("plugins/treesitter-context"),
 	},
 	{
-		"andersevenrud/nvim_context_vt",
-		config = require("plugins/nvim_context_vt"),
+		"kevinhwang91/nvim-ufo",
+		dependencies = { "kevinhwang91/promise-async" },
+		config = function()
+			vim.opt.foldlevel = 99
+			vim.opt.foldlevelstart = 99
+			vim.opt.foldenable = true
+			vim.opt.foldmethod = "expr"
+			vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+			require("ufo").setup({
+				provider_selector = function(_, filetype, _)
+					if filetype == "python" then
+						return { "treesitter", "indent" }
+					end
+					return { "treesitter", "indent" }
+				end,
+			})
+		end,
 	},
 	-- splitting/joining
 	{
