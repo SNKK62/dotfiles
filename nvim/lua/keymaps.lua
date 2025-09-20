@@ -220,7 +220,7 @@ if not vim.g.vscode then
 	keymap(
 		"n",
 		"<Leader>doc",
-		"<Leader>crvafov<Cmd>Neogen<CR><Esc>vaf<Cmd>CopilotChat Docs<CR>",
+		"<Leader>crvafov<Cmd>Neogen<CR><Esc>vafo0<Cmd>CopilotChat Docs<CR>",
 		{ remap = true, silent = true }
 	)
 
