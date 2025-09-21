@@ -64,15 +64,15 @@ keymap("x", "<", "<gv", { noremap = true })
 keymap("x", ">", ">gv", { noremap = true })
 
 -- move line
-keymap("n", "<CS-k>", "$<Cmd>move-1-{v:count1}<CR>=l", { noremap = true })
-keymap("n", "<CS-j>", "^<Cmd>move+{v:count1}<CR>=l", { noremap = true })
-keymap("x", "<CS-k>", ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
-keymap("x", "<CS-j>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
+keymap("n", "<C-k>", "$<Cmd>move-1-{v:count1}<CR>=l", { noremap = true })
+keymap("n", "<C-j>", "^<Cmd>move+{v:count1}<CR>=l", { noremap = true })
+keymap("x", "<C-k>", ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
+keymap("x", "<C-j>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
 -- wit hammerspoon
-keymap("n", "<S-UP>", "$<Cmd>move-1-{v:count1}<CR>=l", { noremap = true })
-keymap("n", "<S-DOWN>", "^<Cmd>move+{v:count1}<CR>=l", { noremap = true })
-keymap("x", "<S-UP>", ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
-keymap("x", "<S-DOWN>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
+keymap("n", "<UP>", "$<Cmd>move-1-{v:count1}<CR>=l", { noremap = true })
+keymap("n", "<DOWN>", "^<Cmd>move+{v:count1}<CR>=l", { noremap = true })
+keymap("x", "<UP>", ":move '<-2<CR>gv=gv", { noremap = true, silent = true })
+keymap("x", "<DOWN>", ":move '>+1<CR>gv=gv", { noremap = true, silent = true })
 
 -- change case in insert mode
 keymap("i", "<C-g>u", "<ESC>gUiwgi", { noremap = true })
@@ -153,19 +153,12 @@ if not vim.g.vscode then
 			position = "right",
 		})
 	end)
-	keymap("n", "<CS-G>", function()
-		require("neo-tree.command").execute({
-			toggle = true,
-			source = "git_status",
-			position = "right",
-		})
-	end)
 
 	-- telescope
 	local builtin = require("telescope.builtin")
 	keymap("n", "<C-p>", builtin.find_files, {})
 	keymap("n", "<C-g>", builtin.live_grep, {})
-	keymap("n", "<CS-B>", builtin.buffers, {})
+	keymap("n", "<Leader>bl", builtin.buffers, {})
 
 	-- treesitter-context
 	keymap("n", "<Leader>tsc", "<Cmd>TSContextToggle<CR>", { noremap = true, silent = true })
@@ -185,10 +178,16 @@ if not vim.g.vscode then
 	keymap("n", "<Leader>gc", "<Cmd>DiffviewClose<CR>", { noremap = true, silent = true })
 	-- blame
 	keymap("n", "<Leader>gb", require("gitsigns").blame)
-	-- preview
+	-- preview hunk
 	keymap("n", "<Leader>gp", require("gitsigns").preview_hunk)
+	-- (un)stage (add) hunk
+	keymap("n", "<Leader>ga", "<Cmd>Gitsigns stage_hunk<CR>", { noremap = true, silent = true })
 	-- messenger
 	keymap("n", "<Leader>gm", "<Cmd>GitMessenger<CR>", { noremap = true, silent = true })
+	-- jump to prev hunk
+	keymap("n", "<Leader>gk", "<Cmd>Gitsigns nav_hunk prev<CR>", { noremap = true, silent = true })
+	-- jump to next hunk
+	keymap("n", "<Leader>gj", "<Cmd>Gitsigns nav_hunk next<CR>", { noremap = true, silent = true })
 	-- copy url
 	keymap(
 		"n",
@@ -205,6 +204,13 @@ if not vim.g.vscode then
 		'<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require("gitlinker.actions").copy_to_clipboard})<cr><ESC>',
 		{ remap = true, silent = true }
 	)
+	keymap("n", "<Leader>gl", function()
+		require("neo-tree.command").execute({
+			toggle = true,
+			source = "git_status",
+			position = "right",
+		})
+	end)
 
 	-- copilot
 	keymap("i", "<C-g>d", "<Plug>(copilot-dismiss)", { noremap = true })
@@ -280,7 +286,7 @@ if not vim.g.vscode then
 	keymap({ "n", "v" }, "<Leader>ac", require("actions-preview").code_actions, { silent = true })
 
 	-- symbol picker
-	vim.keymap.set("n", "<leader>ss", function()
+	vim.keymap.set("n", "<C-s>", function()
 		require("symbol-picker").symbols_picker()
 	end, { desc = "LSP Symbols (kind switcher)", noremap = true, silent = true })
 
@@ -292,7 +298,7 @@ if not vim.g.vscode then
 	keymap({ "n", "t" }, "<A-f>", "<cmd>Lspsaga term_toggle<CR>", { silent = true })
 
 	-- session
-	keymap("n", "<C-s>", ":SessionSave<CR>", { noremap = true })
+	keymap("n", "<Leader>ss", ":SessionSave<CR>", { noremap = true })
 	keymap("n", "<Leader>sl", "<cmd>Telescope session-lens search_session<CR>", { noremap = true, silent = true })
 end
 
