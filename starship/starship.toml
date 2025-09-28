@@ -1,4 +1,5 @@
 format = """
+${custom.venv}\
 ${custom.os_logo}\
 $directory\
 ${custom.git_symbol}\
@@ -87,6 +88,11 @@ base = "#24273a"
 mantle = "#1e2030"
 crust = "#181926"
 
+[custom.venv]
+command = "echo \"($(basename $(dirname \"$VIRTUAL_ENV\")))\""
+when = "test -n \"$VIRTUAL_ENV\""
+format = "($output)\n"
+
 [custom.os_logo]
 command = """
 if grep -qi 'ubuntu' /etc/os-release; then
@@ -96,7 +102,7 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   echo ""  # macOS
 else
-  echo "?"  # 不明なOS
+  echo "?"  # Unknown OS
 fi
 """
 when = "true"
