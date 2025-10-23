@@ -8,11 +8,11 @@ end
 
 config.automatically_reload_config = true
 
--- config.color_scheme = "Catppuccin Mocha"
-config.color_scheme = "Everforest Dark Soft (Gogh)"
+config.color_scheme = "Catppuccin Mocha"
+-- config.color_scheme = "Everforest Dark Soft (Gogh)"
 -- config.color_scheme = "Everforest Dark Hard (Gogh)"
-local theme = "everforest"
-local variant = "soft"
+local theme = "catppuccin"
+local variant = "mocha"
 local colors = {
 	catppuccin = {
 		mocha = {

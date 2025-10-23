@@ -13,8 +13,8 @@ $character\
 right_format = """
 """
 
-# palette = "catppuccin_mocha"
-palette = "everforest_dark_soft"
+palette = "catppuccin_mocha"
+# palette = "everforest_dark_soft"
 
 [palettes.everforest_dark_soft]
 background = "#333c43"
