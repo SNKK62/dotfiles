@@ -11,7 +11,7 @@ null_ls.setup({
 		-- null_ls.builtins.diagnostics.eslint_d.with({
 		-- 	diagnostics_format = "[eslint] #{m}\n(#{c})",
 		-- }),
-		-- null_ls.builtins.formatting.prettier, -- TODO: Add more filetypes except js, jsx and t*
+		null_ls.builtins.formatting.prettier, -- TODO: Add more filetypes except js, jsx and t*
 		-- null_ls.builtins.diagnostics.fish,
 		-- null_ls.builtins.diagnostics.mypy.with({
 		-- 	extra_args = { "--disable-error-code", "import-untyped", "--disable-error-code", "import" },
