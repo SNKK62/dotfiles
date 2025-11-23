@@ -140,6 +140,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 require("mason").setup()
 require("mason-lspconfig").setup({
+	automatic_installation = true,
 	ensure_installed = {
 		"lua_ls",
 		-- "luacheck", -- install directly
