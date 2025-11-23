@@ -161,6 +161,7 @@ require("mason-lspconfig").setup({
 		-- "typos",
 		"typos_lsp",
 	},
+	automatic_enable = false,
 })
 
 local augroup = vim.api.nvim_create_augroup("CustomLspFormatting", { clear = true })
@@ -221,8 +222,18 @@ lspconfig.lua_ls.setup({
 	end,
 	settings = {
 		Lua = {
+			runtime = {
+				version = "LuaJIT",
+			},
 			diagnostics = {
 				globals = { "vim" },
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
+			},
+			telemetry = {
+				enable = false,
 			},
 		},
 	},
@@ -290,6 +301,47 @@ local function filter_pyright_diagnostics(diagnostic)
 	filter(diagnostic, check_ignored_pyright_diagnostics)
 end
 
+local function resolve_python(binary)
+	local search_path = vim.fn.getcwd()
+	local home = os.getenv("HOME") or ""
+
+	local function from_env_prefix(prefix)
+		if not prefix or prefix == "" then
+			return nil
+		end
+		local candidate = prefix .. "/bin/" .. binary
+		if vim.fn.filereadable(candidate) == 1 then
+			return candidate
+		end
+	end
+
+	local active_env = from_env_prefix(vim.env.VIRTUAL_ENV) or from_env_prefix(vim.env.CONDA_PREFIX)
+	if active_env then
+		return active_env
+	end
+
+	while search_path ~= nil and search_path ~= "" do
+		-- Prefer project-local virtual environments by walking up to the filesystem root.
+		local candidate = search_path .. "/.venv/bin/" .. binary
+		if vim.fn.filereadable(candidate) == 1 then
+			return candidate
+		end
+
+		local parent = vim.fn.fnamemodify(search_path, ":h")
+		if parent == search_path then
+			break
+		end
+		search_path = parent
+	end
+
+	local home_candidate = home .. "/.venv/bin/" .. binary
+	if vim.fn.filereadable(home_candidate) == 1 then
+		return home_candidate
+	end
+
+	return home .. "/.pyenv/shims/" .. binary
+end
+
 lspconfig.pyright.setup({
 	on_attach = function(_, _) end,
 	settings = {
@@ -297,7 +349,7 @@ lspconfig.pyright.setup({
 		-- 	disableOrganizeImports = true, -- Using Ruff
 		-- },
 		python = {
-			pythonPath = "$HOME/.pyenv/shims/python3",
+			pythonPath = resolve_python("python"),
 			analysis = {
 				diagnosticSeverityOverrides = {
 					-- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#type-check-diagnostics-settings
@@ -323,7 +375,7 @@ lspconfig.pyright.setup({
 	},
 })
 
-vim.g.python3_host_prog = "$HOME/.pyenv/shims/python3"
+-- vim.g.python3_host_prog = "$HOME/.pyenv/shims/python3"
 
 -- typos
 require("lspconfig").typos_lsp.setup({
