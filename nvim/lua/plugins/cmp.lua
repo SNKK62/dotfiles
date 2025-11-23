@@ -10,7 +10,7 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "nvim_lsp" }, --ソース類を設定
+		{ name = "nvim_lsp" },
 		{ name = "vsnip" }, -- For vsnip users.
 		{ name = "buffer" },
 		{ name = "path" },
@@ -41,11 +41,5 @@ cmp.setup.cmdline("/", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
 		{ name = "buffer" },
-	},
-})
-cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = {
-		{ name = "path" },
 	},
 })

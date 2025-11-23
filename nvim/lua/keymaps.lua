@@ -106,8 +106,8 @@ keymap("v", "g<C-x>", function()
 end)
 
 -- search
-keymap("n", "/", "/\\v", { noremap = true })
-keymap("n", "?", "?\\v", { noremap = true })
+-- keymap("n", "/", "/\\v", { noremap = true })
+-- keymap("n", "?", "?\\v", { noremap = true })
 keymap("n", "<ESC><ESC>", ":nohl<CR>", { noremap = true, silent = true })
 
 -- substitution
