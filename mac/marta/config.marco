@@ -1,0 +1,99 @@
+behavior {
+    theme "Kon"
+    setCurrentPathAsWindowTitle true
+    preselectFirstMenuItem true
+    layout {
+        showActionBar false
+    }
+    quickSelect {
+        activateOnAnyCharacter false
+    }
+    table {
+        defaults {
+            ordering {
+                column "modified"
+                showFoldersOnTop false
+            }
+        }
+    }
+}
+
+etty {
+    pasteOnRightClick false
+    shell "/usr/local/bin/bash"
+}
+
+keyBindings {
+    "Tab" "core.change.current.pane"
+    "Ctrl+Tab" "core.tab.next"
+    "Ctrl+Shift+Tab" "core.tab.previous"
+
+    "Up" "core.move.up"
+    "Down" "core.move.down"
+    "Shift+Up" "core.select.move.up"
+    "Shift+Down" "core.select.move.down"
+
+    "Left" "core.go.up"
+    "Right" "core.open"
+
+    "Cmd+Left" "core.move.home"
+    "Shift+Cmd+Left" "core.select.move.home"
+    "Cmd+Right" "core.move.end"
+    "Shift+Cmd+Right" "core.select.move.end"
+
+    "Ctrl+D" "core.move.half.page.down"
+    "Ctrl+U" "core.move.half.page.up"
+
+    "H" "core.clone.left"
+    "L" "core.clone.right"
+    "Shift+H" "core.clone.left.folder"
+    "Shift+L" "core.clone.right.folder"
+
+    "Cmd+R" "core.refresh"
+
+    "Ctrl+F" "core.favorites"
+    "Shift+Ctrl+F" "core.favorites.add"
+
+    "Cmd+H" "core.hierarchy"
+    "Shift+Ctrl+B" "core.recent"
+
+    "Shift+Ctrl+P" "core.actions"
+    "Ctrl+P" "core.lookup"
+    "Cmd+P" "core.lookup"
+    "Cmd+F" "core.lookup.here"
+    "Cmd+G" "core.go"
+
+    "Delete" "core.trash"
+    "Opt+Backspace" "core.delete"
+
+    "Ctrl+O" "core.back"
+    "Ctrl+I" "core.forward"
+
+    "Backspace" "core.go.up"
+    "Return" "core.open"
+    "Cmd+Return" "core.open.with"
+    "Ctrl+Return" "core.open.with"
+    "Space" "core.preview"
+
+    "Cmd+C" "core.clipboard.copy"
+    "Cmd+V" "core.clipboard.paste"
+    "Cmd+D" "core.duplicate"
+
+    "Y" "core.copy"
+    "X" "core.move"
+    "R" "core.rename"
+
+    "A" "core.new.file"
+    "Shift+A" "core.new.folder"
+
+    "Shift+Y" "core.path"
+
+    "Opt+F" "core.terminal.toggle"
+
+    "=" "core.queue"
+    "Shift+=" "core.queue"
+
+    "Cmd+," "core.preferences"
+}
+
+
