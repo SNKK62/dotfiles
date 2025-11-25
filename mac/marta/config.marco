@@ -57,7 +57,6 @@ keyBindings {
     "Cmd+R" "core.refresh"
     
     "Ctrl+F" "core.favorites"
-    "Shift+Ctrl+F" "core.favorites.add"
     
     "Cmd+H" "core.hierarchy"
     "Shift+Ctrl+B" "core.recent"
@@ -93,7 +92,7 @@ keyBindings {
     
     "Shift+Y" "core.path"
     
-    "Opt+F" "core.terminal.toggle"
+    "Cmd+J" "core.terminal.toggle"
     
     "=" "core.queue"
     "Shift+=" "core.queue"
