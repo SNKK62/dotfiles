@@ -20,7 +20,9 @@ behavior {
 
 etty {
     pasteOnRightClick false
-    shell "/usr/local/bin/bash"
+    fonts {
+        normal [ "HackGen35 Console NF" 12 ]
+    }
 }
 
 keyBindings {
