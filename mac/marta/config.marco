@@ -32,13 +32,12 @@ keyBindings {
     "Down" "core.move.down"
     "Shift+Up" "core.select.move.up"
     "Shift+Down" "core.select.move.down"
-    "K" "core.move.up"
-    "J" "core.move.down"
-    "Shift+K" "core.select.move.up"
-    "Shift+J" "core.select.move.down"
     
     "Left" "core.go.up"
     "Right" "core.open"
+    
+    "Escape" "core.select.none"
+    "Ctrl+C" "core.select.none"
     
     "Cmd+Left" "core.move.home"
     "Shift+Cmd+Left" "core.select.move.home"
