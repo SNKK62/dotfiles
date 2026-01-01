@@ -22,89 +22,11 @@ local function remapKey(modifiers, key, action)
 	hotkey.bind(modifiers, key, action, nil, action)
 end
 
-local excludedApps = { "Terminal", "Code", "WezTerm" }
-
-local function isExcludedApp()
-	local app = application.frontmostApplication()
-	return app and fnutils.contains(excludedApps, app:name())
-end
-
-local isVisualMode = false
-
-local visualModeIcon = nil
-local function updateVisualModeIcon()
-	if isVisualMode then
-		visualModeIcon = menubar.new()
-		if visualModeIcon then
-			visualModeIcon:setTitle("visual")
-		end
-	else
-		if visualModeIcon then
-			visualModeIcon:delete()
-		end
-	end
-end
-
-local function activateVisualMode()
-	isVisualMode = true
-	updateVisualModeIcon()
-end
-
-local function deactivateVisualMode()
-	isVisualMode = false
-	updateVisualModeIcon()
-end
-
-local function toggleVisualMode()
-	if isVisualMode then
-		deactivateVisualMode()
-	else
-		activateVisualMode()
-	end
-end
-hotkey.bind({ "ctrl", "shift" }, "v", toggleVisualMode)
-
--- cmd + c/x and basksapace to exit visual mode
-ExitVisualMode = eventtap.new({ eventtap.event.types.keyDown }, function(event)
-	local keycode = event:getKeyCode()
-	local flags = event:getFlags()
-
-	if
-		(flags.cmd and (keycode == keycodes.map["c"] or keycode == keycodes.map["x"]))
-		or keycode == keycodes.map["delete"]
-		or keycode == keycodes.map["escape"]
-	then
-		if isVisualMode then
-			deactivateVisualMode()
-		end
-	end
-	return false
-end)
-ExitVisualMode:start()
-
-local function addVisualMove(direction, mods)
-	mods = mods or {}
-	return function()
-		if isExcludedApp() then
-			keyCode(direction, mods)()
-		elseif isVisualMode then
-			local localMods = {}
-			for _, v in ipairs(mods) do
-				table.insert(localMods, v)
-			end
-			table.insert(localMods, "shift")
-			keyCode(direction, localMods)()
-		else
-			keyCode(direction, mods)()
-		end
-	end
-end
-
 -- ctrl + h/j/k/l to arrows
-remapKey({ "ctrl" }, "h", addVisualMove("left"))
-remapKey({ "ctrl" }, "l", addVisualMove("right"))
-remapKey({ "ctrl" }, "k", addVisualMove("up"))
-remapKey({ "ctrl" }, "j", addVisualMove("down"))
+remapKey({ "ctrl" }, "h", keyCode("left"))
+remapKey({ "ctrl" }, "l", keyCode("right"))
+remapKey({ "ctrl" }, "k", keyCode("up"))
+remapKey({ "ctrl" }, "j", keyCode("down"))
 -- ctrl + shift + h/j/k/l to shift + arrows
 remapKey({ "ctrl", "shift" }, "h", keyCode("left", { "shift" }))
 remapKey({ "ctrl", "shift" }, "l", keyCode("right", { "shift" }))
@@ -112,8 +34,8 @@ remapKey({ "ctrl", "shift" }, "k", keyCode("up", { "shift" }))
 remapKey({ "ctrl", "shift" }, "j", keyCode("down", { "shift" }))
 
 -- ctrl+ '/; to cmd + left/right
-remapKey({ "ctrl" }, ";", addVisualMove("left", { "cmd" }))
-remapKey({ "ctrl" }, "'", addVisualMove("right", { "cmd" }))
+remapKey({ "ctrl" }, ";", keyCode("left", { "cmd" }))
+remapKey({ "ctrl" }, "'", keyCode("right", { "cmd" }))
 -- ctrl+shift '/; to cmd + shift + left/right
 remapKey({ "ctrl", "shift" }, ";", keyCode("left", { "cmd", "shift" }))
 remapKey({ "ctrl", "shift" }, "'", keyCode("right", { "cmd", "shift" }))

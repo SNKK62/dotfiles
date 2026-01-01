@@ -16,14 +16,14 @@ obj.author = "Peter Klijn"
 obj.homepage = "https://github.com/peterklijn/hammerspoon-shiftit"
 obj.license = "https://github.com/peterklijn/hammerspoon-shiftit/blob/master/LICENSE.md"
 
--- obj.positionMash = { "cmd" }
+obj.positionMash = { "cmd" }
 obj.resizeMash = { "ctrl", "cmd", "shift" }
 obj.moveMash = { "ctrl", "cmd" }
 -- obj.mash = { "ctrl", "cmd" }
 obj.mapping = {
-	-- left = { obj.positionMash, "left" },
+	left = { obj.positionMash, "left" },
 	-- left67 = { obj.positionMash, "[" },
-	-- right = { obj.positionMash, "right" },
+	right = { obj.positionMash, "right" },
 	-- right33 = { obj.positionMash, "]" },
 	-- up = { obj.positionMash, "up" },
 	-- down = { obj.positionMash, "down" },
@@ -37,7 +37,7 @@ obj.mapping = {
 	moveRight = { obj.moveMash, "right" },
 	moveLeft = { obj.moveMash, "left" },
 
-	-- maximum = { obj.mash, "m" },
+	maximum = { obj.moveMash, "m" },
 	-- toggleFullScreen = { obj.mash, "f" },
 	-- toggleZoom = { obj.mash, "z" },
 	-- center = { obj.mash, "c" },
@@ -52,15 +52,15 @@ obj.mapping = {
 }
 
 local units = {
-	-- left = function(x, _)
-	-- 	return { x = 0.00, y = 0.00, w = x / 100, h = 1.00 }
-	-- end,
+	left = function(_, _)
+		return { x = 0.005, y = 0.005, w = 0.4925, h = 0.99 }
+	end,
 	-- left67 = function(_, _)
 	-- 	return { x = 0.00, y = 0.00, w = 0.67, h = 1.00 }
 	-- end,
-	-- right = function(x, _)
-	-- 	return { x = 1 - (x / 100), y = 0.00, w = x / 100, h = 1.00 }
-	-- end,
+	right = function(_, _)
+		return { x = 0.5005, y = 0.05, w = 0.4925, h = 0.99 }
+	end,
 	-- right33 = function(_, _)
 	-- 	return { x = 1 - 0.33, y = 0.00, w = 0.33, h = 1.00 }
 	-- end,
@@ -83,7 +83,7 @@ local units = {
 	-- 	return { x = 1 - (x / 100), y = 1 - (y / 100), w = x / 100, h = y / 100 }
 	-- end,
 
-	-- maximum = { x = 0.00, y = 0.00, w = 1.00, h = 1.00 },
+	maximum = { x = 0.005, y = 0.005, w = 0.99, h = 0.99 },
 }
 
 local latestMove = {
@@ -206,17 +206,17 @@ function obj:resizeWindowInSteps(increment, forWidth, forHeight)
 	self:move({ x = x, y = y, w = w, h = h })
 end
 
--- function obj:left()
--- 	self:moveWithCycles(units.left)
--- end
+function obj:left()
+	self:moveWithCycles(units.left)
+end
 --
 -- function obj:left67()
 -- 	self:moveWithCycles(units.left67)
 -- end
 --
--- function obj:right()
--- 	self:moveWithCycles(units.right)
--- end
+function obj:right()
+	self:moveWithCycles(units.right)
+end
 --
 -- function obj:right33()
 -- 	self:moveWithCycles(units.right33)
@@ -262,10 +262,10 @@ function obj:moveLeft()
 	self:moveWindow(false, false, false, true)
 end
 
--- function obj:maximum()
--- 	latestMove.direction = "maximum"
--- 	self:move(units.maximum)
--- end
+function obj:maximum()
+	latestMove.direction = "maximum"
+	self:move(units.maximum)
+end
 
 -- function obj:toggleFullScreen()
 -- 	self.hs.window.focusedWindow():toggleFullScreen()
@@ -341,15 +341,15 @@ function obj:bindHotkeys(mapping)
 		end
 	end
 
-	-- self.hs.hotkey.bind(self.mapping.left[1], self.mapping.left[2], function()
-	-- 	self:left()
-	-- end)
+	self.hs.hotkey.bind(self.mapping.left[1], self.mapping.left[2], function()
+		self:left()
+	end)
 	-- self.hs.hotkey.bind(self.mapping.left67[1], self.mapping.left67[2], function()
 	-- 	self:left67()
 	-- end)
-	-- self.hs.hotkey.bind(self.mapping.right[1], self.mapping.right[2], function()
-	-- 	self:right()
-	-- end)
+	self.hs.hotkey.bind(self.mapping.right[1], self.mapping.right[2], function()
+		self:right()
+	end)
 	-- self.hs.hotkey.bind(self.mapping.right33[1], self.mapping.right33[2], function()
 	-- 	self:right33()
 	-- end)
@@ -383,9 +383,9 @@ function obj:bindHotkeys(mapping)
 	self.hs.hotkey.bind(self.mapping.moveLeft[1], self.mapping.moveLeft[2], function()
 		self:moveLeft()
 	end)
-	-- self.hs.hotkey.bind(self.mapping.maximum[1], self.mapping.maximum[2], function()
-	-- 	self:maximum()
-	-- end)
+	self.hs.hotkey.bind(self.mapping.maximum[1], self.mapping.maximum[2], function()
+		self:maximum()
+	end)
 	-- self.hs.hotkey.bind(self.mapping.toggleFullScreen[1], self.mapping.toggleFullScreen[2], function()
 	-- 	self:toggleFullScreen()
 	-- end)

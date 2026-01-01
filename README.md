@@ -24,6 +24,7 @@ rm -Rf ~/.local/{share, state}/nvim
 after launch nvim, try `:Mason` and search and install `eslint_d`, `stylua` and `luacheck`
 
 #### How to change colorscheme
+
 - install plugin in `nvm/lua/plugins/init.lua`
   - make sure exec `colorscheme.set` function at config
   - update dependency of `tint.nvim`
@@ -131,7 +132,7 @@ add settings below in `~/.gitconfig`
         graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
 ```
 
-### AeroSpace
+### AeroSpace (deprecated)
 
 #### installation
 
@@ -223,6 +224,7 @@ brew install charmbracelet/tap/vhs
 ### OCaml
 
 #### Installation
+
 ```sh
 brew install opam
 opam init
@@ -230,7 +232,9 @@ opam init
 # install ocamlformat (in neovim maison)
 opam install dune utop
 ```
+
 #### Create project
+
 ```sh
 dune init project <project_name>
 ```
@@ -244,6 +248,7 @@ dune build --watch
 ```
 
 #### Formatting
+
 ```sh
 # for the first time
 echo "version = `ocamlformat --version`" > .ocamlformat
@@ -251,3 +256,8 @@ echo "version = `ocamlformat --version`" > .ocamlformat
 # format
 opam exec -- dune fmt
 ```
+
+### Mac Mission Control settings
+
+System Settings > accessibility > display > reduce motion ON
+System Settings → Desktop & Dock → Mission Control > Displays have separate Spaces ON
