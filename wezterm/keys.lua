@@ -207,15 +207,15 @@ local keys = {
 		}),
 	},
 	{
-		key = "Tab",
-		mods = "ALT",
+		key = "l",
+		mods = "ALT|SHIFT",
 		action = act.SendKey({
 			key = "7",
 			mods = "ALT",
 		}),
 	},
 	{
-		key = "Tab",
+		key = "h",
 		mods = "ALT|SHIFT",
 		action = act.SendKey({
 			key = "&",
