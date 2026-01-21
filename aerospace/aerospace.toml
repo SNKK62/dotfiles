@@ -170,22 +170,22 @@ run = ['layout floating']
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
 check-further-callbacks = true
-run = ['layout tiling', 'move-node-to-workspace V']
+run = ['move-node-to-workspace V']
 
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92' # Cursor
 check-further-callbacks = true
-run = ['layout tiling', 'move-node-to-workspace V']
+run = ['move-node-to-workspace V']
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 check-further-callbacks = true
-run = ['layout tiling', 'move-node-to-workspace T']
+run = ['move-node-to-workspace T']
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 check-further-callbacks = true
-run = ['layout tiling', 'move-node-to-workspace B']
+run = ['move-node-to-workspace B']
 
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
@@ -200,12 +200,12 @@ run = ['move-node-to-workspace 1']
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
 check-further-callbacks = true
-run = ['layout tiling', 'move-node-to-workspace C']
+run = ['move-node-to-workspace C']
 
 [[on-window-detected]]
 if.app-id = 'com.electron.nota'
 check-further-callbacks = true
-run = ['layout tiling', 'move-node-to-workspace N']
+run = ['move-node-to-workspace N']
 
 [workspace-to-monitor-force-assignment]
 1 = 1 # Monitor sequence number from left to right. 1-based indexing
