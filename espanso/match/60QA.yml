@@ -1,0 +1,105 @@
+imports:
+  - "./theme.yml"
+
+anchors:
+  - &Preliminary |
+    ## 60QAとは
+    標準的な国際会議論文は, およそ60段落からなる. 各段落を質問への回答だと考えれば, 約60個の質問に答えることで論文を完成できる.
+
+  - &PreliminaryEn |
+    ## What is 60QA?
+    A standard international conference paper typically consists of around 60 paragraphs. If you think of each paragraph as an answer to a question, you can complete a paper by answering roughly 60 questions.
+
+  - &Signs |
+    ### 添削時によく用いる記号
+    添削時に以下の記号を用いることができる場合はそうしてください．
+    もちろんこの記号を用いずに指摘をすることも可能です．
+    - #inacc：正確性が不十分
+    - #lang：英語または日本語として変
+    - #conv：論文として一般的な表現ではないので、他の論文に出現する表現であるか調べましょう。出現するなら出典を示してください。
+      - 「他の論文」の定義：有名会議・ジャーナルの論文
+    - #noall：決めつけ or 全否定NG。査読者は反例１個で論理を崩せる。99%のall/noは誤り→most/often/sometime/typical等に変換
+    - #math：記号（symbol）と数式（equation）を区別できていない＝xやyを数式だと誤解している or 数式が雑 or 不要な記号 or 記号を定義しただけで数式内で使ってない
+    - #long：長すぎる or 係り受けが複雑すぎる or １文に主語が２つある。２文以上に分割せよ。
+    - #amb：２通り以上の解釈があり得る。
+    - #ref：引用が必要。番号は不明なので、[??]、[引用]等でOK
+    - #undef：用語が未定義、用語を引用せずに使用している、初出時に頭字語（acronym）をスペルアウトしていない
+    - #ok：軽微な修正が必要であるが、それ以外はOK
+    - #sowhat：「だから何？」と言いたくなるような間接的な表現になっている。直接的な表現に修正しましょう。
+    - #flow：論理展開が唐突。前文とのつながりがわからない。逆茂木型の文になっている。結論から始めて、理由・例示が続くような構成にしましょう。
+    - #follow: 長い説明の前に、説明が始まることを先に述べよ。
+
+matches:
+  - trigger: ";ansj"
+    replace: |
+      あなたは天才的な研究者です．
+      CVPR，ICML，ICLR，CoRLなどのトップ国際会議に数多く採択された経験を持つ権威のある研究者です．
+      論文執筆のために，以下の情報を基にして，与えられた質問に対する回答を作成してください．
+
+      # 前提
+      日本語の論文調で答えてください．
+      {{preliminary}}
+
+      ## 研究テーマ
+      {{SimpleTheme}}
+
+      # 質問
+      $|$
+
+      # 例
+
+      # 言いたいこと
+
+    vars:
+      - name: "preliminary"
+        type: "echo"
+        params:
+          echo: *Preliminary
+
+  - trigger: ";ansen"
+    replace: |
+      You are a brilliant researcher.
+      You are an authoritative scholar with numerous papers accepted at top-tier AI conferences such as CVPR, ICML, ICLR, and CoRL.
+      For the purpose of writing a paper, please generate an answer to the given question based on the information below.
+      Use wording that reflects the standard academic writing style of top international conferences.
+
+      # Premise
+      Please answer in formal academic English suitable for top-tier international conferences.
+      {{preliminary}}
+
+      ## Research Theme
+      {{SimpleTheme}}
+
+      # Question
+      $|$
+
+      # Examples (for reference on content)
+
+      # Examples (for reference on how to answer)
+
+    vars:
+      - name: "preliminary"
+        type: "echo"
+        params:
+          echo: *PreliminaryEn
+
+  - trigger: ";findq"
+    replace: |
+      以下の情報を基にして，添付した論文から与えられた質問に対応する回答を抜き出してください．
+      複数ある場合は全て列挙してください．
+
+      # 前提
+      論文に書いてある表現をそのまま抜き出してください．
+      {{preliminary}}
+
+      # 質問
+      $|$
+
+    vars:
+      - name: "preliminary"
+        type: "echo"
+        params:
+          echo: *Preliminary
+
+  - trigger: ";word"
+    replace: Please use phrasing appropriate for academic writing at a level suitable for acceptance at top-tier AI conferences (e.g., CVPR, ICLR, NeurIPS, CoRL).
