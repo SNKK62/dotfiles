@@ -1,0 +1,17 @@
+matches:
+  - trigger: ";cvpr"
+    replace: '"$|$" inurl:CVPR2025 site:openaccess.thecvf.com filetype:pdf'
+  - trigger: ";iccv"
+    replace: '"$|$" inurl:ICCV2025 site:openaccess.thecvf.com filetype:pdf'
+  - trigger: ";eccv"
+    replace: '"$|$" inurl:eccv_2024 "Proceedings of the European Conference on Computer Vision (ECCV)" filetype:pdf'
+  - trigger: ";iclr"
+    replace: '"$|$" "ICLR 2025" site:openreview.net filetype:pdf -"Under review" -"Submitted to ICLR"'
+  - trigger: ";icml"
+    replace: '"$|$" "International Conference on Machine Learning"site:proceedings.mlr.press filetype:pdf'
+  - trigger: ";neurips"
+    replace: '"$|$" neurips2025 openreview filetype:pdf'
+  - trigger: ";corl"
+    replace: '"$|$" corl2025 openreview filetype:pdf'
+  - trigger: ";rss"
+    replace: '"$|$" "2025" Robotics: Science and Systems" site:roboticsproceedings.org filetype:pdf'
