@@ -181,6 +181,13 @@ brew install zellij
 ln -s ${PWD}/zellij ~/.config/zellij
 ```
 
+### Espanso
+
+```sh
+brew install espanso
+espanso restart
+```
+
 I want to use `Super` modifier key, but now it seems not to be supported.<br>
 So I use `Alt(+Shift)+[0-9]` key for temporary workaround.<br>
 For details, `Super+h` is remapped to `Alt+1` in wezterm config.
