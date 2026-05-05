@@ -36,6 +36,7 @@ EOBUNDLES
 antigen apply
 
 alias vi='nvim'
+alias tmux="tmux -f ~/.config/tmux/.tmux.conf"
 
 # starship
 eval "$(starship init zsh)"
