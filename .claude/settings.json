@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "includeCoAuthoredBy": false,
+  "model": "opus",
+  "env": {},
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "WebFetch",
+      "WebSearch",
+      "Task",
+      "TeamCreate",
+      "TeamDelete",
+      "Skill",
+      "Monitor",
+      "Bash(*)",
+      "mcp__context7__*",
+      "mcp__plugin_context7-plugin_context7__*"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(git push --force *)",
+      "Bash(git push --force-with-lease *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -f *)",
+      "Bash(git checkout -- .)",
+      "Bash(git restore .)"
+    ],
+    "ask": []
+  },
+  "extraKnownMarketplaces": {
+    "context7": {
+      "source": {
+        "source": "github",
+        "repo": "upstash/context7"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "context7-plugin@context7-marketplace": true
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 0
+  },
+  "worktree": {
+    "bgIsolation": "worktree"
+  }
+}
