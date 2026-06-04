@@ -1,8 +1,8 @@
 matches:
   - trigger: ";cvpr"
-    replace: '"$|$" inurl:CVPR2025 site:openaccess.thecvf.com filetype:pdf'
+    replace: '"$|$" site:openaccess.thecvf.com/content/CVPR2025/papers filetype:pdf'
   - trigger: ";iccv"
-    replace: '"$|$" inurl:ICCV2025 site:openaccess.thecvf.com filetype:pdf'
+    replace: '"$|$" site:openaccess.thecvf.com/content/ICCV2025/papers filetype:pdf'
   - trigger: ";eccv"
     replace: '"$|$" inurl:eccv_2024 "Proceedings of the European Conference on Computer Vision (ECCV)" filetype:pdf'
   - trigger: ";iclr"
@@ -12,6 +12,9 @@ matches:
   - trigger: ";neurips"
     replace: '"$|$" neurips2025 openreview filetype:pdf'
   - trigger: ";corl"
-    replace: '"$|$" corl2025 openreview filetype:pdf'
+    replace: '"$|$" corl2025 openreview filetype:pdf -"Anonymous"'
   - trigger: ";rss"
     replace: '"$|$" "2025" Robotics: Science and Systems" site:roboticsproceedings.org filetype:pdf'
+  - trigger: ";gdoc"
+    replace: |
+      google docsにまとめられるように，それぞれの論文について，タイトル，採択会議，arxiv/openreview/etc へのリンク，社会的意義，軽い説明，新規性，問題設定，計算機要件，訓練時間 をまとめて列挙してください．
