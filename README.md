@@ -268,3 +268,12 @@ opam exec -- dune fmt
 
 System Settings > accessibility > display > reduce motion ON
 System Settings → Desktop & Dock → Mission Control > Displays have separate Spaces ON
+
+### Additional Environment Variables
+
+```sh
+alias vi="vim -u $HOME/.config/.vimrc"
+alias tmux="tmux -f $HOME/.config/tmux/.tmux.conf"
+# paths should be changed for each client
+alias nvim=XDG_CONFIG_HOME"=/home/seno/.remote-nvim/workspaces/vSwL87bmQi/.config XDG_DATA_HOME=/home/seno/.remote-nvim/workspaces/vSwL87bmQi/.local/share XDG_STATE_HOME=/home/seno/.remote-nvim/workspaces/vSwL87bmQi/.local/state XDG_CACHE_HOME=/home/seno/.remote-nvim/workspaces/vSwL87bmQi/.cache NVIM_APPNAME=nvim /home/seno/.remote-nvim/nvim-downloads/v0.11.2/bin/nvim"
+```
