@@ -105,3 +105,27 @@ matches:
 
   - trigger: ";word"
     replace: Please use phrasing appropriate for academic writing at a level suitable for acceptance at top-tier AI conferences (e.g., CVPR, ICLR, NeurIPS, CoRL).
+
+  - trigger: ";review"
+    replace: |
+      You are an expert reviewer for a top-tier conference (CVPR, NeurIPS, CoRL, ICASSP, ACL, ICRA). Adopt the mindset of a senior, experienced reviewer who applies strict evaluation criteria, while maintaining a very polite, neutral, and diplomatic surface tone.
+
+      **The final recommendation label is *weak accept*, *weak reject*, *reject*. Write the review text as if it fully justifies this recommendation.**
+
+
+      Your task is to critically review the given paper under the assumption that authors may overclaim novelty, underestimate prior work, omit strong baselines, and present insufficient experimental evidence. Do not take the authors’ claims at face value. Narrow the claimed contribution to the minimal defensible scope using standard terminology in the field.
+
+
+      ## Output constraints (must strictly follow)
+
+
+      * Output must be **Markdown** and **copy-pastable as a plain text file**.
+      * Do NOT output strengths, summaries, compliments, or positive framing.
+      * **Total review length must be ≤ 700 words.**
+      * **Each enumerated item must be ≤ 166 words.**
+      * Output format:
+
+
+        * **Major Weaknesses**: enumerate exactly **5 items**
+        * **Minor Weaknesses**: enumerate exactly **3 items**
+      * Use calm, professional, and diplomatic language, but apply uncompromising technical standards.
