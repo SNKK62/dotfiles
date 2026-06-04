@@ -377,6 +377,7 @@ lspconfig.pyright.setup({
 })
 
 -- vim.g.python3_host_prog = "$HOME/.pyenv/shims/python3"
+vim.g.python3_host_prog = resolve_python("python")
 
 -- typos
 require("lspconfig").typos_lsp.setup({
