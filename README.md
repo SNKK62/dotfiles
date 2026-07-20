@@ -88,6 +88,27 @@ enable to hold keyboard
 defaults write -g ApplePressAndHoldEnabled -bool false (requires restart after this command)
 ```
 
+### Marta
+
+Marta stores its config, keybindings, and sidebar favorites as plain `.marco`
+files under `~/Library/Application Support/org.yanex.marta/`. Copy the tracked
+files into place (Marta rewrites `favorites.marco` when you edit favorites in the
+UI, so copy it back to this repo to save changes):
+
+```bash
+MARTA_DIR="$HOME/Library/Application Support/org.yanex.marta"
+
+# repo -> app (apply)
+cp ./mac/marta/config.marco    "$MARTA_DIR/conf.marco"
+cp ./mac/marta/favorites.marco "$MARTA_DIR/favorites.marco"
+
+# app -> repo (save changes)
+cp "$MARTA_DIR/conf.marco"      ./mac/marta/config.marco
+cp "$MARTA_DIR/favorites.marco" ./mac/marta/favorites.marco
+```
+
+`default.marco` is Marta's shipped default config, kept for reference.
+
 ### Font
 
 - HackGen<br>

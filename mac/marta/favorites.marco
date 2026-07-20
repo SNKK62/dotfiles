@@ -1,0 +1,10 @@
+Downloads "${user.downloads}"
+"File" "${user.documents}/File"
+Univ "${user.documents}/Univ"
+Lab "${user.documents}/Univ/Lab"
+輪講 "${user.documents}/Univ/Lab/輪講資料"
+B4 "${user.documents}/Univ/B4"
+Home "~"
+Documents "${user.documents}"
+Applications "${all.applications}"
+

@@ -1,8 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "includeCoAuthoredBy": false,
-  "model": "opus",
   "env": {},
+  "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
       "Read",
@@ -30,6 +29,16 @@
     ],
     "ask": []
   },
+  "model": "opus",
+  "worktree": {},
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "context7-plugin@context7-marketplace": true
+  },
   "extraKnownMarketplaces": {
     "context7": {
       "source": {
@@ -38,15 +47,5 @@
       }
     }
   },
-  "enabledPlugins": {
-    "context7-plugin@context7-marketplace": true
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh",
-    "padding": 0
-  },
-  "worktree": {
-    "bgIsolation": "worktree"
-  }
+  "tui": "fullscreen"
 }
