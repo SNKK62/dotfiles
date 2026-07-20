@@ -15,9 +15,8 @@ in
   home.stateVersion = "24.11";
 
   # ---------------------------------------------------------------------------
-  # Portable CLI tooling from nixpkgs (replaces the Homebrew "leaves").
-  # macOS-specific / Japanese-NLP / build-toolchain formulae stay on Homebrew
-  # (see darwin.nix).
+  # Portable CLI tooling from nixpkgs. Version-managers (pyenv, n) and the
+  # CPython build dependencies stay on Homebrew (see darwin.nix).
   # ---------------------------------------------------------------------------
   home.packages = with pkgs; [
     # shell / navigation
@@ -33,30 +32,39 @@ in
     tmux
     zellij
     starship
-    neofetch
+    # neofetch was removed from nixpkgs (upstream archived) and disabled in
+    # Homebrew on 2025-05-04, so it is no longer installable on a fresh Mac.
+    # fastfetch is the recommended successor.
+    # NOTE: ~/.config/neofetch/config.conf is not read by fastfetch (needs porting).
+    fastfetch
 
     # editors / lsp
     neovim
     lua-language-server
     luarocks
-    lld
 
     # docs / media
     pandoc
-    graphviz
-    imagemagick
-    ghostscript
     mpv
-    yt-dlp
     pngpaste
     numbat
 
     # dev runtimes / tools
     uv
-    deno
-    qemu
-    ttyd
-    vhs
+
+    # TeX for papers. Mirrors the collections currently installed under
+    # /usr/local/texlive (scheme-small + the collections below, incl. Japanese).
+    # Pinned by the flake, so this reproduces exactly across machines.
+    (texliveSmall.withPackages (ps: with ps; [
+      collection-langjapanese
+      collection-langcjk
+      collection-latexextra
+      collection-latexrecommended
+      collection-fontsrecommended
+      collection-pictures
+      collection-metapost
+      collection-xetex
+    ]))
   ];
 
   # ---------------------------------------------------------------------------
@@ -73,8 +81,6 @@ in
     GIT_EDITOR = "vim";
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";
-
-    GOPATH = "${config.home.homeDirectory}/go";
   };
 
   # ---------------------------------------------------------------------------

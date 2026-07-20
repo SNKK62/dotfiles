@@ -53,17 +53,19 @@
   # These replace the manually-installed fonts under ~/Library/Fonts.
   # ---------------------------------------------------------------------------
   fonts.packages = with pkgs; [
-    nerd-fonts.hack
+    # HackGen35 Console NF is referenced by wezterm/wezterm.lua and
+    # nvim/lua/base.lua. Without it both fall back to a default font.
+    hackgen-nf-font
     nerd-fonts.agave
-    # Japanese-capable programming fonts (Cica / Sarasa / HackGen are not in
-    # nixpkgs; install those manually if needed — see nix/README.md).
+    sarasa-gothic
+    # Cica is not packaged in nixpkgs — install it manually (see nix/README.md).
   ];
 
   # ---------------------------------------------------------------------------
   # Homebrew — managed declaratively by nix-darwin.
   # Requires Homebrew to be installed first (see nix/README.md).
-  # GUI apps (casks) and macOS-specific / Japanese-NLP / build-toolchain
-  # formulae stay on brew; portable CLI tools come from nixpkgs (see home.nix).
+  # GUI apps (casks) and the version-manager / CPython-build formulae stay on
+  # brew; portable CLI tools come from nixpkgs (see home.nix).
   # ---------------------------------------------------------------------------
   homebrew = {
     enable = true;
@@ -77,7 +79,6 @@
     };
 
     taps = [
-      "koekeishiya/formulae" # yabai
       "nikitabobko/tap"      # aerospace
       "fsouza/prettierd"     # prettierd
     ];
@@ -85,17 +86,11 @@
     # Formulae kept on Homebrew (not in nixpkgs, macOS-specific, or part of the
     # pyenv build toolchain).
     brews = [
-      "koekeishiya/formulae/yabai" # tiling window manager (SIP-sensitive)
-      "pyenv"          # python version manager (README python workflow)
-      "opam"           # OCaml package manager (README ocaml workflow)
-      "n"              # node version manager
+      "pyenv"            # python version manager (README python workflow)
+      "pyenv-virtualenv" # required by `pyenv activate` in zsh/.zshrc
+      "n"                # node version manager (the active node comes from n)
       "fsouza/prettierd/prettierd"
-      "cabocha"        # Japanese dependency parser (not in nixpkgs)
-      "crf++"          # CRF toolkit (cabocha dependency)
-      "mecab"          # Japanese morphological analyzer
-      "mecab-ipadic"   # mecab dictionary
-      "tesseract"      # OCR
-      "screenresolution"
+      "libsixel"       # sixel graphics in the terminal
       # pyenv build dependencies (see README "Python" section):
       "readline"
       "openssl@3"
@@ -104,46 +99,35 @@
       "libffi"
       "jpeg"
       "tcl-tk"
-      "libsixel"
     ];
 
-    # GUI applications. Currently brew-managed: aerospace, basictex, espanso,
-    # marta, wezterm. The rest were previously installed by hand and are added
-    # here so a fresh Mac reproduces them. Apps only on the Mac App Store or
-    # with no cask are listed in nix/README.md instead.
+    # GUI applications. Apps only on the Mac App Store, or with no cask, are
+    # listed in nix/README.md instead.
+    # NOTE: TeX is NOT installed via the basictex cask anymore — it comes from
+    # nixpkgs texlive in home.nix so the exact package set is pinned by the flake.
     casks = [
-      # already brew-managed
+      # window management / terminal / input
       "nikitabobko/tap/aerospace"
-      "basictex"
-      "espanso"
-      "marta"
       "wezterm"
+      "espanso"
+      "hammerspoon"
+      "clipy"
+      "raycast"
 
-      # terminals / editors
-      "iterm2"
-      "warp"
-      "visual-studio-code"
-      "cursor"
+      # file manager
+      "marta"
 
       # browsers & comms
       "google-chrome"
       "slack"
-      "zoom"
 
-      # notes / productivity
-      "notion"
+      # notes / diagrams
       "obsidian"
-      "raycast"
-      "clipy"
       "drawio"
 
-      # utilities
-      "hammerspoon"
-      "keycastr"
-      "tailscale-app"
+      # dev / network
       "docker-desktop"
-      "anydesk"
-      "vnc-viewer"
+      "tailscale-app"
     ];
   };
 

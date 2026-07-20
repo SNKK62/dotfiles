@@ -8,18 +8,8 @@ export XDG_STATE_HOME=${HOME}/.local/state
 export PATH=${HOME}/.local/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
 
-# java
-export JAVA_HOME=$HOME/Environments/jdk-21
-# export JAVA_HOME=/opt/homebrew/Cellar/openjdk/21.0.3/libexec/openjdk.jdk/Contents/Home
-export PATH=$JAVA_HOME/Contents/Home/bin:$PATH
-
 # VSCode
 export PATH="/usr/local/bin/code:$PATH"
-
-# go
-export GOPATH="$HOME/go"
-export GOROOT="/usr/local/go"
-export PATH="$GOROOT/bin:$PATH"
 
 # Rust
 export RUST_PATH="$HOME/.cargo/bin"
