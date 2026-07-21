@@ -1,4 +1,4 @@
-{ config, pkgs, username, ... }:
+{ config, pkgs, username, pinnedNeovim, ... }:
 
 let
   # Live path to this dotfiles repo. Symlinks below point here directly (via
@@ -39,7 +39,7 @@ in
     fastfetch
 
     # editors / lsp
-    neovim
+    pinnedNeovim     # neovim 0.11.2, pinned via nixpkgs-neovim in flake.nix
     lua-language-server
     luarocks
 
