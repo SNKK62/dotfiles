@@ -19,7 +19,7 @@
 
   networking.hostName = hostname;
   networking.localHostName = hostname;
-  networking.computerName = "KokiのMacBook Pro";
+  networking.computerName = "koki-mac";
 
   # ---------------------------------------------------------------------------
   # Nix daemon / flakes
@@ -89,6 +89,7 @@
       "pyenv"            # python version manager (README python workflow)
       "pyenv-virtualenv" # required by `pyenv activate` in zsh/.zshrc
       "n"                # node version manager (the active node comes from n)
+      "mas"              # Mac App Store CLI (drives homebrew.masApps below)
       "fsouza/prettierd/prettierd"
       "libsixel"       # sixel graphics in the terminal
       # pyenv build dependencies (see README "Python" section):
@@ -128,7 +129,16 @@
       # dev / network
       "docker-desktop"
       "tailscale-app"
+
+      # comms
+      "zoom"
     ];
+
+    # Mac App Store apps. Requires being signed into the App Store first;
+    # `mas` (declared in brews above) performs the install.
+    masApps = {
+      "LINE" = 539883307;
+    };
   };
 
   # ---------------------------------------------------------------------------

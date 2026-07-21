@@ -5,7 +5,7 @@ with **Homebrew** (managed by nix-darwin) for GUI apps and a few
 macOS-specific / Japanese-NLP / build-toolchain formulae.
 
 - Machine: Apple Silicon (`aarch64-darwin`), macOS 26.x
-- Host name: `KokinoMacBook-Pro` (edit `hostname` in `flake.nix` if it differs)
+- Host name: `koki-mac` (set by `hostname` in `flake.nix`; change it there to rename)
 - User: `kokiseno`
 
 ## Layout
@@ -35,8 +35,8 @@ mkdir -p ~/workspace && git clone <this-repo> ~/workspace/dotfiles
 
 # 5. Build & switch
 cd ~/workspace/dotfiles/nix
-nix run nix-darwin -- switch --flake .#KokinoMacBook-Pro
-#   (subsequent rebuilds: darwin-rebuild switch --flake .#KokinoMacBook-Pro)
+nix run nix-darwin -- switch --flake .#koki-mac
+#   (subsequent rebuilds: darwin-rebuild switch --flake .#koki-mac)
 ```
 
 > The dotfile symlinks in `home.nix` point at `~/workspace/dotfiles` (this
@@ -68,10 +68,11 @@ nix run nix-darwin -- switch --flake .#KokinoMacBook-Pro
 
 These have no cask / aren't in nixpkgs, or come from the Mac App Store.
 
-- **Mac App Store apps**: Xcode, Keynote, Pages, Numbers, GarageBand, iMovie,
-  LINE, Microsoft Word/Excel/PowerPoint/Teams. Install `mas` and add them to
-  `homebrew.masApps` if you want them declarative
-  (`brew install mas`, then `mas list` to get IDs).
+- **Mac App Store apps**: LINE is declared in `homebrew.masApps` and installed
+  automatically — but you must **sign into the App Store first** (otherwise `mas`
+  cannot download it). The rest (Xcode, Keynote, Pages, Numbers, GarageBand,
+  iMovie, Microsoft Word/Excel/PowerPoint/Teams) are not declared; add them to
+  `homebrew.masApps` the same way if you want them (`mas list` to get IDs).
 - **Rust toolchain**: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
   then `rustup component add clippy` (see repo README).
 - **Editor extensions**: handled by the editor's own Settings Sync.

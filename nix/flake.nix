@@ -24,7 +24,7 @@
       # differs (System Settings > General > Sharing > Local hostname), then
       # rebuild with `darwin-rebuild switch --flake .#<hostname>`.
       # ----------------------------------------------------------------------
-      hostname = "KokinoMacBook-Pro";
+      hostname = "koki-mac";
       username = "kokiseno";
       system = "aarch64-darwin"; # Apple Silicon (arm64)
     in
