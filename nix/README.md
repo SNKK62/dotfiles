@@ -64,7 +64,7 @@ nix run nix-darwin -- switch --flake .#koki-mac
 - **Dotfiles** symlinked into `~/.config` and `~` (nvim, wezterm, zellij,
   espanso, tmux, zsh, starship, aerospace, hammerspoon).
 - **macOS defaults**: fast key repeat, press-and-hold off, show all
-  extensions, reduce motion on, displays-have-separate-spaces on.
+  extensions, displays-have-separate-spaces on.
 - **Fonts**: Hack Nerd Font, Agave Nerd Font.
 
 ## NOT reproduced automatically (install by hand)
@@ -110,6 +110,9 @@ These have no cask / aren't in nixpkgs, or come from the Mac App Store.
 - **macOS accessibility permissions** — AeroSpace, Hammerspoon and Espanso each
   need to be granted Accessibility/Input Monitoring access by hand on first
   launch. This cannot be automated.
+- **Reduce motion** — System Settings > Accessibility > Display > Reduce motion:
+  ON. The `com.apple.universalaccess` domain is TCC-protected and cannot be
+  written by `defaults` during activation, so set it by hand.
 - **neofetch → fastfetch**: neofetch was removed from nixpkgs (upstream
   archived) and disabled in Homebrew on 2025-05-04, so it can no longer be
   installed on a fresh Mac. `home.nix` ships `fastfetch` instead. The existing

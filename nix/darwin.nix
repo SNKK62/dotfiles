@@ -178,10 +178,9 @@
   # Settings without a typed nix-darwin option go here (written verbatim via
   # `defaults`). These match the README "Mac Mission Control settings".
   system.defaults.CustomUserPreferences = {
-    # System Settings > Accessibility > Display > Reduce motion: ON
-    "com.apple.universalaccess" = {
-      reduceMotion = true;
-    };
+    # NOTE: `com.apple.universalaccess` (Accessibility > Display > Reduce motion)
+    # is a TCC-protected domain that `defaults` cannot write without Full Disk
+    # Access, so it is NOT managed here — set it by hand (see nix/README.md).
     # System Settings > Desktop & Dock > Mission Control:
     # "Displays have separate Spaces" ON  ==  spans-displays = 0
     "com.apple.spaces" = {
