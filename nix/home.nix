@@ -94,7 +94,12 @@ in
     "zellij".source = link "${dotfiles}/zellij";
     "espanso".source = link "${dotfiles}/espanso";
     "tmux".source = link "${dotfiles}/tmux";
-    "zsh".source = link "${dotfiles}/zsh";
+    # Link only the rc files, NOT the whole zsh dir: ~/.config/zsh also holds
+    # local runtime state (.zsh_history, .zsh_sessions, .zshrc.zwc) that must
+    # stay out of the repo. This mirrors the current machine's setup.
+    "zsh/.zprofile".source = link "${dotfiles}/zsh/.zprofile";
+    "zsh/.zshenv".source = link "${dotfiles}/zsh/.zshenv";
+    "zsh/.zshrc".source = link "${dotfiles}/zsh/.zshrc";
     "starship.toml".source = link "${dotfiles}/starship/starship.toml";
     # aerospace links only the toml file (matches current setup).
     "aerospace/aerospace.toml".source = link "${dotfiles}/aerospace/aerospace.toml";
