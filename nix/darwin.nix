@@ -41,7 +41,16 @@
 
   # Recreate `/etc/zshenv` with `ZDOTDIR=$HOME/.config/zsh` so zsh loads the
   # dotfiles from ~/.config/zsh (symlinked to this repo by home-manager below).
+  # The Determinate installer also drops a guarded block here that sources Nix
+  # for non-interactive SSH shells; keep it so SSH sessions still see Nix. The
+  # `[ -e ... ]` guard makes it a no-op on a machine without Determinate.
   environment.etc."zshenv".text = ''
+    # Set up Nix only on SSH connections
+    # See: https://github.com/DeterminateSystems/nix-installer/pull/714
+    if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ] && [ -n "''${SSH_CONNECTION:-}" ] && [ "''${SHLVL:-0}" -eq 1 ]; then
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+    fi
+    # End Nix
     ZDOTDIR=$HOME/.config/zsh
   '';
 
