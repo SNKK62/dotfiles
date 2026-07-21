@@ -25,10 +25,13 @@ xcode-select --install
 # 2. Install Homebrew (nix-darwin manages packages but does not install brew)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# 3. Install Nix (official installer; this config sets nix.enable = true).
-#    If you prefer the Determinate Systems installer, set `nix.enable = false`
-#    in darwin.nix (it manages the daemon itself).
-sh <(curl -L https://nixos.org/nix/install)
+# 3. Install Nix. This config uses Determinate Nix (darwin.nix sets
+#    nix.enable = false so nix-darwin does NOT fight Determinate's daemon).
+#    Install Determinate to match:
+curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
+#    (If you instead use the OFFICIAL installer below, flip nix.enable = true
+#     and restore the nix.settings block in darwin.nix.)
+#    sh <(curl -L https://nixos.org/nix/install)
 
 # 4. Get the dotfiles (this repo) at ~/workspace/dotfiles
 mkdir -p ~/workspace && git clone <this-repo> ~/workspace/dotfiles

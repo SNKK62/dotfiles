@@ -24,15 +24,14 @@
   # ---------------------------------------------------------------------------
   # Nix daemon / flakes
   # ---------------------------------------------------------------------------
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    # Speed up builds via the community cache (optional but recommended).
-    trusted-users = [ "root" username ];
-  };
-  # nix-darwin now recommends letting the Determinate/official installer own the
-  # daemon; set to false only if you use Determinate Nix. Default true is fine
-  # for the standard installer.
-  nix.enable = true;
+  # This machine uses Determinate Nix, which owns the Nix installation and its
+  # daemon. nix-darwin must NOT manage Nix here, otherwise activation aborts.
+  # Consequence: nix-darwin cannot set `nix.*` (experimental-features,
+  # trusted-users, etc.) — Determinate handles those. flakes/nix-command are
+  # enabled by Determinate's default config, and the installing user is already
+  # in trusted-users. On a fresh Mac WITHOUT Determinate, set this back to true
+  # and restore the `nix.settings` block.
+  nix.enable = false;
 
   # ---------------------------------------------------------------------------
   # Shell (zsh). Mirrors the existing setup where /etc/zshenv points ZDOTDIR at
