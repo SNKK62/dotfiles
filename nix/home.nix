@@ -26,7 +26,6 @@ in
     ripgrep
     ghq
     gh
-    delta            # git-delta
     coreutils
     gnutar           # gnu-tar
     tmux
@@ -107,6 +106,52 @@ in
 
   # ~/.hammerspoon -> repo/.hammerspoon
   home.file.".hammerspoon".source = link "${dotfiles}/.hammerspoon";
+
+  # ---------------------------------------------------------------------------
+  # Git and delta — reproduce the current ~/.gitconfig declaratively.
+  # home-manager writes this to ~/.config/git/config.
+  # ---------------------------------------------------------------------------
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+    settings = {
+      user = {
+        name = "SNKK62";
+        email = "koki.seno62@gmail.com";
+      };
+      core.editor = "vim";
+      init.defaultBranch = "main";
+      merge.tool = "vimdiff";
+      mergetool.keepBackup = false;
+      ghq.root = "${config.home.homeDirectory}/workspace";
+      pager.reflog = "delta";
+      alias = {
+        diff-side-by-side = "-c delta.features=side-by-side diff";
+        graph = "log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short";
+      };
+    };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      plus-style = "syntax #012800";
+      minus-style = "syntax #340001";
+      syntax-theme = "zenburn";
+      navigate = true;
+      line-numbers = true;
+      keep-plus-minus-markers = true;
+    };
+  };
+
+  # Keep the legacy path as a direct link to the generated config. This makes
+  # `git config --global` work too: that command does not expand includes unless
+  # `--includes` is passed explicitly.
+  home.file.".gitconfig" = {
+    force = true;
+    source = link "${config.xdg.configHome}/git/config";
+  };
 
   # ---------------------------------------------------------------------------
   # Let home-manager manage itself.

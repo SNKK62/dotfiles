@@ -173,14 +173,18 @@
     finder = {
       AppleShowAllExtensions = true;
     };
+
+    universalaccess = {
+      # System Settings > Accessibility > Display > Reduce motion.
+      # Writing this protected preference requires Full Disk Access for the
+      # terminal that runs darwin-rebuild (see README).
+      reduceMotion = true;
+    };
   };
 
   # Settings without a typed nix-darwin option go here (written verbatim via
   # `defaults`). These match the README "Mac Mission Control settings".
   system.defaults.CustomUserPreferences = {
-    # NOTE: `com.apple.universalaccess` (Accessibility > Display > Reduce motion)
-    # is a TCC-protected domain that `defaults` cannot write without Full Disk
-    # Access, so it is NOT managed here — set it by hand (see nix/README.md).
     # System Settings > Desktop & Dock > Mission Control:
     # "Displays have separate Spaces" ON  ==  spans-displays = 0
     "com.apple.spaces" = {
@@ -188,4 +192,19 @@
     };
   };
 
+  # System Settings > Keyboard > Keyboard Shortcuts > Modifier Keys.
+  system.keyboard = {
+    enableKeyMapping = true;
+    remapCapsLockToControl = true;
+  };
+
+  # Disable "Show Spotlight search" (symbolic hotkey 64) so Command-Space is
+  # available to Raycast. `-dict-add` is intentional: declaring this through
+  # CustomUserPreferences would replace the entire AppleSymbolicHotKeys dict
+  # and discard unrelated shortcuts.
+  system.activationScripts.postActivation.text = ''
+    launchctl asuser "$(id -u -- ${username})" sudo --user=${username} -- \
+      defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 \
+      '{ enabled = false; value = { parameters = (65535, 49, 1048576); type = standard; }; }'
+  '';
 }

@@ -19,28 +19,33 @@ macOS-specific / Japanese-NLP / build-toolchain formulae.
 ## Bootstrap on a fresh Mac
 
 ```sh
-# 1. Xcode command line tools
-xcode-select --install
-
-# 2. Install Homebrew (nix-darwin manages packages but does not install brew)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# 3. Install Nix. This config uses Determinate Nix (darwin.nix sets
-#    nix.enable = false so nix-darwin does NOT fight Determinate's daemon).
-#    Install Determinate to match:
-curl -fsSL https://install.determinate.systems/nix | sh -s -- install --determinate
-#    (If you instead use the OFFICIAL installer below, flip nix.enable = true
-#     and restore the nix.settings block in darwin.nix.)
-#    sh <(curl -L https://nixos.org/nix/install)
-
-# 4. Get the dotfiles (this repo) at ~/workspace/dotfiles
+# 1. Get the dotfiles (this repo) at ~/workspace/dotfiles
 mkdir -p ~/workspace && git clone <this-repo> ~/workspace/dotfiles
 
-# 5. Build & switch
+# 2. Install bootstrap dependencies
+cd ~/workspace/dotfiles/nix
+./install.sh
+```
+
+`install.sh` installs the Xcode Command Line Tools, Homebrew, Determinate Nix,
+Codex, Claude Code, rustup + Clippy, Antigen, and the pinned Cica font when
+missing. It also copies the custom keyboard layout and initial Marta
+configuration without overwriting existing files. Rerun the script after the
+Xcode installer finishes if it was started on the first run.
+
+Next, grant the terminal app **Full Disk Access** in System Settings > Privacy &
+Security, quit and reopen the terminal, then build and switch:
+
+```sh
 cd ~/workspace/dotfiles/nix
 nix run nix-darwin -- switch --flake .#koki-mac
-#   (subsequent rebuilds: darwin-rebuild switch --flake .#koki-mac)
+# Subsequent rebuilds:
+sudo darwin-rebuild switch --flake .#koki-mac
 ```
+
+Portable tools such as `uv`, Git, Git LFS and delta are deliberately not
+installed by `install.sh`; home-manager installs and configures them during the
+switch.
 
 > The dotfile symlinks in `home.nix` point at `~/workspace/dotfiles` (this
 > repo's `ghq` location). If you clone elsewhere, update the `dotfiles`
@@ -49,8 +54,9 @@ nix run nix-darwin -- switch --flake .#koki-mac
 ## What is reproduced
 
 - **CLI tools** from nixpkgs (see `home.packages`): bat, lsd, fzf, ripgrep,
-  gh, ghq, delta, coreutils, gnutar, neovim, lua-language-server, luarocks,
-  tmux, zellij, starship, fastfetch, pandoc, mpv, pngpaste, numbat, uv.
+  gh, ghq, Git, Git LFS, delta, coreutils, gnutar, neovim,
+  lua-language-server, luarocks, tmux, zellij, starship, fastfetch, pandoc,
+  mpv, pngpaste, numbat, uv.
 - **TeX** from nixpkgs (`texliveSmall.withPackages`): mirrors the collections
   currently installed under `/usr/local/texlive` — langjapanese, langcjk,
   latexextra, latexrecommended, fontsrecommended, pictures, metapost, xetex.
@@ -63,8 +69,11 @@ nix run nix-darwin -- switch --flake .#koki-mac
   drawio, docker, tailscale.
 - **Dotfiles** symlinked into `~/.config` and `~` (nvim, wezterm, zellij,
   espanso, tmux, zsh, starship, aerospace, hammerspoon).
+- **Git configuration** via home-manager: identity, Vim editor, default branch,
+  vimdiff merge tool, ghq root, Git LFS, delta theme/pagers, and aliases.
 - **macOS defaults**: fast key repeat, press-and-hold off, show all
-  extensions, displays-have-separate-spaces on.
+  extensions, displays-have-separate-spaces on, Reduce Motion on, Caps Lock
+  remapped to Control, and the macOS Spotlight Command-Space shortcut off.
 - **Fonts**: Hack Nerd Font, Agave Nerd Font.
 
 ## NOT reproduced automatically (install by hand)
@@ -76,30 +85,18 @@ These have no cask / aren't in nixpkgs, or come from the Mac App Store.
   cannot download it). The rest (Xcode, Keynote, Pages, Numbers, GarageBand,
   iMovie, Microsoft Word/Excel/PowerPoint/Teams) are not declared; add them to
   `homebrew.masApps` the same way if you want them (`mas list` to get IDs).
-- **Rust toolchain**: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
-  then `rustup component add clippy` (see repo README).
+- **Rust toolchain versions** — `install.sh` installs rustup and Clippy, but
+  individual project toolchain versions are selected by rustup/project files.
 - **Editor extensions**: handled by the editor's own Settings Sync.
-- **Cica font**: not packaged in nixpkgs — download `Cica.ttc` from
-  https://github.com/miiton/Cica/releases into `~/Library/Fonts`.
-  (HackGen and Sarasa *are* installed from nixpkgs via `fonts.packages`.)
-- **Antigen** (zsh plugin manager, per repo README):
-  `curl -L git.io/antigen > ~/.local/bin/antigen.zsh`
 - **Python interpreters and virtualenvs** — `pyenv` and `pyenv-virtualenv` are
   installed, but interpreters and envs are not. Install whatever each project
   needs (`pyenv install <version>`, `pyenv virtualenv <version> <name>`).
 - **Node interpreters** — `n` is installed but the runtimes are not.
   Install per project with `sudo n <version>`.
-- **Keyboard layout** — copy the custom layout into place, then select it in
-  System Settings > Keyboard > Input Sources:
-  ```sh
-  cp mac/option_blank_layout.keylayout ~/Library/Keyboard\ Layouts/
-  ```
-- **Marta config** — copy into `~/Library/Application Support/org.yanex.marta/`:
-  ```sh
-  cp mac/marta/conf.marco mac/marta/favorites.marco \
-     ~/Library/Application\ Support/org.yanex.marta/
-  ```
-  Not symlinked on purpose: Marta rewrites these files on save and expands
+- **Keyboard layout** — `install.sh` copies the custom layout; select it in
+  System Settings > Keyboard > Input Sources after installation.
+- **Marta config** — `install.sh` copies the initial config without overwriting
+  existing files. It is not symlinked: Marta rewrites these files on save and expands
   `${user.documents}` in `favorites.marco` into absolute paths, which would
   clobber the portable version kept here. `default.marco` is Marta's shipped
   reference config — keep it for lookup, don't copy it.
@@ -109,10 +106,14 @@ These have no cask / aren't in nixpkgs, or come from the Mac App Store.
   `stylua`, `luacheck` (see repo README).
 - **macOS accessibility permissions** — AeroSpace, Hammerspoon and Espanso each
   need to be granted Accessibility/Input Monitoring access by hand on first
-  launch. This cannot be automated.
-- **Reduce motion** — System Settings > Accessibility > Display > Reduce motion:
-  ON. The `com.apple.universalaccess` domain is TCC-protected and cannot be
-  written by `defaults` during activation, so set it by hand.
+  launch. This cannot be automated. Also grant **Full Disk Access to the
+  terminal app used to run `darwin-rebuild`** before the first switch:
+  `system.defaults.universalaccess.reduceMotion = true` is declarative, but
+  macOS protects the underlying `com.apple.universalaccess` preference.
+- **Raycast shortcut** — nix-darwin disables Spotlight's Command-Space shortcut,
+  leaving it available for Raycast. The Homebrew cask only installs Raycast; it
+  does not configure the app's preferences. On first launch, choose
+  **Command-Space** as Raycast's global hotkey.
 - **neofetch → fastfetch**: neofetch was removed from nixpkgs (upstream
   archived) and disabled in Homebrew on 2025-05-04, so it can no longer be
   installed on a fresh Mac. `home.nix` ships `fastfetch` instead. The existing
