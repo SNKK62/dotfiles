@@ -207,6 +207,16 @@ if.app-id = 'com.electron.nota'
 check-further-callbacks = true
 run = ['move-node-to-workspace N']
 
+[[on-window-detected]]
+if.app-id = 'org.yanex.marta'
+check-further-callbacks = true
+run = ['move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
+check-further-callbacks = true
+run = ['move-node-to-workspace V']
+
 [workspace-to-monitor-force-assignment]
 1 = 1 # Monitor sequence number from left to right. 1-based indexing
 2 = 2
