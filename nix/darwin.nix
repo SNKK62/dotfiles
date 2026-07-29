@@ -205,6 +205,14 @@
   system.activationScripts.postActivation.text = ''
     launchctl asuser "$(id -u -- ${username})" sudo --user=${username} -- \
       defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 \
-      '{ enabled = false; value = { parameters = (65535, 49, 1048576); type = standard; }; }'
+      '<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>49</integer><integer>1048576</integer></array><key>type</key><string>standard</string></dict></dict>'
+
+    # `defaults`' old-style plist syntax turns these values into strings, which
+    # macOS ignores. The XML above preserves Boolean/Integer types. Refresh the
+    # user preference cache so the shortcut changes without requiring a reboot.
+    launchctl asuser "$(id -u -- ${username})" sudo --user=${username} -- \
+      killall cfprefsd 2>/dev/null || true
+    launchctl asuser "$(id -u -- ${username})" sudo --user=${username} -- \
+      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
 }
