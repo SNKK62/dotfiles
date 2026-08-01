@@ -68,7 +68,11 @@ switch.
   espanso, hammerspoon, clipy, raycast, marta, chrome, slack, obsidian,
   drawio, docker, tailscale.
 - **Dotfiles** symlinked into `~/.config` and `~` (nvim, wezterm, zellij,
-  espanso, tmux, zsh, starship, aerospace, hammerspoon).
+  espanso, tmux, zsh, starship, aerospace, hammerspoon, and the tracked Claude
+  Code settings, instructions, status line, and skills).
+- **Claude Code integration**: the user-scoped Codex MCP server and configured
+  Context7 plugin are installed automatically during Home Manager activation
+  when they are not already present.
 - **Git configuration** via home-manager: identity, Vim editor, default branch,
   vimdiff merge tool, ghq root, Git LFS, delta theme/pagers, and aliases.
 - **macOS defaults**: fast key repeat, press-and-hold off, show all

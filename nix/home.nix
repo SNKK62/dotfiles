@@ -28,6 +28,7 @@ in
     gh
     coreutils
     gnutar           # gnu-tar
+    jq               # used by the Claude Code status line
     tmux
     zellij
     starship
@@ -106,6 +107,37 @@ in
 
   # ~/.hammerspoon -> repo/.hammerspoon
   home.file.".hammerspoon".source = link "${dotfiles}/.hammerspoon";
+
+  # Claude Code keeps runtime state, credentials, and conversation history in
+  # ~/.claude too, so link only the portable, tracked configuration instead of
+  # replacing the entire directory.
+  home.file.".claude/CLAUDE.md".source =
+    link "${dotfiles}/.claude/CLAUDE.md";
+  home.file.".claude/settings.json".source =
+    link "${dotfiles}/.claude/settings.json";
+  home.file.".claude/statusline.sh".source =
+    link "${dotfiles}/.claude/statusline.sh";
+  home.file.".claude/skills/careful/SKILL.md".source =
+    link "${dotfiles}/.claude/skills/careful/SKILL.md";
+
+  # User-scoped MCP configuration lives in Claude's mutable ~/.claude.json,
+  # alongside machine-local state. Add Codex idempotently rather than managing
+  # that whole file declaratively.
+  home.activation.configureClaudeIntegrations =
+    config.lib.dag.entryAfter [ "writeBoundary" ] ''
+      if command -v claude >/dev/null 2>&1 \
+        && command -v codex >/dev/null 2>&1 \
+        && ! claude mcp get codex >/dev/null 2>&1; then
+        run claude mcp add --scope user --transport stdio codex -- codex mcp-server
+      fi
+
+      if command -v claude >/dev/null 2>&1 \
+        && ! claude plugin list 2>/dev/null \
+          | grep -Fq 'context7-plugin@context7-marketplace'; then
+        run claude plugin install --scope user \
+          context7-plugin@context7-marketplace
+      fi
+    '';
 
   # ---------------------------------------------------------------------------
   # Git and delta — reproduce the current ~/.gitconfig declaratively.

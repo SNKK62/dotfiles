@@ -5,8 +5,6 @@ argument-hint: "<implementation request>"
 disable-model-invocation: true
 ---
 
----
-
 # Careful workflow
 
 You are running the `/careful` workflow.
