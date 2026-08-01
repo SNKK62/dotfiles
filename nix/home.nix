@@ -56,6 +56,8 @@ in
     # /usr/local/texlive (scheme-small + the collections below, incl. Japanese).
     # Pinned by the flake, so this reproduces exactly across machines.
     (texliveSmall.withPackages (ps: with ps; [
+      latexmk
+      biber
       collection-langjapanese
       collection-langcjk
       collection-latexextra

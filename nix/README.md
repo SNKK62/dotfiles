@@ -58,9 +58,10 @@ switch.
   lua-language-server, luarocks, tmux, zellij, starship, fastfetch, pandoc,
   mpv, pngpaste, numbat, uv.
 - **TeX** from nixpkgs (`texliveSmall.withPackages`): mirrors the collections
-  currently installed under `/usr/local/texlive` — langjapanese, langcjk,
-  latexextra, latexrecommended, fontsrecommended, pictures, metapost, xetex.
-  Pinned by the flake, so papers build identically on a new machine.
+  currently installed under `/usr/local/texlive` — `latexmk`, `biber`,
+  langjapanese, langcjk, latexextra, latexrecommended, fontsrecommended,
+  pictures, metapost, xetex. Pinned by the flake, so papers build identically
+  on a new machine.
 - **Homebrew formulae** kept on brew (`homebrew.brews`): pyenv, n, prettierd,
   libsixel, plus the pyenv build deps (readline, openssl@3, xz, zlib, libffi,
   jpeg, tcl-tk).
